@@ -1,0 +1,13 @@
+AWS Setup for handson:
++++++++++++++++++++++
+Ubuntu Server 24.04 LTS: It means that this version was launched in April 2024.
+
+Kubernetes Cluster:
+-	Kubeadm (here we take 2-3 instances and install kubeadm on each of them and we join them in one cluster.)
+-	Minikube (local/ec2)
+-	KIND Cluster (Kubernetes in Docker)
+-	EKS / AKS / GKE – Managed K8S Services
+-	Rancher (Enterprise level)
+-	CIVO
+
+Create one t2.medium instance server and storage 30 GB.
