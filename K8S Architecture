@@ -1,0 +1,21 @@
+	There is a cluster, inside that one master node and multiple worker nodes are there.
+
+Master Node:
+--------------------------
+	In master node, one api server is there and that helps in communication.
+	Api server asks the scheduler to perform the tasks.
+	Controller manager is there to manage the whole clusters.
+	Etcd is there which is datastore.
+
+Worker Node:
+--------------------
+	There is a kubelet which checks that all the pods are running or not.
+	Pods contain containers and docker containers are running in that.
+	Pods cant be directly accessed so for that we need service proxy.
+
+Now whole communication will happen via network called CNI (Container Network Interface).
+
+	Service proxy will talk with API server –
+	API server will talk with scheduler, etcd and controller manager and kubelet.
+	Kubectl will talk with API Server.
+
