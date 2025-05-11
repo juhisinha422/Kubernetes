@@ -1,0 +1,36 @@
+# Creating KIND Setup: - (3 worker nodes)
+------------------------------------ 
+kind – Quick Start : https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster
+
+$ mkdir kind-cluster
+$ cd kind-cluster
+$ vi config.yml
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+- role: control-plane
+  image: kindest/node:v1.31.2
+- role: worker
+  image: kindest/node:v1.31.2
+- role: worker
+  image: kindest/node:v1.31.2
+- role: worker
+  image: kindest/node:v1.31.2
+  extraPortMappings:
+    - containerPort: 80
+      hostPort: 80
+      protocol: TCP
+    - containerPort: 443
+      hostPort: 443
+      protocol: TCP
+
+KIND Cluster Creation: -
+++++++++++++++++++++++ 
+$ kind create cluster --name=sinhajuhi-cluster --config=config.yml
+$ kubectl cluster-info --context kind-sinhajuhi-cluster
+$ kubectl get nodes
+
+
+
