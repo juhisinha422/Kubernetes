@@ -1,0 +1,18 @@
+key: value
+name: juhi
+
+courses:
+-	DevOps
+-	AWS
+-	Python
+-	Gen AI
+
+info: 
+	name: juhi
+	age: 20
+	job: devops
+	hobbies:
+		- cycling
+		- reading novels
+		- learning new things
+		- listening music
