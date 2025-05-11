@@ -1,3 +1,6 @@
+https://github.com/LondheShubham153/kubernetes-in-one-shot
+====================================================================
+
 Core Concepts:
 Monolithic vs Microservices, K8S Architecture, Setup on Local/AWS EC2, Kubectl, Pods,
 Namespaces, Labels, Selectors, Annotations.
