@@ -25,3 +25,33 @@ rm -f kubectl
 rm -rf kind
 
 echo "kind & kubectl installation complete."
+
+
+
+========================
+
+Commands:
++++++++++++++++
+chmod 777 install_kind.sh
+./install_kind.sh
+
+$ sudo apt-get update
+
+# Install Docker
+$ sudo apt-get install docker.io
+$ docker ps
+$ docker --version
+$ sudo usermod -aG docker $USER && newgrp docker
+$ docker ps
+$ kubectl version
+$ kind --version
+
+Kind Setup on Local: -
++++++++++++++++++++++++ 
+kind – Quick Start
+curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/v0.27.0/kind-windows-amd64
+Move-Item .\kind-windows-amd64.exe c:\some-dir-in-your-PATH\kind.exe
+
+(Run on cmd or powershell)
+
+
