@@ -1,0 +1,9 @@
+Difference b/w Deployment and ReplicaSets: -
+
+In deployment, we can do rolling updates, rollout, etc. 
+Deployments are more flexible.
+Deployments are more advanced. If ur system is getting updated, then all the replicas will not be getting updated at a time. It will happen slowly slowly like a rolling update.
+
+In rs, we cant do all those things.
+ReplicaSets are using the same technology that Deployment use.
+Rolling updates are not there in ReplicaSets.
