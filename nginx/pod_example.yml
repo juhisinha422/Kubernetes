@@ -1,0 +1,16 @@
+# vi pod_example.yml
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-pod
+  namespace: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+
+# kubectl apply -f pod_example.yml
+# kubectl get pods -n nginx
