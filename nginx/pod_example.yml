@@ -18,3 +18,5 @@ spec:
 # kubectl exec -it nginx-pod -n nginx -- bash
 # curl 127.0.0.1
 # we can see here welcome to nginx.
+# exit
+# kubectl describe pod nginx-pod -n nginx
