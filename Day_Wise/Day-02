@@ -1,0 +1,19 @@
+Kubernetes - Day 2 Highlights! 
+
+Today, I deep-dived into some core Kubernetes concepts that are essential for anyone working with container orchestration:
+
+ReplicaSets - Managing the desired number of pods
+
+ReplicationController vs StatefulSets vs Deployments - Understanding their roles and use-cases
+
+Labels & Selectors - Efficient resource management and filtering
+
+Namespaces - Creating isolated environments for better resource handling
+
+Pods - Crafting YAML files to spin up containers under a specific namespace
+
+Rolling Updates - were I also for i ImagePullBackOff error anf resolved the same.
+
+Included practical YAML to create a namespace, pod, deployment, Rolling updates making the learning hands-on and easy to apply in real-world clusters.
+
+Tools used: kubectl, vim, and manifest files for Kubernetes deployments.
