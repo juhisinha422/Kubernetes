@@ -1,0 +1,57 @@
+# A task that can be scheduled.
+# backup : * * * * *
+# min, hour, day, day of the week ,day of the month
+# Crontab.guru - The cron schedule expression generator : https://crontab.guru/
+
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: minute-backup
+  namespace: nginx
+
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: minute-backup
+          labels:
+            app: minute-backup
+
+        spec:
+          containers:
+          - name: backup-container
+            image: busybox
+            command:
+            - sh
+            - -c
+            - >
+              echo "Backup Started" ;
+              mkdir -p /backups &&
+              mkdir -p /demo-data &&
+              cp -r /demo-data /backups &&
+              echo "Backup Completed" ;
+            volumeMounts:
+              - name: data-volume
+                mountPath: /demo-data
+              - name: backup-volume
+                mountPath: /backups
+          restartPolicy: OnFailure
+          volumes:
+            - name: data-volume
+              hostPath:
+                path: /demo-data
+                type: DirectoryOrCreate
+            - name: backup-volume
+              hostPath:
+                path: /backups
+                type: DirectoryOrCreate
+
+
+# kubectl apply -f cron-job.yml
+# kubectl get cronjob -n nginx
+#  kubectl get pods -n nginx
+# kubectl logs -f minute-backup-29117502-9m6sl -n nginx
+# kubectl delete -f cron-job.yml
+
