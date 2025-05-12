@@ -1,8 +1,0 @@
-Deployments:
----------------------- 
-ReplicaSet vs StatefulSet vs Deployments
-
-Replication Controller: manage pod replicas
-ReplicaSet: create desired no of pods
-StatefulSet: gives numbering to the pods, pods state by sequence no will be maintained.
-Deployment: rolling updates. 

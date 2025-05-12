@@ -1,0 +1,8 @@
+ReplicaSet vs StatefulSet vs Deployments vs DaemonSets
+=============================================================
+
+Replication Controller: manage pod replicas
+ReplicaSet: create desired no of pods/replicas.
+StatefulSet: gives numbering to the pods, pods state by sequence no will be maintained. Whatever replicas will be there, they state will be maintained.
+DaemonSets ensures that on each node atleast one pod or replica should be running.
+Deployment: whatever replicas are there they should do rolling updates, auto-scaling, auto-healing, etc.
