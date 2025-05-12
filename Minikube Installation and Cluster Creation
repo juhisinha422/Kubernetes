@@ -42,3 +42,7 @@ $ minikube delete
 # To switch to other cluster
 $ kubectl get nodes --context kind-sinhajuhi-cluster
 
+# To use kind cluster
+$ kubectl config use-context kind-sinhajuhi-cluster
+$ kubectl get nodes
+
