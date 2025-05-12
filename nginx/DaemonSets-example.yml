@@ -5,4 +5,39 @@
 
 # vi daemonsets.yml
 
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: nginx-daemonsets
+  namespace: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+
+
+  template:
+    metadata:
+      name: nginx-dmn-pod
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
+# kubectl apply -f daemonsets.yml
+# kubectl get pods -n nginx
+# we can see here that earlier we were having 3 nodes and now 3 pods are running, one on each node.
+# kubectl get pods -o wide -n nginx
+# kubectl delete -f daemonsets.yml
+
+
+
+
+
+
 
