@@ -1,0 +1,13 @@
+Rolling Update in Deployment
+++++++++++++++++++++++++++++++ 
+
+# kubectl get pods -n nginx -o wide
+# suppose we want to change nginx version.
+
+$ kubectl set image deployment/nginx-deployment -n nginx nginx=nginx:1.27.3
+$ kubectl get pods -n nginx
+$ kubectl set image deployment/nginx-deployment -n nginx nginx=nginx:latest
+
+# delete the deployment
+$ kubectl delete -f deployment.yml
+$ cp deployment.yml replicasets.yml
