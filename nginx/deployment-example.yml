@@ -1,0 +1,40 @@
+# vi deployment-example.yml
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-deployment
+  namespace: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+
+
+  template:
+    metadata:
+      name: nginx-dep-pod
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+            
+# kubectl get pods -n nginx
+# kubectl delete -f pod.yml
+# kubectl apply -f deployment-example.yml
+# kubectl get deploy -n nginx
+# kubectl get pods -n nginx
+# scale the deployment (incase traffic): kubectl scale deployment/nginx-deployment -n nginx --replicas=5
+# kubectl get pods -n nginx
+
+# scaling down deployment: kubectl scale deployment/nginx-deployment -n nginx --replicas=1
+# kubectl get pods -n nginx
+
+
+
