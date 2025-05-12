@@ -1,0 +1,8 @@
+# DaemonSets
+ 
+# kubectl get pods -o wide -n nginx
+# DaemonSets ensures that on each node atleast one pod or replica should be running.
+
+# vi daemonsets.yml
+
+
