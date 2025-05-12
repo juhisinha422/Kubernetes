@@ -1,5 +1,6 @@
 What is minikube cluster, Installation and Cluster creation
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Minikube is an open-source tool that allows you to run a single-node Kubernetes cluster on your local machine. 
 
 minikube start | minikube : https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download
 
