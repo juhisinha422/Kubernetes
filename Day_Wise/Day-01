@@ -1,0 +1,9 @@
+Day-1 of Kubernetes
+
+In day-1 of k8s I have explored how to create KIND (Kubernetes in docker) cluster means to run local Kubernetes clusters using Docker containers as nodes. It's lightweight, fast, and perfect for learning and testing! 
+
+Why do we use namespace?
+It helps to organize and isolate resources within a Kubernetes cluster. Think of them like folders useful for managing environments like dev, test, and prod within the same cluster.
+
+What is the role of namespace?
+We can have the same resource name (like a pod or service) in different namespaces without conflicts. They’re essential for multi-team or multi-project environments in Kubernetes.
