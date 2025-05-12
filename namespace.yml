@@ -1,0 +1,13 @@
+# mkdir nginx
+# cd nginx
+
+# YAML (Manifest file creation)
+# vi namespace.yml
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx
+
+# kubectl apply -f namespace.yml
+# kubectl get ns
