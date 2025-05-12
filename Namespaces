@@ -1,0 +1,39 @@
+Namespaces: -
++++++++++++++
+Lets suppose: 
+	We need to run docker container for nginx and it will run inside pod. A pod can have multiple containers. We need deployment for auto scaling, auto healing. We need to give access for application, so for that we will use service.
+	Then only as a user we can access the app.
+
+Namespace: -
+++++++++++++++++++
+	In K8S there is a groups which is called as namespace and here all the resources will be there.
+ 
+
+$ mkdir Kubernetes
+$ cd Kubernetes
+$ kubectl get namespace 
+$ kubectl get ns
+ 
+
+	default: If u don’t create any namespaces then everything will go into this namespace, all the resources.
+	kube-node-lease: nodes which are created that info will be stored here.
+	kube-public: publicly accessible resources will be there
+	kube-system: system level services are running here
+	local-path-storage: for storage and one pod is running here also.
+
+$ kubectl get pods
+$ kubectl get ns
+$ kubectl get pods -n kube-system
+
+
+# create namespace
+$ kubectl create ns nginx
+$ kubectl get ns
+$ kubectl run nginx --image=nginx
+(pod/nginx created)
+$ kubectl get pods
+$ kubectl delete pod nginx
+$ kubectl run nginx --image=nginx -n nginx
+$ kubectl get pods -n nginx
+$ kubectl delete pod nginx -n nginx
+$ kubectl delete ns nginx
