@@ -1,3 +1,5 @@
+# vi jobs.yml
+
 kind: Job
 apiVersion: batch/v1
 metadata:
@@ -17,3 +19,17 @@ spec:
         image: busybox:latest
         command: ["sh", "-c" ,"echo Hello Dosto! && sleep 10"]
       restartPolicy: Never
+
+
+# kubectl apply -f jobs.yaml
+# kubectl get job -n nginx
+# kubectl get pods -n nginx
+# kubectl logs -f pod/demo-job-6nt77 -n nginx
+
+# If we want to run the job again then we need to delete and apply again.
+# kubectl delete -f jobs.yml
+# kubectl apply -f jobs.yml
+# kubectl get pods -n nginx
+# kubectl get job -n nginx
+# kubectl logs -f pod/demo-job-4dhhb -n nginx
+
