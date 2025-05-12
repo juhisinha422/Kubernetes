@@ -38,3 +38,7 @@ $ minikube stop
 
 # If you wish to delete the Minikube cluster entirely, you can do so with:
 $ minikube delete
+
+# To switch to other cluster
+$ kubectl get nodes --context kind-sinhajuhi-cluster
+
