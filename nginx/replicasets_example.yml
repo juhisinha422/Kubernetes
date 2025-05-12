@@ -29,6 +29,8 @@ spec:
 # kubectl get rs -n nginx
 # kubectl get pods -n nginx
 # kubectl delete -f replicasets.yml
+# cp replicasets.yml daemonsets.yml
+
 
 
 
