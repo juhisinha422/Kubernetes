@@ -1,0 +1,21 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+  namespace: nginx
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+
+# kubectl apply -f service.yml
+# kubectl get all -n nginx
+# sudo -E kubectl port-forward service/nginx-service -n nginx 80:80 --address=0.0.0.0
+# -E refers to it will run in one environment.
+
+# go to ec2 add inbound rule 80 and access the app : pubIP:80
+
