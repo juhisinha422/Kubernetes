@@ -1,0 +1,10 @@
+Today’s deep dive was all about workload management in Kubernetes:
+
+ReplicaSets – Ensure your desired number of Pods are always running.
+DaemonSets – Make sure a Pod is running on every node in the cluster.
+Jobs – Execute a one-time task until completion, and terminate the pod once done.
+CronJobs – Schedule Jobs to run periodically just like a Linux cron (perfect for backups, reports, or cleanup tasks)!
+
+I’ve documented everything with CLI outputs and manifest files to reinforce hands-on learning.
+
+Kubernetes is all about automation, scalability, and smart workload management. Every day brings a new layer of understanding! 
