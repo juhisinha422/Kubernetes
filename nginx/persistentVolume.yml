@@ -16,3 +16,7 @@ spec:
   storageClassName: local-storage
   hostPath:
     path: /mnt/data 
+
+
+# kubectl apply -f persistentVolume.yml
+# kubectl  get pv
