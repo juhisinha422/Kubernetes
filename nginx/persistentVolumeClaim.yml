@@ -10,3 +10,10 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: local-storage
+
+
+# kubectl apply -f persistentVolumeClaim.yml
+# kubectl get pv (bounded to pvc if we see status)
+# kubectl get pvc -n nginx
+# kubectl get ns 
+# local-path-storage will be there , this will bind with docker container and make a storage
