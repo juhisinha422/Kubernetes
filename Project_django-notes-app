@@ -1,0 +1,89 @@
+git clone https://github.com/juhisinha422/django-notes-app.git
+cd django-notes-app
+git checkout dev
+docker build -t notes-app-k8s .
+docker images
+docker login 
+
+# give username and password
+
+docker image tag notes-app-k8s:latest juhisinha/notes-app-k8s:latest
+docker push juhisinha/notes-app-k8s:latest
+
+cd /home/ubuntu/kind-cluster/kubernetes/nginx/django-notes-app
+mkdir k8s
+cd k8s
+
+================
+vi deployment.yml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-app-deployment
+  labels:
+    app: notes-app
+  namespace: notes-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-app
+  template:
+    metadata:
+      labels:
+        app: notes-app
+    spec:
+      containers:
+      - name: notes-app
+        image: trainwithshubham/notes-app-k8s
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+      ======================
+
+vi namespace.yml
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: notes-app
+
+--------------------
+vi service.yml
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: notes-app-service
+  namespace: notes-app
+spec:
+  selector:
+    app: notes-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP
+
+
+=====================================
+kubectl apply -f namespace.yml
+kubectl apply -f deployment.yml
+kubectl apply -f service.yml
+kubectl get pods -n notes-app
+sudo -E kubectl port-forward service/notes-app-service -n notes-app 8000:8000 --address=0.0.0.0
+
+# access the app : publicIP:8000
+
+
