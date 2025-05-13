@@ -1,0 +1,105 @@
+# vi persistentVolume.yml
+
+# vi persistentVolume.yml
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: local-pv
+  namespace: nginx
+  labels:
+    app: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  hostPath:
+    path: /mnt/data 
+
+
+# kubectl apply -f persistentVolume.yml
+# kubectl  get pv
+
+===================================
+
+vi persistentVolumeClaim.yml
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: local-pvc
+  namespace: nginx
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-storage
+
+
+# kubectl apply -f persistentVolumeClaim.yml
+# kubectl get pv (bounded to pvc if we see status)
+# kubectl get pvc -n nginx
+# kubectl get ns 
+# local-path-storage will be there , this will bind with docker container and make a storage
+
+
+--------------------
+
+vi deployment.yml
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-deployment
+  namespace: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+
+  template:
+    metadata:
+      name: nginx-dep-pod
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html # or /var/www/html
+            name: my-volume
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: local-pvc
+
+# kubectl apply -f deployment.yml
+# kubectl get pods -n nginx
+# kubectl get pods -n nginx -o wide
+# kubectl get nodes
+# docker ps
+# docker exec -it <cont-id of worker-node> bash
+# docker exec -it d5a12daab3ae bash
+# ls
+# cd /mnt/data
+# exit
+
+
+
