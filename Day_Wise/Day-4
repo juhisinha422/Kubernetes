@@ -1,0 +1,13 @@
+Kubernetes - Day 4 
+
+Today’s deep dive was all about managing persistent data and exposing services in Kubernetes! 
+
+Topics covered:
+
+Volumes (PV & PVC)
+
+Annotations
+
+Services
+
+Ingress
