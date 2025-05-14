@@ -44,5 +44,12 @@ spec:
 
 
 # kubectl apply -f ingress.yml
+# kubectl get ingress -n nginx
+# kubectl get all -n nginx
+# kubectl get svc -n ingress-nginx
+# sudo -E  kubectl port-forward service/ingress-nginx-controller -n ingress-nginx 8080:80 --address=0.0.0.0
+# access app: Public_IP:8080/  -- redirect to notes app
+# access app: public-ip:8080/nginx -- redirect to nginx
+
 
       
