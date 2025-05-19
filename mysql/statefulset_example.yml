@@ -30,25 +30,14 @@ spec:
         image: mysql:8.0
         ports:
         - containerPort: 3306
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 200m
-            memory: 25Mi
+
         env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: MYSQL_ROOT_PASSWORD
+          value: root
 
         - name: MYSQL_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: mysql-config-map
-              key: MYSQL_DATABASE 
+          value: devops
+
         volumeMounts:
         - name: mysql-data
           mountPath: /var/lib/mysql
@@ -62,5 +51,21 @@ spec:
         requests:
           storage: 1Gi
 
+# kubectl apply -f statefulset.yml
 
 # vi service.yml (code in repo)
+# kubectl apply -f service.yml
+
+# kubectl get pods -n mysql
+# watch kubectl get pods -n mysql
+# kubectl get svc -n mysql
+# kubectl get pods -n mysql
+# kubectl exec -it mysql-statefulset-0 -n mysql -- bash
+# mysql -u root -p
+# Enter password: root
+# exit 
+# exit
+
+# # kubectl delete pod mysql-statefulset-0 -n mysql
+# kubectl get pods -n mysql
+# we can see here that the pod which deleted, the pod is created again with same name.
