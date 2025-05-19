@@ -1,0 +1,101 @@
+# cd /home/ubuntu/kind-cluster/kubernetes/nginx
+# vi namespace.yml
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx
+
+# kubectl apply -f namespace.yml
+# vi resource_quota.yml
+
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx-deployment
+  namespace: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+
+  template:
+    metadata:
+      name: nginx-dep-pod
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: my-volume
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: local-pvc
+
+
+# vi persistentVolume.yml
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: local-pv
+  namespace: nginx
+  labels:
+    app: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  hostPath:
+    path: /mnt/data
+
+# kubectl apply -f persistentVolume.yml
+# kubectl get pv -n nginx
+
+# Optional: If status of pv is released, then delete the pv.
+# kubectl delete pv local-pv -n nginx
+
+# kubectl apply -f persistentVolume.yml
+# kubectl get pv -n nginx
+
+# vi persistentVolumeClaim.yml
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: local-pvc
+  namespace: nginx
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-storage
+
+# kubectl apply -f persistentVolumeClaim.yml
+# kubectl apply -f resource_quota.yml
+# kubectl get pods -n nginx
+# kubectl get pods -n nginx -o wide
+# kubectl describe pod nginx-deployment-759fb45d97-8vrdr -n nginx
+
+
