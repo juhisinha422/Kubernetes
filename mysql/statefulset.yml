@@ -3,6 +3,7 @@
 # cd ..
 # mkdir mysql
 # cd mysql
+# vi namespace.yml (code in repo)
 
 # vi statefulset.yml
 
