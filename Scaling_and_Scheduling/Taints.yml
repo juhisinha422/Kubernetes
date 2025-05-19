@@ -1,0 +1,53 @@
+#Taints
+######################
+
+# cd /home/ubuntu/kind-cluster/kubernetes/nginx
+# kubectl delete ns nginx
+# kubectl get pods -n nginx
+# kubectl get nodes
+
+# Taint
+#  kubectl taint node sinhajuhi-cluster-worker prod=true:NoSchedule
+#  kubectl taint node sinhajuhi-cluster-worker2 prod=true:NoSchedule
+#  kubectl taint node sinhajuhi-cluster-worker3 prod=true:NoSchedule
+
+# vi namespace.yml
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx
+
+# kubectl apply -f namespace.yml
+# vi pod.yml
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-pod
+  namespace: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+
+#  kubectl apply -f pod.yml
+# kubectl get pods -n nginx
+
+ 
+# Pods are in pending state because all nodes are tainted. Whatever nodes are tainted then pods will not be scheduled.
+# kubectl describe pod nginx-pod -n nginx
+
+ 
+
+# Control Plane is also tainted.
+# To untaint a node (give – sign at last)
+#  kubectl taint node sinhajuhi-cluster-worker2 prod=true:NoSchedule-
+# kubectl get pods -n nginx
+# now pods will be running.
+# kubectl describe pod nginx-pod -n nginx
+# kubectl delete -f pod.yml
+
+
