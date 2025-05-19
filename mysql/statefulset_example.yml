@@ -4,6 +4,7 @@
 # mkdir mysql
 # cd mysql
 # vi namespace.yml (code in repo)
+# kubectl apply -f namespace.yml
 
 # vi statefulset.yml
 
