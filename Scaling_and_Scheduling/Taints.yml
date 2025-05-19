@@ -1,4 +1,4 @@
-#Taints
+#Taints / Tolerations
 ######################
 
 # cd /home/ubuntu/kind-cluster/kubernetes/nginx
@@ -49,5 +49,33 @@ spec:
 # now pods will be running.
 # kubectl describe pod nginx-pod -n nginx
 # kubectl delete -f pod.yml
+
+
+# Tolerations: -
+##################
+
+# vi pod.yml
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-pod
+  namespace: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+  tolerations:
+    - key: "prod"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+
+# kubectl apply -f pod.yml
+# kubectl get pods -n nginx
+# we can see that now pods are scheduled and is running even though we have applied taint.
 
 
