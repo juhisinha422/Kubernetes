@@ -1,0 +1,37 @@
+HPA: - 
++++++++++
+Autoscaling: - 
+
+# Horizontal Pod Autoscalar
+# VPA: Vertical Pod Autoscalar
+# KEDA: Kubernetes Event-Driven Autoscaling
+
+
+	HPA: automatically scales (pod replicas) – increases pods
+	VPA: increase resources (pod limits and requests)
+	VPA is mainly used for stateful applications.
+
+	KEDA: works on how the event is. if there is much traffic or re-routing then it will apply HPA.
+	KEDA: if there is more overload or stress, then it will apply VPA.
+	So basically, KEDA works based on the events of the metrics, and it will select HPA or VPA accordingly.
+	Metrics means the no. of quantifiable resources. (how much CPU or RAM is used)
+
+	We can check metrics details using below commands.
+# kubectl get nodes
+# kubectl top node
+# kubectl top pod
+
+# Metrics server on minikube: 
+# minikube addons enable metrics-server
+# Kind cluster metrics server: https://gist.github.com/sanketsudake/a089e691286bf2189bfedf295222bd43
+
+https://github.com/juhisinha422/kubestarter/tree/main/HPA_VPA
+
+===============================================================================
+
+# If you are using a Kind cluster install Metrics Server
+# kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+
+
+
