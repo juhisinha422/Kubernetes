@@ -19,3 +19,18 @@
 # kubectl get pods -n kube-system
 # kubectl top nodes
 
+# If pods are in pending state of metrics-server then describe the pod and see the issue:
+#  kubectl describe pod metrics-server-6b9558947c-wbrnz -n kube-system
+
+# Check the utilization;
+# kubectl top nodes
+# kubectl top pod -n nginx
+
+# kubectl delete -f pod.yml
+# kubectl top pod -n mysql
+# kubectl top pod -n nginx
+# kubectl top pod 
+
+
+
+
