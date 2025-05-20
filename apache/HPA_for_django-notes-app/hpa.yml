@@ -1,0 +1,41 @@
+# vi hpa.yml
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: notes-app-hpa
+  namespace: nginx
+
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: notes-app-deployment
+    apiVersion: apps/v1
+
+  minReplicas: 1
+  maxReplicas: 5
+
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 5
+
+# kubectl apply -f namespace.yml
+# kubectl apply -f deployment.yml
+# kubectl get pods -n nginx
+# kubectl apply -f hpa.yml
+#  kubectl get hpa -n nginx
+# kubectl get pods -n nginx
+# kubectl delete ns nginx
+
+
+
+
+
+
+
+
+
