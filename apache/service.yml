@@ -1,3 +1,5 @@
+# vi service.yml
+
 kind: Service
 apiVersion: v1
 metadata:
@@ -11,3 +13,28 @@ spec:
       port: 80 # exposed port in the cluster
       targetPort: 80 # container port
   type: ClusterIP
+
+
+# kubectl apply -f service.yml
+# kubectl get svc -n apache
+# kubectl get all -n apache
+
+# Note: If you want to access any pod or service, then u can access through this DNS also. (But it works inside pod or cluster)
+# curl http://apache.service.apache.svc.cluster.local
+
+# kubectl get svc -n apache
+# kubectl describe svc apache-service -n apache
+
+# Expose the service
+# sudo -E  kubectl port-forward service/apache-service -n apache 82:80 --address=0.0.0.0
+
+
+# Access the app: Public_Ip:82/
+
+#############################
+# kubectl get pods -n apache
+# kubectl scale deploy apache-deployment -n apache --replicas=3
+# kubectl get pods -n apache
+
+
+
