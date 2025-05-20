@@ -1,0 +1,58 @@
+# kubernetes/autoscaler: Autoscaling components for Kubernetes: https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+
+# cd /home/ubuntu/kind-cluster/kubernetes/apache
+# git clone https://github.com/kubernetes/autoscaler.git
+# cd autoscaler
+# cd vertical-pod-autoscaler
+# ./hack/vpa-up.sh
+# cd ../..
+# cd /home/ubuntu/kind-cluster/kubernetes/apache
+
+# vi vpa.yml
+
+kind: VerticalPodAutoscaler
+apiVersion: autoscaling.k8s.io/v1
+metadata:
+  name: apache-vpa
+  namespace: apache
+
+spec:
+  targetRef:
+    name: apache-deployment
+    apiVersion: apps/v1
+    kind: Deployment
+  updatePolicy:
+    updateMode: "Auto"
+
+
+# kubectl apply -f vpa.yml
+# updateMode has three policy : auto, initial and off.
+# kubectl get pods -n apache
+# kubectl get hpa -n apache
+# kubectl delete -f hpa.yml
+# kubectl apply -f vpa.yml
+#  kubectl get vpa -n apache
+# kubectl explain vpa
+# kubectl explain vpa --recursive
+# watch kubectl get vpa -n apache
+
+# kubectl get svc -n apache
+# kubectl get pods -n apache
+# kubectl get vpa -n apache
+# sudo -E  kubectl port-forward service/apache-service -n apache 82:80 --address=0.0.0.0
+
+# kubectl run -i --tty load-generator --image=busybox -n apache /bin/sh
+# while true; do wget -q -O- http://apache-service.apache.svc.cluster.local; d
+one
+
+# duplicate tab and run 
+# watch kubectl get vpa -n apache
+ 
+
+# here we can see its increasing cpu and memory threshold and not the no. of pods.
+
+# kubectl top pods -n apache
+# kubectl get vpa -n apache
+# kubectl top nodes -n apache
+# kubectl get pods -o wide -n apache
+
