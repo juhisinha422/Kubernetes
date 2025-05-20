@@ -1,0 +1,24 @@
+# Apache: -
+
+# cd /home/ubuntu/kind-cluster/kubernetes
+# mkdir apache 
+# cd apache
+
+# Apache is also a web server like nginx which helps you to deploy or serve the application.
+
+
+
+# vi namespace.yml
+
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: apache
+
+
+
+
+
+
+
