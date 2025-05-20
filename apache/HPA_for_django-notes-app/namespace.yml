@@ -1,0 +1,10 @@
+# HPA for Django notes app:
+
+# kubectl delete pod load-generator -n apache
+# cd /home/ubuntu/kind-cluster/kubernetes/nginx/django-notes-app/k8s
+# vi namespace.yml
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx
