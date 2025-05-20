@@ -8,3 +8,6 @@ kind: Namespace
 apiVersion: v1
 metadata:
   name: nginx
+
+
+# namespace, service, deployment, hpa
