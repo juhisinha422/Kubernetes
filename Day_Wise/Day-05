@@ -1,0 +1,19 @@
+Kubernetes Day-5 | StatefulSets
+
+Today, I explored a powerful Kubernetes workload resource StatefulSets while using Amazon Q to streamline and enhance the experience.
+
+What I Did:
+
+I deployed StatefulSets to manage stateful applications like databases and queues that require stable network identities, persistent storage, and ordered scaling/rolling updates.
+
+Why StatefulSets?
+Unlike Deployments, StatefulSets maintain a unique identity for each pod — perfect for apps like MySQL, Cassandra, or Kafka. It ensures pods are created and terminated in a specific order and each one retains its volume even after rescheduling.
+
+
+Concepts Used:
+Amazon Q CLI
+Kubernetes StatefulSets
+Persistent Volume Claims (PVCs)
+MCP (Managed Control Plane)
+
+This was a great step forward in understanding how to manage stateful applications in Kubernetes.
