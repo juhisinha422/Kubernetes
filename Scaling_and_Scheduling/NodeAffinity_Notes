@@ -1,0 +1,3 @@
+Node affinity allows users to specify which nodes a pod should or should not be scheduled on based on node labels. For example, you can use node affinity to specify that a pod should be scheduled on a node with a specific label, such as disktype=ssd.
+
+To specify node affinity in a pod specification, use the affinity field and set the nodeAffinity field to the desired node affinity rules.
