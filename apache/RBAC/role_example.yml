@@ -7,7 +7,7 @@ metadata:
   namespace: apache
 rules:
   - apiGroups: ["", "apps","rbac.authorization.k8s.io","batch"] # [*] means all roles
-    resources: ["pod", "deployment", "service"]
+    resources: ["pods", "deployments", "services"]
     verbs: ["get", "apply", "delete", "watch","create","patch"]
 
 
