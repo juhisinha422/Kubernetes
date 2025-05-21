@@ -1,0 +1,15 @@
+# vi role.yml
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: apache-manager
+  namespace: apache
+rules:
+  - apiGroups: ["", "apps","rbac.authorization.k8s.io","batch"] # [*] means all roles
+    resources: ["pod", "deployment", "service"]
+    verbs: ["get", "apply", "delete", "watch","create","patch"]
+
+
+# kubectl apply -f role.yml
+# kubectl get role -n apache
