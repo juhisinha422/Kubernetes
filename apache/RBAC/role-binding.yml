@@ -20,3 +20,4 @@ roleRef:
 # kubectl get rolebinding -n apache
 
 # kubectl auth can-i get pods --as=apache-user -n apache
+# kubectl auth can-i get deployment --as=apache-user -n apache
