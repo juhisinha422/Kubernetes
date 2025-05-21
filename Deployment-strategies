@@ -1,0 +1,23 @@
+Mastering Kubernetes Deployment Strategies – A Must for DevOps Engineers.
+
+Kubernetes isn’t just about orchestration — it’s about control, reliability, and smart rollouts. Whether you're scaling up microservices or deploying critical apps, choosing the right deployment strategy makes all the difference.
+
+Here are 4 essential strategies every DevOps pro should have in their arsenal:
+
+1️⃣ Recreate Deployment
+How it works: Terminates old pods, then starts new ones.
+Best for: Stateful apps where brief downtime is acceptable.
+
+2️⃣ Rolling Update
+How it works: Gradual replacement of old pods with new ones.
+Best for: Stateless apps to enable zero-downtime deployments.
+
+3️⃣ Blue-Green Deployment
+How it works: Runs two environments and switches traffic from blue to green.
+Best for: Critical workloads needing fast rollback in case of failure.
+
+4️⃣ Canary Deployment
+How it works: Sends updates to a small set of users first.
+Best for: Risk mitigation and real-world testing before full rollout.
+
+Choosing the right deployment strategy isn’t just technical — it’s strategic.
