@@ -1,4 +1,9 @@
-# dashboard-admin-user.yml
+# ClusterRole and ClusterRoleBinding
+
+# kubectl get clusterrole -n kubernetes-dashboard
+
+# Create an Admin User Create a dashboard-admin-user.yml file with the following content:
+# vi dashboard-admin-user.yml
 
 kind: ServiceAccount
 apiVersion: v1
@@ -21,5 +26,141 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: cluster-admin
+
+
+# Apply the configuration:
+# kubectl apply -f dashboard-admin-user.yml
+
+# Get the Access Token Retrieve the token for the admin-user:
+# kubectl -n kubernetes-dashboard create token admin-user
+# Copy the token and save somewhere in notepad.
+
+# Access the Dashboard Start the Dashboard using kubectl proxy:
+# kubectl proxy
+
+# kubectl proxy --port=8001 --address=0.0.0.0 --accept-hosts='.*'
+
+# Enable security group for port 8001.
+
+# Open the Dashboard in your browser:
+# http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+
+#Example: http://43.205.145.247:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+
+#####
+# Use the token from the previous step to log in.
+# Go to dashboard and paste that token there.
+
+
+
+
+============
+
+# If below error comes while entering token in the dashboard.
+ 
+
+# cd /home/ubuntu/kind-cluster/kubernetes
+# git init
+# git remote -v
+# go to github -> developer settings -> create token classic -> personal access token classic > name: k8s-token -> expiry 7 days -> click on repo -> generate token.
+# copy the token
+
+# git remote add origin https://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@github.com/juhisinha422/Kubernetes.git
+(git remote add origin https://token-id@github.com/repo-url)
+
+# git status 
+# git add .
+# git status
+
+########### optional if below error occurs ############
+
+
+ 
+
+# cd apache
+# rm -rf autoscaler
+# cd ..
+# git status
+# cd nginx/django-notes-app
+# rm -rf .git
+
+# cd /home/ubuntu/kind-cluster/kubernetesv
+# git commit -m "Added k8s devops-manifests"
+# git push origin master
+
+Note to delete branch : git push origin -d master
+
+=================== 
+	Now go to local (cmd) and setup cluster there.
+	git clone https://github.com/juhisinha422/Kubernetes.git
+	cd kubernetes 
+
+# vim config.yml
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+
+nodes:
+- role: control-plane
+  image: kindest/node:v1.31.2
+- role: worker
+  image: kindest/node:v1.31.2
+- role: worker
+  image: kindest/node:v1.31.2
+- role: worker
+  image: kindest/node:v1.31.2
+  extraPortMappings:
+    - containerPort: 80
+      hostPort: 80
+      protocol: TCP
+    - containerPort: 443
+      hostPort: 443
+      protocol: TCP
+
+# kind create cluster --name=sinha-cluster --config=config.yml
+# kubectl get nodes
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+
+# vi dashboard-admin-user.yml
+
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+
+# kubectl apply -f dashboard-admin-user.yml
+
+# kubectl -n kubernetes-dashboard create token admin-user
+# kubectl proxy
+# Paste token and sign in.
+
+
+
+
+
+
+
+
+
+
+
 
 
