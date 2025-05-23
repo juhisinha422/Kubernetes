@@ -5,3 +5,15 @@ Operators, Helm, Kubernetes API: -
 ================================== 
 Helm: - Helm helps you manage Kubernetes applications — Helm Charts help you define, install, and upgrade even the most complex Kubernetes application.
 
+# cd /home/ubuntu/kind-cluster/kubernetes
+# mkdir helm
+# cd helm
+
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 
+$ ls 
+$ cat get_helm.sh
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+$ helm version
+$ helm
+
