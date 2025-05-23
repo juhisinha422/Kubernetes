@@ -7,3 +7,8 @@ spec:
   duration: 3 months from 25th January 2025
   platform: trainwithshubham.com
   mode: Live as always
+
+
+# kubectl apply -f devops-cr.yml
+# kubectl get devopsbatches
+
