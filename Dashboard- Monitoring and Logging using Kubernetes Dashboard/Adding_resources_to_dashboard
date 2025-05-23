@@ -1,0 +1,68 @@
+Adding resources to the dashboard: -
++++++++++++++++++++++++++++++++++
+
+# cd /home/ubuntu/kind-cluster/kubernetes/nginx
+# vi namespace.yml
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx
+
+# kubectl apply -f namespace.yml
+
+# vi persistentVolume.yml
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: local-pv
+  namespace: nginx
+  labels:
+    app: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  hostPath:
+    path: /mnt/data
+
+# kubectl apply -f persistentVolume.yml
+
+# vi PersistentVolumeClaim.yml
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: local-pvc
+  namespace: nginx
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-storage
+
+# kubectl apply -f persistentVolumeClaim.yml
+# apply every yml files from nginx folder.
+https://github.com/LondheShubham153/kubernetes-in-one-shot/tree/master/nginx
+
+# kubectl apply -f .
+# kubectl get all -n nginx
+# In the dashboard change the namespace from default to nginx and see the dashboard as below.
+
+ 
+
+
+
+
+
+
+
+
+
+
