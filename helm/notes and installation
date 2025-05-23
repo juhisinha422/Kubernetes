@@ -22,3 +22,24 @@ $ helm
 # ls
 # cd apache-helm
 # ls
+# sudo apt install tree
+# tree
+ 
+# cd templates
+# vi service.yaml
+# add below line
+targetPort: {{ .Values.service.targetPort }}
+
+# cd ..
+# vi values.yaml
+# add target port as below
+
+port:80
+targetPort: 80
+
+######################
+# helm package .
+ 
+
+ 
+
