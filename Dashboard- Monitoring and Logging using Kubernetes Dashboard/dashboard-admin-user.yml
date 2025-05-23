@@ -48,6 +48,10 @@ roleRef:
 
 #Example: http://43.205.145.247:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+-------------
+simply do 
+kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8080:443 --address='0.0.0.0'
+access site : master node ip:8001
 
 #####
 # Use the token from the previous step to log in.
