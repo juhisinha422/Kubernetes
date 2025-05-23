@@ -38,7 +38,40 @@ port:80
 targetPort: 80
 
 ######################
-# helm package .
+# cd ..
+# cd /home/ubuntu/kind-cluster/kubernetes/helm
+# helm package apache-helm/
+
+# helm install dev-apache apache-helm
+# kubectl get pods
+# kubectl get svc
+# kubectl get deploy
+# helm uninstall dev-apache
+
+# helm install dev-apache apache-helm -n dev-apache --create-namespace
+# helm install prd-apache apache-helm -n prd-apache --create-namespace
+# kubectl get pods -n prd-apache
+# kubectl get pods -n dev-apache
+
+# vi apache-helm/values.yaml
+# give replicaCount: 3
+ 
+# vi apache-helm/Chart.yaml
+# change apiVersion: “1.16.1”
+
+ 
+# helm package apache-helm
+# helm upgrade prd-apache ./apache-helm -n prd-apache
+# kubectl get pods -n prd-apache
+
+# Rollback in helm
+# helm rollback prd-apache 1 -n prd-apache
+# kubectl get pods -n prd-apache
+
+########
+# helm create node-js-app
+
+
  
 
  
