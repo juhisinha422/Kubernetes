@@ -1,0 +1,26 @@
+🚀 Mastering Kubernetes RBAC – A Key Step in Securing Your Cluster!
+
+Today, I took a deep dive into Kubernetes RBAC (Role-Based Access Control), which is a game-changer for managing access securely and scalably.
+
+🔐 What is RBAC?
+ RBAC in Kubernetes lets you control who can do what in your cluster. It uses four main components:
+Role – defines permissions (verbs on resources) within a namespace.
+ClusterRole – defines global permissions across the whole cluster.
+RoleBinding – assigns a Role to a user or service account in a namespace.
+ClusterRoleBinding – assigns a ClusterRole cluster-wide.
+
+🎯 Why it matters:
+ RBAC ensures least privilege access, reduces human error, and enhances security compliance in production environments.
+
+🛠️ Sample YAMLs I used:
+Role to allow managing pods, services, and deployments
+ServiceAccount to represent an app/user
+Role binding to link them
+
+✅ Challenges I faced:
+Typos like SeriveAccount 😅
+Incorrect verbs (used apply instead of create, update, patch)
+Forgot to create the namespace before applying roles
+Each error helped me understand the system better, and that’s what learning DevOps is all about!
+
+📌 If you’re learning Kubernetes or managing a cluster, RBAC is a MUST-know tool. Happy to share YAMLs or help if you're getting started!
