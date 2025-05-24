@@ -1,3 +1,4 @@
+
 kind: Pod
 apiVersion: v1
 metadata:
@@ -25,3 +26,15 @@ spec:
     volumeMounts:
     - name: shared-logs
       mountPath:  /var/log/
+
+
+
+# kubectl apply -f side-container.yml
+# kubectl get pods
+# kubectl logs sidecar-test -c main-container
+(will get nothing)
+
+# kubectl logs sidecar-test -c sidecar-container
+
+
+
