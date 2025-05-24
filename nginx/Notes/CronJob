@@ -1,0 +1,63 @@
+CronJobs.
+📅 Just like how we use cron in Linux to schedule scripts, Kubernetes CronJobs help automate recurring tasks inside the cluster—whether it’s generating reports, syncing data, or, in my case, simulating a backup job!
+
+👨‍💻 What I Did:
+🔧 Set up a Kubernetes CronJob that:
+Runs every 2 minutes (*/2 * * * *)
+Starts a container using busybox
+Creates /backups and /demo-data folders
+Copy data from /demo-data to /backups
+Uses hostPath volumes to simulate real filesystem paths
+📁 This mimics how you’d automate backups of application data inside a Kubernetes pod—an essential use case in production systems.
+🎯 Key Concepts I Practiced:
+Writing a working CronJob YAML manifest
+Using command blocks in containers
+Volume mounts in pods (hostPath usage)
+Managing backup logic inside containerized scripts
+👀 I followed along with an excellent YouTube session on Kubernetes and took a hands-on approach to make the learning stick. Here’s a quick look at my terminal setup during the learning process:
+📸 Screenshot of my live environment & the video session:
+
+My YML Code:
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+ name: demo-backup
+ namespace: nginx
+spec:
+ schedule: "*/2 * * * *"
+ jobTemplate:
+ spec:
+ template:
+ metadata:
+ name: demo-backup
+ labels:
+ app: demo-backup
+ spec:
+ restartPolicy: OnFailure
+ containers:
+ - name: backup-container
+ image: busybox:latest
+ command:
+ - sh
+ - -c
+ - >
+ echo "Backup started";
+ mkdir -p /backups &&
+ mkdir -p /demo-data &&
+ cp -r /demo-data /backups &&
+ echo "Backup completed";
+ volumeMounts:
+ - name: data-volume
+ mountPath: /demo-data
+ - name: backup-volume
+ mountPath: /backups
+ volumes:
+ - name: data-volume
+ hostPath:
+ path: /demo-data
+ type: DirectoryOrCreate
+ - name: backup-volume
+ hostPath:
+ path: /backups
+ type: DirectoryOrCreate
