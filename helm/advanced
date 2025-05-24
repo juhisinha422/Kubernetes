@@ -1,0 +1,31 @@
+# helm search repo nginx
+
+https://charts.helm.sh/stable/ 
+# helm repo add stable https://charts.helm.sh/stable/
+
+https://artifacthub.io/
+https://artifacthub.io/packages/helm/bitnami/nginx
+
+# helm install nginx-helm oci://registry-1.docker.io/bitnamicharts/nginx
+# kubectl get pods
+# helm uninstall nginx-helm
+#  helm uninstall prd-apache -n prd-apache
+#  helm uninstall dev-apache -n dev-apache
+# helm install mongodb-helm oci://registry-1.docker.io/bitnamicharts/mongodb
+
+# helm install mongodb-helm oci://registry-1.docker.io/bitnamicharts/mongodb -n mongo --create-namespace
+
+# kubectl get pods -n mongo
+# watch kubectl get pods -n mongo
+
+# kubectl exec -it <pod-name> -n mongo -- bash 
+# ls
+# mongosh
+# exit
+# helm repo list
+
+# helm list
+# helm list -n mongo
+# helm uninstall mongodb-helm -n mongo
+# helm uninstall mongodb-helm
+
