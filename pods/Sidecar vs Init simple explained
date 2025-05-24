@@ -1,0 +1,13 @@
+Understanding Init Containers & Sidecars in Kubernetes
+
+Kubernetes uses Init Containers and Sidecars to improve how applications run in pods. Here’s a simple explanation:
+
+Init Containers: These run before the main container and handle setup tasks like pulling configs or waiting for dependencies.
+
+Sidecar Containers: These run alongside the main container to provide additional features like logging, monitoring, or proxying.
+
+Use Case: A database app might use an init container to set up schema and a sidecar to collect logs.
+
+Benefit: This approach keeps applications modular, scalable, and efficient.
+
+Best Practice: Use init containers for one-time setup and sidecars for ongoing support tasks.
