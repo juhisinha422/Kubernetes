@@ -1,3 +1,15 @@
+My first Kubernetes Basic Project using KIND:
+
+Designed and deployed a Kubernetes cluster using KIND (Kubernetes IN Docker) to simulate a production-like environment locally. The setup includes:
+
+1 Control Plane Node: Hosted core components—API Server, Scheduler, Controller Manager, and etcd—for managing the cluster state.
+3 Worker Nodes: Configured with Kubelet, Kube Proxy, and container runtime to run application workloads.
+API Server connected to all nodes for coordination and command execution via kubectl.
+Implemented service proxy to enable network communication between services and CNI plugin (Weave Net/Calico) for pod networking.
+Ensured proper communication flow from users to services via the control plane and worker nodes.
+This project demonstrates core Kubernetes concepts, control plane architecture, and networking—all within a containerized, lightweight environment using KIND.
+
+
 # Creating KIND Setup: - (3 worker nodes)
 ------------------------------------ 
 kind – Quick Start : https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster
@@ -25,6 +37,7 @@ nodes:
     - containerPort: 443
       hostPort: 443
       protocol: TCP
+
 
 KIND Cluster Creation: -
 ++++++++++++++++++++++ 
