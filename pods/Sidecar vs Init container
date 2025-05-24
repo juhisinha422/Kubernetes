@@ -1,0 +1,19 @@
+𝗦𝗵𝗮𝗿𝗶𝗻𝗴 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝗶𝗴𝗵𝘁𝘀 𝗼𝗻 𝗶𝗻𝗶𝘁 𝗮𝗻𝗱 𝘀𝗶𝗱𝗲𝗰𝗮𝗿 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+ 
+𝗪𝗵𝗮𝘁 𝗶𝘀 𝗦𝗶𝗱𝗲𝗰𝗮𝗿 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿?
+ A sidecar is just a container that runs on the same Pod as the application container. It shares the same volume and network as the main container, it can “help” or enhance how the application operates. A Sidecar container is a second container to add the pod when it requires to use the any resources that use by the main container.
+ 
+Let’s say we have requirement to 𝐜𝐨𝐥𝐥𝐞𝐜𝐭 𝐭𝐡𝐞 𝐥𝐨𝐠 𝐟𝐫𝐨𝐦 𝐞𝐱𝐢𝐬𝐭𝐢𝐧𝐠 𝐜𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫 𝐢𝐧 𝐩𝐨𝐝, as we cannot stop/breaking existing setup. In this case sidecar helps more here. 
+ 
+In this 𝐞𝐱𝐚𝐦𝐩𝐥𝐞 assume, we have a webserver container running Nginx image. The logs produced by the main container are not enough to be placed on a persistent volume. However, developers need access to the last 24 hours of logs so they can trace issues and bugs. Therefore, we need to ship the access and error logs for the webserver to a log-aggregation service(s).
+ 
+𝗪𝗵𝗲𝗻 𝘁𝗼 𝘂𝘀𝗲 𝘀𝗶𝗱𝗲𝗰𝗮𝗿 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀?
+You should use sidecar containers when you need to 𝐩𝐫𝐨𝐯𝐢𝐝𝐞 𝐚𝐮𝐱𝐢𝐥𝐢𝐚𝐫𝐲 𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬 𝐭𝐨 𝐭𝐡𝐞 𝐦𝐚𝐢𝐧 𝐜𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫. For example, you could use a sidecar container to provide 𝐥𝐨𝐠𝐠𝐢𝐧𝐠, 𝐦𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠, or 𝐥𝐨𝐚𝐝 𝐛𝐚𝐥𝐚𝐧𝐜𝐢𝐧𝐠 for your application. Sidecar containers are also a good choice when you need to isolate the main container from the rest of the pod.
+ 
+𝗜𝗻𝗶𝘁 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿
+Init containers are just like regular containers, but 𝐭𝐡𝐞𝐲 𝐫𝐮𝐧 𝐭𝐨 𝐜𝐨𝐦𝐩𝐥𝐞𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐫𝐮𝐧 𝐛𝐞𝐟𝐨𝐫𝐞 𝐭𝐡𝐞 𝐦𝐚𝐢𝐧 𝐜𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫 𝐬𝐭𝐚𝐫𝐭𝐬. There are various use cases for init containers, such as init containers can contain certain utilities or custom code for the setup that is not present for the app container.
+ 
+It can also change the file system before starting the app container based on certain logic. It can also be used to limit the attack surface by keeping certain tools as part of init containers. Init containers can also delay the start of the main containers by having some precondition check; unless they are met, it will keep trying the init containers.
+ 
+𝗪𝗵𝗲𝗻 𝘁𝗼 𝘂𝘀𝗲 𝗶𝗻𝗶𝘁 𝗰𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀
+You should use init containers when you need to perform tasks that need to be completed before the main container can start. For example, you could use an init container to 𝐝𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐝𝐞𝐩𝐞𝐧𝐝𝐞𝐧𝐜𝐢𝐞𝐬 or 𝐬𝐞𝐭 𝐮𝐩 𝐞𝐧𝐯𝐢𝐫𝐨𝐧𝐦𝐞𝐧𝐭 𝐯𝐚𝐫𝐢𝐚𝐛𝐥𝐞𝐬 𝐟𝐨𝐫 𝐲𝐨𝐮𝐫 𝐚𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧. Init containers are also a good choice when you need to ensure that the main container starts successfully.
