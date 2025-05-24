@@ -1,0 +1,23 @@
+Helm – Kubernetes’ powerful package manager!
+
+If you’ve ever deployed complex Kubernetes apps and wished it were easier, Helm is the solution.
+
+🔍 What is Helm?
+ Helm simplifies the deployment and management of Kubernetes applications by using reusable templates called charts. It’s like apt/yum/brew, but for K8s!
+
+📦 Key Concepts I learned today:
+Helm Charts 📄: Predefined Kubernetes resource templates
+Values.yaml 🧾: Centralized configuration for templating
+Releases 🎯: Every time you install a chart, Helm tracks it as a release
+Templating: Dynamic, reusable, and clean — no more 50+ YAMLs!
+
+💡 Why use Helm?
+Repeatable deployments ✅
+Easier rollbacks and upgrades 🔁
+Shareable packages for your microservices ecosystem 📤
+Manage configurations across environments 💼
+🛠️ I also tried:
+Installing NGINX via Helm
+Creating a sample chart
+Modifying values.yaml to see live changes
+Helm is a must-have tool for anyone serious about Kubernetes and DevOps.
