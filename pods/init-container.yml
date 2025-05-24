@@ -1,3 +1,8 @@
+# cd /home/ubuntu/kind-cluster/kubernetes
+# mkdir pods
+# cd pods
+
+
 kind: Pod
 apiVersion: v1
 metadata:
@@ -7,9 +12,23 @@ spec:
   initContainers:
   - name: init-container
     image: busybox:latest
-    command: ["sh","-c", "echo 'Initalization started ...'; sleep 10; echo 'Initization completed.'"] 
+    command: ["sh","-c", "echo 'Initalization started ...'; sleep 10; echo 'Initization completed.'"]
 
   containers:
   - name: main-container
     image: busybox:latest
     command: ["sh","-c", "echo 'Main container started'"]
+
+# kubectl apply -f init-container.yml
+# kubectl get pods
+# kubectl logs -f init-test
+# kubectl logs init-test -c init-container
+# kubectl logs init-test -c init-container -c main-container
+# kubectl delete pod init-test
+# kubectl apply -f init-container.yml
+# kubectl get pods 
+
+# kubectl logs init-test -c init-container
+# kubectl get pods
+# kubectl delete -f init-container.yml
+# kubectl apply -f init-container.yml
