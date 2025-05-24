@@ -70,6 +70,38 @@ targetPort: 80
 
 ########
 # helm create node-js-app
+# vi node-js-app
+# tree
+# cd Templates
+# vi service.yaml
+
+# Edit the target port
+targetPort: {{ .Values.service.targetPort }}
+
+ 
+
+# cd ..
+# vi values.yaml
+# give repository: juhisinha/node-app
+# tag: “latest”
+
+ 
+
+# Give port no and target port
+
+port: 8000
+ targetPort: 8000
+ 
+
+# cd ..
+# helm package node-js-app/
+# helm install dev-node-js-app node-js-app -n dev-node --create-namespace
+# kubectl get pods -n dev-node
+# kubectl get svc -n dev-node
+
+# kubectl port-forward svc/dev-node-js-app 8000:8000 -n dev-node --address=0.0.0.0
+# Access the site : Public_IP:8000
+
 
 
  
