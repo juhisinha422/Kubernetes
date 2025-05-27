@@ -1,0 +1,14 @@
+Kubernetes Day-6
+
+Diving into ConfigMaps, Secrets, and Resource Quotas! 
+
+The essential components of Kubernetes configuration and resource management with Amazon Q and MCP servers:
+
+ConfigMaps – For storing non-sensitive data like config files.
+Secrets – For managing sensitive information like passwords and API keys securely.
+
+Resource Quotas – Setting limits and requests to optimize pod scheduling and cluster resource utilization.
+
+Taints and Tolerance - Control pod placement by preventing or allowing pods to be scheduled on specific nodes. This is useful for dedicated workloads, isolated environments, or workload prioritization.
+
+Key takeaway: Efficient use of ConfigMaps and Secrets helps decouple configuration from application logic, while resource quotas help enforce stability and performance in the cluster.
