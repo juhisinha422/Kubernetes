@@ -1,0 +1,13 @@
+Kubernetes Architecture
+
+
+1. Kubectl : Lets you talk to Kubernetes
+2. API Server: The brain that handles all requests
+3. Controller Manager: Adjusts cluster resources as needed
+4. Scheduler: Finds the best spot for workloads
+5. Kubelet: Runs workloads on each machine
+6. ETCD: Remembers everything about the cluster
+7. Kube proxy: Directs traffic to the right workloads
+8. POD: Where workloads actually run
+9. Container Runtime: Runs the apps inside workloads
+
