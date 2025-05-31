@@ -1,0 +1,31 @@
+1: What is a taint in Kubernetes?
+>> A taint is a property you apply to a node that prevents pods from being scheduled onto it unless those pods tolerate the taint. It's used to control how workloads are distributed across nodes.
+
+Ex:
+kubectl taint nodes node1 key=value:NoSchedule
+
+2: What are tolerations in Kubernetes?
+>>Tolerations are applied to pods. They allow the scheduler to schedule pods on nodes with matching taints.
+Ex:
+tolerations:
+- key: "key"
+  operator: "Equal"
+  value: "value"
+  effect: "NoSchedule"
+
+3: What are the different taint effects?
+NoSchedule – Pod will not be scheduled unless it tolerates the taint.
+PreferNoSchedule – Scheduler avoids placing a pod on the node.
+NoExecute – Evicts the pod if it doesn't tolerate the taint.
+
+4: What does the Kubernetes scheduler do?
+>> The scheduler watches for unscheduled pods and binds them to an appropriate node based on resource requirements, affinity/anti-affinity, taints, tolerations, and policies.
+
+5: How does the scheduler decide where to place a pod?
+>>
+Filtering – Eliminates nodes that don’t meet the pod’s requirements.
+Scoring – Scores the remaining nodes based on criteria like resource availability and affinity rules.
+Binding – Chooses the highest-scored node and binds the pod to it.
+
+Q6: Can use a custom scheduler in Kubernetes?
+>> Yes. Kubernetes allows custom schedulers by deploying them as separate pods and specifying them in the pod spec using the schedulerName field.
