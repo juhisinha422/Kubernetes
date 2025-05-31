@@ -1,0 +1,14 @@
+ReplicaSet vs ReplicationController
+
+If you're diving into Kubernetes, you might come across both ReplicaSet and ReplicationController.
+
+What’s the difference?
+
+1. ReplicaSet is the modern replacement for ReplicationController.
+2. ReplicationController is outdated but still supported for legacy use.
+3. ReplicaSet supports set-based label selectors (e.g., "key in [value1, value2]"), making it more flexible.
+4. Deployments use ReplicaSets under the hood, enabling rolling updates and easy rollbacks.
+5. If you’re using ReplicationController, it’s time to upgrade to ReplicaSet or better – use Deployments!
+
+Bottom Line:
+ReplicationController walked so ReplicaSet could run – but now, Deployments are the standard for managing pod replicas efficiently.
