@@ -1,0 +1,16 @@
+🚀 Kubernetes Deep Dive: ReplicationController vs. ReplicaSet
+As a DevOps Engineer, diving into Kubernetes internals is part of the daily grind — and today’s focus was understanding the practical differences between ReplicationController (RC) and ReplicaSet (RS) beyond just definitions.
+🔍 ReplicationController (RC)
+Introduced early in Kubernetes to maintain a fixed number of pod replicas.
+Uses equality-based selectors (key = value), which limits flexibility.
+Does not support Deployments, so lacks declarative rollout capabilities like updates and rollbacks.
+Slowly being phased out in favor of newer controllers.
+⚙️ ReplicaSet (RS)
+Part of the apps/v1 API group, built to replace RC.
+Supports set-based selectors (In, NotIn, etc.), making it more powerful and adaptable.
+Fully supports integration with Deployments, providing declarative updates, rollbacks, and progressive delivery (e.g., rolling updates).
+
+🔧 Pro Insight:
+ You typically won’t create ReplicaSets directly — they’re managed for you when using a Deployment, which is the standard in modern Kubernetes. But understanding RS gives you clarity into how rollouts, replica management, and label matching work under the hood.
+👩‍💻 Takeaway: RC is legacy. RS is the foundation. Deployment is the standard.
+ But knowing all three helps you debug and design smarter.
