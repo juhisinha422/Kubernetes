@@ -1,0 +1,21 @@
+What is helm and how it works?
+
+Helm is like a package manager for Kubernetes. Just as you use APT (for Ubuntu) or Yum (for CentOS) to install software on a computer, Helm helps you install and manage applications on a Kubernetes cluster.
+
+How Does Helm Work?
+Charts (Blueprints of Apps) – Helm uses Charts, which are like pre-configured templates for deploying applications. A Chart contains all the files and settings needed to install an application.
+
+Installation & Deployment – Instead of writing long and complex Kubernetes configuration files (YAML), Helm lets you install apps with a simple command like
+
+Helm install my-app chart-name
+
+Customization – If you need to customize an app (e.g., change database settings), you can override default values easily using a values.yaml file.
+
+Upgrades & Rollbacks – Helm tracks all changes, so you can upgrade your application or rollback to a previous version if needed.
+
+Repositories (App Store for Kubernetes) – Helm Charts are stored in repositories (like Docker Hub for images), making it easy to share and reuse configurations.
+
+Why Use Helm?
+Simplifies Deployment – No need to manually write complex YAML files.
+Easy Updates – Upgrade or revert applications without much hassle.
+Reusability – Helm Charts can be used across multiple environment.
