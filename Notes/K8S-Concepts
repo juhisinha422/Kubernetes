@@ -1,0 +1,15 @@
+Mastering Kubernetes – One Concept at a Time
+
+* Pods – The smallest deployable unit. Multiple containers (like app + logging agent) can run in one Pod, sharing network and storage.
+* ReplicaSet – Ensures a specified number of Pods are always running. Perfect for high availability setups.
+* DaemonSet – Ensures a Pod runs on every (or selected) node. Commonly used for log collectors, monitoring agents, etc.
+* StatefulSet – Manages stateful apps, preserving pod identity and storage across restarts (great for databases).
+* Namespaces – Virtual clusters within a Kubernetes cluster. Useful for isolating environments like dev, test, and prod.
+* RBAC (Role-Based Access Control) – Controls who can do what in the cluster. Roles + Bindings = Granular access control.
+* Services – Provide a stable endpoint (IP/DNS) to access Pods. They handle dynamic pod lifecycle seamlessly.
+* Ingress & Ingress Controllers – Route external HTTP/S traffic into the cluster. Ingress Controllers allow path-based and host-based routing, going beyond basic Load Balancing.
+* Egress – Outbound traffic from Pods to external services like APIs or the internet.
+* Helm – Kubernetes’ package manager. Helm charts make app deployment repeatable, versioned, and easy to manage.
+* Probes (Readiness & Liveness)
+ -- Readiness Probe: Checks if a Pod is ready to serve traffic.
+ -- Liveness Probe: Checks if a Pod is alive — restarts it if it’s not responding.
