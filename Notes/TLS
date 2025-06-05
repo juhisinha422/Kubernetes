@@ -1,0 +1,47 @@
+Today I explored how TLS certificates work in Kubernetes to secure communication between users and the API server.
+
+1) TLS in Kubernetes
+Kubernetes uses TLS (Transport Layer Security) to secure all communications between its components and between users and the API server.
+For user authentication, Kubernetes supports certificate-based access using Certificate Signing Requests (CSR). This is an important method to grant access securely without using passwords or tokens.
+
+2) How CSR Works
+A Certificate Signing Request is generated with a user’s identity and public key, and submitted to Kubernetes for approval. Once signed, it becomes a trusted certificate for accessing the cluster.
+
+Hands-on Steps I Practiced:
+# 1. Generate a private key
+openssl genrsa -out kathir.key 2048
+
+# 2. Generate a certificate signing request (CSR)
+openssl req -new -key adam.key -out kathir.csr -subj "/CN=kathir"
+
+# 3. Encode CSR to base64 for YAML usage
+cat kathir.csr | base64 | tr -d "\n"
+
+# 4. Create a csr.yaml and apply it
+csr.yaml
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+ name: kathir
+spec:
+ request: <base64-encoded-CSR>
+ signerName: https://lnkd.in/gBbhwBHW
+ expirationSeconds: 86400
+ usages:
+  - client auth
+
+kubectl apply -f csr.yaml
+
+# 5. Approve the CSR
+kubectl get csr
+kubectl certificate approve kathir
+
+# 6. Get the issued certificate
+kubectl get csr kathir -o yaml > issuecert.yaml
+
+# 7. Decode and save the certificate
+echo "<base64-cert>" | base64 -d > kathir.crt
+
+Then I used this certificate and key to configure secure access for the user in kubeconfig.
+
+This session helped me understand how Kubernetes handles user authentication securely through certificate-based access.
