@@ -1,0 +1,57 @@
+🚀 hashtag#Day5 of Kubernetes – DaemonSet Unlocked!
+
+Today, I explored one of the most essential yet underrated features in Kubernetes – the DaemonSet.
+
+
+🔍 What is a DaemonSet?
+
+A DaemonSet ensures that a specific pod runs on every node in the Kubernetes cluster.
+It's commonly used for running system-level services like:
+
+Log collectors (Fluentd, Filebeat)
+
+Monitoring agents (Prometheus Node Exporter)
+
+Security tools (Falco, Cilium)
+
+
+As new nodes join the cluster, the DaemonSet automatically adds the required pod to that node.
+When a node is removed, the pod is also removed — completely hands-free!
+
+🧠 Real-World Analogy
+
+Imagine you're running a delivery company.
+Each city (node) must have one local warehouse (pod) to manage orders and logistics.
+You don’t want two warehouses in one city — just one per city is perfect.
+And if your company expands into a new city? A warehouse is automatically built there.
+
+This is exactly how DaemonSet works:
+
+> One pod per node – ensuring every area is covered with essential infrastructure.
+
+
+🔄 DaemonSet vs StatefulSet
+
+📌 Pod Count
+DaemonSet: One pod runs on every node
+StatefulSet: You define how many pods (replicas) you want
+
+
+📌 Identity
+DaemonSet: Pods are identical, no fixed name
+StatefulSet: Each pod has a unique identity (like pod-0, pod-1...)
+
+📌 Use Case
+DaemonSet: Perfect for system-level agents like log shippers, monitoring tools
+StatefulSet: Used for stateful apps like MySQL, Kafka, Cassandra
+
+📌 Storage
+DaemonSet: Usually ephemeral or shared
+StatefulSet: Each pod has a dedicated persistent volume
+
+📌 Deployment Order
+DaemonSet: No strict order, runs wherever needed
+StatefulSet: Pods start and stop in a defined, sequential order
+
+✅ Use DaemonSet when something needs to run everywhere (like surveillance cameras on every floor).
+✅ Use StatefulSet when apps need consistent identity, storage, and order.
