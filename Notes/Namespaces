@@ -1,0 +1,50 @@
+Kubernetes Namespaces Explained – Create Environments like Dev & Prod 🧪🚀
+
+As your Kubernetes cluster grows, managing resources for different teams, stages, or applications becomes challenging. That’s where Namespaces come in—your tool for multi-tenancy and environment isolation!
+
+🔹 What Are Namespaces in Kubernetes?
+Namespaces are virtual clusters within a physical cluster, allowing you to divide and organize resources like:
+Development (dev)
+Staging (stage)
+Production (prod)
+Testing, QA, or even by team (e.g., frontend, backend)
+Each namespace is logically isolated, meaning resource names (like Services, Pods, ConfigMaps) can be reused in different namespaces without conflict.
+
+
+🛠️ Create a Namespace
+bash
+CopyEdit
+kubectl create namespace dev
+kubectl create namespace prod
+
+Or with YAML:
+yaml
+CopyEdit
+apiVersion: v1
+kind: Namespace
+metadata:
+ name: dev
+
+Apply it with:
+bash
+CopyEdit
+kubectl apply -f dev-namespace.yaml
+
+🎛️ Why Use Namespaces?
+ ✅ Environment Separation – Run dev, stage, and prod in one cluster
+ ✅ Access Control – Combine with RBAC to restrict who can access what
+ ✅ Resource Quotas – Prevent teams from overusing CPU/memory
+ ✅ Cleaner Organization – Easier kubectl queries and CI/CD pipelines
+
+🔍 Switching & Managing Contexts
+Use kubectl flags to target specific namespaces:
+bash
+CopyEdit
+kubectl get pods -n dev
+kubectl config set-context --current --namespace=prod
+Now all your commands will default to the prod namespace.
+
+🧠 Best Practices
+Don’t use the default namespace for everything
+Label namespaces for easy automation and monitoring
+Combine with Network Policies for stricter security
