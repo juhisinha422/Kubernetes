@@ -1,0 +1,64 @@
+: Kubernetes Resource Objects – Understanding YAML, spec, and status 📄
+Today, let’s decode the building blocks of Kubernetes: resource objects defined in YAML. These objects control how your apps behave inside the cluster.
+
+🔍 What is a Kubernetes Resource Object?
+A Kubernetes object is a persistent entity in the cluster that represents the desired state of your system—what to run, how many replicas, what image, etc.
+
+Examples include:
+1.Pod
+2.Deployment
+3.Service
+4.ConfigMap
+5.PersistentVolumeClaim
+
+📄 Anatomy of a YAML File
+
+Here’s a basic Deployment YAML:
+yaml
+CopyEdit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginx-deployment
+spec:
+ replicas: 2
+ selector:
+ matchLabels:
+ app: nginx
+ template:
+ metadata:
+ labels:
+ app: nginx
+ spec:
+ containers:
+ - name: nginx
+ image: nginx:1.25
+ ports:
+ - containerPort: 80
+
+🧠 Key Sections Explained:
+🔹 apiVersion: Tells Kubernetes which version of the API to use
+ 🔹 kind: Type of object (e.g., Deployment, Pod, Service)
+ 🔹 metadata: Name, labels, annotations—used for tracking and grouping
+ 🔹 spec: Desired state—what you want Kubernetes to do
+ 🔹 status: Current state—what Kubernetes is actually doing (auto-updated)
+
+📌 Difference Between spec and status
+SectionMeaningSet ByspecWhat you want to happenYoustatusWhat is actually happeningKubernetes
+
+Example:
+yaml
+CopyEdit
+status:
+ replicas: 2
+ readyReplicas: 1
+ conditions:
+ - type: Available
+ status: "False"
+👆 Tells you 1 of 2 replicas is ready. Useful for debugging and automation!
+🔧 Tips for Working with Resources
+ ✅ Use kubectl explain <resource> to understand fields
+ ✅ Validate YAML using kubectl apply --dry-run=client -f <file.yaml>
+ ✅ Monitor live object state with kubectl get <resource> -o yaml
+
+🎯 Mastering the structure of YAML and understanding spec vs status helps you confidently build and troubleshoot real-world Kubernetes applications.
