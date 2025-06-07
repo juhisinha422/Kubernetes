@@ -1,0 +1,11 @@
+⚡️Why Use Helm Charts?
+
+✅️Simplifies Kubernetes application deployment and management.
+✅️Allows parameterization via values.yaml for flexible configurations.
+✅️Enables version control and rollback of deployments.
+
+✅️Chart.yaml → Defines metadata like name, version, and description.
+
+✅️values.yaml → Stores default configuration values (can override).
+
+✅️templates/ → Contains Kubernetes YAML templates (e.g deployment, service)
