@@ -1,0 +1,56 @@
+⏳ 𝗗𝗮𝘆 𝟮𝟳: 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗝𝗼𝗯𝘀 & 𝗖𝗿𝗼𝗻𝗝𝗼𝗯𝘀 – 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗻𝗴 𝗢𝗻𝗲-𝗧𝗶𝗺𝗲 𝗮𝗻𝗱 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗱 𝗧𝗮𝘀𝗸𝘀
+Welcome to Day 27 of my 30 Days of Kubernetes series!
+
+Not every workload in Kubernetes is a long-running service. Sometimes, you just need to:
+✅ Run a script once
+✅ Perform a batch job
+✅ Schedule a nightly cleanup or a weekly backup
+
+That’s where Jobs and CronJobs come into play.
+
+🧱 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗮 𝗝𝗼𝗯 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+A Job ensures that a pod runs to completion. It tracks the execution of one or more pods and ensures they successfully finish.
+Use it when you need:
+ • Data migration scripts
+ • One-time processing tasks
+ • Import/export jobs
+ • Short-lived containers that must complete successfully
+
+Jobs can also be parallelized—you can run multiple pods at once to process data faster.
+
+🕒 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗮 𝗖𝗿𝗼𝗻𝗝𝗼𝗯?
+A CronJob is a Kubernetes resource that creates Jobs on a time-based schedule, just like cron on Linux.
+You define a cron expression, and Kubernetes spawns a Job at the specified time.
+Common use cases:
+ • Daily database backups
+ • Log rotation or cleanup scripts
+ • Periodic report generation
+ • Health checks or endpoint validation
+
+🔁 𝗝𝗼𝗯 𝘃𝘀 𝗖𝗿𝗼𝗻𝗝𝗼𝗯
+Feature Job                 CronJob
+Trigger Manual / Event-driven Scheduled (cron-based)
+Use case One-time task         Recurring task
+Behavior Runs to completion     Creates jobs periodically
+
+Both are non-daemon workloads: they start, do the work, and then exit cleanly.
+
+⚠️ 𝗣𝗿𝗼 𝗧𝗶𝗽𝘀
+Always set backoffLimit to avoid infinite retries on failure.
+ • Use successfulJobsHistoryLimit and failedJobsHistoryLimit to manage job logs and cleanup.
+ • Jobs do not automatically clean up pods or persistent storage unless you tell them to.
+ • For CronJobs, consider time zones and concurrency policy (e.g., allow, forbid, replace).
+
+🧠 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗘𝘅𝗮𝗺𝗽𝗹𝗲
+Need to run a daily backup of your PostgreSQL database at midnight?
+
+✅ Define a CronJob with schedule 0 0 * * *
+✅ Use a pod that connects to the DB and dumps data to cloud storage
+✅ Let Kubernetes handle the scheduling, retries, and logs
+
+No external scheduler needed. Fully automated and native to the cluster.
+
+✅ 𝗦𝘂𝗺𝗺𝗮𝗿𝘆
+Kubernetes Jobs and CronJobs bring automation and reliability to batch processing, one-time tasks, and recurring jobs—all using the same infrastructure and tools you already use for apps and services.
+
+They are your Kubernetes-native replacement for shell scripts + cron on VMs!
