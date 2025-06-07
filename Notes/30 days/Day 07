@@ -1,0 +1,28 @@
+𝐃𝐚𝐲 𝟕: 𝐋𝐢𝐦𝐢𝐭𝐚𝐭𝐢𝐨𝐧𝐬 𝐨𝐟 𝐃𝐨𝐜𝐤𝐞𝐫 (𝐖𝐡𝐲 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬?)
+
+Docker revolutionized how we package and run applications. But as you scale, you start hitting its limitations. Here’s why we need something more — like Kubernetes.
+
+𝟏. 𝐍𝐨 𝐁𝐮𝐢𝐥𝐭-𝐢𝐧 𝐎𝐫𝐜𝐡𝐞𝐬𝐭𝐫𝐚𝐭𝐢𝐨𝐧
+Docker can run individual containers, but it doesn't manage multiple containers across multiple hosts. You need orchestration for:
+
+ • Auto-restarting failed containers
+ • Scaling up/down
+ • Load balancing
+ • Rolling updates
+
+𝟮. 𝗠𝗮𝗻𝘂𝗮𝗹 𝗦𝗰𝗮𝗹𝗶𝗻𝗴
+Want 10 instances of your app? You’ll need to script it yourself or use docker-compose, which is limited and not production-grade.
+
+𝟯. 𝗟𝗮𝗰𝗸 𝗼𝗳 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗗𝗶𝘀𝗰𝗼𝘃𝗲𝗿𝘆
+Docker alone doesn’t provide a native way for containers to discover and communicate with each other across hosts.
+
+𝟰. 𝗡𝗼 𝗡𝗮𝘁𝗶𝘃𝗲 𝗟𝗼𝗮𝗱 𝗕𝗮𝗹𝗮𝗻𝗰𝗶𝗻𝗴
+While you can expose container ports, Docker doesn’t handle incoming traffic load distribution.
+
+𝟱. 𝗣𝗼𝗼𝗿 𝗠𝘂𝗹𝘁𝗶-𝗛𝗼𝘀𝘁 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴
+Cross-node networking with Docker requires extra tools or plugins. It’s not seamless out-of-the-box.
+
+𝟲. 𝗡𝗼 𝗕𝘂𝗶𝗹𝘁-𝗶𝗻 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 𝗼𝗿 𝗟𝗼𝗴𝗴𝗶𝗻𝗴
+You have to integrate external tools for tracking container health, resource usage, and logs.
+
+𝗘𝗻𝘁𝗲𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 — a powerful container orchestration platform that handles all of the above and more, making it the de facto standard for deploying and managing containerized applications at scale.
