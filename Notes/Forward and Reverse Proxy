@@ -1,0 +1,17 @@
+𝑭𝒐𝒓𝒘𝒂𝒓𝒅 𝑷𝒓𝒐𝒙𝒚 & 𝑹𝒆𝒗𝒆𝒓𝒔𝒆 𝑷𝒓𝒐𝒙𝒚
+
+𝐅𝐨𝐫𝐰𝐚𝐫𝐝 𝐏𝐫𝐨𝐱𝐲
+- Intermediary for clients: Handles requests from clients to servers.
+- Control and Filtering: Manages access and filters content for security.
+- Anonymity and Privacy: Masks user IP addresses for online anonymity.
+- Caching: Locally stores frequently accessed content to improve speed.
+- Bandwidth Savings: Optimizes bandwidth through caching and compression.
+- Logging and Monitoring: Records client activities for security insights.
+
+𝐑𝐞𝐯𝐞𝐫𝐬𝐞 𝐏𝐫𝐨𝐱𝐲
+- Intermediary for servers: Forwards client requests to backend servers.
+- Load Balancing: Distributes requests across multiple backend servers.
+- SSL Termination: Manages SSL encryption to ease server load.
+- Security and Authentication: Enforces authentication and protects backend systems.
+- Web Acceleration: Speeds up applications via caching and compression.
+- Application Firewall: Defends against threats like SQL injection and XSS attacks.
