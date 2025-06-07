@@ -1,0 +1,28 @@
+𝗗𝗮𝘆 𝟴: 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀? 🚢
+
+After hitting Docker’s limitations, we need something to orchestrate and manage containers at scale — that’s where Kubernetes comes in!
+
+🧠 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+Kubernetes (often abbreviated as K8s) is an open-source container orchestration platform that automates:
+ • Deployment
+ • Scaling
+ • Management
+ • Networking
+ • Availability
+...of containerized applications.
+
+🌐 𝗪𝗵𝗼 𝗰𝗿𝗲𝗮𝘁𝗲𝗱 𝗶𝘁?
+Originally designed by Google, now maintained by the Cloud Native Computing Foundation (CNCF).
+
+⚙️ 𝗪𝗵𝗮𝘁 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗼𝗲𝘀:
+✅ Automatically restarts failed containers
+✅ Distributes traffic with built-in load balancing
+✅ Makes app updates safe using rolling updates
+✅ Ensures desired state via declarative configs (YAML)
+✅ Handles networking and service discovery
+✅ Works across multi-node, multi-cloud environments
+
+Think of Kubernetes as the operating system for your containerized infrastructure.
+
+📦 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀 𝗮𝗿𝗲 𝗴𝗿𝗲𝗮𝘁. 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗺𝗮𝗸𝗲𝘀 𝘁𝗵𝗲𝗺 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻-𝗴𝗿𝗮𝗱𝗲.
+Activate to view l
