@@ -1,0 +1,25 @@
+🚦 𝗗𝗮𝘆 𝟭𝟳: 𝗟𝗶𝘃𝗲𝗻𝗲𝘀𝘀, 𝗥𝗲𝗮𝗱𝗶𝗻𝗲𝘀𝘀 & 𝗦𝘁𝗮𝗿𝘁𝘂𝗽 𝗣𝗿𝗼𝗯𝗲𝘀 – 𝗛𝗲𝗮𝗹𝘁𝗵 𝗖𝗵𝗲𝗰𝗸𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+Welcome to Day 17 of our hashtag#Kubernetes learning series! After getting our hands dirty with persistent storage, today we're focusing on keeping our containers healthy and production-ready with Kubernetes health checks — specifically, Liveness, Readiness, and Startup Probes.
+
+🩺 𝗪𝗵𝘆 𝗗𝗼 𝗣𝗿𝗼𝗯𝗲𝘀 𝗠𝗮𝘁𝘁𝗲𝗿?
+Just because a container is running doesn’t mean it’s healthy or ready to serve traffic. Apps can hang, crash silently, or take time to start up — and Kubernetes needs a way to detect that.
+
+Enter: Probes — Kubernetes’ built-in mechanism to monitor container health and respond automatically.
+
+🔍 𝗟𝗶𝘃𝗲𝗻𝗲𝘀𝘀 𝗣𝗿𝗼𝗯𝗲
+Checks if the app is still functioning. If it fails, Kubernetes restarts the container. This is your safety net for hung or crashed processes.
+
+✅ 𝗥𝗲𝗮𝗱𝗶𝗻𝗲𝘀𝘀 𝗣𝗿𝗼𝗯𝗲
+Checks if the app is ready to handle requests. If this fails, Kubernetes removes the pod from the load balancer so it doesn’t serve traffic until it’s actually ready.
+
+🚦 𝗦𝘁𝗮𝗿𝘁𝘂𝗽 𝗣𝗿𝗼𝗯𝗲 (𝗢𝗳𝘁𝗲𝗻 𝗢𝘃𝗲𝗿𝗹𝗼𝗼𝗸𝗲𝗱!)
+Some applications take time to fully initialize — maybe due to complex bootstrapping or dependency loading. If you start using liveness probes too early, Kubernetes might restart the container before it ever finishes starting up.
+
+The startup probe solves this. It tells Kubernetes, “Give my app a chance to get going.” While this probe is running, liveness and readiness checks are paused. Once the startup probe succeeds, the other probes take over.
+
+🧠 𝗞𝗲𝘆 𝗗𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲𝘀
+ • Use startup probes to delay health checks during long app initializations.
+ • Use liveness probes to catch stuck containers and recover automatically.
+ • Use readiness probes to control traffic routing based on app readiness.
+
+Together, these three probes give you fine-grained control over application health and help build resilient, production-grade systems.
