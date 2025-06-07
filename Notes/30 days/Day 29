@@ -1,0 +1,50 @@
+🐛 𝗗𝗮𝘆 𝟮𝟵: 𝗟𝗼𝗴𝗴𝗶𝗻𝗴 & 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 – 𝗙𝗶𝗻𝗱𝗶𝗻𝗴 𝘁𝗵𝗲 𝗥𝗼𝗼𝘁 𝗖𝗮𝘂𝘀𝗲
+Welcome to Day 29 of the 30 Days of Kubernetes series!
+
+As much as we love Kubernetes for its automation and resilience, sometimes… things go wrong. 🧨
+And when they do, logs are your best friend.
+
+Today, let’s dive into logging and troubleshooting in Kubernetes. From collecting logs to chasing down errors across pods and nodes—we'll break it all down.
+
+🧾 𝗪𝗵𝘆 𝗟𝗼𝗴𝘀 𝗠𝗮𝘁𝘁𝗲𝗿 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+Logs are the first place you look when:
+ • An app is crashing
+ • A pod is restarting
+ • A request is timing out
+ • Or something’s just… off
+
+In a world of ephemeral pods, getting a centralized and persistent logging system is essential.
+
+🔍 𝗕𝗮𝘀𝗶𝗰 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗟𝗼𝗴𝗴𝗶𝗻𝗴 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀
+Kubernetes provides built-in tools to access logs:
+ • kubectl logs <pod-name> – View logs from a container
+ • kubectl logs <pod> -c <container> – For multi-container pods
+ • kubectl logs <pod> --previous – View logs from the last crashed container
+ • kubectl describe pod <pod> – Great for event history and failure reasons
+ • kubectl get events --sort-by=.metadata.creationTimestamp – See what's happening in the cluster
+
+These commands help you start troubleshooting right from your terminal.
+
+📦 𝗧𝗵𝗲 𝗣𝗿𝗼𝗯𝗹𝗲𝗺 𝘄𝗶𝘁𝗵 𝗡𝗮𝘁𝗶𝘃𝗲 𝗟𝗼𝗴𝘀
+The kubectl logs approach works fine for small clusters, but:
+ • Logs are lost when a pod dies
+ • They aren’t easily searchable
+ • They aren’t centralized or retained long-term
+
+Enter: the EFK/ELK Stack.
+
+𝗧𝗵𝗶𝘀 𝗮𝗹𝗹𝗼𝘄𝘀 𝘆𝗼𝘂 𝘁𝗼:
+ • Search logs by labels, namespaces, services
+ • Visualize errors over time
+ • Correlate app failures with system metrics
+ • Retain logs for compliance and audit purposes
+
+🔧 𝗖𝗼𝗺𝗺𝗼𝗻 𝗧𝗿𝗼𝘂𝗯𝗹𝗲𝘀𝗵𝗼𝗼𝘁𝗶𝗻𝗴 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼𝘀
+🔹 Pod CrashLoopBackOff: Check logs with kubectl logs and events with describe. Look for config errors, missing secrets, or readiness probe failures.
+🔹 ImagePullBackOff: Usually a problem with private registry access or a typo in the image name.
+🔹 Service Not Reachable: Check if endpoints exist, DNS is resolving, and Network Policies aren’t blocking access.
+🔹 Node Issues: Use kubectl get nodes, describe node, and check node-level logs (e.g., journalctl on the host).
+
+✅ 𝗦𝘂𝗺𝗺𝗮𝗿𝘆
+Logs are the window into your cluster’s soul.
+Whether you’re debugging a one-off crash or investigating system-wide issues, a solid logging and troubleshooting approach is essential.
