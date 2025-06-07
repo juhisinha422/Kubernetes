@@ -1,0 +1,37 @@
+🔄 𝗗𝗮𝘆 𝟭𝟵: 𝗥𝗼𝗹𝗹𝗶𝗻𝗴 𝗨𝗽𝗱𝗮𝘁𝗲𝘀 𝗮𝗻𝗱 𝗥𝗼𝗹𝗹𝗯𝗮𝗰𝗸𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+Welcome to Day 19 of our Kubernetes series! Yesterday, we looked at autoscaling with HPA. Today, we're shifting gears to something equally critical for application lifecycle management — Rolling Updates and Rollbacks.
+
+Let’s talk about safe deployments, zero downtime, and quick recovery.
+
+🚀 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗮 𝗥𝗼𝗹𝗹𝗶𝗻𝗴 𝗨𝗽𝗱𝗮𝘁𝗲?
+When you update your application (like deploying a new container image), Kubernetes doesn't take down all your pods at once. Instead, it gradually replaces old pods with new ones, ensuring there's always a minimum number of healthy instances running.
+This approach is called a Rolling Update.
+
+Benefits:
+ • Zero downtime deployments
+ • Controlled rollout speed
+ • Automatic health checks during deployment
+
+🕹️ 𝗛𝗼𝘄 𝗜𝘁 𝗪𝗼𝗿𝗸𝘀
+Kubernetes handles rolling updates by:
+ • Launching new pods with the updated spec
+ • Waiting for them to become healthy
+ • Gradually terminating the old pods
+
+You can control the process using deployment settings like:
+ • MaxUnavailable: How many old pods can be down during the update
+ • MaxSurge: How many extra new pods can run temporarily
+
+⏪ 𝗪𝗵𝗮𝘁 𝗔𝗯𝗼𝘂𝘁 𝗥𝗼𝗹𝗹𝗯𝗮𝗰𝗸𝘀?
+Not every update goes as planned.
+If something goes wrong — say your app crashes or a bug sneaks in — Kubernetes lets you roll back to the previous version instantly.
+
+With a simple command or API call, Kubernetes will:
+ • Revert the deployment to the last known good configuration
+ • Reapply the old pod template
+ • Restart the rollout process safely
+
+🔐 𝗪𝗵𝘆 𝗧𝗵𝗶𝘀 𝗠𝗮𝘁𝘁𝗲𝗿𝘀 𝗶𝗻 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
+ • You get safe and predictable deployments
+ • Issues can be quickly rolled back without downtime
+ • Teams can adopt CI/CD pipelines with confidence
