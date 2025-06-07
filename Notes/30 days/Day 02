@@ -1,0 +1,29 @@
+Intro to Docker – The Engine Behind Containers 🐳
+
+
+🛠️ What is Docker?
+Docker is an open-source platform that enables you to:
+ - Package applications with everything they need (code, libraries, dependencies)
+ - Run them consistently across environments
+ 
+ It simplifies building, shipping, and running containers.
+📦 Key Concepts: Docker Images vs. Containers
+- Docker Image:
+  A read-only template with instructions for creating a container (like a blueprint).
+  Example: nginx:latest, python:3.11-slim
+ 
+ - Docker Container:
+  A running instance of an image. It’s isolated, lightweight, and disposable.
+  You can start, stop, restart, and remove containers easily.
+
+⚙️ What is Docker Engine?
+It’s the core part of Docker that runs on your machine. It:
+ - Builds images
+ - Manages containers
+ - Handles networking and storage
+ 
+ Once installed, you interact with it using simple CLI commands like `docker run`, `docker ps`, `docker build`, etc.
+
+🔥 Real Example
+docker run -d -p 80:80 nginx
+This pulls the Nginx image (if not already available), runs it in detached mode (-d), and maps port 80 of the host to the container. Simple and powerful!
