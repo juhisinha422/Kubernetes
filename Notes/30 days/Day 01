@@ -1,0 +1,15 @@
+What is Containerization? Why Containers?
+In the traditional world, running applications meant installing them directly on the host OS. This often led to the "it works on my machine" problem due to differences in environments.
+Containerization solves this.
+🔹 A container is a lightweight, standalone, and executable package of software that includes everything needed to run it: code, libraries, system tools, and settings.
+Think of it like a portable box that runs your app the same way, anywhere—on your laptop, in the cloud, or in production.
+
+⚙️ Why Containers?
+Here are some core benefits:
+🔁 Consistency: Same environment across dev, test, and production
+🧳 Portability: Runs anywhere a container runtime is available
+📦 Isolation: Apps run independently from one another
+🚀 Lightweight: Faster startup compared to VMs
+📈 Scalability: Ideal for microservices and cloud-native apps
+
+In simple terms, containers are the building blocks of modern software delivery — and Kubernetes is the system that manages them at scale. 🌍
