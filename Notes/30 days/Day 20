@@ -1,0 +1,36 @@
+🧙‍♂️ 𝗗𝗮𝘆 𝟮𝟬: 𝗛𝗲𝗹𝗺 – 𝗧𝗵𝗲 𝗣𝗮𝗰𝗸𝗮𝗴𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗿 𝗳𝗼𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+Welcome to Day 20 of our hashtag#Kubernetes learning journey!
+
+After exploring updates and rollbacks yesterday, today we introduce a tool that simplifies managing Kubernetes applications at scale — Helm.
+
+📦 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗛𝗲𝗹𝗺?
+Helm is the package manager for Kubernetes. Think of it like apt for Ubuntu or yum for RHEL — but for your Kubernetes apps.
+
+With Helm, you can:
+ • Install applications with a single command
+ • Manage complex deployments as reusable packages
+ • Easily upgrade, rollback, and configure your applications
+
+🎁 𝗪𝗵𝗮𝘁 𝗔𝗿𝗲 𝗛𝗲𝗹𝗺 𝗖𝗵𝗮𝗿𝘁𝘀?
+Helm uses charts — preconfigured packages that define a Kubernetes application. A chart includes:
+ • All the Kubernetes manifests needed (Deployments, Services, ConfigMaps, etc.)
+ • Templates that make it customizable for different environments
+ • A values file to override defaults easily
+
+You can use:
+ • Official charts from repositories like Artifact Hub
+ • Custom charts for your in-house applications
+
+⚙️ 𝗪𝗵𝘆 𝗨𝘀𝗲 𝗛𝗲𝗹𝗺?
+Managing Kubernetes manifests manually can quickly become overwhelming — especially with apps that include multiple services, secrets, and config options.
+
+Helm simplifies this by:
+ • Packaging everything together
+ • Supporting versioning
+ • Enabling repeatable deployments
+ • Making upgrades and rollbacks safe and easy
+
+🚀 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗨𝘀𝗲 𝗖𝗮𝘀𝗲𝘀
+ • Want to deploy NGINX Ingress or Prometheus? Use Helm charts.
+ • Need to deploy the same app in dev, staging, and prod with different configs? Helm makes it a breeze.
+ • Need to rollback after a bad release? Helm’s got your back with versioned releases.
