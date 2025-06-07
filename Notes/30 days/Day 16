@@ -1,0 +1,19 @@
+🔹 𝗗𝗮𝘆 𝟭𝟲: 𝗩𝗼𝗹𝘂𝗺𝗲𝘀 𝗮𝗻𝗱 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁 𝗩𝗼𝗹𝘂𝗺𝗲 𝗖𝗹𝗮𝗶𝗺𝘀 (𝗣𝗩𝗖𝘀) 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+Welcome to Day 16 of our hashtag#Kubernetes learning series! Yesterday, we touched on storage basics. Today, we dive deeper into one of Kubernetes' most powerful features for stateful workloads: Volumes and Persistent Volume Claims (PVCs).
+
+📦 𝗪𝗵𝘆 𝗩𝗼𝗹𝘂𝗺𝗲𝘀?
+Containers are ephemeral – they vanish when a pod dies. But what if your app needs to store data that persists across restarts or rescheduling?
+That’s where Volumes come in.
+A 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗩𝗼𝗹𝘂𝗺𝗲 provides a directory accessible to containers in a pod. Kubernetes supports multiple volume types – from local disk to network-attached storage like NFS or cloud-based options like AWS EBS, Azure Disk, etc.
+
+🔄 𝗧𝗵𝗲 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝘁𝗼𝗿𝗮𝗴𝗲 𝗪𝗼𝗿𝗸𝗳𝗹𝗼𝘄
+Here's the simplified flow:
+ 1. 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁 𝗩𝗼𝗹𝘂𝗺𝗲 (𝗣𝗩) A cluster-wide resource representing a piece of storage provisioned by an admin or dynamically via a StorageClass.
+ 2. 𝗣𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁 𝗩𝗼𝗹𝘂𝗺𝗲 𝗖𝗹𝗮𝗶𝗺 (𝗣𝗩𝗖) A user’s request for storage. It specifies size, access mode (e.g., ReadWriteOnce), and optionally a StorageClass.
+ 3. 𝗕𝗶𝗻𝗱𝗶𝗻𝗴 Kubernetes automatically matches a PVC to an available PV (or dynamically provisions one).
+ 4. 𝗠𝗼𝘂𝗻𝘁𝗶𝗻𝗴 The bound volume is mounted into the pod’s container at a specified path.
+
+🧠 𝗞𝗲𝘆 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆𝘀
+Volumes decouple storage from container lifecycle.
+PVCs let you request storage without needing to know the storage details.
+Kubernetes handles the rest — provisioning, binding, and attaching.
