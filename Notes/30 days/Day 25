@@ -1,0 +1,42 @@
+🛠️ 𝗗𝗮𝘆 𝟮𝟱: 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀 – 𝗙𝗼𝗿 𝗕𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱 𝗧𝗮𝘀𝗸𝘀 𝗼𝗻 𝗡𝗼𝗱𝗲𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+Welcome to Day 25 of my 30 Days of Kubernetes series!
+
+Today, we explore a Kubernetes controller that’s perfect for running node-level background tasks:🔥 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀
+
+If you’ve ever needed to run something on every node in your cluster—like a monitoring agent, log collector, or custom service—DaemonSets are the way to go.
+
+📦 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗮 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁?
+A DaemonSet ensures that a copy of a specific pod runs on every node (or a selected group of nodes) in the cluster.
+
+Whenever a new node is added to the cluster, the DaemonSet automatically deploys a pod there. When a node is removed, the corresponding pod is also deleted.
+
+🧠 𝗨𝘀𝗲 𝗖𝗮𝘀𝗲𝘀 𝗳𝗼𝗿 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀
+Monitoring agents like Prometheus Node Exporter or Datadog Agent
+Log collection tools like Fluentd or Filebeat
+Security agents (e.g., Falco, antivirus scanners)
+Storage plugins or network proxies
+Running a custom script or service on all nodes
+
+Basically, any workload that needs node-level visibility or responsibility.
+
+🧩 𝗛𝗼𝘄 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀 𝗪𝗼𝗿𝗸
+ • One pod per node by default
+ • Uses node selectors, taints/tolerations, or affinity rules to limit scope
+ • Compatible with static pods, but easier to manage via the Kubernetes API
+ • Managed by the control plane—no need for manual deployment when scaling the cluster
+
+🚧 𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗞𝗲𝗲𝗽 𝗶𝗻 𝗠𝗶𝗻𝗱
+ • DaemonSets are not ideal for workloads that need horizontal scaling—use Deployments or StatefulSets for those.
+ • Use resource requests and limits to avoid overloading your nodes.
+ • Combine with RBAC if your DaemonSet needs access to node-level APIs or host paths.
+ • Use tolerations if you need to run on tainted nodes (like control-plane nodes).
+
+🧰 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗘𝘅𝗮𝗺𝗽𝗹𝗲
+ • Imagine you're running a Kubernetes cluster with multiple nodes and want to collect logs from each.
+ • You can deploy Fluentd or Filebeat as a DaemonSet, and it will automatically spin up a pod on every node—collecting and shipping logs without manual intervention.
+
+The same concept applies to monitoring metrics, running network overlays, or even syncing files across nodes.
+
+✅ 𝗦𝘂𝗺𝗺𝗮𝗿𝘆
+ • DaemonSets are your best friend when you need to run node-scoped background tasks in Kubernetes.
+ • They scale automatically as your cluster grows and ensure consistent visibility and control across all nodes.
