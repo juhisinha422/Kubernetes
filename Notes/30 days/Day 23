@@ -1,0 +1,56 @@
+🌐 𝗗𝗮𝘆 𝟮𝟯: 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 𝗮𝗻𝗱 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿𝘀 – 𝗠𝗮𝗻𝗮𝗴𝗶𝗻𝗴 𝗘𝘅𝘁𝗲𝗿𝗻𝗮𝗹 𝗔𝗰𝗰𝗲𝘀𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+
+Welcome to Day 23 of my 30 Days of Kubernetes series!
+
+Today’s focus is one of the most critical components for production workloads in Kubernetes:
+Ingress and Ingress Controllers – the gateway for getting external traffic into your cluster.
+
+🚪 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗜𝗻𝗴𝗿𝗲𝘀𝘀?
+An Ingress is a Kubernetes API object that manages external access to your services, typically over HTTP or HTTPS.
+
+It acts as a reverse proxy, allowing you to:
+ • Route traffic to different services based on URL paths or domains
+ • Terminate TLS/SSL
+ • Implement authentication, rate limiting, redirects, and more
+
+Instead of exposing every service using a LoadBalancer or NodePort, you can manage everything through a single entry point.
+
+⚙️ 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗮𝗻 𝗜𝗻𝗴𝗿𝗲𝘀𝘀 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿?
+While Ingress defines the rules, the Ingress Controller is the actual implementation that enforces them.
+
+Popular Ingress Controllers include:
+ • NGINX Ingress Controller
+ • Traefik
+ • HAProxy
+ • Istio Gateway (when using service mesh)
+ • AWS ALB Ingress Controller (for EKS)
+
+Without an Ingress Controller running in your cluster, Ingress resources won’t do anything—they're just config.
+
+🧩 𝗞𝗲𝘆 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗼𝗳 𝗜𝗻𝗴𝗿𝗲𝘀𝘀
+ • Path-based routing (e.g., /app1 → Service A, /app2 → Service B)
+ • Host-based routing (e.g., app.company.com)
+ • TLS termination
+ • Custom rules and annotations for advanced behavior
+ • Authentication mechanisms like basic auth or OAuth (via plugins)
+
+🧠 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗨𝘀𝗲 𝗖𝗮𝘀𝗲
+Let’s say you're running:
+ • A frontend app at example.com
+ • A backend API at example.com/api
+ • A monitoring dashboard at example.com/monitoring
+
+Instead of exposing each via separate services and IPs, you define a single Ingress that routes traffic to the correct backend based on the path.
+
+This simplifies DNS, networking, and access control.
+
+🛡️ 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗖𝗼𝗻𝘀𝗶𝗱𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀
+ • Always enable TLS with a trusted certificate (e.g., using cert-manager + Let’s Encrypt).
+ • Don’t expose sensitive internal services unless necessary.
+ • Use rate limiting and IP whitelisting when possible.
+ • Monitor Ingress traffic for anomalies or misuse.
+
+✅ 𝗦𝘂𝗺𝗺𝗮𝗿𝘆
+Ingress is your cluster’s front door. With Ingress Controllers, you gain powerful control over HTTP/HTTPS traffic without complicating service exposure.
+
+It enables scalability, better routing, centralized security, and reduced cloud costs (fewer LoadBalancers!).
