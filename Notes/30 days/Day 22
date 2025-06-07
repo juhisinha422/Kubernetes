@@ -1,0 +1,43 @@
+𝗗𝗮𝘆 𝟮𝟮 𝗼𝗳 𝗺𝘆 𝟯𝟬 𝗗𝗮𝘆𝘀 𝗼𝗳 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘀𝗲𝗿𝗶𝗲𝘀!
+
+Today, we focus on something most clusters lack by default: 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗣𝗼𝗹𝗶𝗰𝗶𝗲𝘀 – the key to controlling who can talk to whom inside your Kubernetes cluster.
+
+🌐 𝗪𝗵𝗮𝘁'𝘀 𝘁𝗵𝗲 𝗣𝗿𝗼𝗯𝗹𝗲𝗺?
+By default, in Kubernetes, all pods can talk to all other pods—across all namespaces—without restriction.
+This "open network" might be fine for experimentation, but in production, it's a security nightmare.
+Imagine a compromised pod scanning your entire cluster or reaching into sensitive services like databases or internal APIs.
+You need Network Policies to block this kind of east-west traffic unless it's explicitly allowed.
+
+🛡️ 𝗪𝗵𝗮𝘁 𝗔𝗿𝗲 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗣𝗼𝗹𝗶𝗰𝗶𝗲𝘀?
+Network Policies define how pods are allowed to communicate with each other and with other network endpoints.
+They’re essentially firewall rules for pods, enforced at the IP level (L3) and port level (L4), using labels and selectors.
+You can define policies like:
+ • Only allow traffic from specific pods or namespaces.
+ • Deny all incoming traffic by default.
+ • Allow only certain ports (e.g., port 80 for HTTP).
+ • Restrict egress to the internet or certain IPs.
+But remember: Network Policies require a compatible CNI plugin (like Calico, Cilium, or Antrea) to be effective.
+
+🚦 𝗛𝗼𝘄 𝗧𝗵𝗲𝘆 𝗪𝗼𝗿𝗸
+A NetworkPolicy is applied to a group of pods based on their labels. It can control:
+ • Ingress traffic (incoming to a pod)
+ • Egress traffic (outgoing from a pod)
+
+Policies are deny-by-default, but only after you define at least one NetworkPolicy for a pod. Until then, all traffic is allowed.
+So, once you create a policy for a pod, only the traffic explicitly allowed in that policy is permitted.
+
+🧠 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗨𝘀𝗲 𝗖𝗮𝘀𝗲𝘀
+ • Restrict frontend pods to only talk to backend services.
+ • Allow only specific namespaces to access a shared database.
+ • Prevent pods from making external HTTP calls unless approved.
+ • Implement zero-trust networking within the cluster.
+
+⚠️ 𝗖𝗼𝗺𝗺𝗼𝗻 𝗣𝗶𝘁𝗳𝗮𝗹𝗹𝘀
+ • Just creating a NetworkPolicy doesn’t block all traffic. It only affects pods selected by the policy.
+ • Make sure your CNI plugin supports NetworkPolicies. Not all do!
+ • Don’t forget about egress rules—a lot of attackers exfiltrate data that way.
+
+📌 𝗦𝘂𝗺𝗺𝗮𝗿𝘆
+Network Policies are essential for securing communication inside your cluster. They allow you to enforce least-privilege networking between services and reduce blast radius in case of compromise.
+
+In modern Kubernetes setups, RBAC controls who can access the API, and Network Policies control how pods talk to each other. You need both for a secure and resilient cluster.
