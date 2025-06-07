@@ -1,0 +1,39 @@
+𝗗𝗮𝘆 𝟱 𝗼𝗳 𝟯𝟬 – 𝗗𝗼𝗰𝗸𝗲𝗿 𝗩𝗼𝗹𝘂𝗺𝗲𝘀 & 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗕𝗮𝘀𝗶𝗰𝘀 🔹
+
+Today we dive into Docker Volumes and Networking, two key pieces that make containerized apps more practical and powerful. 🐳⚙️🌐
+
+🔸 𝗗𝗼𝗰𝗸𝗲𝗿 𝗩𝗼𝗹𝘂𝗺𝗲𝘀
+Containers are ephemeral—data vanishes when a container stops. That’s where volumes come in.
+✅ Persist data across container restarts
+✅ Share data between containers
+✅ Useful for databases, logs, configs
+
+# Create a volume
+docker volume create mydata
+
+# Use it in a container
+docker run -v mydata:/app/data myapp
+
+🔸 𝗗𝗼𝗰𝗸𝗲𝗿 𝗡𝗲𝘁𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗕𝗮𝘀𝗶𝗰𝘀
+Containers need to talk—to each other, and to the world. Docker provides built-in networks:
+
+bridge (default): Good for single-host setups
+
+host: Container shares host network
+
+none: Isolated network
+
+custom bridge: Better control over DNS and isolation
+
+# Create a user-defined bridge network
+docker network create mynet
+
+# Connect containers to it
+docker run -d --name app1 --network mynet nginx
+docker run -d --name app2 --network mynet alpine ping app1
+📌 Why it matters for Kubernetes?
+Kubernetes uses similar concepts:
+
+Volumes = PersistentVolumes
+
+Networking = Pod communication across nodes
