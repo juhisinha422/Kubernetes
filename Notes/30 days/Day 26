@@ -1,0 +1,51 @@
+🧩 𝗗𝗮𝘆 𝟮𝟲: 𝗖𝘂𝘀𝘁𝗼𝗺 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲 𝗗𝗲𝗳𝗶𝗻𝗶𝘁𝗶𝗼𝗻𝘀 (𝗖𝗥𝗗𝘀) 𝗮𝗻𝗱 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿𝘀 – 𝗘𝘅𝘁𝗲𝗻𝗱𝗶𝗻𝗴 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘁𝗵𝗲 𝗡𝗮𝘁𝗶𝘃𝗲 𝗪𝗮𝘆
+Welcome to Day 26 of my 30 Days of Kubernetes series!
+
+Kubernetes is incredibly powerful—but did you know you can extend it with your own custom APIs?
+
+Today, we’re talking about CRDs (Custom Resource Definitions) and Operators—tools that let you go beyond built-in objects like Pods and Services to manage any resource in a Kubernetes-native way.
+
+🔧 𝗪𝗵𝗮𝘁 𝗔𝗿𝗲 𝗖𝗥𝗗𝘀?
+Custom Resource Definitions (CRDs) allow you to define your own Kubernetes resource types.
+
+For example, Kubernetes doesn’t have a built-in object for “Database” or “CacheCluster.” With a CRD, you can create:
+$ kubectl get databases
+$ kubectl describe cacheclusters
+CRDs act just like native resources—versioned, namespaced, and supported by RBAC and the Kubernetes API.
+
+🤖 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗮𝗻 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿?
+While a CRD defines the object, an Operator is a controller that watches for changes to that object and takes action.
+Think of it as a Kubernetes-native automation tool for managing complex applications.
+Operators are built to:
+ • Watch custom resources
+ • Apply domain-specific logic
+ • React to create/update/delete events
+ • Maintain the desired state automatically
+
+In other words, Operators turn your custom resources into self-managing services.
+
+🧠 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗨𝘀𝗲 𝗖𝗮𝘀𝗲𝘀
+PostgreSQL Operator: Automatically deploys, scales, backs up, and restores your PostgreSQL databases.
+ • 𝗞𝗮𝗳𝗸𝗮 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿: Manages topics, brokers, and clusters.
+ • 𝗥𝗲𝗱𝗶𝘀 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿: Ensures high availability and failover handling.
+ • 𝗖𝗲𝗿𝘁-𝗠𝗮𝗻𝗮𝗴𝗲𝗿: Uses CRDs like Certificate and Issuer to automate TLS provisioning.
+
+With Operators, you can turn even complex infrastructure into "Kubernetes-native APIs."
+
+🏗️ 𝗪𝗵𝘆 𝗨𝘀𝗲 𝗖𝗥𝗗𝘀 + 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿𝘀?
+Feature         CRDs + Operators
+Declarative APIs Define everything in YAML, like built-in resources
+Automation     No more scripts—Operators act on your behalf
+Kubernetes Integration Fully supported by RBAC, audit logs, and CLI
+Extensibility     Add new behavior without modifying core K8s code
+
+🛠️ 𝗧𝗼𝗼𝗹𝘀 𝘁𝗼 𝗕𝘂𝗶𝗹𝗱 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿𝘀
+ • 𝗞𝘂𝗯𝗲𝗯𝘂𝗶𝗹𝗱𝗲𝗿 – Official SDK for building Go-based Operators.
+ • 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿 𝗦𝗗𝗞 – Part of the Operator Framework; supports Go, Helm, and Ansible.
+ • 𝗠𝗲𝘁𝗮𝗰𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 – Lightweight framework to build controllers using webhooks.
+
+You can also find pre-built Operators on OperatorHub.io.
+
+✅ 𝗦𝘂𝗺𝗺𝗮𝗿𝘆
+Custom Resource Definitions and Operators allow you to extend Kubernetes to fit your business or platform needs.
+From databases to internal tools, you can automate complex workflows using Kubernetes-native APIs.
