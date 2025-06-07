@@ -1,0 +1,56 @@
+🗓 𝗗𝗮𝘆 𝟭2: 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+In Kubernetes, a Deployment is one of the most commonly used controllers. It provides powerful mechanisms to manage, update, and scale applications in a declarative and automated way.
+
+🚀 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁?
+A Deployment manages a ReplicaSet and provides declarative updates to Pods. You define the desired state in a YAML file, and Kubernetes handles the rest—ensuring your app is running as expected, even through updates and failures.
+
+
+🧩 𝗞𝗲𝘆 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗼𝗳 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁𝘀
+ • ✅ Declarative Updates – Roll out new versions automatically.
+ • 🔁 Rolling Updates – Zero-downtime application updates.
+ • ↩️ Rollbacks – Easily revert to a previous stable version.
+ • 📈 Scaling – Increase or decrease the number of replicas dynamically.
+ • 💡 Self-healing – Replaces failed Pods via the underlying ReplicaSet.
+
+📄 𝗘𝘅𝗮𝗺𝗽𝗹𝗲 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗬𝗔𝗠𝗟
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginx-deployment
+spec:
+ replicas: 3
+ selector:
+ matchLabels:
+ app: nginx
+ template:
+ metadata:
+ labels:
+ app: nginx
+ spec:
+ containers:
+ - name: nginx
+ image: nginx:1.25
+ ports:
+ - containerPort: 80
+📝 𝗘𝘅𝗽𝗹𝗮𝗻𝗮𝘁𝗶𝗼𝗻:
+ • replicas: 3 – Run 3 Pods of the nginx container.
+ • selector – Matches Pods with app: nginx.
+ • template – Blueprint for creating Pods.
+ • image: nginx:1.25 – Specifies the container version to deploy.
+
+🔄 𝗛𝗼𝘄 𝗥𝗼𝗹𝗹𝗶𝗻𝗴 𝗨𝗽𝗱𝗮𝘁𝗲𝘀 𝗪𝗼𝗿𝗸
+When you change the image tag in a Deployment:
+ 1. Kubernetes creates new Pods with the updated spec.
+ 2. Gradually removes old Pods.
+ 3. Ensures app stays available throughout the process.
+
+This provides zero-downtime deployments, a critical requirement for production systems.
+
+🧯 𝗥𝗼𝗹𝗹𝗯𝗮𝗰𝗸𝘀
+If something breaks after an update:
+$ kubectl rollout undo deployment nginx-deployment
+
+This will roll the Deployment back to the last known good state.
+
+📌 𝗣𝗿𝗼 𝗧𝗶𝗽:
+Use Deployments instead of ReplicaSets directly for most applications. It’s a higher-level abstraction that gives you much more control and safety during lifecycle events.
