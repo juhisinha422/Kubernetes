@@ -1,0 +1,34 @@
+𝗗𝗮𝘆 𝟵: 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗡𝗼𝗱𝗲𝘀 – 𝗧𝗵𝗲 𝗕𝗿𝗮𝗶𝗻𝘀 & 𝗠𝘂𝘀𝗰𝗹𝗲𝘀 𝗼𝗳 𝘁𝗵𝗲 𝗖𝗹𝘂𝘀𝘁𝗲𝗿
+
+Now that we know what Kubernetes is, let’s get into how it works under the hood.
+At the heart of any Kubernetes cluster are Nodes.
+
+🧱 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗡𝗼𝗱𝗲?
+A Node is a machine — virtual or physical — that runs your workloads (containers). It's where the real work gets done.
+
+There are two types of nodes in Kubernetes:
+🧠 1. Master Node (Control Plane)
+Think of this as the brain of the cluster. It makes global decisions (like scheduling) and handles the overall orchestration.
+
+Key components:
+ • kube-apiserver – Entry point for all commands via kubectl
+ • etcd – Key-value store for cluster state
+ • kube-scheduler – Assigns workloads to worker nodes
+ • kube-controller-manager – Handles cluster-level functions (like node health, replicas)
+ • cloud-controller-manager (optional) – Talks to cloud provider APIs
+
+💪 𝟮. 𝗪𝗼𝗿𝗸𝗲𝗿 𝗡𝗼𝗱𝗲 (𝗗𝗮𝘁𝗮 𝗣𝗹𝗮𝗻𝗲)
+This is where your containers actually run. Each worker node contains:
+kubelet – Talks to the control plane, ensures containers are running
+kube-proxy – Handles networking and routing
+container runtime – e.g., containerd or CRI-O (runs your containers)
+
+🖥️ 𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗔𝗻𝗮𝗹𝗼𝗴𝘆
+Think of Kubernetes as a factory:
+ • The Master Node is the manager (assigns tasks, tracks progress)
+ • The Worker Nodes are the laborers (doing the actual building)
+
+🌍 𝗕𝗼𝗻𝘂𝘀: 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝘀
+A Kubernetes Cluster is just a collection of these nodes (usually 1 master + N workers) working together.
+
+You can scale up by adding more nodes as your workload grows — Kubernetes takes care of balancing the load.
