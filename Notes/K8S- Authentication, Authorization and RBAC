@@ -1,0 +1,59 @@
+Kubernetes Authentication, Authorization & RBAC
+
+Today’s focus was on understanding who can access your Kubernetes cluster, how they’re authenticated, and what they’re allowed to do — a vital part of securing any Kubernetes setup.
+
+1) Authentication: Who You Are
+ • Kubernetes verifies users through certificates, tokens, or identity plugins
+ • The kubeconfig file acts like a keycard, holding credentials to access the cluster
+ • I also explored how to make raw API calls using TLS certs, and how kubectl uses $HOME/.kube/config by default
+ • Command to check your identity:
+   -> kubectl auth whoami
+
+2) Authorization: What You Can Do
+Kubernetes supports multiple authorization modes:
+ • RBAC (Role-Based Access Control) – 🔥 recommended and most flexible
+ • ABAC – complex, legacy
+ • Node – for internal kubelet access
+ • Webhook – integrates with external policies like OPA
+ • Command to check access rights:
+   kubectl auth can-i create pods
+   kubectl auth can-i create pods --as kathir
+
+3) RBAC: Roles, RoleBindings & ClusterRoles
+ • Roles define permissions (verbs) on resources within a namespace
+ • RoleBindings assign those roles to users or service accounts
+ • ClusterRoles & ClusterRoleBindings allow permissions across the whole cluster
+ • Example: 
+A pod-reader role that allows listing, watching, and getting pods in default namespace.
+apiVersion: https://lnkd.in/gYcb54mg
+kind: Role
+metadata:
+ namespace: default
+ name: pod-reader
+rules:
+- apiGroups: [""]
+ resources: ["pods"]
+ verbs: ["get", "watch", "list"]
+
+4) Cluster Roles & Cluster Role Bindings
+Used for cluster-wide permissions (e.g., managing nodes, CSRs, PVs)
+
+ • kubectl create clusterrole node-reader --verb=get,list,watch --resource=nodes
+ • kubectl create clusterrolebinding node-reader-binding --clusterrole=node-reader --user=adam
+
+5) Service Account in Kubernetes
+In Kubernetes, there are two types of accounts that interact with the cluster:
+ • User Accounts – Used by humans (admins, developers, operators)
+ • Service Accounts – Used by applications, bots, and Kubernetes components to interact programmatically with the API server
+
+Service accounts are essential when performing automated tasks such as CI/CD pipelines, controllers, or background jobs — instead of using a real user, the bot (service) uses a service account.
+
+Kubernetes automatically creates a default service account in every namespace (e.g., default, kube-system,etc).
+
+🛠️ To Create a Service Account:
+ • kubectl create sa my-service-account
+ • kubectl get sa
+
+After creating, you can grant it permissions by assigning a Role or ClusterRole using a RoleBinding or ClusterRoleBinding.
+
+This session helped me get a strong grasp on how access and permissions are structured in Kubernetes — a must for any secure and scalable setup.
