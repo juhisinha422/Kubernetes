@@ -1,0 +1,53 @@
+𝗗𝗮𝘆 𝟯: 𝗖𝗿𝗲𝗮𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝗬𝗼𝘂𝗿 𝗙𝗶𝗿𝘀𝘁 𝗗𝗼𝗰𝗸𝗲𝗿 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 🐳
+
+Let’s get practical with containers. Today, we’ll walk through how to run your very first Docker container and understand what happens under the hood.
+
+📥 𝗣𝘂𝗹𝗹𝗶𝗻𝗴 𝗮𝗻 𝗜𝗺𝗮𝗴𝗲 𝗳𝗿𝗼𝗺 𝗗𝗼𝗰𝗸𝗲𝗿 𝗛𝘂𝗯
+Before you can run a container, you need an image. Images are like blueprints — they contain everything required to run your application, including code, dependencies, and runtime.
+
+To get started, open your terminal and run:
+$ docker pull alpine
+
+Here, alpine refers to a minimal Linux distribution. It’s incredibly lightweight (~5MB), making it perfect for experimenting and learning.
+
+Docker will connect to Docker Hub, the default image registry, and download the Alpine image to your local machine.
+
+🏃♂️ 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝘁𝗵𝗲 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿
+Once the image is downloaded, you can launch a container using:
+$ docker run -it alpine sh
+
+Let’s break this down:
+ 1. docker run: Command to create and start a container
+ • -it: Two flags combined
+ • -i: Keeps the session open for interaction
+ • -t: Allocates a pseudo-TTY (makes the shell interactive)
+ 2. alpine: The image to use
+ 3. sh: The command to run (in this case, a shell inside Alpine)
+
+You’ll now find yourself inside the container’s shell. It’s a minimal Linux environment isolated from your host machine. You can try commands like:
+$ echo "Hello from inside a Docker container!"
+When done, type 𝘦𝘹𝘪𝘵 to leave the container session.
+
+⚙️ 𝗪𝗵𝗮𝘁 𝗔𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗛𝗮𝗽𝗽𝗲𝗻𝘀?
+Behind that one docker run command, Docker performs several actions:
+ • Checks if the image is available locally; if not, it pulls it.
+ • Creates a writable container layer on top of the read-only image.
+ • Starts the container as an isolated process using Linux namespaces and control groups (cgroups).
+ • Attaches your terminal to the container’s input/output stream for interaction.
+
+This is what makes Docker powerful — consistent and isolated execution environments, reproducible anywhere.
+
+🌐 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝗮 𝗪𝗲𝗯 𝗦𝗲𝗿𝘃𝗲𝗿 𝗶𝗻 𝗮 𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿
+To see how containers can be used for real-world apps, run a web server:
+
+$ docker run -d -p 8080:80 nginx
+ • -d: Detached mode (runs in the background)
+ • -p 8080:80: Maps port 80 of the container to port 8080 on your host
+ • nginx: A popular lightweight web server image
+
+Now visit http://localhost:8080 in your browser — you’ll see the default Nginx welcome page. You’ve just launched a live web server in a container with a single command.
+
+𝗦𝘂𝗺𝗺𝗮𝗿𝘆 𝗼𝗳 𝗞𝗲𝘆 𝗖𝗼𝗻𝗰𝗲𝗽𝘁𝘀
+ • Images are read-only templates; containers are their running instances.
+ • Docker provides isolation, portability, and consistency across environments.
+ • The docker run command encapsulates several powerful container lifecycle operations.
