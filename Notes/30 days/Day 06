@@ -1,0 +1,43 @@
+𝗗𝗮𝘆 𝟲: 𝗦𝗶𝗺𝗽𝗹𝗶𝗳𝘆𝗶𝗻𝗴 𝗠𝘂𝗹𝘁𝗶-𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀 𝘄𝗶𝘁𝗵 𝗗𝗼𝗰𝗸𝗲𝗿 𝗖𝗼𝗺𝗽𝗼𝘀𝗲
+When building modern applications, you often need to run multiple containers — like a web app, a database, and maybe a cache. Managing them individually using docker run can quickly get messy.
+
+That’s where 𝗗𝗼𝗰𝗸𝗲𝗿 𝗖𝗼𝗺𝗽𝗼𝘀𝗲 comes in.
+
+📄 Sample docker-compose.yml File
+Here’s a simple example with a Python Flask app and a Redis service:
+
+---
+version: '3'
+
+services:
+ web:
+  build: .
+  ports:
+   - "5000:5000"
+ redis:
+  image: "redis:alpine"
+
+ • The web service is built from the current directory (must contain a Dockerfile)
+
+ • The redis service uses an official image from Docker Hub
+
+▶️ 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝘁𝗵𝗲 𝗖𝗼𝗺𝗽𝗼𝘀𝗲 𝗙𝗶𝗹𝗲
+To launch the entire app:
+$ docker-compose up
+
+This:
+Builds any needed images
+Creates containers
+Sets up networking between them
+
+To stop everything:
+$ docker-compose down
+
+🔍 𝗕𝗲𝗻𝗲𝗳𝗶𝘁𝘀 𝗼𝗳 𝗗𝗼𝗰𝗸𝗲𝗿 𝗖𝗼𝗺𝗽𝗼𝘀𝗲
+ • Declarative setup — your entire stack lives in one YAML file
+ • Simplified networking — containers can talk to each other by service name
+ • Scalable — supports scaling services for testing
+ • Reusable — easily share with teammates and CI/CD pipelines
+
+🧠 𝗣𝗿𝗼 𝗧𝗶𝗽
+You can define volumes, environment variables, health checks, and more in your Compose file. It’s a powerful stepping stone before transitioning to orchestrators like Kubernetes.
