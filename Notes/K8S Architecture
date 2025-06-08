@@ -1,0 +1,23 @@
+What is Kubernetes?  
+Kubernetes is an open‑source, robust container orchestration platform designed to automate the deployment, scaling, and management of containerized applications.
+
+🛠 Uses of Kubernetes:  
+• Container Orchestration: Seamlessly deploys and schedules containerized applications.  
+• Dynamic Scaling & Load Balancing: Adjusts computing resources in real‑time to match demand fluctuations.  
+• Automated Rollouts & Rollbacks: Facilitates smooth updates and rapid recovery from any issues.  
+• Resource Optimization: Maximizes infrastructure efficiency through intelligent workload distribution.  
+• Fault Tolerance: Ensures high availability by maintaining continuous operation even under failure.
+
+⚙️ Kubernetes Architecture:  
+Kubernetes operates on a dual‑structure model comprised of two main components:
+
+Control Plane (Master Node):  
+– API Server: Serves as the secure gateway for all cluster commands and communications.  
+– Scheduler: Strategically assigns Pods to optimal worker nodes based on resource availability and policy constraints.  
+– Controller Manager: Oversees controller loops that reconcile the cluster’s actual state with its desired configuration.  
+– etcd: A dependable distributed key‑value store that safeguards configuration and state data.
+
+Worker Nodes:  
+– Pods: The fundamental deployable units that encapsulate one or more containers running your applications.  
+– Kubelet: An agent that ensures containers run exactly as specified within each Pod.  
+– kube‑proxy: Manages network rules to enable smooth internal and external traffic flow.
