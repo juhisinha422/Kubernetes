@@ -1,0 +1,13 @@
+Kubernetes Service to Pod Request Flow
+
+Here is what happens when you try to access application using Kubernetes ClusterIP service:
+1. User/Client sends a DNS query for the Kubernetes service name.
+2. CoreDNS/kube-dns resolves the service name and returns the ClusterIP.
+3. User/Client connects to the Service’s ClusterIP on the specified port.
+4. Service receives the request and uses its selector to identify matching pods.
+5. Endpoints resource lists the IPs of pods that match the Service selector.
+6. kube-proxy watches Services and Endpoints and sets up iptables/netrules to route traffic.
+7. Bridge Network (e.g., cni0 or flannel.1) handles routing on the node.
+8. Traffic is sent to the veth pair (host side) to reach the target pod.
+9. Traffic enters the pod’s network namespace via the veth pair (pod side).
+10. The Pod receives the request on its containerPort (e.g., 8080).
