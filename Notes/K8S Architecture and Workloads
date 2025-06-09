@@ -1,0 +1,25 @@
+Mastering Kubernetes Architecture & Workloads – My Learning Journey 
+ 
+Hi, Folks! Glad to share 😃 that today I deep-dived into Kubernetes Core Components and Workloads, and it’s been an memory refresher. Whether you're starting with K8s or brushing up, understanding how the cluster works under the hood is essential.
+
+🔧 Kubernetes Core Components – The Brain of the Cluster
+✅ Controller Manager -Runs controllers that continuously monitor and enforce the desired state.
+✅ API Server -The front-end of the Kubernetes control plane.Handles all the REST Api requests. 
+✅ Scheduler -Assigns pods to suitable nodes based on resource availability, taints/tolerations, and affinity rules.
+✅ etcd -A key-value store that stores all cluster data configuration, state, secrets.
+✅ Kubelet -An agent that runs on each worker node and ensures containers run in pods as instructed by the API server.
+✅ Kube-proxy -Manages networking and load balancing for services on each node. It maintains iptables and network rules to route external or internal traffic to correct pod IP behind a service
+
+⚙️ Kubernetes Workloads – The Hands That Do the Work
+📦 Pod -Pod is a smallest deployable unit on kubernetes. A Pod is a group of one or more containers, with shared storage and network resources.
+📛Namespace -It provides a mechanism for isolating groups of resources within a single cluster. Names of resources need to be unique within a namespace
+📌Replicaset -It ensures a specific number of pod replicas are always running. If a pod crashes or is deleted, the ReplicaSet creates a new one to match the desired count.
+✨Deployment -It ensures desired state replicas are running by managing ReplicaSets and provides additional features like Rolling updates, Rollbacks, Version control..
+🔁DaemonSet -A DaemonSet ensures that a specific pod runs on all or selected nodes in the cluster. It’s commonly used for running background services like log collectors or monitoring agents.
+💾StatefulSet -A StatefulSet is used to manage stateful applications. It maintains the identity and persistent state of each pod across restarts, with stable network identities and storage.
+🔗Service -A Service is an abstraction that defines a stable network endpoint to expose one or more pods. It allows communication within the cluster or with external clients.
+
+💡 Key Takeaway-
+ Understanding the architecture empowers better debugging, scaling, and design decisions. Kubernetes isn't just about "deploying pods" — it's about managing distributed systems intelligently and reliably.
+
+💥If you're learning Kubernetes, take it one component at a time. It all clicks together eventually! 
