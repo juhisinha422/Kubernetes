@@ -1,0 +1,42 @@
+Different Deployment Method
+
+1. Blue-Green Deployment
+Maintain two environments: Blue (current version) and Green (new version).
+Steps:
+a) Deploy the new version to the Green environment.
+b) Test the Green environment.
+c) Switch traffic from Blue to Green (using DNS or a load balancer).
+d) If something goes wrong, switch back to Blue.
+
+
+2. Rolling Deployment
+Update your application gradually, one instance at a time.
+Steps:
+a) Remove one instance of the old version from service.
+b) Deploy the new version to that instance.
+c) Add it back to the pool.
+d) Repeat for all instances.
+
+
+3. Canary Deployment
+Release the new version to a small percentage of users first.
+Steps:
+a) Deploy to a small group (e.g., 5% of users).
+b) Monitor for issues.
+c) Gradually increase the rollout to more users.
+
+
+4. Shadow Deployment
+The new version receives real user traffic in the background, but responses are not returned to users.
+Steps:
+a) Deploy the new version alongside the old one.
+b) Mirror real traffic to the new version.
+c) Analyze logs and performance without affecting users.
+
+
+5. Feature Flags (Feature Toggles)
+Hide new features behind flags until they are ready.
+Steps:
+a) Deploy the full codebase with features disabled.
+b) Enable features gradually for specific users or environments.
+c) Disable instantly if issues arise.
