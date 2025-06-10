@@ -1,0 +1,46 @@
+𝐊𝐞𝐲 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐓𝐞𝐫𝐦𝐢𝐧𝐨𝐥𝐨𝐠𝐢𝐞𝐬
+
+➡️ Job
+A Job manages batch tasks by ensuring a specified number of Pods complete their execution successfully and then terminate.
+
+➡️ Namespace
+Namespaces divide cluster resources among multiple users or teams, creating isolated environments within the same cluster.
+
+➡️ Volume
+A Volume provides persistent storage accessible to Pods, outlasting the Pod’s lifecycle, with varying persistence based on type.
+
+➡️ Ingress
+Ingress manages external access to services, primarily for HTTP and HTTPS, using routing rules defined for traffic management.
+
+➡️ DaemonSet
+A DaemonSet ensures a Pod runs on all (or specific) Nodes, useful for deploying system services like logging or monitoring agents.
+
+➡️ Operator
+An Operator automates the deployment and management of complex applications using custom resources to handle lifecycle tasks.
+
+➡️ ClusterRole
+A ClusterRole defines permissions for resources at the cluster level, facilitating access control across all namespaces.
+
+➡️ Secret
+A Secret stores and manages sensitive data such as passwords or tokens securely, preventing exposure in Pod specifications.
+
+➡️ ReplicaSet
+A ReplicaSet maintains a specified number of identical Pods, ensuring the desired number of replicas are always running.
+
+➡️ CronJob
+A CronJob schedules and runs Jobs periodically using a cron-like format, automating tasks like backups or data processing.
+
+➡️ Event
+An Event captures information about resource state changes and significant occurrences in the cluster for monitoring and debugging.
+
+➡️ ConfigMap
+A ConfigMap stores non-confidential configuration data as key-value pairs, allowing Pods to access this data without embedding it in code.
+
+➡️ Deployment
+A Deployment manages ReplicaSets and facilitates rolling updates, scaling, and rollbacks of Pods to maintain the desired application state.
+
+➡️ ServiceMonitor
+A ServiceMonitor specifies how Prometheus should discover and monitor services, configuring metric scraping and integration with Prometheus.
+
+➡️ Endpoint
+An Endpoint maps a Service to the IP addresses and ports of the backing Pods, routing traffic to the appropriate Pods within the cluster.
