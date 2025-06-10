@@ -1,0 +1,22 @@
+Monitoring with Grafana
+
+Today I explored Grafana, an open-source platform used for monitoring, observability, and data visualization – and it truly lives up to the hype!
+Whether you're tracking server health, application performance, or business metrics, Grafana makes it easy to create powerful, real-time dashboards by connecting to data sources like Prometheus, MySQL, InfluxDB, and more.
+
+What I Learned:
+
+1) Dashboards & Panels
+ Visualize time-series data using graphs, gauges, tables, heatmaps, and more.
+
+2) Data Sources
+ Grafana doesn’t store data – it connects to external sources like:
+a) Prometheus (metrics)
+b) Loki (logs)
+c) MySQL/PostgreSQL (SQL queries)
+d) CloudWatch, Elasticsearch, etc.
+
+3) Alerts & Notifications
+ Set up thresholds and get notified via Slack, Email, or Webhooks when something goes wrong.
+
+4) User Management
+ Supports role-based access, SSO, and sharing dashboards across teams.
