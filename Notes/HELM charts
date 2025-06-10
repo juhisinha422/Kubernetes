@@ -1,0 +1,11 @@
+Helm Charts 
+
+Today, I explored Helm, the package manager for Kubernetes, and understood how it simplifies managing Kubernetes manifests using charts.
+As someone self-learning DevOps and aiming to break into the field, learning Helm gave me confidence in how real-world teams deploy, upgrade, and maintain applications in Kubernetes clusters.
+
+What I Learned:
+1. Helm is to Kubernetes what apt or yum is to Linux – a package manager.
+2. A Helm Chart is a collection of YAML templates that define a set of   Kubernetes resources.
+3. You can use helm install, upgrade, rollback, and delete to manage your app's lifecycle.
+4. Charts allow for parameterization, so you can deploy the same app with different configs.
+5. Helm helps enforce consistency, versioning, and reuse in Kubernetes environments.
