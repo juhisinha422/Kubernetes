@@ -1,0 +1,11 @@
+Did you know that in Kubernetes, 512M and 512Mi are not equivalent, despite both being accepted units? Here's the difference:
+
+- 512M represents 512 × 1,000,000 bytes (Megabytes, base-10).
+- On the other hand, 512Mi signifies 512 × 1,048,576 bytes (Mebibytes, base-2).
+
+Kubernetes utilizes base-2 calculations (Mi) for memory operations. Opting for M over Mi can result in:
+- Inaccurate resource allocation
+- Misleading usage metrics
+- Inefficiencies that escalate with scale
+
+For precise memory management, it's advisable to consistently use Mi over M. 
