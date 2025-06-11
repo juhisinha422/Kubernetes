@@ -1,0 +1,16 @@
+🚀 Kubernetes Tip : Headless Services! 🧠
+
+In Kubernetes, a Headless Service is special kind of service without a clusterIp
+
+this helps in statefulset application to assign stable DNS names for each pod.
+
+direct pod access no load balancing.
+
+A Headless Service is created by setting clusterIP: None. Instead of routing traffic to a single ClusterIP, it returns the IP addresses of the backing pods directly (via DNS).
+
+ Useful when:
+1. StatefulSets (like Cassandra, Kafka, Elasticsearch)
+2.Peer-to-peer communication
+
+
+Note : if you set ClusterIp: None than only considered as headless service.
