@@ -1,0 +1,22 @@
+🧐 why it is called k8s? 
+because it has 8 alphabets between k and s ( k u b e r n e t e s) 
+
+kubernetes architecture:- 
+it has 2 important nodes like 
+✅ Control plane/ Master Node 
+✅ Worker Node
+
+first of all we have to install kind , docker, kubectl to make a cluster in k8s . 
+ 
+components in control plane :- 
+🔹 scheduler :- it schedules pods on worker node.
+🔹etcd :- it Stores all the data 
+🔹 controller manager :- it controls all the services and monitors that services are running well or not 
+🔹API server :- it is a "Heart of k8s". it communicates with the all services running in k8s and it provides all the information to the scheduler and controller manager .
+
+components in worker node :- 
+🔹 kube proxy:- it is a mediator between an user and pods . it allows a cluster to communicate with out side world. 
+🔹 kubelet :- it keeps all the information about pods that pods are running or not , is it ready or not and provides all the info to the API server.
+🔹pod :- it is a smallest unit in k8s. containers run in the pod and multiple containers can be run in the pods.
+🔹 container network interface:- it is very important service to communicate worker node with master node . 
+🔹kubectl:- it is head of k8s which gives API server what to do .
