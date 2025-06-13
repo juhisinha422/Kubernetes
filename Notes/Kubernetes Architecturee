@@ -1,0 +1,85 @@
+Kubernetes Architecture 🏗️☸️
+
+
+
+---
+
+🔹 What is Kubernetes?
+
+Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications.
+
+
+---
+
+🏛️ Kubernetes Architecture
+
+Kubernetes follows a master-worker model:
+
+Control Plane (Master) – Manages the entire cluster.
+
+Worker Nodes – Run your applications (containers) inside Pods.
+
+
+
+---
+
+🎛️ Control Plane (Master Node)
+
+The control plane is the brain of the cluster, making decisions and maintaining the cluster state.
+
+🔸 kube-apiserver
+
+Serves as the front-end for the Kubernetes API.
+
+Validates and processes REST requests.
+
+
+🔸 etcd 📜
+
+A distributed key-value store that holds all cluster data, including configurations and state.
+
+
+🔸 kube-scheduler ⏳
+
+Selects suitable nodes for newly created Pods based on resource requirements and constraints.
+
+
+🔸 kube-controller-manager
+
+Runs controllers to ensure the actual state matches the desired state (e.g., replicas, nodes, jobs).
+
+
+
+---
+
+🛠️ Worker Nodes
+
+Worker nodes are responsible for running the actual workloads (containers).
+
+🔹 kubelet
+
+An agent that ensures containers in Pods are running and healthy on the node.
+
+
+🔹 kube-proxy 🌐
+
+Handles networking for Pods and services.
+
+Maintains network rules and routes traffic.
+
+
+🔹 Container Runtime
+
+Executes containers (e.g., Docker, containerd).
+
+
+
+---
+
+🔗 How It Works
+
+1️⃣ You deploy a Pod using kubectl or the API Server.
+2️⃣ The scheduler assigns the Pod to a suitable node.
+3️⃣ kubelet on the node pulls the container image and starts the Pod.
+4️⃣ kube-proxy sets up networking so the Pod can communicate internally and externally.
+
