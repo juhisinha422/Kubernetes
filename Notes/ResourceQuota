@@ -1,0 +1,97 @@
+Controlling Cluster Usage with ResourceQuota 📊🚦
+
+Welcome to Day 9 of our Kubernetes journey! As your cluster grows and multiple teams or applications begin to share the same resources, it becomes crucial to manage and limit resource consumption. Enter the powerful Kubernetes tool: ResourceQuota.
+
+
+---
+
+📊 What is a ResourceQuota?
+
+A ResourceQuota is a Kubernetes object that helps you limit the consumption of resources (like CPU, memory, storage, or object counts) within a namespace.
+
+Think of it like setting a budget for each team or application so they don’t accidentally use up the entire cluster.
+
+
+---
+
+🚦 Why Use ResourceQuota?
+
+Without quotas, a single misconfigured application could:
+
+Consume all the cluster’s memory or CPU
+
+Create too many Pods or PersistentVolumeClaims
+
+Disrupt workloads of other users or teams
+
+
+By using ResourceQuota, you can:
+
+Prevent resource exhaustion
+
+Promote fair usage among tenants or teams
+
+Encourage better planning and monitoring of workloads
+
+
+
+---
+
+💡 What Can You Limit with ResourceQuota?
+
+You can define hard limits for:
+
+CPU and memory (requests and limits)
+
+Number of Pods, Services, ConfigMaps, Secrets
+
+Persistent volume claims and storage usage
+
+LoadBalancer services or object counts
+
+
+For example, you might set:
+
+A max of 10 Pods in a namespace
+
+2 CPU cores and 4Gi of memory as limits
+
+No more than 2 LoadBalancer services
+
+
+
+---
+
+📁 How It Works
+
+When a user or application tries to create a new resource (e.g., a Pod or PVC), the API server checks the current usage against the quota. If the new resource would exceed the quota, Kubernetes blocks the request.
+
+Kubernetes also provides ResourceQuota status, showing current usage versus allowed limits, helping teams monitor what they’ve consumed.
+
+
+---
+
+✅ Best Practices
+
+Set quotas per namespace, especially in multi-tenant environments
+
+Combine with LimitRange to set default resource requests/limits per Pod
+
+Use monitoring tools to track resource usage
+
+Adjust quotas as team needs evolve
+
+Ensure developers are aware of quotas and plan accordingly
+
+
+
+---
+
+🌍 Real-World Scenarios
+
+A DevOps team limits each application to 1 CPU and 2Gi memory in the dev namespace
+
+A platform team caps the number of Services and PVCs created by each team
+
+A cluster admin restricts LoadBalancer services to avoid hitting cloud provider limits
+
