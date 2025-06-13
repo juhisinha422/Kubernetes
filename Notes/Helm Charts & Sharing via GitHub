@@ -1,0 +1,105 @@
+Helm Charts & Sharing via GitHub 🚢📦🧑‍💻
+
+Welcome to Day 11 of our Kubernetes journey! As your workloads grow in complexity, managing Kubernetes manifests can quickly become overwhelming. That's where Helm — the package manager for Kubernetes — steps in. Today, we'll explore what Helm Charts are and how you can share them with the world using GitHub.
+
+
+---
+
+🚢 What is Helm?
+
+Helm is a tool that helps you define, install, and manage Kubernetes applications using a format called charts. Think of it like apt or yum — but for Kubernetes.
+
+Helm helps you:
+
+Package Kubernetes YAML into reusable charts
+
+Simplify deployment with templated configurations
+
+Manage versions and rollbacks
+
+Share your apps easily via Helm repositories
+
+
+
+---
+
+📦 What is a Helm Chart?
+
+A Helm Chart is a collection of files that describe a Kubernetes application. At minimum, it includes:
+
+Chart.yaml → Metadata (name, version, etc.)
+
+values.yaml → Default config values
+
+templates/ → Kubernetes resource templates (Pods, Services, Deployments, etc.)
+
+
+When you run helm install, Helm combines the templates with values and deploys the resulting YAML to your cluster.
+
+
+---
+
+💡 Why Use Helm Charts?
+
+Reuse and share common app configurations
+
+Customize deployments using values
+
+Avoid repetition in large-scale clusters
+
+Simplify CI/CD pipelines
+
+Manage versions and rollbacks
+
+
+> 🔁 Helm makes it easy to update applications with helm upgrade and revert them with helm rollback.
+
+
+
+
+---
+
+🧑‍💻 Sharing Helm Charts via GitHub
+
+One of the best ways to collaborate and distribute your charts is by hosting them on GitHub. Here’s how you can do that:
+
+Step 1: Structure Your Chart
+
+Create your chart with:
+
+helm create mychart
+
+This gives you a template structure. Customize the templates/ and values.yaml as needed.
+
+Step 2: Push to GitHub
+
+Initialize a Git repository and push your chart code:
+
+git init 
+git remote add origin https://lnkd.in/gRVG7wiY 
+git push -u origin main
+
+Step 3: Share Your Chart
+
+Others can clone your repo and install the chart locally:
+
+helm install myapp ./mychart
+
+Or you can host a chart repository using GitHub Pages and helm package + helm repo index.
+
+> ✅ Bonus Tip: Automate chart versioning and publishing with GitHub Actions!
+
+
+
+
+---
+
+🌍 Real-World Scenarios
+
+Share internal tools across your company via Helm repos
+
+Version and maintain microservices independently
+
+Quickly deploy complete dev environments
+
+Manage community contributions with pull requests
