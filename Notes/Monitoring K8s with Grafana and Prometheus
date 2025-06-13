@@ -1,0 +1,144 @@
+Monitoring Kubernetes with Prometheus & Grafana ☸️🔍
+
+Welcome back to our Kubernetes journey! Today, we dive into one of the most important aspects of any production environment: monitoring. And what better tools to use than Prometheus and Grafana — the go-to stack for cloud-native observability.
+
+
+---
+
+🔹 Why Monitoring Matters in K8s?
+
+Kubernetes runs hundreds (or thousands) of microservices. Without monitoring, you’re flying blind. Monitoring:
+
+Detects failures early ⚠️
+
+Analyzes performance 📉
+
+Helps with capacity planning 📦
+
+Enables alerting and automation ⏰
+
+
+
+---
+
+🧠 What is Prometheus?
+
+Prometheus is an open-source metrics collection and alerting system built for cloud-native environments.
+
+✨ Key Features:
+
+Pull-based metrics collection via HTTP endpoints
+
+A powerful query language (PromQL) 🔎
+
+Time-series data storage
+
+Native Kubernetes service discovery
+
+Built-in alert manager 📣
+
+
+🔍 How It Works:
+
+1. Prometheus scrapes metrics from targets like nodes, pods, and services.
+
+
+2. It stores them as time-series data.
+
+
+3. You can query this data or use it to trigger alerts.
+
+
+
+
+---
+
+📊 What is Grafana?
+
+Grafana is a visualization tool that works with multiple data sources (including Prometheus) to create beautiful, dynamic dashboards.
+
+✨ Key Features:
+
+Intuitive dashboard building 📊
+
+Alerting and notifications
+
+Variable support for dynamic filtering
+
+Permissions and sharing
+
+Plugins for extra data sources
+
+
+
+---
+
+🔗 Prometheus + Grafana Workflow
+
+1. Prometheus collects metrics from Kubernetes components:
+
+kubelet
+
+cAdvisor
+
+kube-state-metrics
+
+Application endpoints (like /metrics)
+
+
+
+2. Grafana connects to Prometheus as a data source.
+
+
+3. You use Grafana to build dashboards, track CPU, memory, pod counts, network usage, and more.
+
+
+
+
+---
+
+🧩 Common Dashboards in Kubernetes
+
+Cluster health overview 🌐
+
+Node-level resource usage 📦
+
+Pod-level memory/CPU graphs 📈
+
+Service request rates & latency ⏱️
+
+Alerting on pod restarts or threshold breaches 🚨
+
+
+
+---
+
+⚙️ Add-Ons to Know
+
+kube-prometheus-stack: Helm chart that installs Prometheus, Grafana, AlertManager, and exporters
+
+Node Exporter: For collecting node-level OS metrics
+
+kube-state-metrics: For Kubernetes object states (deployments, pods, etc.)
+
+Alertmanager: Manages and routes alerts from Prometheus
+
+
+
+---
+
+🧠 Why Use Both?
+
+Tool	Role
+
+Prometheus	Collects & stores metrics
+Grafana	Visualizes & analyzes data
+
+
+Together, they provide full-stack observability — from infrastructure to applications.
+
+
+---
+
+Monitoring is not just a toolset — it’s a mindset. With Prometheus and Grafana in your arsenal, you can keep your Kubernetes clusters healthy, optimized, and future-ready! 🌟
+
