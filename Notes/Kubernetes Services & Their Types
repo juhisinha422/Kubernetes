@@ -1,0 +1,82 @@
+Kubernetes Services & Their Types 🌐⚙️
+
+---
+
+🔹 What is a Kubernetes Service?
+
+A Service in Kubernetes is an abstraction that defines a logical set of Pods and a policy to access them — usually by a consistent network identity (IP and DNS name).
+
+> Pods are ephemeral — they can be killed and recreated with new IPs. A Service ensures that clients can reliably reach Pods, no matter what.
+
+---
+
+🧩 Why Use Services?
+
+Stable networking for dynamic Pods
+
+Load balancing across replicas
+
+Service discovery within the cluster
+
+Easy abstraction for internal or external communication
+
+
+🧱 Types of Kubernetes Services
+
+Kubernetes supports three main types of Services:
+
+
+---
+
+1️⃣ ClusterIP (Default) 🧠
+
+Accessible only inside the cluster
+
+Ideal for internal communication between microservices
+
+
+type: ClusterIP
+
+Example Use Case: A frontend talks to a backend service within the same cluster.
+
+
+---
+
+2️⃣ NodePort 🌍
+
+Exposes the Service on a static port on each Node's IP
+
+Accessible from outside the cluster via NodeIP:NodePort
+
+
+type: NodePort
+
+Example Use Case: Basic access to an app during development or testing.
+
+
+---
+
+3️⃣ LoadBalancer ☁️
+
+Works with cloud providers (AWS, GCP, Azure)
+
+Provisions an external load balancer and routes traffic to your Service
+
+
+type: LoadBalancer
+
+Example Use Case: Hosting public-facing web apps in production.
+
+
+---
+🔗 Key Components in a Service
+
+Selector: Connects the Service to matching Pods (based on labels)
+
+TargetPort: The port the container is listening on
+
+Port: Port exposed by the Service
+
+ClusterIP: The internal IP of the Service
+
+Attaching the Images of exposing the application. We just need to change type in spec for clusterIp and nodePort to change Service type.
