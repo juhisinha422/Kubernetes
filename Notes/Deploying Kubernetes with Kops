@@ -1,0 +1,85 @@
+Deploying Kubernetes with Kops ☁️⚙️
+
+
+---
+
+🔹 What is Kops?
+
+Kops (Kubernetes Operations) is an open-source tool that automates the creation, configuration, and management of Kubernetes clusters on cloud providers — most notably AWS.
+
+Think of Kops as the "kubectl" for cluster management:
+It helps you provision, upgrade, and maintain Kubernetes clusters with ease.
+
+
+---
+
+✅ Why Use Kops?
+
+Creates highly available, production-ready Kubernetes clusters.
+
+Automates networking, DNS, IAM roles, VPCs, etc.
+
+Supports cluster upgrades and rolling updates.
+
+Built-in backup, restore, and validation tools.
+
+Ideal for AWS, with some support for other platforms like GCP and bare metal.
+
+
+
+---
+
+⚙️ Prerequisites
+
+Before you begin, make sure you have:
+
+AWS account and access credentials.
+
+A registered domain name (e.g., example.com) or use a subdomain.
+
+kubectl installed.
+
+Kops CLI installed.
+
+AWS CLI installed.
+
+🪜 STEP 1: Create a s3 bucket for storage in AWS:
+
+AWS s3 mb s3://teja.k8s.local
+
+export KOPS_STATE_STORE=s3://teja.k8s.local
+
+🪜 STEP2: Create cluster: Taking 1 master and 2 node machines.
+
+kops create cluster --name mycluster.k8s.local --zones us-east-1a,us-east-1b,us-east-1c --master-size t3.medium --master-count 1 --master-volume-size 28 --node-size t3.micro --node-count 2 --node-volume-size 28
+
+🪜 STEP3:
+Writing the manifest file for creation of POD
+and use command
+kubectl create -f manifestfile.yml
+
+🪜 STEP4:
+Writing the manifest file for creation of service to expose the application.
+
+Attaching the POD manifest file will deep dive into Services and exposing of application tomorrow.
+
+We can check the created pods whether they are created in our cluster or not using 
+kubectl describe podname.
+
+Don't forget to delete the cluster. Use:
+kops delete cluster --name clustername --yes
+
+---
+
+📝 Summary
+
+Today, you learned:
+
+What Kops is and why it's useful for cloud-based Kubernetes clusters.
+
+How to prepare DNS and S3 storage.
+
+How to create, and manage a cluster with Kops.
+
+
+Kops makes it easier to go from "zero to production-ready cluster" in minutes on AWS.
