@@ -1,0 +1,124 @@
+Getting Started with Minikube on Kubernetes 🖥️☸️
+
+
+---
+
+🔹 What is Minikube?
+
+Minikube is a lightweight Kubernetes implementation that creates a virtual cluster on your local machine. It's ideal for learning, development, and testing Kubernetes workloads without needing a full-blown cloud setup.
+
+
+---
+
+✅ Why Use Minikube?
+
+Runs locally on Windows, macOS, or Linux.
+
+Fast and simple setup for a Kubernetes cluster.
+
+Supports most Kubernetes features.
+
+---
+
+⚙️ Prerequisites
+
+Before installing Minikube, make sure you have the following:
+
+Docker
+kubectl (Kubernetes CLI tool)
+
+Install via:
+https://lnkd.in/gsbv6zvj
+
+
+
+
+---
+
+⬇️ Installing Minikube
+
+Windows / macOS / Linux:
+
+Visit the official installation guide:
+https://lnkd.in/gbtv3pxU
+
+Or use the terminal (macOS/Linux):
+
+curl -LO https://lnkd.in/gNA74FVf
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+
+---
+
+🚀 Starting Your First Cluster
+
+Once installed, start Minikube.
+
+You can specify a driver if needed:
+
+minikube start --driver=docker --force
+
+---
+
+✅ Verifying the Setup
+
+Check the cluster status:
+
+minikube status
+
+Check nodes:
+
+kubectl get nodes
+
+It should show a single node in the Ready state.
+
+
+---
+
+📦 Deploying Your First Pod
+
+Let’s create a basic deployment:
+
+kubectl run hello-minikube --image=kicbase/echo-server
+
+Check Pods:
+
+kubectl get pods
+
+Describe the deployment:
+
+kubectl describe po hello-minikube
+
+We can also create a manifest file and run it to create pods.
+
+kubetl create -f manifestfile.yml.
+
+
+---
+
+🧼 Stopping and Deleting the Cluster
+
+Stop the cluster:
+
+minikube stop
+
+Delete it completely:
+
+minikube delete
+
+
+---
+
+📝 Summary
+
+Today, you learned how to:
+
+Install and configure Minikube
+
+Start a local Kubernetes cluster
+
+Deploy a simple application
+
+Interact with your cluster using kubectl
+
+
