@@ -1,0 +1,83 @@
+Kubernetes Namespaces & Volumes 🧱📦
+
+Welcome to Day 10 of our Kubernetes journey! Today, we’ll be covering two fundamental building blocks of any Kubernetes cluster: Namespaces for organizing workloads and Volumes for managing persistent storage.
+
+
+---
+
+🧱 What is a Namespace?
+
+A Namespace in Kubernetes is a way to divide cluster resources between multiple users or teams. It acts like a virtual cluster within a physical cluster.
+
+Why Namespaces?
+
+To isolate workloads across teams or environments (e.g., dev, staging, prod)
+
+To apply resource limits (using ResourceQuota or LimitRange)
+
+To organize objects cleanly, avoiding naming conflicts
+
+To simplify RBAC (Role-Based Access Control)
+
+
+By default, Kubernetes includes namespaces like default, kube-system, kube-public, and kube-node-lease. You can also create custom namespaces like team-a, testing, or finance-app.
+
+Namespace Use Cases:
+
+DevOps teams managing different projects
+
+Separate environments like development and production
+
+Multi-tenant clusters where different teams share a single cluster
+
+
+> 💡 Namespaces don’t apply to cluster-wide resources like Nodes or PersistentVolumes.
+
+
+
+
+---
+
+📦 What is a Volume in Kubernetes?
+
+A Volume in Kubernetes is a directory accessible to containers in a Pod. It helps store data beyond the life of a container, supporting use cases like caching, logging, databases, and more.
+
+Why Use Volumes?
+
+Containers are ephemeral—they lose all data when restarted.
+
+Volumes allow data to persist even if the container crashes or restarts.
+
+They enable data sharing between multiple containers in the same Pod.
+
+
+
+---
+
+Types of Volumes
+
+Kubernetes supports many volume types:
+
+emptyDir – Temporary storage created when a Pod is assigned to a node.
+
+hostPath – Mounts a directory from the host node.
+
+configMap / secret – Inject configuration or credentials as files.
+
+persistentVolumeClaim (PVC) – Access storage provisioned via a PersistentVolume.
+
+Each type has a different behavior and purpose, depending on your app’s storage needs.
+
+
+---
+
+🔁 PersistentVolume (PV) & PersistentVolumeClaim (PVC)
+
+To manage storage independently of Pods, Kubernetes uses:
+
+PV: The actual storage resource (managed by the admin or dynamically provisioned)
+
+PVC: A request for storage by a user or application
+
+
+This abstraction allows flexible and portable storage management, especially in dynamic cloud environments.
