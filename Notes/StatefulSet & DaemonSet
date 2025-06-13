@@ -1,0 +1,86 @@
+StatefulSet & DaemonSet in Kubernetes 🗃️🛡️
+
+
+---
+
+🗃️ What is a StatefulSet?
+
+A StatefulSet is a Kubernetes controller used to manage stateful applications — apps that require stable network identities, persistent storage, and ordered deployment or scaling.
+
+Unlike Deployments, where Pods are interchangeable, StatefulSets are designed for unique, sticky identities for each Pod.
+
+Key Features:
+
+Stable Hostnames: Pods get fixed DNS names (e.g., pod-0, pod-1).
+
+Persistent Volumes: Each Pod gets its own volume, retained even if the Pod is deleted.
+
+Ordered Startup/Shutdown: Pods start and stop in a defined sequence.
+
+Consistent Identity: Useful for apps like databases (MySQL, MongoDB, Cassandra) where each node must be uniquely identifiable.
+
+
+When to Use StatefulSet:
+
+Databases and data stores
+
+Distributed systems that need peer-to-peer coordination
+
+Applications needing stable storage and identity
+
+
+
+---
+
+🛡️ What is a DaemonSet?
+
+A DaemonSet ensures that one copy of a Pod runs on every node (or on a subset of nodes) in the cluster. It’s perfect for running background system services that need to be on all or specific nodes.
+
+Key Features:
+
+Runs Pods automatically on all nodes
+
+Automatically updates Pods when nodes are added or removed
+
+Commonly used for node-level monitoring, logging, networking, or security agents
+
+
+When to Use DaemonSet:
+
+Log collection agents (e.g., Fluentd, Logstash)
+
+Monitoring tools (e.g., Prometheus node exporter)
+
+CNI plugins and network proxies
+
+Security agents (e.g., antivirus or audit daemons)
+
+
+
+---
+
+🚦 StatefulSet vs DaemonSet vs Deployment
+
+Feature Deployment StatefulSet DaemonSet
+
+Unique Pod IDs No Yes (pod-0) No
+Persistent Storage No Yes Optional
+Runs on All Nodes No No Yes
+Ordered Start/Stop No Yes No
+Best For Stateless apps Stateful apps Node-wide services
+
+Kind will only change in the manifest file for statefulset and Daemonset and no need to specify replicas in Daemonset.
+
+
+
+---
+
+📝 Summary
+
+Today, you discovered two specialized Kubernetes controllers:
+
+StatefulSet for managing stateful applications with stable identity and storage.
+
+DaemonSet for running system-level Pods across all or selected nodes.
+
+These tools are essential when working with non-stateless workloads and infrastructure agents in production-grade environments.
