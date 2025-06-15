@@ -1,0 +1,32 @@
+𝐖𝐡𝐚𝐭 𝐀𝐫𝐞 𝐏𝐫𝐨𝐛𝐞𝐬 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬?
+
+Imagine you’re a doctor checking on patients in a hospital. You want to make sure everyone is healthy and getting the care they need.
+🏥 In the world of 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬, 𝐩𝐫𝐨𝐛𝐞𝐬 play a similar role for your applications. Kubernetes uses Probes to monitor the 𝐡𝐞𝐚𝐥𝐭𝐡 𝐨𝐟 𝐜𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫𝐬 running inside Pods. 
+♻️ They are a key part of Kubernetes’ 𝐬𝐞𝐥𝐟-𝐡𝐞𝐚𝐥𝐢𝐧𝐠 capabilities — enabling:
+🔄 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐜 𝐫𝐞𝐬𝐭𝐚𝐫𝐭𝐬
+⚖️𝐋𝐨𝐚𝐝 𝐛𝐚𝐥𝐚𝐧𝐜𝐢𝐧𝐠
+🩺 𝐇𝐞𝐚𝐥𝐭𝐡 𝐜𝐡𝐞𝐜𝐤𝐬
+
+🔧 𝐓𝐲𝐩𝐞𝐬 𝐨𝐟 𝐏𝐫𝐨𝐛𝐞𝐬 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+Kubernetes has three types of probes:
+1️⃣ 𝐑𝐞𝐚𝐝𝐢𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞
+2️⃣ 𝐋𝐢𝐯𝐞𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞
+3️⃣ 𝐒𝐭𝐚𝐫𝐭𝐮𝐩 𝐏𝐫𝐨𝐛𝐞
+
+📡 𝐑𝐞𝐚𝐝𝐢𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞:
+The Readiness Probe checks whether a container is ready to accept traffic. Kubernetes only routes traffic to containers that pass the readiness check.
+🧭 Readiness Probes play a crucial role in managing service availability and traffic routing in Kubernetes.
+⚠️ When a pod is not ready to handle requests — for instance, it might still be loading data or warming up a cache — the Readiness Probe signals Kubernetes to 🚫 not send traffic to that pod.
+This mechanism ensures a smooth user experience, as requests are only routed to pods that are fully prepared to handle them, thus enhancing the overall reliability and efficiency of the application deployment.
+
+❤️🩹 𝐋𝐢𝐯𝐞𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞𝐬:
+The liveness probe is responsible for determining whether an application is running properly within a container. It periodically checks the health of the application and restarts the container if the probe fails.
+By utilizing liveness probes, Kubernetes can effectively handle scenarios where an application becomes unresponsive due to critical failures or resource starvation.
+In scenarios where an application is running but has become unresponsive or deadlocked, a simple restart can often return the application to a healthy state.
+These probes continuously monitor the application’s health 🩺 and, upon detecting any malfunction , trigger a restart , thus minimizing downtime and enhancing the application’s availability.
+
+⏳ 𝐒𝐭𝐚𝐫𝐭𝐮𝐩 𝐏𝐫𝐨𝐛𝐞:
+A Startup Probe is used to indicate whether an application within a container has started successfully. Unlike Liveness and Readiness Probes, which are continuously active throughout the container’s lifecycle, Startup Probes focus solely on the initial startup phase .
+They provide Kubernetes with the necessary 🕰️ time buffer to allow slow-starting applications to initialize without being prematurely restarted or killed ❌.
+The primary significance of Startup Probes lies in their ability to manage applications that require more time to start up than usual.
+Without a Startup Probe, such applications might be mistaken for failing ones due to their longer startup times ⌛ and could be unnecessarily restarted by Kubernetes 🔁.
