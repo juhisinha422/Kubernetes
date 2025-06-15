@@ -1,0 +1,21 @@
+90% of DevOps engineers know how to deploy. Only 10% know what happens under the hood.”
+
+Everyone knows how to run kubectl apply.
+But what happens under the hood is where real engineers are made.
+So let’s break it down 👇
+
+🔄 The K8s Deployment Flow:
+📥 API Server – Receives your request and validates it
+📦 etcd – Stores your spec as the “desired state”
+🧮 Scheduler – Chooses the best node to run your pod
+🎮 Controller Manager – Reconciles actual vs desired state
+🧱 Kubelet – Talks to the node, pulls your pod spec
+🔧 Container Runtime – Actually runs the container (e.g., containerd)
+🌐 Kube Proxy – Handles traffic routing via iptables/IPVS
+🧭 CoreDNS – Resolves service names like my-svc.default.svc.cluster.local
+📊 Metrics Server – Reports usage to HPA and dashboards
+
+
+💡 Every time you deploy, this flow quietly works behind the scenes.
+But when something breaks —
+You'd better know where in the flow to look.
