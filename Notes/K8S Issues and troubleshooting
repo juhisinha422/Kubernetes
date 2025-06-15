@@ -1,0 +1,89 @@
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐈𝐬𝐬𝐮𝐞𝐬 & 𝐇𝐨𝐰 𝐭𝐨 𝐓𝐫𝐨𝐮𝐛𝐥𝐞𝐬𝐡𝐨𝐨𝐭 𝐓𝐡𝐞𝐦🚨
+
+🔁 𝐏𝐨𝐝 𝐢𝐧 𝐂𝐫𝐚𝐬𝐡𝐋𝐨𝐨𝐩𝐁𝐚𝐜𝐤𝐎𝐟𝐟
+🔍 Check the pod logs using kubectl logs
+✅ Ensure required dependencies are available
+
+❌𝐈𝐦𝐚𝐠𝐞𝐏𝐮𝐥𝐥𝐁𝐚𝐜𝐤𝐎𝐟𝐟
+🔎 Verify the image name and availability
+🔐 Check image pull secrets and registry authentication
+
+📶 𝐈𝐧𝐯𝐚𝐥𝐢𝐝 𝐂𝐥𝐮𝐬𝐭𝐞𝐫𝐈𝐏 𝐨𝐫 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐏𝐨𝐫𝐭
+⚙️ Ensure correct service and port configurations
+🔥 Verify network policies and firewall rules
+
+⚠️ 𝐍𝐨𝐝𝐞𝐍𝐨𝐭𝐑𝐞𝐚𝐝𝐲
+🖥️ Check the node’s status with "kubectl get nodes"
+📜 Examine kubelet logs on the node
+
+📉 𝐈𝐧𝐬𝐮𝐟𝐟𝐢𝐜𝐢𝐞𝐧𝐭 𝐑𝐞𝐬𝐨𝐮𝐫𝐜𝐞𝐬
+📊 Confirm resource requests and limits
+🧾 Use kubectl describe to analyze resource usage
+
+🔄𝐂𝐫𝐚𝐬𝐡𝐋𝐨𝐨𝐩𝐁𝐚𝐜𝐤𝐎𝐟𝐟 𝐟𝐨𝐫 𝐈𝐧𝐢𝐭 𝐂𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫𝐬
+🧪 Inspect init container logs
+✅ Ensure init dependencies are met
+
+📂 𝐂𝐨𝐧𝐟𝐢𝐠𝐌𝐚𝐩/𝐒𝐞𝐜𝐫𝐞𝐭 𝐌𝐨𝐮𝐧𝐭𝐢𝐧𝐠 𝐈𝐬𝐬𝐮𝐞𝐬
+🔍 Verify existence and correctness
+🧩 Check volume mounts in pod specs
+
+⏳ 𝐏𝐨𝐝 𝐬𝐭𝐮𝐜𝐤 𝐢𝐧 𝐏𝐞𝐧𝐝𝐢𝐧𝐠
+🚧 Investigate resource constraints
+📄 Examine events with kubectl describe pod
+
+🔌 𝐀𝐏𝐈 𝐒𝐞𝐫𝐯𝐞𝐫 𝐔𝐧𝐫𝐞𝐚𝐜𝐡𝐚𝐛𝐥𝐞
+🖥️ Verify API server status
+🧾 Check kubeconfig for correct API address
+
+🔐 𝐍𝐞𝐭𝐰𝐨𝐫𝐤 𝐏𝐨𝐥𝐢𝐜𝐲 𝐑𝐞𝐬𝐭𝐫𝐢𝐜𝐭𝐢𝐨𝐧𝐬
+🔎 Inspect network policies
+✅ Ensure correct podSelector and rules
+
+🛑 𝐑𝐁𝐀𝐂 𝐏𝐞𝐫𝐦𝐢𝐬𝐬𝐢𝐨𝐧 𝐈𝐬𝐬𝐮𝐞𝐬
+🔐 Validate service account permissions
+🔄 Check RoleBindings and ClusterRoleBindings
+
+📦𝐏𝐕𝐂 𝐏𝐞𝐧𝐝𝐢𝐧𝐠
+🗂️ Check available storage classes
+💾 Ensure requested storage is available
+
+🚪 𝐍𝐨𝐝𝐞𝐏𝐨𝐫𝐭 𝐒𝐞𝐫𝐯𝐢𝐜𝐞 𝐍𝐨𝐭 𝐀𝐜𝐜𝐞𝐬𝐬𝐢𝐛𝐥𝐞
+🔥 Confirm firewall rules allow the port
+⚙️ Check Service and NodePort settings
+
+⚙️ 𝐊𝐮𝐛𝐞-𝐩𝐫𝐨𝐱𝐲 𝐈𝐬𝐬𝐮𝐞𝐬
+📄 Inspect kube-proxy logs
+🔧 Verify configuration
+
+🌐 𝐃𝐍𝐒 𝐑𝐞𝐬𝐨𝐥𝐮𝐭𝐢𝐨𝐧 𝐏𝐫𝐨𝐛𝐥𝐞𝐦𝐬
+✅ Verify CoreDNS status
+🔍 Check cluster DNS settings
+
+🧹 𝐏𝐨𝐝 𝐄𝐯𝐢𝐜𝐭𝐢𝐨𝐧 (𝐑𝐞𝐬𝐨𝐮𝐫𝐜𝐞 𝐏𝐫𝐞𝐬𝐬𝐮𝐫𝐞)
+📈 Check node resource usage
+➕ Adjust limits or add nodes
+
+🧠 𝐍𝐨𝐝𝐞𝐎𝐮𝐭𝐎𝐟𝐌𝐞𝐦𝐨𝐫𝐲
+🔍 Inspect memory usage
+🐛 Check for memory leaks
+
+🔐 𝐕𝐨𝐥𝐮𝐦𝐞 𝐌𝐨𝐮𝐧𝐭 𝐏𝐞𝐫𝐦𝐢𝐬𝐬𝐢𝐨𝐧𝐬
+📁 Verify file permissions
+🛡️ Check SELinux/AppArmor settings
+
+🌉 𝐈𝐧𝐠𝐫𝐞𝐬𝐬 𝐂𝐨𝐧𝐭𝐫𝐨𝐥𝐥𝐞𝐫 𝐌𝐢𝐬𝐜𝐨𝐧𝐟𝐢𝐠
+✅ Validate Ingress resources
+📄 Check Ingress controller logs
+
+📉𝐄𝐓𝐂𝐃 𝐂𝐥𝐮𝐬𝐭𝐞𝐫 𝐈𝐬𝐬𝐮𝐞𝐬
+📋 Check etcd logs
+🧪 Verify etcd cluster health
+
+🧩 𝐂𝐍𝐈 𝐏𝐥𝐮𝐠𝐢𝐧 𝐈𝐬𝐬𝐮𝐞𝐬
+🔍 Verify plugin status
+📄 Check configs and logs
+
+🏷️𝐈𝐧𝐯𝐚𝐥𝐢𝐝 𝐋𝐚𝐛𝐞𝐥𝐬/𝐒𝐞𝐥𝐞𝐜𝐭𝐨𝐫𝐬
+✅ Use correct labels and selectors
+🔎 Use kubectl get with labels
