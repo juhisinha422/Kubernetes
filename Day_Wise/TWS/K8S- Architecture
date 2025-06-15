@@ -1,0 +1,28 @@
+Kubernetes Series 🎯
+
+
+Kubernetes Architecture 👩💻
+
+Definition - Kubernetes is a cluster which automates the process like scaling, healing, scheduling and updating.
+
+Cluster - A group of nodes.
+
+Kubernetes Architecture has two major components master node and worker node.
+
+Master node is also known as control plane and has 4 vital components.
+
+1️⃣ API SERVER - It validates and processes the requests to the component of worker node and master node.
+
+2️⃣ etcd - Think of this as the "database" of Kubernetes. It stores all the information about your cluster and their components.
+
+3️⃣ Scheduler - When you ask for a container to be run, the Scheduler decides which machine (Node) in your cluster should run it. It considers resource availability and other constraints while making this decision.
+
+4️⃣ Controller manager - ensures  everything is running smoothly. If something goes wrong (e.g., a Pod crashes), they work to fix it, ensuring the cluster state matches your desired state.
+
+Worker Node Components
+
+1️⃣ Kubelet - This is the "manager" for each worker node. It ensures all containers on the node are healthy and running as they should be.
+
+2️⃣ Service Proxy - It acts like a networking resource who give access to  external clients so that they communicates with pods.
+
+3️⃣ pods - The smallest unit in Kubernetes, a Pod is a group of one or more containers. Think of it like an apartment in an apartment building.
