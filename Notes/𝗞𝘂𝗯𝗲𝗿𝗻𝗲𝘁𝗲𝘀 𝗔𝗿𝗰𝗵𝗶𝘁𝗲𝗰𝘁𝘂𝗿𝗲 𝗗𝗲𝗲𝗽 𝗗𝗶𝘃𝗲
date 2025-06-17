@@ -1,0 +1,40 @@
+🚀 𝗗𝗮𝘆 𝟭: 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 𝗗𝗲𝗲𝗽 𝗗𝗶𝘃𝗲
+Kubernetes has become the backbone of modern infrastructure — but how does it actually work under the hood? Let’s break it down. 👇
+
+🧠 𝐌𝐚𝐬𝐭𝐞𝐫 𝐍𝐨𝐝𝐞𝐬 (𝐂𝐨𝐧𝐭𝐫𝐨𝐥 𝐏𝐥𝐚𝐧𝐞)
+The brain of the operation:
+🔹 API Server
+ Acts as the gateway for all requests – the central hub where Kubernetes tasks begin. It exposes the Kubernetes API and ensures requests are validated and processed.
+🔹 Scheduler
+ Decides where each pod should run based on available resources – optimizing workload distribution.
+🔹 Controller Manager
+ Ensures the desired cluster state is always maintained. If something goes wrong, it fixes it.
+Includes:
+Node Controller
+Replication Controller
+Endpoints Controller
+Service Account & Token Controllers
+🔹 etcd
+ A consistent and highly available key-value store holding all cluster data. It’s the single source of truth for your Kubernetes cluster.
+
+💪 𝐖𝐨𝐫𝐤𝐞𝐫 𝐍𝐨𝐝𝐞𝐬 (𝐌𝐢𝐧𝐢𝐨𝐧𝐬)
+The muscle of your cluster, where your apps actually run:
+🔹 Kubelet – Ensures containers are running as instructed
+🔹 Pods – The smallest deployable units (one or more containers)
+🔹 Kube Proxy – Handles networking between pods and services
+🔹 Container Runtime – Runs the containers (e.g., Docker, containerd)
+
+📦 𝐂𝐥𝐮𝐬𝐭𝐞𝐫 = 𝐆𝐫𝐨𝐮𝐩 𝐨𝐟 𝐒𝐞𝐫𝐯𝐞𝐫𝐬 𝐑𝐮𝐧𝐧𝐢𝐧𝐠 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+🔍 𝐓𝐲𝐩𝐞𝐬 𝐨𝐟 𝐂𝐥𝐮𝐬𝐭𝐞𝐫𝐬:
+1. Self-Managed (DIY Infrastructure):
+Minikube – Great for local testing
+Kubeadm, K3D, KOPS – Suitable for more complex setups
+2. Cloud-Managed (Provider Managed):
+AWS EKS (Elastic Kubernetes Service)
+Azure AKS (Azure Kubernetes Service)
+GCP GKE (Google Kubernetes Engine)
+
+
+💡 Why It Matters
+Kubernetes’ modular design automates scaling, healing, and deploying apps—so you can focus on code, not infrastructure!
+👉 Fun Fact: The Control Plane’s controllers (Node, Replication, Endpoints) silently fix issues to keep your apps running smoothly.
