@@ -1,0 +1,50 @@
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 (𝐊𝟖𝐬): 𝐔𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝𝐢𝐧𝐠 𝐒𝐭𝐚𝐭𝐞𝐟𝐮𝐥, 𝐒𝐭𝐚𝐭𝐞𝐥𝐞𝐬𝐬, 𝐚𝐧𝐝 𝐃𝐚𝐞𝐦𝐨𝐧𝐒𝐞𝐭𝐬
+When deploying applications in Kubernetes, knowing the difference between Stateless, Stateful, and DaemonSet workloads is key to building reliable and scalable systems. Here's a quick breakdown:
+
+🔹 𝗦𝘁𝗮𝘁𝗲𝗹𝗲𝘀𝘀 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀
+ These don't store any data about user sessions or past interactions. Every pod is identical, and you can easily scale up or down.
+ 📦 Examples: NGINX, REST APIs, frontend services.
+ 📌 Managed using Deployments or ReplicaSets.
+🔹 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀
+ These apps remember data even if the pod restarts. Each pod gets a stable identity, persistent storage, and ordered start/termination.
+ 🗂️ Examples: Databases like MySQL, MongoDB, Cassandra.
+ 📌 Managed using StatefulSets.
+
+🔹 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁: One Pod Per Node – No Exceptions
+Used when you want a single copy of a pod on every node in the cluster. Great for running background services like log collectors, monitoring agents, or security daemons.
+ 🛠️ Examples: Fluentd, Prometheus Node Exporter, Filebeat.
+ Ideal for background jobs that must run on every node, like monitoring and logging agents.
+
+✅ 𝗞𝗲𝘆 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗼𝗳 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁
+ • Node Affinity – Target specific nodes using labels (e.g., run only on workers).
+ • Rolling Updates – Seamlessly update pods without downtime.
+ • Resource Optimization – Deploy lightweight agents for essential services (e.g., Filebeat, Prometheus Node Exporter).
+
+✅ 𝗖𝗿𝗲𝗮𝘁𝗲 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁 (𝗶𝗺𝗽𝗲𝗿𝗮𝘁𝗶𝘃𝗲𝗹𝘆):
+kubectl create daemonset ds-name --image=image-name
+✅ 𝗔𝗽𝗽𝗹𝘆 𝗬𝗔𝗠𝗟-𝗠𝗮𝗻𝗶𝗳𝗲𝘀𝘁 𝗳𝗶𝗹𝗲 𝘁𝗼 𝗰𝗿𝗲𝗮𝘁𝗲 𝗮 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁:
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+ name: monitor
+spec:
+ selector:
+ matchLabels:
+ app: swiggy
+ template:
+ metadata:
+ labels:
+ app: swiggy
+ spec:
+ containers:
+ - name: cont-1
+ image: shaikmustafa/mygame
+ ports:
+ - containerPort: 80
+
+Apply the YAML File:
+kubectl apply -f daemonset.yaml
+
+
+💡 Pro Tip:
+ Use Stateless where possible for simplicity and scalability. Use StatefulSets when each pod needs its own storage and identity. Use DaemonSets for node-level agents.
