@@ -1,0 +1,13 @@
+Monitoring & Deployment Strategies 🚀
+observability and deployment strategies—key pillars for running production-grade workloads.
+
+🔍 Monitoring Stack:
+Prometheus: Mastered setting up this powerful open-source monitoring tool to collect and store metrics from Kubernetes clusters. Learned to configure scrape jobs, alert rules, and leverage its time-series database.
+Grafana: Visualized Prometheus metrics with stunning dashboards! Explored creating custom dashboards to monitor cluster health, resource usage, and application performance.
+
+🛠️ Deployment Strategies:
+Rolling Updates: Zero-downtime deployments by gradually replacing old pods with new ones.
+Blue-Green: Maintained two identical environments (blue = live, green = new), switching traffic instantly after testing.
+Canary Releases: Reduced risk by rolling out changes to a small subset of users before full deployment.
+Recreate: Simple but impactful—terminate all old pods and deploy new ones (downtime accepted).
+Understanding these strategies helps balance availability, risk, and speed during deployments.
