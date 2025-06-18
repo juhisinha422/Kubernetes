@@ -1,0 +1,76 @@
+🚀 𝗞𝗨𝗕𝗘𝗥𝗡𝗘𝗧𝗘𝗦 𝗦𝗘𝗥𝗩𝗜𝗖𝗘𝗦 𝗦𝗜𝗠𝗣𝗟𝗜𝗙𝗜𝗘𝗗! 🔧🌐
+To access applications running inside Kubernetes Pods, we must expose them using Services. Here's a comprehensive breakdown with practical steps for setting it up on AWS using kOps.👇
+
+🛠️ 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲?
+✅ Service = A method to expose pods in your cluster
+✅ Each pod gets its own IP, but to access from outside, we need a Service
+
+🔍 𝗧𝘆𝗽𝗲𝘀 𝗼𝗳 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲𝘀:
+1️⃣ 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝗜𝗣 (𝗜𝗻𝘁𝗲𝗿𝗻𝗮𝗹 𝗢𝗻𝗹𝘆):
+Provides a stable IP inside the cluster
+Ideal for internal communication (e.g., databases)
+𝗔𝗰𝗰𝗲𝘀𝘀:
+➡️ curl <ClusterIP>
+
+2️⃣ 𝗡𝗼𝗱𝗲𝗣𝗼𝗿𝘁 (𝗘𝘅𝘁𝗲𝗿𝗻𝗮𝗹 𝗔𝗰𝗰𝗲𝘀𝘀):
+Exposes service on each Node’s IP at a static port
+Port range: 30000 – 32767
+𝗔𝗰𝗰𝗲𝘀𝘀:
+➡️ http://<Node_Public_IP>:<NodePort>
+⚠️ 𝗗𝗿𝗮𝘄𝗯𝗮𝗰𝗸: Too many URLs if multiple nodes — not ideal for end-users
+
+3️⃣ 𝗟𝗼𝗮𝗱𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿 (𝗕𝗲𝘀𝘁 𝗳𝗼𝗿 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻):
+Exposes service externally using Cloud Provider’s Load Balancer
+Distributes traffic among nodes
+𝗔𝗰𝗰𝗲𝘀𝘀:
+ ➡️DNS Name 
+🔥 One URL to rule them all!
+
+💻 𝗛𝗮𝗻𝗱𝘀-𝗢𝗻 𝗦𝗲𝘁𝘂𝗽 𝗨𝘀𝗶𝗻𝗴 𝗸𝗢𝗽𝘀 (𝗼𝗻 𝗔𝗪𝗦)
+✅ Launch EC2 Instance & Setup PATH
+ vim .bashrc 
+ export PATH=$PATH:/usr/local/bin/
+ source .bashrc
+✅ Install AWS CLI, kOps, kubectl
+✅ Attach IAM Role
+ EC2 Dashboard ➡️ Actions ➡️ Modify IAM Role ➡️ Attach ➡️ Save
+✅ Set S3 Bucket
+ export KOPS_STATE_STORE=s3://chandu.k8s
+✅ Create Kubernetes Cluster
+ kops create cluster --name chandu.k8s.local --zones us-east-1a,us-east-1b,us-east-1c --master-size t2.medium --master-count 1 --master-volume-size 30 --node-size t2.micro --node-count 2 --node-volume-size 20 
+kops update cluster --name chandu.k8s.local --yes
+✅ Verify Cluster
+ kops get cluster 
+ kubectl get nodes
+
+🔐 𝗨𝗽𝗱𝗮𝘁𝗲 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗚𝗿𝗼𝘂𝗽𝘀: Allow All Traffic for both Inbound and Outbound
+✅ Deploy Pod and Service
+kubectl create -f pod.yaml 
+kubectl get po --show-labels 
+kubectl create -f service.yaml 
+kubectl get svc -o wide 
+kubectl describe service <service-name>
+
+🔗 𝗔𝗰𝗰𝗲𝘀𝘀𝗶𝗻𝗴 𝗦𝗲𝗿𝘃𝗶𝗰𝗲𝘀
+🔹 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝗜𝗣
+Internal:
+ curl <ClusterIP>
+
+🔹 𝗡𝗼𝗱𝗲𝗣𝗼𝗿𝘁
+Internal:
+ curl <ClusterIP>
+
+External:
+ http://<NodeIP>:<NodePort>
+
+🔹 𝗟𝗼𝗮𝗱𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿
+Internal:
+ curl <ClusterIP>
+
+External:
+ DNS Name (visible in AWS > Load Balancers)
+
+🧹 𝗧𝗼 𝗗𝗲𝗹𝗲𝘁𝗲 𝘁𝗵𝗲 𝗖𝗹𝘂𝘀𝘁𝗲𝗿
+➡️ export KOPS_STATE_STORE=s3://chandu.k8s 
+➡️ kops get cluster 
+➡️ kops delete cluster --name chandu.k8s.local --yes
