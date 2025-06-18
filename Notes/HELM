@@ -1,0 +1,18 @@
+Helm – the package manager for Kubernetes 
+📦 Helm Charts: Reusable, version-controlled packages for deploying Kubernetes applications
+🛠️ Templates: Parameterized YAML files that support dynamic and flexible 
+
+configurations
+🔁 Values.yaml: Centralized configuration file for customizing deployments
+
+⚙️ Helm Release: A specific instance of a chart running in the cluster
+
+🔄 Upgrades & Rollbacks: Simplified lifecycle management with version control and easy rollback features
+
+🗃️ Repositories: Discovered how to fetch and use public and private chart repos
+
+🎯 Why Helm?
+Reduces YAML duplication ✅
+Enables easy reuse and sharing of Kubernetes deployments ✅
+Makes app lifecycle management cleaner, faster, and more consistent ✅
+Excited to start building and deploying apps the Helm way! 
