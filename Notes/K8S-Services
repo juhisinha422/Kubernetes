@@ -1,0 +1,25 @@
+𝗞𝗨𝗕𝗘𝗥𝗡𝗘𝗧𝗘𝗦 𝗦𝗘𝗥𝗩𝗜𝗖𝗘𝗦 𝗦𝗜𝗠𝗣𝗟𝗜𝗙𝗜𝗘𝗗! 🔧🌐
+
+To access applications running inside Kubernetes Pods, we must expose them using Services. Here's a comprehensive breakdown with practical steps for setting it up on AWS using kOps.👇
+
+🛠️ 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲?
+✅ Service = A method to expose pods in your cluster
+✅ Each pod gets its own IP, but to access from outside, we need a Service
+
+🔍 𝗧𝘆𝗽𝗲𝘀 𝗼𝗳 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗲𝗿𝘃𝗶𝗰𝗲𝘀:
+1️⃣ 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝗜𝗣 (𝗜𝗻𝘁𝗲𝗿𝗻𝗮𝗹 𝗢𝗻𝗹𝘆):
+Provides a stable IP inside the cluster
+Ideal for internal communication (e.g., databases)
+𝗔𝗰𝗰𝗲𝘀𝘀:
+➡️ curl <ClusterIP>
+
+2️⃣ 𝗡𝗼𝗱𝗲𝗣𝗼𝗿𝘁 (𝗘𝘅𝘁𝗲𝗿𝗻𝗮𝗹 𝗔𝗰𝗰𝗲𝘀𝘀):
+Exposes service on each Node’s IP at a static port
+Port range: 30000 – 32767
+𝗔𝗰𝗰𝗲𝘀𝘀:
+➡️ http://<Node_Public_IP>:<NodePort>
+⚠️ 𝗗𝗿𝗮𝘄𝗯𝗮𝗰𝗸: Too many URLs if multiple nodes — not ideal for end-users
+
+3️⃣ 𝗟𝗼𝗮𝗱𝗕𝗮𝗹𝗮𝗻𝗰𝗲𝗿 (𝗕𝗲𝘀𝘁 𝗳𝗼𝗿 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻):
+Exposes service externally using Cloud Provider’s Load Balancer
+Distributes traffic among nodes
