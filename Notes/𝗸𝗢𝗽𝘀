@@ -1,0 +1,68 @@
+Mastering Kubernetes Operations with kOps: From Cluster Creation to Intelligent Scheduling with Pods, Labels & Node Selectors
+
+Here’s a comprehensive guide on setting up a Kubernetes cluster using kOps,.
+
+🔧 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗸𝗢𝗽𝘀?
+✅ kOps stands for Kubernetes Operations.
+✅ It's the easiest way to get a production-grade Kubernetes cluster up and running.
+✅ kOps can create, destroy, upgrade, and maintain Kubernetes clusters and provision cloud infrastructure.
+
+🌟 𝗞𝗲𝘆 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗼𝗳 𝗸𝗢𝗽𝘀:
+✅ Automates provisioning of Highly Available Kubernetes clusters.
+✅ Built on a state-sync model for dry runs and automatic idempotency.
+✅ Can generate Terraform configurations.
+✅ Supports zero-config managed Kubernetes add-ons.
+✅ Offers command-line autocompletion.
+✅ Uses YAML-based API configuration.
+
+🧰 𝗦𝗲𝘁𝘁𝗶𝗻𝗴 𝗨𝗽 𝗬𝗼𝘂𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗖𝗹𝘂𝘀𝘁𝗲𝗿 𝗨𝘀𝗶𝗻𝗴 𝗸𝗢𝗽𝘀:
+✅ Launch a t2.micro EC2 instance and connect to it.
+✅ Modify .bashrc to set the PATH (for Ubuntu, skip this step).
+
+𝗜𝗻𝘀𝘁𝗮𝗹𝗹 𝗔𝗪𝗦 𝗖𝗟𝗜:
+➤ curl "https://lnkd.in/gZCQnaAD" -o "awscliv2.zip"
+➤ unzip awscliv2.zip
+➤ sudo ./aws/install
+
+𝗜𝗻𝘀𝘁𝗮𝗹𝗹 𝗸𝗢𝗽𝘀:
+➤ curl -Lo kops https://lnkd.in/gBD-kpWK -s https://lnkd.in/ghHEte9Z | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+➤ chmod +x kops
+➤ sudo mv kops /usr/local/bin/kops
+
+𝗜𝗻𝘀𝘁𝗮𝗹𝗹 𝗸𝘂𝗯𝗲𝗰𝘁𝗹:
+➤ curl -LO "https://lnkd.in/gjeeyS_c -L -s https://lnkd.in/gqbggTjj"
+➤ chmod +x kubectl
+➤ sudo mv kubectl /usr/local/bin/
+
+Get these URLs from the official documents
+
+✅Assign an IAM Role with Admin Permissions to the instance.
+✅Create an S3 bucket for storing cluster configuration:
+ aws s3 mb s3://chandu.k8s
+ export KOPS_STATE_STORE=s3://chandu.k8s
+✅Enable bucket versioning to retain deleted data.
+
+🚀 𝗖𝗿𝗲𝗮𝘁𝗲 𝗬𝗼𝘂𝗿 𝗖𝗹𝘂𝘀𝘁𝗲𝗿
+kops create cluster --name chandu.k8s.local --zones us-east-1a,us-east-1b,us-east-1c --master-size t2.medium --master-count 1 --master-volume-size 30 --node-size t2.micro --node-count 2 --node-volume-size 20
+
+✅ Copy and run the suggested command to launch the cluster.
+✅ Use 𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗴𝗲𝘁 𝗻𝗼𝗱𝗲𝘀 or add -𝘄 to monitor the status.
+
+🧾 𝗗𝗲𝗽𝗹𝗼𝘆𝗶𝗻𝗴 𝗣𝗼𝗱𝘀:
+✅ write an yaml file
+ kubectl create -f pod.yaml
+ kubectl get pod -o wide
+✅ Scheduler places the pod on the most appropriate node.
+
+𝗜𝗻𝘀𝗽𝗲𝗰𝘁 𝘄𝗶𝘁𝗵:
+➤ kubectl describe pod <pod-name>
+➤ kubectl get pod -o yaml
+➤ kubectl get pod -o json
+
+🧹 𝗣𝗼𝗱 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁
+𝗗𝗲𝗹𝗲𝘁𝗲 𝗽𝗼𝗱𝘀:
+➤ kubectl delete pod pod-1 pod-2
+➤ kubectl delete pod --all
+
+𝗔𝗰𝗰𝗲𝘀𝘀 𝗽𝗼𝗱 𝘀𝗵𝗲𝗹𝗹:
+➤ kubectl exec -it pod-name -- bash
