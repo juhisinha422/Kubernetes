@@ -1,0 +1,10 @@
+Resource Quotas & RBAC (Role-Based Access Control)
+🔹 Resource Quotas
+ Set boundaries on resource usage (CPU, memory, storage) within a namespace to ensure fair consumption and avoid over-provisioning.
+ 🔸 Helps maintain cluster stability and prevent noisy neighbor issues.
+
+🔹 RBAC (Role-Based Access Control)
+ RBAC enables fine-grained permissions by assigning roles to users, groups, or service accounts.
+ 🔸 Key components: Roles, ClusterRoles, RoleBindings, ClusterRoleBindings
+ 🔸 Enhances security by enforcing the principle of least privilege.
+💡 Takeaway: Proper resource limits + access control = a well-governed and secure Kubernetes cluster.
