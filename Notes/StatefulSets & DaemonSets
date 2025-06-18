@@ -1,0 +1,46 @@
+StatefulSets & DaemonSets
+
+StatefulSets and DaemonSets—two critical controllers for managing stateful and node-specific workloads.
+
+📌 StatefulSets
+Use Case: Ideal for stateful applications (e.g., databases like MySQL, MongoDB) requiring stable network identities, persistent storage, and ordered deployment/scaling.
+
+Key Features:
+✅ Stable, unique pod hostnames (<statefulset-name>-<ordinal>)
+✅ Persistent Volume (PV) per pod (retains data across reschedules)
+✅ Ordered deployment, scaling, and rolling updates
+
+Commands:
+1. Create a StatefulSet 
+kubectl apply -f statefulset.yaml 
+
+2. List StatefulSets 
+kubectl get statefulsets 
+
+3. View Pods (note the ordered naming: web-0, web-1) 
+kubectl get pods -l app=my-app 
+
+4. Scale a StatefulSet 
+kubectl scale statefulsets web --replicas=3 
+
+5. Delete StatefulSet (pods persist until manually deleted) 
+kubectl delete statefulset web 
+
+📌 DaemonSets
+Use Case: Ensures every node (or a subset) runs a copy of a pod (e.g., log collectors like Fluentd, monitoring agents).
+
+Key Features:
+✅ Deploys one pod per node automatically (new nodes inherit the pod)
+✅ Perfect for cluster-wide services (logging, monitoring, networking)
+Commands:
+1. Create a DaemonSet 
+kubectl apply -f daemonset.yaml 
+
+2. List DaemonSets 
+kubectl get daemonsets 
+
+3. Check Pods (one per node) 
+kubectl get pods -l app=fluentd-logging -o wide 
+
+4. Delete a DaemonSet (pods are removed) 
+kubectl delete daemonset fluentd-logging
