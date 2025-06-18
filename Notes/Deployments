@@ -1,0 +1,48 @@
+Understanding Deployments 🔧
+Deployments—a critical abstraction for managing stateless applications at scale.
+🔍 What is a Deployment?
+ A Deployment in Kubernetes helps define the desired state for your application and ensures the cluster continuously matches this state. Whether you're rolling out updates, scaling up for traffic, or rolling back to a stable version, Deployments make it seamless.
+🧠 Key Learnings:
+Declarative Updates: Deployments allow you to update Pods and ReplicaSets in a controlled manner using a declarative YAML or simple CLI.
+Rolling Updates: You can update applications with zero downtime using a rolling update strategy.
+Rollback Capability: If something goes wrong, you can roll back to a previous stable state effortlessly.
+Self-Healing: If a Pod fails, the Deployment automatically replaces it to maintain the declared number of replicas.
+Scaling: Easily scale applications up or down based on need.
+🛠️ Hands-On Practice:
+Today, I worked through key commands like:
+Creating a deployment with kubectl create deployment
+Viewing and describing deployments and pods
+Scaling up/down using kubectl scale
+Performing rolling updates and rollbacks with kubectl set image and kubectl rollout undo
+🧩 Why Deployments Matter:
+In real-world DevOps workflows, Deployments are crucial for:
+CI/CD pipelines
+Application versioning
+Load management
+Service reliability
+
+commands in Deployment
+
+1. Create a deployment
+kubectl create deployment nginx-deployment --image=nginx
+
+2. View the deployment
+kubectl get deployments
+
+3. Check pods created by the deployment
+kubectl get pods
+
+4. Describe the deployment for detailed info
+kubectl describe deployment nginx-deployment
+
+5. Scale the deployment (e.g., to 3 replicas)
+kubectl scale deployment nginx-deployment --replicas=3
+
+6. Update the deployment image
+kubectl set image deployment/nginx-deployment nginx=nginx:1.19
+
+7. Rollback to the previous version if needed
+kubectl rollout undo deployment/nginx-deployment
+
+8. Check rollout status
+kubectl rollout status deployment/nginx-deployment
