@@ -1,0 +1,44 @@
+🚢 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝘃𝘀 𝗗𝗼𝗰𝗸𝗲𝗿 – 𝗦𝗶𝗺𝗽𝗹𝗶𝗳𝗶𝗲𝗱 𝘄𝗶𝘁𝗵 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗼𝗺𝗽𝗮𝗿𝗶𝘀𝗼𝗻 ⚙️🐳
+Hey LinkedIn fam! 👋
+If you've ever been confused between Docker and Kubernetes, here’s a straightforward breakdown that helped me understand things better 💡
+
+🤖 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+Kubernetes (also called K8s) is an open-source platform that helps you automates the deployment, scaling, and management of containerized applications. In simple words, if you're running a lot of apps using containers (like with Docker), Kubernetes helps you organize and control them efficiently just like a traffic controller for your app
+🧠 𝗧𝗵𝗶𝗻𝗸 𝗼𝗳 𝗶𝘁 𝗹𝗶𝗸𝗲 𝘁𝗵𝗶𝘀:
+Docker is like a ship carrying containers (your applications)
+Kubernetes is the captain's steering wheel 🚢 that controls how and where those containers run and scale
+
+❌ 𝗟𝗶𝗺𝗶𝘁𝗮𝘁𝗶𝗼𝗻𝘀 𝗼𝗳 𝗗𝗼𝗰𝗸𝗲𝗿 𝗔𝗹𝗼𝗻𝗲:
+When deploying apps with just Docker, there are some challenges:
+🚫 No Auto-Scaling — apps can’t automatically adjust to traffic
+🚫 Rollback is limited — you can only go back to the previous version
+⏸️ Downtime during updates — your app might be unavailable temporarily
+
+✅ 𝗛𝗼𝘄 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗦𝗼𝗹𝘃𝗲𝘀 𝗧𝗵𝗲𝘀𝗲:
+Kubernetes addresses these limitations and adds powerful features:
+✔️ Auto-scaling of containers based on demand
+✔️ Rollback to any previous version, not just the last one
+✔️ Minimal or zero downtime during deployments
+✔️ Ability to set resource limits on containers
+✔️ Advanced networking and storage management
+✔️ ConfigMaps to manage environment variables cleanly
+
+🆚 𝗗𝗼𝗰𝗸𝗲𝗿 𝘃𝘀 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 — 𝗞𝗲𝘆 𝗗𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲𝘀:
+𝗗𝗼𝗰𝗸𝗲𝗿
+Tool to package and run applications inside containers
+Apps run as individual containers
+Doesn’t support auto-scaling or advanced deployment strategies
+Environment variables passed directly to containers
+Easier for single container app deployment
+
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+Platform to orchestrate and manage clusters of containers
+Apps run inside pods (which hold one or more containers)
+Supports auto-scaling, rolling updates, and rollbacks
+Uses ConfigMaps and Secrets for configuration management
+Designed for complex, distributed, and large-scale containerized apps
+
+🏗️ 𝗤𝘂𝗶𝗰𝗸 𝗛𝗶𝘀𝘁𝗼𝗿𝘆 𝗼𝗳 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀:
+Developed by Google using GoLang
+Donated to the Cloud Native Computing Foundation (CNCF)
+First stable release launched in 2015
