@@ -1,0 +1,51 @@
+REPLICATION IN K8S
+
+replication in Kubernetes — the key to ensuring high availability and fault tolerance for applications. I explored both ReplicationControllers and the more modern ReplicaSets, learning how K8s ensures a specified number of pod replicas are always running.
+🚀 Key Takeaways:
+ReplicationController: Legacy controller to maintain a stable set of pod replicas.
+ReplicaSet: The next-gen controller, supports set-based selectors (used by Deployments).
+Replication helps handle pod failures and scaling.
+
+ YAML Example for ReplicaSet
+yaml
+CopyEdit
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: myapp-replicaset
+spec:
+ replicas: 3
+ selector:
+ matchLabels:
+ app: myapp
+ template:
+ metadata:
+ labels:
+ app: myapp
+ spec:
+ containers:
+ - name: myapp-container
+ image: nginx
+ ports:
+ - containerPort: 80
+
+ Useful kubectl Commands:
+
+# Create the ReplicaSet
+kubectl apply -f replicaset.yml
+
+# List all ReplicaSets
+kubectl get rs
+
+# Get details of a ReplicaSet
+kubectl describe rs myapp-replicaset
+
+# Scale ReplicaSet (manually)
+kubectl scale rs myapp-replicaset --replicas=5
+
+# Delete the ReplicaSet (and its pods)
+kubectl delete rs myapp-replicaset
+
+# View pods created by ReplicaSet
+kubectl get pods -l app=myapp
+
