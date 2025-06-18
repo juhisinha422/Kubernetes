@@ -1,0 +1,56 @@
+𝗠𝗮𝘀𝘁𝗲𝗿 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗹𝗶𝗸𝗲 𝗮 𝗣𝗿𝗼: 𝗟𝗮𝗯𝗲𝗹𝘀, 𝗦𝗲𝗹𝗲𝗰𝘁𝗼𝗿𝘀 & 𝗡𝗼𝗱𝗲𝗦𝗲𝗹𝗲𝗰𝘁𝗼𝗿𝘀 💡
+
+Understanding how to organize and manage Kubernetes resources is key to working efficiently in any cloud-native environment.
+
+🔖 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝗟𝗮𝗯𝗲𝗹𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+✅ Labels are key-value pairs used to tag Kubernetes objects like pods, nodes, services, etc.
+✅ Think of them like tags in AWS or Azure – used for easy filtering, grouping, and management.
+
+𝗟𝗮𝗯𝗲𝗹𝘀 𝗵𝗲𝗹𝗽 𝗶𝗻:
+✅ Organizing and categorizing resources
+✅ Selecting specific resources for deployment, deletion, or monitoring
+✅ Grouping pods by application (app=frontend), environment (env=prod), team, department, etc.
+
+📌 𝗘𝘅𝗮𝗺𝗽𝗹𝗲:
+ kubectl label pod mypod app=Swiggy
+
+🧭 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝗦𝗲𝗹𝗲𝗰𝘁𝗼𝗿𝘀?
+✅ Selectors are used to filter Kubernetes objects based on their labels.
+✅ There are two types of selectors: 
+ Equality-based Selectors:
+ kubectl get pods -l app=Swiggy
+ Set-based Selectors:
+ kubectl get pods -l 'env in (test, dev)'
+✅ Selectors help in:
+Filtering pods for updates, deletions, or service exposure
+Dynamic resource management in large clusters
+
+🖥️ 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗮 𝗡𝗼𝗱𝗲𝗦𝗲𝗹𝗲𝗰𝘁𝗼𝗿?
+A NodeSelector is a field in a pod spec that tells Kubernetes which node (server) the pod should run on, based on node labels.
+
+𝗦𝘁𝗲𝗽𝘀 𝘁𝗼 𝘂𝘀𝗲 𝗡𝗼𝗱𝗲𝗦𝗲𝗹𝗲𝗰𝘁𝗼𝗿𝘀:
+✅ Label the node:
+ kubectl label node <node-name> server=flm
+✅ Add this to your pod YAML:
+ nodeSelector:
+ server: flm
+
+📌 Useful for:
+Assigning workloads to specific environments (e.g., GPU-enabled, dev, prod)
+Achieving better resource placement and availability
+
+𝗔𝗰𝗰𝗲𝘀𝘀𝗶𝗻𝗴 𝗣𝗼𝗱𝘀 𝘃𝗶𝗮 𝗦𝗲𝗿𝘃𝗶𝗰𝗲𝘀
+✅ A pod is not accessible by default. You must expose it via a Service to access it from outside or between pods.
+✅ Use label selectors to expose only the desired pods.
+
+🧹 𝗖𝗹𝘂𝘀𝘁𝗲𝗿 𝗖𝗹𝗲𝗮𝗻𝘂𝗽 (𝗞𝗢𝗣𝗦)
+To clean up clusters created via KOPS:
+ export KOPS_STATE_STORE=s3://your-state-store 
+ kops delete cluster --name your-cluster-name --yes
+ℹ️ S3 buckets are free to keep and don’t incur charges unless data is stored.
+
+🚀 𝗧𝗮𝗸𝗲𝗮𝘄𝗮𝘆
+Using Labels, Selectors, and Node Selectors effectively can:
+✅ Simplify cluster management
+✅ Improve scaling and deployment workflows
+✅ Enable better resource control and efficiency
