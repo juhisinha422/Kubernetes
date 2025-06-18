@@ -1,0 +1,8 @@
+advanced Kubernetes concepts. Here’s a quick recap of what I explored:
+🔹 Ingress: Learned how to expose HTTP/HTTPS routes to services, acting as a smart traffic router for clusters. Set up rules to manage external access with ease!
+🔹 Kubernetes Dashboard: Deployed and configured the official web-based UI. Now visualizing and managing cluster resources feels like a breeze.
+🔹 Pod Affinity & Anti-Affinity: Mastered controlling pod scheduling—affinity to group pods for locality, anti-affinity to prevent co-location (great for high availability!).
+🔹 QoS (Quality of Service): Understood how Kubernetes prioritizes pods under resource constraints:
+Guaranteed (highest priority)
+Burstable (medium)
+BestEffort (lowest)
