@@ -1,0 +1,55 @@
+𝗨𝗻𝗱𝗲𝗿𝘀𝘁𝗮𝗻𝗱𝗶𝗻𝗴 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲: 𝗔 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗢𝘃𝗲𝗿𝘃𝗶𝗲𝘄 
+Kubernetes is the backbone of modern container orchestration! Here's a clear breakdown of its architecture and how it works:
+
+𝗠𝗮𝘀𝘁𝗲𝗿 𝗖𝗼𝗺𝗽𝗼𝗻𝗲𝗻𝘁𝘀: 𝗧𝗵𝗲 𝗕𝗿𝗮𝗶𝗻 𝗼𝗳 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+𝟭. 𝗔𝗣𝗜 𝗦𝗲𝗿𝘃𝗲𝗿
+Acts as the gateway for all client/operator requests.
+𝗘𝘅𝗮𝗺𝗽𝗹𝗲: When a client requests to create a pod, the API Server processes it.
+
+𝟮. 𝗲𝘁𝗰𝗱
+The key-value database storing the entire cluster’s state: nodes, pods, deployments, etc.
+
+𝟯. 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿
+Decides where a pod should run (which worker node).
+𝗖𝗼𝗻𝘀𝗶𝗱𝗲𝗿𝘀:
+Number of pods per node (e.g., if worker-1 has 5 pods and worker-2 has 3, pod goes to worker-2).
+Resource requirements (CPU, RAM) — pods needing 2CPU & 4GB RAM won't be scheduled on a node with only 1CPU & 2GB RAM.
+User preferences for pod placement.
+
+𝟰. 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 𝗠𝗮𝗻𝗮𝗴𝗲𝗿
+Manages controllers that keep the cluster healthy:
+Replication Controller: Ensures desired number of pods run continuously.
+Node Controller: Monitors node health and replaces failed nodes.
+Service Controller: Ensures services are running as expected.
+
+Monitors cluster health via API Server and acts if pods/nodes/services fail.
+
+𝗪𝗼𝗿𝗸𝗲𝗿 𝗡𝗼𝗱𝗲𝘀: 𝗧𝗵𝗲 𝗪𝗼𝗿𝗸𝗵𝗼𝗿𝘀𝗲𝘀
+𝟭. 𝗞𝘂𝗯𝗲𝗹𝗲𝘁
+Communicates node status to the API server. Keeps track of pods (running, pending).
+
+𝟮. 𝗞𝘂𝗯𝗲-𝗣𝗿𝗼𝘅𝘆
+Maintains network rules, IP addresses, DNS, and enables communication between nodes.
+
+𝟯. 𝗣𝗼𝗱𝘀
+The smallest deployable units — a set of one or more containers.
+
+𝗖𝗹𝘂𝘀𝘁𝗲𝗿: 𝗚𝗿𝗼𝘂𝗽 𝗼𝗳 𝗦𝗲𝗿𝘃𝗲𝗿𝘀
+𝗧𝘆𝗽𝗲𝘀 𝗼𝗳 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝘀:
+
+𝟭. 𝗦𝗲𝗹𝗳-𝗠𝗮𝗻𝗮𝗴𝗲𝗱 (𝗬𝗼𝘂 𝗺𝗮𝗶𝗻𝘁𝗮𝗶𝗻 𝘁𝗵𝗲 𝗰𝗹𝘂𝘀𝘁𝗲𝗿)
+MiniKube (single node, mainly for learning)
+Kubeadm, K3D, KOPS (multi-node clusters)
+
+𝟮. 𝗖𝗹𝗼𝘂𝗱 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 (𝗖𝗹𝗼𝘂𝗱 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿 𝗵𝗮𝗻𝗱𝗹𝗲𝘀 𝗺𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁)
+AWS EKS (Elastic Kubernetes Service)
+Azure AKS (Azure Kubernetes Service)
+GCP GKE (Google Kubernetes Engine)
+
+𝗔𝗱𝗱𝗶𝘁𝗶𝗼𝗻𝗮𝗹 𝗞𝗲𝘆 𝗣𝗼𝗶𝗻𝘁𝘀
+Pods contain one or more containers running together.
+etcd is the cluster’s database storing all configurations and state in a key-value format.
+Scheduler relies on kubelets to get real-time node status before placing pods.
+Controllers act based on signals received through the API server to maintain cluster health.
+
+Kubernetes truly automates complex container orchestration with these components working in harmony! 
