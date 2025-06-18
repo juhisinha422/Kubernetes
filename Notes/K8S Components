@@ -1,0 +1,11 @@
+Here’s a breakdown of the core components every DevOps/SRE engineer must understand:
+
+API Server – The entry point for all control plane interactions
+etcd – The cluster’s memory (and your single point of truth)
+Scheduler – Assigns pods to the best nodes
+Controller Manager – Keeps actual state aligned with desired state
+Kubelet – Runs on every node to manage container lifecycles
+Kube Proxy – Handles networking across services and pods
+CoreDNS – Resolves internal cluster names — quietly, but critically
+Container Runtime – Runs the actual containers (e.g., containerd/Docker)
+Pods/Nodes – The units of scale, isolation, and execution
