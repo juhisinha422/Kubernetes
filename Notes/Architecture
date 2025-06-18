@@ -1,0 +1,24 @@
+🚀 Let's take a deep dive into Kubernetes architecture 🚀
+
+🚀 What is Kubernetes (K8s)?
+Kubernetes is an open-source platform designed to automate the deployment, scaling, and management of containerized applications. It helps you run applications reliably across a cluster of machines, whether on-premises or in the cloud.
+
+🏗️ Kubernetes Architecture Overview
+
+🔹 1. Control Plane – The Brain 🧠
+Responsible for managing the cluster and making global decisions.
+
+✔️API Server: Entry point for all commands (kubectl, UI, etc.)
+✔️etcd: Stores all cluster data (key-value store)
+✔️Controller Manager: Ensures the desired state of the cluster
+✔️Scheduler: Assigns pods to nodes based on resource availability
+
+🔹 2. Worker Nodes – The Muscle 💪
+These run the actual applications in containers.
+
+✔️Kubelet: Communicates with the control plane, manages pods
+✔️Kube-proxy: Handles networking and service discovery
+✔️Container Runtime: Runs containers (e.g., containerd, Docker)
+
+🔹 3. Pods – The Smallest Deployable Unit 📦
+Each pod contains one or more containers that share storage, network, and a specification for how to run them.
