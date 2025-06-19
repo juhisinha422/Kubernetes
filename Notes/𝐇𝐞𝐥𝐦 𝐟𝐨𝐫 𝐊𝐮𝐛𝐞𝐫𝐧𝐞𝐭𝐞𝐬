@@ -1,0 +1,37 @@
+𝐇𝐨𝐰 𝐭𝐨 𝐮𝐬𝐞 𝐇𝐞𝐥𝐦 𝐟𝐨𝐫 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬? ☸️ 
+
+𝐒𝐨, 𝐰𝐡𝐚𝐭 𝐢𝐬 𝐇𝐞𝐥𝐦?
+
+Think of Helm as a 𝐩𝐚𝐜𝐤𝐚𝐠𝐞 𝐦𝐚𝐧𝐚𝐠𝐞𝐫 for Kubernetes, like npm or apt but for your cluster. Helm lets you bundle up your application, along with all its k8 resources and configurations, into a "package" called a 𝐇𝐞𝐥𝐦 𝐂𝐡𝐚𝐫𝐭. 
+
+Once you have your chart, you can easily deploy, manage, and update your applications across environments without the usual chaos.
+
+𝐆𝐞𝐭𝐭𝐢𝐧𝐠 𝐒𝐭𝐚𝐫𝐭𝐞𝐝 𝐰𝐢𝐭𝐡 𝐇𝐞𝐥𝐦 𝐂𝐡𝐚𝐫𝐭𝐬!
+
+1️⃣ 𝐂𝐫𝐞𝐚𝐭𝐞 𝐚 𝐇𝐞𝐥𝐦 𝐂𝐡𝐚𝐫𝐭: 
+
+Helm comes with some handy commands for creating charts. Just run helm create <chart-name> and it’ll generate a template with all the basics.
+
+2️⃣ 𝐃𝐞𝐟𝐢𝐧𝐞 𝐘𝐨𝐮𝐫 𝐀𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧: 
+
+Inside the chart, you’ll find YAML files where you define the resources, configurations, and dependencies for your app. Key files here are:
+
+- 𝐭𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬: This is where you define the templates for the Kubernetes resources your app needs, such as Pods, Services, and ConfigMaps etc.
+
+- 𝐯𝐚𝐥𝐮𝐞𝐬.𝐲𝐚𝐦𝐥: This file holds the values for all the configurations in your templates. Instead of hardcoding values in your 𝘳𝘦𝘴𝘰𝘶𝘳𝘤𝘦.𝘺𝘢𝘮𝘭, you can make them dynamic and adjustable in 𝘷𝘢𝘭𝘶𝘦𝘴.𝘺𝘢𝘮𝘭—making it easy to tweak settings for different environments.
+
+3️⃣ 𝐃𝐞𝐩𝐥𝐨𝐲𝐢𝐧𝐠 𝐚 𝐂𝐡𝐚𝐫𝐭: 
+
+Once your chart is ready, deploying it is as simple as helm install <𝒓𝒆𝒍𝒆𝒂𝒔𝒆-𝒏𝒂𝒎𝒆> <𝒄𝒉𝒂𝒓𝒕-𝒏𝒂𝒎𝒆>. Helm will take care of the rest, from provisioning resources to applying configurations.
+
+4️⃣ 𝐔𝐩𝐝𝐚𝐭𝐢𝐧𝐠 𝐚𝐧𝐝 𝐌𝐚𝐧𝐚𝐠𝐢𝐧𝐠: 
+
+With Helm, updating an app is easy. Just run helm upgrade <𝒓𝒆𝒍𝒆𝒂𝒔𝒆-𝒏𝒂𝒎𝒆> <𝒄𝒉𝒂𝒓𝒕-𝒏𝒂𝒎𝒆> when you make changes, and Helm handles the rollout.
+
+𝐖𝐡𝐲 𝐇𝐞𝐥𝐦 𝐢𝐬 𝐚 𝐆𝐚𝐦𝐞 𝐂𝐡𝐚𝐧𝐠𝐞𝐫
+
+The beauty of Helm is in how it standardises deployments and reduces configuration errors. 
+
+It’s a 𝐦𝐚𝐬𝐬𝐢𝐯𝐞 𝐭𝐢𝐦𝐞-𝐬𝐚𝐯𝐞𝐫, especially when managing multiple environments.
+
+Getting started with Helm might feel like a bit of a 𝘭𝘦𝘢𝘳𝘯𝘪𝘯𝘨 𝘤𝘶𝘳𝘷𝘦, but once you get the hang of it, you’ll wonder how you ever managed without it. 
