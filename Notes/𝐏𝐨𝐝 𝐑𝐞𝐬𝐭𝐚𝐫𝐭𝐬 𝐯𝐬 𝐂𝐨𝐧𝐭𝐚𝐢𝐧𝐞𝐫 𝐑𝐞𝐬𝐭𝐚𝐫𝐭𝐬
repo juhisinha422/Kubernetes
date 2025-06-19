@@ -1,0 +1,22 @@
+𝐏𝐨𝐝 𝐑𝐞𝐬𝐭𝐚𝐫𝐭𝐬 𝐯𝐬 𝐂𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫 𝐑𝐞𝐬𝐭𝐚𝐫𝐭𝐬 — 𝐖𝐡𝐚𝐭'𝐬 𝐭𝐡𝐞 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞?
+
+💡 First, remember this:
+In Kubernetes, the pod is the smallest deployable unit, not the container. That means when you want to restart something manually — it's always the pod.
+
+A pod restart - Restarts all containers within the pod & Reinitializes the network namespace (new Pod IP). Often happens when there's a configuration change - A container spec is updated (even just one container in a multi-container pod). 
+So yes, even if you tweak one container's config in a multi-container pod, the entire pod restarts — including all containers.
+
+Container restarts - Happen independently inside a pod and are triggered by the kubelet, not manually.
+Common causes - OOMKilled (out of memory) OR Liveness probe failures
+
+Importantly, container restarts do not affect the Pod IP and do not restart the pod as a whole. Other containers in the pod keep running and can continue serving traffic.
+
+The above container restart definition give rise to another interesting question. What if one container fails readiness probe?
+
+If a pod has multiple containers and one of them fails its readiness probe:
+Kubernetes will mark the entire pod as NotReady & that pod is removed from Service endpoints, So even if the other container is healthy, Service traffic won’t reach it
+BUT:
+You can still reach the healthy container using the Pod IP directly
+And within the pod, sidecars or other containers can still talk to each other using localhost and port combination.
+
+Kubernetes networking can be subtle — but understanding these restart behaviors is key to building resilient systems.
