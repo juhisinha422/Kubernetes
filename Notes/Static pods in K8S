@@ -1,0 +1,17 @@
+What are Static Pods in K8S? How do they work?
+
+
+🔖 Static pods are special Kubernetes pods managed directly by the Kubelet rather than the Kubernetes control plane. They are primarily used for managing critical components of the Kubernetes system, especially in self-hosted clusters or during cluster bootstrapping.
+
+The working of static pods can be explained with the help of steps below:
+
+1️⃣. Static Pods are defined in manifest files (𝐘𝐀𝐌𝐋 𝐨𝐫 𝐉𝐒𝐎𝐍).
+
+2️⃣. These manifest files are placed in a specific directory on a node (e.g., /𝐞𝐭𝐜/𝐤𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬/𝐦𝐚𝐧𝐢𝐟𝐞𝐬𝐭𝐬).
+
+🔤. The 𝐤𝐮𝐛𝐞𝐥𝐞𝐭 on the node monitors this directory for changes.
+
+4️⃣. When a manifest file is 𝐚𝐝𝐝𝐞𝐝, 𝐮𝐩𝐝𝐚𝐭𝐞𝐝, 𝐨𝐫 𝐫𝐞𝐦𝐨𝐯𝐞𝐝, 𝐭𝐡𝐞 𝐤𝐮𝐛𝐞𝐥𝐞𝐭 𝐜𝐫𝐞𝐚𝐭𝐞𝐬, 𝐮𝐩𝐝𝐚𝐭𝐞𝐬, 𝐨𝐫 𝐝𝐞𝐥𝐞𝐭𝐞𝐬 corresponding static pod.
+
+
+Static pods are not created through the Kubernetes API server, so they do not have the full capabilities of API-managed pods. However, the kubelet creates a 𝐦𝐢𝐫𝐫𝐨𝐫 𝐩𝐨𝐝 in the API server for visibility, allowing tools like 𝐤𝐮𝐛𝐞𝐜𝐭𝐥 to display their status.
