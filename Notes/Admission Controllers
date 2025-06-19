@@ -1,0 +1,22 @@
+Kubernetes Tip: What Are Admission Controllers?
+
+If you're working with K8s and haven't explored Admission Controllers, you're missing a key part of your cluster's security and governance!
+
+What Are They?
+
+Admission Controllers are plugins that intercept API requests after authentication/authorization but before the object is persisted.
+
+They can mutate (e.g., add defaults) or validate (e.g., deny requests) based on your rules.
+
+Common Default Admission Controllers:
+Some common ones include:
+📌- NamespaceLifecycle
+📌- LimitRanger
+📌- ResourceQuota
+📌- DefaultStorageClass
+📌- MutatingAdmission Webhook - ValidatingAdmission Webhook
+
+Why Use Them?
+
+Enforce policies (e.g., no privileged pods) Auto-inject sidecars (like Istio or Linkerd) Manage quotas and limits
+Enable custom validations via webhooks
