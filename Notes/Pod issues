@@ -1,0 +1,38 @@
+CrashLoopBackOff
+Troubleshooting:
+Check container logs: kubectl logs <pod_name> --previous
+Examine pod events: kubectl describe pod <pod_name>
+Look for misconfigurations, application errors, or insufficient resources.🍁
+
+🍁ImagePullBackOff
+Troubleshooting:
+Verify the image exists and the tag is correct.
+Check for network issues or Docker registry authentication issues.
+Run: kubectl describe pod <pod_name> to see the detailed error.
+If using private registry, ensure correct imagePullSecrets are set.🍁
+
+🍁OOMKilled (Out of Memory)
+Check pod resource limits: kubectl describe pod <pod_name> (look for memory limits).
+Check pod logs to determine memory spikes.
+Increase memory limits in the pod's resource requests/limits.
+Consider optimizing the application to reduce memory usage.🍁
+
+🍁NodeNotReady
+Troubleshooting:
+Check the node status: kubectl get nodes
+Describe node for more details: kubectl describe node <node_name>
+Look for issues like out-of-disk, kubelet problems, or network issues.
+Investigate node resource availability or node-specific failures (e.g., kubelet not running).🍁
+
+🍁ContainerCreating
+Troubleshooting:
+Check the pod events: kubectl describe pod <pod_name>
+Look for issues like insufficient resources, image pull issues, or persistent volume claims not bound.
+Check for pending resource requests or quota issues.🍁
+
+🍁Evicted Pods
+Troubleshooting:
+Check the pod events: kubectl describe pod <pod_name>
+Check node resource usage: kubectl describe node <node_name>
+Investigate if the node is under resource pressure (memory, disk, or CPU).
+Consider adjusting resource requests/limits or increasing cluster capacity.🍁
