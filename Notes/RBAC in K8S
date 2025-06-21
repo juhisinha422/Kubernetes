@@ -1,0 +1,42 @@
+🌈 🔑 𝗥𝗕𝗔𝗖 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀: 𝗥𝗼𝗹𝗲-𝗕𝗮𝘀𝗲𝗱 𝗔𝗰𝗰𝗲𝘀𝘀 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗗𝗲𝗺𝘆𝘀𝘁𝗶𝗳𝗶𝗲𝗱
+When you're managing a shared Kubernetes environment, it's critical to control access precisely, and that's where Role-Based Access Control (RBAC) comes in.
+🛡️ 𝐖𝐡𝐲 𝐑𝐁𝐀𝐂 𝐌𝐚𝐭𝐭𝐞𝐫𝐬
+RBAC defines who can access which Kubernetes resources, and what actions they can perform. Whether you're running a multi-team platform or a single cluster, it’s your first line of defence.
+🧑💻 Real-world case: You want developers to view pods, but not modify or delete them? RBAC is how you enforce that.
+🔧 𝐄𝐬𝐬𝐞𝐧𝐭𝐢𝐚𝐥 𝐁𝐮𝐢𝐥𝐝𝐢𝐧𝐠 𝐁𝐥𝐨𝐜𝐤𝐬
+1️⃣ Role – Defines permissions on namespaced resources (e.g., list, get).
+2️⃣ RoleBinding – Connects a Role with a subject (user/service account).
+3️⃣ ClusterRole – Similar to Role, but works across all namespaces.
+4️⃣ ClusterRoleBinding – Assigns ClusterRole at the cluster level.
+🔍 𝐔𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝 𝐭𝐡𝐞 𝐀𝐮𝐭𝐡 𝐏𝐢𝐩𝐞𝐥𝐢𝐧𝐞 (see image-1)
+✅ Authentication – Confirms your identity.
+✅ Authorisation – Checks if you’re permitted to perform the requested action.
+✅ Admission Controller – Validates the request before execution.
+🧪 𝐒𝐭𝐞𝐩-𝐁𝐲-𝐒𝐭𝐞𝐩 𝐇𝐚𝐧𝐝𝐬-𝐎𝐧: 𝐑𝐁𝐀𝐂 𝐈𝐧 𝐀𝐜𝐭𝐢𝐨𝐧
+🔐 Step 1: Generate a New User Certificate
+openssl genrsa -out dileep.key 2048
+openssl req -new-key dileep.key -out, dileep.csr -subj "/CN=dileep/O=group1"
+openssl x509 -req -in dileep.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -out dileep.crt -days 500
+🔧 Step 2: Add User Context
+kubectl config set-credentials dileep --client-certificate=dileep.crt --client-key=dileep.key
+kubectl config set-context my-context-- cluster=minikube-- user=dileep
+kubectl config use-context my-context
+📝 Step 3: Define Role & RoleBinding (see image-2, image-3)
+Create YAMLs to:
+Grant read-only access to pods in a specific namespace
+Bind those permissions to the user
+🌐 Step 4: Set up Cluster-Wide Access (see image 4)
+Use ClusterRole and ClusterRoleBinding when global access is necessary.
+💡 𝐓𝐢𝐩𝐬 𝐅𝐨𝐫 𝐒𝐚𝐟𝐞𝐫 𝐑𝐁𝐀𝐂
+🔒 Stick to least privilege principles
+🎯 Reuse roles across teams by grouping logical permissions
+🧪 Use kubectl auth can-i to test access rules
+🚧 Lock down critical resources with tight permissions
+🧹 Periodically audit and prune outdated RoleBindings
+✅ 𝐕𝐞𝐫𝐢𝐟𝐲 𝐓𝐡𝐞 𝐒𝐞𝐭𝐮𝐩
+Switch to the custom user context and try to:
+View allowed resources (e.g., kubectl get pods)
+Attempt forbidden actions and verify the denial
+📌 𝐂𝐨𝐧𝐜𝐥𝐮𝐬𝐢𝐨𝐧
+By mastering RBAC, you’re not just enforcing security — you're enabling a safe and scalable Kubernetes experience across your entire organisation.
+🔐 Secure clusters. Empower users. Stay compliant.
