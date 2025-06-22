@@ -1,0 +1,46 @@
+🚀 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 🚀
+
+🧱 𝗪𝗵𝘆 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀?
+💥 Deployment in K8s brings zero-downtime updates, rollbacks, version control, and scaling (manual or automatic).
+✅ It combines all features of ReplicaSet with bonus features like:
+✅ Image update without downtime
+✅ Historical version tracking & rollback
+✅ Pause updates (temporarily)
+✅ Manual & auto-scaling via HPA/VPA
+✅ Rolling update strategy ensures always-on apps
+
+🌀 Deployment ➡️ ReplicaSet ➡️ Pods ➡️ Containers
+🗑️ Delete Deployment ➡️ All underlying resources are deleted
+
+🔧 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗮𝗹 𝗦𝗲𝘁𝘂𝗽:
+Launch EC2 with IAM role
+Install: Docker 🐳, AWS CLI (if needed), kOps, kubectl
+Write Deployment Manifest file and service manifest file
+ kubectl create -f deploy.yml
+ kubectl get deploy
+ kubectl get rs
+ kubectl get po
+ kubectl describe deploy <deployment-name>
+👉 Add svc.yml to expose the app
+ kubectl create -f svc.yml
+ kubectl get svc
+🔗 Access the app via the DNS from the service
+
+🔁 𝗜𝗺𝗮𝗴𝗲 𝗨𝗽𝗱𝗮𝘁𝗲 𝗣𝗿𝗼𝗰𝗲𝘀𝘀:
+Write & push updated code to GitHub
+Create a Dockerfile & build Docker image
+Scan image ➡️ Push to Docker Hub
+Update image in K8s (two ways):
+✅ Via manifest
+✅ use CLI:
+ kubectl set image deploy <deployment> <container>=<image>
+
+🔙 𝗥𝗼𝗹𝗹𝗯𝗮𝗰𝗸𝘀 & 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 𝗖𝗼𝗻𝘁𝗿𝗼𝗹
+Track and manage your app versions:
+ kubectl rollout history deploy <deployment>
+ kubectl rollout undo deploy <deployment> --to-revision=<version-num>
+ kubectl rollout status deploy <deployment>
+ kubectl get rs
+📝 Rolling updates keep only the current version's pods running. Old RS exists, but pods are recycled.
+👁️ Use -w to watch RS changes live:
+ kubectl get rs -w
