@@ -1,0 +1,9 @@
+There’s a common misunderstanding about the EXPOSE command in Docker. 
+
+Many people believe it automatically opens a port on your container and makes it accessible to the host. This is not true.
+
+To make your container's ports accessible to the host, you need to use port mapping with the '-p' flag when running your container.
+
+The EXPOSE command is simply a way to tell Docker which ports your container will use at runtime. Think of it as documentation to help manage your containers more effectively. When someone looks at the Dockerfile or the container, they will know which port the application running inside the container is accessible on.
+
+To verify, you can run the 'docker ps' command and check the PORTS column to see the ports mapped to the host and those exposed for inter-container communication.
