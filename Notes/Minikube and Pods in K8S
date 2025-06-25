@@ -1,0 +1,59 @@
+Diving into #Minikube & Pods with Kubernetes.
+
+✅  What is Minikube?
+🔹 Minikube is a lightweight Kubernetes tool that lets you spin up a single-node cluster locally. Perfect for developers and testers, it offers a sandbox environment to:
+➜Run a Kubernetes cluster on your local machine (Windows/macOS/Linux)
+➜Emulate both Control Plane and Worker Node on the same machine
+➜Experiment with new Kubernetes features before applying them in  production
+➜Run your workloads using Docker or a VM as the driver
+🧠 Best suited for learning, development, and prototyping — not recommended for production use.
+
+⚙️ Minikube Requirements
+Before setting up, ensure your system meets the basics:
+🖥️ Minimum 2 CPUs
+💾 20 GB disk space
+🧠 At least 2 GB RAM
+🌐 Active internet
+🐳 Docker or a VM solution like VirtualBox
+
+📦 Understanding Pods in Kubernetes:-
+🔹 Pod is the smallest deployable unit in a Kubernetes cluster
+📌 Think of it as a wrapper for one or more tightly coupled containers
+🛠️ Containers inside a pod share the same IP, storage, and namespace
+🔄 They can communicate with each other easily and share volumes
+🎯 Kubernetes interacts with Pods, not individual containers
+
+🛠️ How to Create Pods
+🔸 Imperative Approach (CLI):
+     ➜kubectl run nginx-pod --image=nginx
+🔍 View Your Pod:
+     ➜kubectl get pods
+🔸 Declarative Approach (YAML):
+      1. Create a file:
+     ➜vim nginx-pod.yaml
+2. Define your pod structure with:
+   ✅apiVersion
+   ✅kind: Pod
+   ✅metadata: (name, labels)
+   ✅spec: (image, ports, etc.)
+3.  Apply the YAML:
+  ➜kubectl apply -f nginx-pod.yaml
+🔁 Pod Lifecycle Insight
+⚠️ If a pod fails (due to memory, network issues, etc.), it will not restart by default.
+ ✅ Use ReplicaSets or Deployments to automatically manage pod availability and ensure fault tolerance.
+
+🧪 Practical Setup on AWS EC2
+To simulate this in a cloud environment:
+🚀 Launch an EC2 instance:
+ Type: t2.medium | Storage: 25GB
+🐧 Install Docker:
+sudo apt update -y
+sudo apt install docker.io -y
+🌐 Install Minikube:
+minikube start --driver=docker --force
+🧰 Install kubectl:
+curl -LO https://lnkd.in/g2eNbSnC -s https://lnkd.in/gMBVmkAJ
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+kubectl version
+🔥 Kubernetes is a vast ecosystem, but starting small with Minikube and Pods is the perfect way to build a strong foundation.
