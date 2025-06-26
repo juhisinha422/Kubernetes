@@ -1,0 +1,25 @@
+Core Components of Kubernetes – Made Simple
+
+I’ve been learning Kubernetes, and at first, the number of components felt overwhelming. But once it clicked, it was a game-changer. To make sense of it all, here’s a simple breakdown of the key parts that keep Kubernetes running smoothly:
+
+🚦 Control Plane: The brain of the cluster. It makes all the important decisions and keeps everything in sync. The control plane itself includes:
+
+🗄️ etcd: A reliable key-value store where Kubernetes saves all cluster data. It acts like the cluster’s memory, keeping track of configuration and state.
+
+🚪 API Server: The main gateway to the cluster. It handles all communication between users, components, and the cluster itself.
+
+🧭 Scheduler: Decides which worker node should run each application (or pod) based on available resources.
+
+⚙️ Controller Manager: Runs controllers that ensure the desired state of the cluster, like making sure the right number of pods are running.
+
+🩺 Node Controller: Monitors the health of worker nodes and takes action if any fail or become unreachable.
+
+🖥️ Worker Nodes: These are the physical or virtual machines in the cluster where your applications actually run. They do the heavy lifting, executing the tasks assigned by the control plane.
+
+📦 Pods: The smallest deployable units in Kubernetes. Each pod usually contains one or more containers that run your app or service.
+
+👷 Kubelet: An agent running on each worker node. It communicates with the control plane to make sure containers are running as expected.
+
+🌐 Kube-Proxy: Manages networking on each node, making sure pods can communicate with each other and with the outside world.
+
+🔗 Services: Provide stable IP addresses and load balancing to expose your pods to users or other applications.
