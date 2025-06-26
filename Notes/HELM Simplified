@@ -1,0 +1,85 @@
+𝐌𝐚𝐬𝐭𝐞𝐫𝐢𝐧𝐠 𝐇𝐄𝐋𝐌: 𝐒𝐢𝐦𝐩𝐥𝐢𝐟𝐲𝐢𝐧𝐠 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐃𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭𝐬
+Deploying and managing Kubernetes applications manually with dozens of YAML files is time-consuming and error-prone. That’s where HELM, the Kubernetes package manager, comes in — it brings everything under one roof.
+
+🎯 𝐖𝐡𝐚𝐭 𝐢𝐬 𝐇𝐄𝐋𝐌?
+Helm is like apt or yum for Kubernetes. It packages, configures, and deploys apps easily—frontend, backend, databases—all via charts.
+
+🔁 𝐌𝐚𝐧𝐮𝐚𝐥 𝐘𝐀𝐌𝐋𝐬 𝐯𝐬 𝐇𝐞𝐥𝐦
+Traditional: 15+ YAMLs (for frontend, backend, DB with deployments, services, volumes, secrets, etc.)
+𝐇𝐞𝐥𝐦: A single chart with templates & value overrides
+
+
+🔑 𝐊𝐞𝐲 𝐂𝐨𝐧𝐜𝐞𝐩𝐭𝐬
+✅ 𝐂𝐡𝐚𝐫𝐭𝐬
+Bundles of Kubernetes resources (deployments, services, ingress, etc.
+✅ 𝐓𝐞𝐦𝐩𝐥𝐚𝐭𝐞𝐬
+Parameterized manifests with Go templating—DRY & reusable
+✅ 𝐕𝐚𝐥𝐮𝐞𝐬
+Configurable defaults in values.yaml, override per environment
+✅ 𝐑𝐞𝐩𝐨𝐬𝐢𝐭𝐨𝐫𝐢𝐞𝐬
+Host & share charts publicly or privately
+
+🛠️ 𝐇𝐞𝐥𝐦 𝐢𝐧 𝐀𝐜𝐭𝐢𝐨𝐧: 𝐏𝐫𝐚𝐜𝐭𝐢𝐜𝐚𝐥 𝐒𝐭𝐞𝐩𝐬
+✅ 𝐈𝐧𝐬𝐭𝐚𝐥𝐥 𝐇𝐞𝐥𝐦
+curl -fsSL -o get_helm.sh https://lnkd.in/gwDnAuHd
+chmod 700 get_helm.sh
+./get_helm.sh
+helm version
+
+🎯 𝐂𝐫𝐞𝐚𝐭𝐞 𝐘𝐨𝐮𝐫 𝐅𝐢𝐫𝐬𝐭 𝐂𝐡𝐚𝐫𝐭
+helm create devops
+cd devops
+𝐒𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞:
+Chart.yaml → Metadata
+templates/ → Kubernetes manifests
+values.yaml → Default config
+
+✅ Deploy Chart
+   helm install version-1 .
+✅ Update release
+   helm upgrade version-1 .
+✅ Rollback & history
+   helm history version-1
+   helm rollback version-1 1
+✅ Test before install
+   helm install aws --debug --dry-run
+✅ Uninstall:
+   helm uninstall version-1
+
+𝐈𝐧𝐬𝐭𝐚𝐥𝐥 𝐉𝐞𝐧𝐤𝐢𝐧𝐬 𝐰𝐢𝐭𝐡 𝐇𝐞𝐥𝐦
+helm repo add jenkins https://charts.jenkins.io
+helm repo update
+helm install jenkins jenkins/jenkins
+📌 𝐍𝐨𝐭𝐞: Default service type is ClusterIP. Change to LoadBalancer to access it over the internet.
+
+𝐄𝐱𝐩𝐨𝐬𝐞 𝐉𝐞𝐧𝐤𝐢𝐧𝐬:
+✅ Label pod
+   kubectl label pod jenkins-0 cicd=jenkins
+✅ Create svc.yml with LoadBalancer
+✅ Apply the service:
+   kubectl apply -f svc.yml
+✅ Access Jenkins via DNS, user: admin, password from initial token.
+
+🎁 𝐂𝐫𝐞𝐚𝐭𝐞 𝐘𝐨𝐮𝐫 𝐎𝐰𝐧 𝐇𝐞𝐥𝐦 𝐂𝐡𝐚𝐫𝐭
+helm create myapp
+cd myapp/templates
+rm -rf *
+✅ Add your custom deployment.yaml, service.yaml etc.
+
+𝐕𝐚𝐥𝐢𝐝𝐚𝐭𝐞 𝐜𝐡𝐚𝐫𝐭:
+helm lint .
+helm template .
+🎒 𝐏𝐚𝐜𝐤𝐚𝐠𝐞 𝐚𝐧𝐝 𝐡𝐨𝐬𝐭:
+helm package myapp
+helm repo index .
+Push index.yaml and .tgz to GitHub → GitHub Pages → Get public Helm repo URL
+
+📦 𝐔𝐬𝐞 𝐡𝐨𝐬𝐭𝐞𝐝 𝐜𝐡𝐚𝐫𝐭:
+helm repo add myrepo https://lnkd.in/gQteKCJY
+helm repo update
+helm install myrelease myrepo/myapp
+✅ With Helm, you can:
+Reuse charts across teams
+Deploy apps in seconds
+Maintain version history
+Customize deployments per environment
