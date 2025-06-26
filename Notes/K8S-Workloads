@@ -1,0 +1,10 @@
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗪𝗼𝗿𝗸𝗹𝗼𝗮𝗱𝘀
+
+Kubernetes offers distinct ways to manage applications. These methods provide higher-level functionality for managing Pods, ensuring their desired state is maintained, scaling, updates, and specific use cases.
+
+ • 𝗗𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁𝘀: Manage stateless application workloads, providing declarative updates, rolling updates, and rollbacks. 
+ • 𝗥𝗲𝗽𝗹𝗶𝗰𝗮𝗦𝗲𝘁𝘀: Ensure a specified number of Pods are running at any given time, providing basic scaling and self-healing. 
+ • 𝗦𝘁𝗮𝘁𝗲𝗳𝘂𝗹𝗦𝗲𝘁𝘀: Manage stateful applications, where Pods have a persistent identity and state. 
+ • 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀: Ensure each node in the cluster runs a copy of a Pod, often used for system-level tasks. 
+ • 𝗝𝗼𝗯𝘀: Define tasks that run to completion, often used for one-time operations. 
+ • 𝗖𝗿𝗼𝗻𝗝𝗼𝗯𝘀: Schedule jobs to run periodically
