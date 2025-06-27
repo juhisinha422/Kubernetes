@@ -1,0 +1,64 @@
+CONFIG MAPS in K8'S:
+Config maps are used to store configuration data in key-value pairs with in k8's but the data should be non confidential.
+But it doesn't provide security and encryption.  If we want to provide security and encryption use secrets in k8's.
+
+Create Config maps through imperative (command)
+kubectl create cm mycm --from-literal=course=aws --from-literal=name=venu    - to create config maps with literal
+kubectl create cm myfile --from-file=newfile - to create config maps with file
+ 
+kubectl create cm myenvfile --from-env-file=envfile.env – to create config maps with .env file
+kubectl get cm – to see list config maps
+kubectl describe cm mycm – to see data in config map 
+ 
+Create config map through manifest file (declarative)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: fourthcm
+data:
+ DB_HOST: "www.mysql.com" 
+ DB_PORT: "3306"
+ 
+kubectl create -f configmap.yml 
+ 
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod
+spec:
+ containers:
+   - name: cont-1
+     image: venu789/myrepo:dm
+     ports:
+       - containerPort: 80
+     envFrom:
+       - configMapRef:
+           name: fourthcm
+ 
+To inject multiple values into the pod using env variables from different config maps
+apiVersion: v1
+kind: Pod
+metadata:
+ name: pod-7
+spec:
+ containers:
+   - name: cont-1
+     image: venu789/myrepo:dm
+     ports:
+       - containerPort: 80
+     env:
+       - name: firstenv
+         valueFrom:
+           configMapKeyRef:
+             key: company
+             name: myenvfile
+       - name: secondenv
+         valueFrom:
+           configMapKeyRef:
+             key: course
+             name: mycm
+       - name: thirdenv
+         valueFrom:
+           configMapKeyRef:
+             key: name
+             name: mycm
