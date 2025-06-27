@@ -1,0 +1,96 @@
+Services and its types in k8's:
+Services are used to expose the pod so that we can access the application.
+Cluster IP: this service is used to access the application internally like with in the server (curl culster IP)
+Node port: this service is used to access the application internally like with in the server as well externally like outside the server (node public ip: node port number) 
+Load balancer: this service is used to access the application internally like with in the server as well externally like outside the server (node public ip: node port number and also with DNS name)
+
+Services and services types in k8’s
+ vim .bashrc
+ export PATH=$PATH://usr/local/bin/
+ souce .bashrc
+ Install AWS CLI,copy cmds from browser and paste in server
+ Install kops,copy cmds from browser and paste in server
+ Install kubectl,copy cmds from browser and paste in server
+ chmod +x kubectl (give permissions to file)
+ mv kubectl /usr/local/bin/
+ s3 bucket: s3 bucket is used to store cluster data in cloud
+ To create S3 bucket:
+ aws s3 mb s3://venu.flm.k8s
+ To see list of s3 buckets
+ aws s3 ls
+ export KOPS_STATE_STORE=s3://venu.flm.k8s 
+ To create cluster
+ kops create cluster --name mycluster3.k8s.local --zones ap-southeast-2a,ap-southeast-2b,ap-southeast-2c --master-size t2.medium --master-count 1 --master-volume-size 30 --node-size t2.micro --node-count 2 --node-volume-size 20
+ kops update cluster --name mycluster.k8s.local --yes –admin (give command then infra will create)
+ To see the cluster status
+ Kubectl get no -w
+ To see list of nodes
+ Kubectl get node or Kubectl get node or Kubectl get no
+To create pod
+vim Pod.yml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: venu-2
+ labels:
+   venu: venu786
+spec:
+ containers:
+   - name: venu-1
+     image: venu789/myrepo:cycleimage
+     ports:
+       - containerPort: 80
+
+To create Cluster IP service
+kubectl create -f filename
+To see list of services
+kubectl get svc or kubectl get services 
+vim service.yml
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: my-service
+spec:
+ type: ClusterIP
+ selector:
+   venu: venu786
+ ports:
+   - port: 80
+     targetPort: 80
+
+To create Node port service
+vim service.yml
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: my-service2
+spec:
+ type: NodePort
+ selector:
+   venu: venu786
+ ports:
+   - port: 80
+     targetPort: 80
+     nodePort: 30001
+
+Nodeport range
+30000 - 32767
+
+To create Load balancer service
+vim service.yml
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: lb-service
+spec:
+ type: LoadBalancer
+ selector:
+   venu: venu786
+ ports:
+   - port: 80
+     targetPort: 80
+     nodePort: 30001
