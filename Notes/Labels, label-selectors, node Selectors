@@ -1,0 +1,112 @@
+Labels, label-selectors, node selectors and basic commands in k8's
+
+vim .bashrc
+export PATH=$PATH://usr/local/bin/
+souce .bashrc
+Install AWS CLI,copy cmds from browser and paste in server
+Install kops,copy cmds from browser and paste in server
+Install kubectl,copy cmds from browser and paste in server
+chmod +x kubectl (give permissions to file)
+mv kubectl /usr/local/bin/
+s3 bucket: s3 bucket is used to store cluster data in cloud
+To create S3 bucket:
+aws s3 mb s3://venu.flm.k8s
+To see list of s3 buckets
+aws s3 ls
+export KOPS_STATE_STORE=s3://venu.flm.k8s 
+To create cluster
+kops create cluster --name mycluster1.k8s.local --zones ap-southeast-2a,ap-southeast-2b,ap-southeast-2c --master-size t2.medium --master-count 1 --master-volume-size 30 --node-size t2.micro --node-count 2 --node-volume-size 20
+kops update cluster --name mycluster.k8s.local --yes –admin (give command then infra will create)
+To see the cluster status
+Kubectl get no -w
+To see list of nodes
+Kubectl get node or Kubectl get node or Kubectl get no
+To create pod
+Vim pod.yml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod2
+spec:
+ containers:
+   - name: container-1
+     image: venu789/myrepo:cycleimage
+     ports:
+       - containerPort: 80
+ 
+Kubectl create -f pod.yml
+To see list of pods
+Kubectl get pods or
+Kubectl get pod or
+Kubectl get po
+To see which pod created in which node
+Kubectl get po -o wide
+Kubectl get po -o yaml (to see data in yaml format)
+To see full information of pod
+kubectl describe pod podname
+To delete pod
+kubectl delete pod podname
+kubectl delete pod mypod
+To delete multiple pods
+kubectl delete pod –all
+To go inside container
+kubectl exec -it podname -- bash
+kubectl exec -it mypod2 – bash
+ 
+Labels: Labels are nothing but adding a tag to the pod 
+Label-Selector: Label-Selector is nothing but selecting the label.
+Vim pod.yml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: newpod
+ labels:
+   app: swiggy
+   env: dev
+   company: flm
+spec:
+ containers:
+   - name: container-1
+     image: nginx
+     ports:
+       - containerPort: 80
+ 
+Kubectl create -f pod.yml
+To see list of labels for pods
+kubectl get po --show-labels
+To give label for existing pods
+kubectl label pod mypod2 env=test
+To get all pods which are related to specific label
+kubectl get po -l app=swiggy
+To get all the pods not related to labels
+kubectl get po -l app!=swiggy
+ 
+Equality based selector: we can give single label at a time
+kubectl get po -l app=swiggy
+Setbased selector: we can give multiple labels at a time
+Kubectl get po -l ‘environment in (dev, env)’
+Node-selector: Node selector is used to create specific pod on specific node
+To give label to the node
+kubectl label no node-name server=label-name
+kubectl label no i-0330beb359fe30361 server=myserver
+ 
+vim pod.yml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: serverpod
+ labels:
+   app: swiggy
+   env: dev
+   company: flm
+spec:
+ containers:
+   - name: container-1
+     image: nginx
+     ports:
+       - containerPort: 80
+ nodeSelector:
+   server: mysever
