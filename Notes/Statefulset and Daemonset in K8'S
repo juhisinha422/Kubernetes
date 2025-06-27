@@ -1,0 +1,81 @@
+Statefulset and Daemonset in K8'S:
+Statefulset: StatefulSets in Kubernetes are used to manage applications that require persistent storage, stable network identities, and ordered deployment and scaling. They are designed for stateful applications, which are applications that need to maintain data between requests, like databases or distributed systems. 
+Daemonset: In Kubernetes, a DaemonSet ensures that a specified pod runs on every node in the cluster, or on a subset of nodes that meet specific criteria
+Each node should have only one pod.
+Vim deployment.yml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: mydeploy
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     company: google
+ template:
+   metadata:
+     labels:
+       company: google
+   spec:       
+     containers:
+       - name: cont-1
+         image: venu789/myrepo:movie
+         ports:
+           - containerPort: 80
+ 
+To create service:
+apiVersion: v1
+kind: Service
+metadata:
+ name: mylb
+spec:
+ type: LoadBalancer
+ selector:
+   company: google
+ ports:
+   - port: 80
+     targetPort: 80
+ 
+To cerate statefulset
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+ name: mystateful
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     company: google
+ template:
+   metadata:
+     labels:
+       company: google
+   spec:
+     containers:
+       - name: cont-1
+         image: venu789/newrepo:dbimage
+         ports:
+           - containerPort: 80
+ 
+To cerate daemonset
+ ---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+ name: monitor
+spec:
+ selector:
+   matchLabels:
+     company: google
+ template:
+   metadata:
+     labels:
+       company: google
+   spec:
+     containers:
+       - name: cont-1
+         image: venu789/myrepo:dm
+         ports:
+           - containerPort: 80
