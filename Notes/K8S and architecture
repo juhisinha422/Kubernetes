@@ -1,0 +1,34 @@
+What is Kubernetes?
+Kubernetes (K8s) is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. Originally developed by Google, it is now maintained by the Cloud Native Computing Foundation (CNCF).
+✅ Advantages of Kubernetes
+✔ Automated Scaling – Scales applications up/down based on demand.
+✔ High Availability – Ensures minimal downtime with self-healing capabilities.
+✔ Cost Efficiency – Optimizes resource utilization, reducing infrastructure costs.
+✔ Portability – Runs seamlessly across on-prem, cloud, and hybrid environments.
+✔ Declarative Configuration – Uses YAML/JSON files for easy and consistent deployments.
+✔ Extensible Ecosystem – Supports plugins, custom resources, and integrations.
+🔧 Key Features of Kubernetes
+🔹 Self-Healing – Automatically restarts failed containers.
+🔹 Load Balancing – Distributes traffic across pods for stability.
+🔹 Rolling Updates & Rollbacks – Enables seamless app updates with zero downtime.
+🔹 Storage Orchestration – Mounts storage systems (local, cloud, etc.).
+🔹 Secret & Configuration Management – Securely manages sensitive data.
+🔹 Batch Execution – Supports batch and CI/CD workloads.
+🏗️ Kubernetes Architecture & Core Components
+Kubernetes follows a master-worker (control plane + nodes) architecture:
+1️⃣ Control Plane (Master Node)
+API Server – Entry point for all commands (REST API).
+Scheduler – Assigns workloads to nodes.
+Controller Manager – Ensures desired cluster state (e.g., node failures).
+etcd – Key-value store for cluster state.
+2️⃣ Worker Nodes
+Kubelet – Ensures containers run as expected.
+Kube-Proxy – Manages network rules for communication.
+Container Runtime (Docker, containerd, etc.) – Runs containers.
+⚙️ Kubernetes Cluster & Its Types
+A Kubernetes cluster is a set of nodes (master + workers) that run containerized apps.
+Types of Kubernetes Clusters:
+1️⃣ Single-Node Cluster (Minikube) – For local development/testing.
+2️⃣ Multi-Node Cluster – Production-grade (self-managed or cloud-managed).
+3️⃣ High-Availability (HA) Cluster – Multiple master nodes for fault tolerance.
+4️⃣ Managed Clusters (EKS, AKS, GKE) – Cloud provider-managed control plane.
