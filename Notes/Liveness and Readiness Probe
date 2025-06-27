@@ -1,0 +1,46 @@
+Q: What is Liveness and Readiness Probe in Kubernetes?
+ Sab bole:
+ “Ha bhai suna hai. Health check hota hai.” 
+
+ Phir bola:
+ “Explain how it actually works.”
+ Log bole:
+ “Arey bhai... woh toh hard hai.” 
+ "HTTP, status code, endpoints… rehne do, samajh ni aata."
+
+
+Okay, ab technical explanation lo jisme thoda dimaag hil jaye:
+In Kubernetes, Liveness and Readiness probes are configured in the PodSpec to periodically check the container’s state.
+Liveness determines whether the container is running or dead — failure triggers a restart.
+Readiness checks if the application is ready to receive traffic.
+They can use exec, httpGet, or tcpSocket actions, and rely on response codes to update pod status in kubelet, affecting the endpoints in the service load balancer. 😵‍💫
+
+Ab bolenge:
+ “Yahi nahi aata tha bhai... heavy hai.”
+
+
+
+
+Ab sun simple version:
+Socho tum ek restaurant chala rahe ho.
+
+* Liveness Probe:
+ Restaurant open hai ya band hai?
+ Agar 3 baar bell bajayi aur koi reply nahi aaya — samjho light gayi, kitchen band, container restart karo.
+
+* Readiness Probe:
+ Restaurant khula hai, par chef abhi tak sabzi kaat raha hai.
+ Toh entry mat dena customers ko.
+ Wait till chef says: “Ab bhejo order.”
+
+
+Bas — that's Liveness vs Readiness.
+ One checks zinda ho?
+ One checks kaam pe ready ho?
+
+
+
+Sab topic samjha jaa sakta hai — agar samjhane ka style sahi ho.
+Sirf heavy words se darna band karo.
+Explore karo. Visualise karo.
+DevOps me knowledge ka matlab hai: simplify karna.
