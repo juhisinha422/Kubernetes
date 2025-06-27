@@ -1,0 +1,73 @@
+Minikube, Pod, To create pod using manifest file
+
+Minikube: Minikube is a tool which is used to create single node cluster on k8's.
+It is used for development, testing and experimentation purpose on local.
+Note: Here master and worker nodes runs on same machine.
+
+
+Here’s a complete guide with setup requirements, basic Kubernetes commands, and how to get hands-on by creating and listing pods. 👇
+
+🧰 Minikube System Requirements:
+To ensure smooth installation and performance, your system should have:
+🔹 Operating System: Linux, macOS, or Windows
+ 🔹 Virtualization: Enabled (Docker, VirtualBox, or Hyper-V)
+ 🔹 CPU: Minimum 2 CPUs (Recommended: 4 CPUs)
+ 🔹 RAM: Minimum 2GB (Recommended: 4–8GB for smooth experience)
+ 🔹 Disk Space / EBS Volume: At least 20GB of free space (Minikube image, 
+Kubernetes components, container storage)
+
+🛠️ Install Minikube
+🔸 macOS:
+brew install minikube
+
+🔸 Ubuntu / Linux:
+curl -LO https://lnkd.in/dHPTsR6w
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+🔸 Windows:
+ Use Chocolatey:
+choco install minikube
+
+🚀 Start Your Minikube Cluster
+minikube start --cpus=4 --memory=8192
+You can tweak --cpus and --memory based on your machine’s capacity.
+
+☸️ Install kubectl (Kubernetes CLI)
+curl -LO "https://lnkd.in/dwv4Rfhu -L -s https://lnkd.in/dUsfafCT"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+Or use your OS's package manager.
+
+📦 What is a Pod in Kubernetes?
+A Pod is the most basic deployable unit in Kubernetes. It can hold one or more tightly coupled containers that share resources like storage and network.
+
+🏗️ Create a Pod (Command-line):
+kubectl run nginx-pod --image=nginx --restart=Never
+
+📄 Create a Pod (Manifest File):
+nginx-pod.yaml
+yaml
+CopyEdit
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+
+Create the pod:
+kubectl apply -f nginx-pod.yaml
+
+🔍 List Pods in Your Cluster
+Once your pod is running, check the status with:
+kubectl get pods
+
+To see more details:
+kubectl describe pod nginx-pod
+
+To view logs:
+kubectl logs nginx-pod
