@@ -1,0 +1,24 @@
+RBAC 
+
+*Role Based Access Control*
+
+RBAC is a widely adopted authorization 🔐 mode in Kubernetes that allows cluster administrators to create roles and bind 🤝 them to users 🧔, groups 👯, or service accounts.
+Roles define a set of specific permissions 🗒 , while role bindings attach these roles to the appropriate entities, granting administrators 👨💻  precise control over resource access. 
+
+#Roles: Define permissions within a namespace
+
+💠 kubectl create role <role_name> --verb=list,get,watch --resource=pods,deployment
+
+#RoleBindings: Connect role to users or groups
+
+💠 kubectl create rolebinding <name> --role=<role_name> --user=<user_name>
+
+Think of roles as job descriptions defining user or group actions. Role bindings link 🖇 these roles to specific users or groups, granting them those permissions.
+
+Use Cases 📝 :
+
+✏ Establish a system for users with different roles to access a set of Kubernetes resources.
+✏ Control 🎮  processes running in a Pod and the operations they can perform via k8's API.
+✏ Limit the visibility 👁 of certain resources per namespace.
+
+References: https://lnkd.in/gSD8h65z  
