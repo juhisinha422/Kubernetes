@@ -1,0 +1,27 @@
+Can #kubelet also schedule a Pod❓😲 
+
+#StaticPods ⚒ 
+
+Kubelet relies on kube-apiserver for instructions 📑 on what pod to load on its node which is based on a decision 🤔 made by the kube-scheduler which was stored in the ETCD datastore 🗄 .
+If there is no kube-apiserver, no ETCD, no Master, what will kubelet do❓
+How will kubelet schedule a pod on its node❓
+
+Static pods are special type of pods managed directly by the kubelet on each node rather than through the Kubernetes API server 💻 .
+
+Unlike 🚫deployments and replica sets the Kubernetes scheduler does not manage static pods.
+Configuration files 🗃  for static pods are placed directly on the node's file system, and the kubelet watches 👀 these files for creation of pod and any changes in these will be automatically updated.
+
+Static pods can only be deleted ❎ by modifying the files from the nodes manifest folder 📂 .
+
+Examples: ApiServer, ETCD, Kube-scheduler, controller-manager, etc............
+
+Managing Static Pods 👨💼 :
+🔹SSH into Node where static pod is defined.
+🔹To view pods >> docker ps
+🔹Modify(edit/create) the YAML file for static pod.
+🔹To stop the pod, remove or modify the file directly from the node.
+🔹Default location is "/etc/kubernetes/manifests/" . We can place the pod YAML in the directory, and kubelet will pick it for scheduling.
+
+To find the path of the directory📂 holding the static pods definition file 
+>> cat var/lib/kubelet/config.yaml 
+(Here path will be defined as staticPodPath: <Path>)
