@@ -1,0 +1,31 @@
+Kubernetes Tip ✍ : Simplifying Ingress Routing using Ingress Annotations
+
+K8s Ingress annotations are key-value pairs added to the metadata of an ingress resource. They allow to customize behavior when using specific Ingress controllers like NGINX, HAProxy, etc....
+
+Some of the commonly used NGINX Ingress annotations are:
+➡️ rewrite-target: Target URI where the traffic must be redirected.
+➡️ use-regex: Indicates if the paths defined on an ingress use regular expressions.
+➡️ ssl-redirect & force-ssl-redirect: Secure the endpoints with auto HTTPS redirects
+➡️ proxy-body-size: Handle large file uploads gracefully
+
+Use Case 🗒️ : API Gateway Routing in Kubernetes
+ 
+Suppose we have a backend service (user-service) running inside k8s. The goal is to :
+1️⃣ Route incoming traffic from /api/users/... to this service
+2️⃣ Strip the /api prefix before forwarding(rewrite the path)
+2️⃣ Enforce HTTPS redirection
+4️⃣ Support large file uploads
+
+#annotation.yaml file
+.....
+annotations:
+ nginx.ingress.kubernetes[.]io/rewrite-target: /$1
+ nginx.ingress.kubernetes[.]io/use-regex: "true"
+ nginx.ingress.kubernetes[.]io/ssl-redirect: "true"
+ nginx.ingress.kubernetes[.]io/proxy-body-size: "50m"
+.....
+Explanation 👇 :
+🔸rewrite-target: /$1 -> rewrites /api/users/profile -> /users/profile
+🔸use-regex: "true" -> allow path pattern matching
+🔸ssl-redirect: "true" -> automatically redirects to HTTPS
+🔸proxy-body-size: "50m" -> enables large uploads without a error
