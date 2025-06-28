@@ -29,3 +29,6 @@ Explanation 👇 :
 🔸use-regex: "true" -> allow path pattern matching
 🔸ssl-redirect: "true" -> automatically redirects to HTTPS
 🔸proxy-body-size: "50m" -> enables large uploads without a error
+
+
+![Image](https://github.com/user-attachments/assets/d3347bab-aa22-4b49-bd7a-638088693763)
