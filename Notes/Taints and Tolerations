@@ -1,0 +1,41 @@
+Can you control pod placement in K8 Cluster❓👀 
+
+#TaintsandToleration 💡 
+
+When you submit a workload to run in a cluster, the scheduler determines where to place the Pods associated with the workload. If your cluster runs a variety of workloads, you might want to exercise some control over which workloads can run on a particular pool of nodes.
+
+In Kubernetes, one of the way to schedule pods onto nodes in a K8 cluster is using taints and toleration  .
+
+Think of Taint as "only you are allowed" ✋ signs on your Kubernetes nodes. A taint is applied to a node to indicate that it has a certain restriction 🚫  or requirement. By default, pods cannot be scheduled on tainted nodes unless they have a special permission 🔑  called Toleration.
+Toleration allows a pod to say, "Hey, I can handle that taint. Schedule me anyway!" 😊  You define tolerations in the pod specification to let them bypass the taints.
+Taints are key-value pairs associated with an effect.
+
+Types of Effect: 👇 
+🔹NoExecute : Existing pods that do not tolerate the taint are evicted immediately. 
+🔹NoSchedule : Prevents new pods from being scheduled on the tainted node unless they have a matching toleration. Pods currently running on the node are not evicted.
+🔹PreferNoSchedule : The scheduler will try to avoid placing a Pod that does not tolerate the taint on the node, but it is not guaranteed.
+
+Let's say you have a node and want to reserve it for running GPU-intensive workloads. You can taint the node as follows: 
+
+🔶 kubectl taint nodes <nodename> gpu=true:NoSchedule
+
+This taint would prevent any new pods from being scheduled on this node unless they tolerate the "gpu=true" taint.
+Now to allow a pod to be scheduled on above node, the pod's YAML file should include toleration as follows:
+📃 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gpu-pod
+spec:
+  containers:
+  - name: gpu-app
+    image: gpu-image
+  tolerations:
+  - key: "gpu"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule" 
+
+This pod specification defines a toleration for the "gpu" taint with the effect "NoSchedule". This allows pod to be scheduled on tainted nodes.
+
+Use Cases: Dedicated Nodes, Nodes with special hardware, etc......
