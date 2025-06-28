@@ -1,0 +1,24 @@
+ReplicaSets 🆚 DaemonSets⚡
+
+#ReplicaSets 👥 
+
+A ReplicaSet helps manage traffic🚦by scaling your application📱to have multiple instances of the same pod. This helps reduce traffic to one particular instance and also helps in load-balancing traffic between each of these instances.
+Replicasets provide the ability to scale the number of replicas and replace failed pods with new ones.
+
+Use Cases:
+🔸 High Availability
+🔸 Reliability
+🔸 Scaling
+
+The ReplicaSet ensure that the specified number of replicas of your pod are running at all times. It is possible that some nodes in the cluster may not have any replicas of the Pod running on them. 
+What if we want to run a logging agent on all nodes to collect log data, or run a node-level service like a network🌐plugin. In such scenarios, you can use Kubernetes DaemonSet. 	
+
+#DaemonSets 😈 
+
+A DaemonSet is another type of Kubernetes object that controls🕹pods. DaemonSet automatically deploys one pod to each available nodes.
+DaemonSet takes care of spinning X number of pods for X number of nodes. If you create a DaemonSet in a cluster of  5️⃣ nodes, then 5️⃣ pods will be created.
+
+Use Cases:
+🔸 Logging and monitoring
+🔸 Cluster storage
+🔸 Node resource monitoring 
