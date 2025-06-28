@@ -1,0 +1,29 @@
+Have you heard of Cluster Upgrade❓Is Cluster Upgrade important❓ Why❓
+
+#ClusterUpgrade 💡 
+
+Because k8 only supports 3️⃣  version at a time, so earlier version will not be in support and no bug fixes will be there.
+
+👇 Points that need to be taken care while upgrading 📈 :
+
+🔹 The Upgrade workflow at the high level:
+Upgrade Control Plane ➡ Upgrade worker nodes
+
+🔹Kubernetes Version: major.minor.patch == 1.30.2
+
+🔹One cannot directly upgrade from 1.28.2 -> 1.30.2 . It should be done from version to version i.e. 1.28.2➡1.29.3➡1.30.2 
+
+🔹Drain and Uncordon 🚫 :
+During Upgrade we ensure that no pod is scheduled on that node so this is done by drain and cordon. 
+Drain   => evicting the pods
+Cordon=> node is not schedulable ⛔ 
+
+>>> kubectl drain node1 --ignore-daemonsets
+(This will do both tasks i.e. drain and cordon the node. When we drain node, the pods on node are evicted except DaemonSets so we need to specify --ignore-daemonsets.) 
+
+🎯Strategies for upgrade:
+🔸All at once: Drain -> Upgrade -> Uncordon
+🔸Rolling Update: One at a time , minimizing downtime
+🔸Blue-Green: First Blue-side is attached to master-node and Green-side is been upgraded and as soon as green-side upgrade is done blue will be detached or maybe deleted as per infrastructure setup.
+
+Checkout my 👨💻GitHub Repo for step-to-step illustration : https://lnkd.in/gNrZ4iw9
