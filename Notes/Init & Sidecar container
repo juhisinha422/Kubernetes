@@ -1,0 +1,24 @@
+The Ideal Container Partnership 🤝  in Kubernetes!
+
+#Init #Sidecar 💥 
+
+#Init Containers
+
+Specialized containers that run before the main application container in a pod start. Init containers can contain utilities or setup scripts 📃 not present in an app image. They always run to completion.💯 
+
+Use Cases:
+💠Configuration Setup 👨💻 
+💠Database initialization
+💠Resource Preparation
+
+If a Init container fails❌ to execute successfully the entire pod initialization fails, and pod restarts 🔄 until the init containers complete successfully ✅  or it depends on "restartPolicy" of pod.
+
+#Sidecar Containers
+
+Sidecar containers are a special type of init container that run along with the main application container within the same Pod. These containers are for providing additional services/functionality without directly affecting the primary application code. If a sidecar container dies ☠  while the ordinary containers are running🏃♂️, it will be restarted automatically.
+
+Use Cases:
+💠Logging and Monitoring
+💠Security Operations
+
+The communication📲within the pod i.e. between main container and sidecar container is preferred using localhost for simplicity and efficiency.
