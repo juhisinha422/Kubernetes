@@ -1,0 +1,21 @@
+How to control traffic in and out of a K8's Cluster ❓❓ 🤔
+
+#INGRESS 💥💥
+
+One of the key components in K8's is Ingress, which acts as a gateway for external traffic to reach the cluster. Ingress helps users access the application using a single accessible URL that can be configured to route traffic to different services within the cluster based on URL path at the same time implement SSL/TLS security as well.
+
+It acts as a smart router or entry point for HTTP and HTTPS 🔐 traffic to reach services running in the cluster.
+
+Key Components of Kubernetes Ingress are: 👀 
+
+🎮  Ingress Controller: This is a specialized load balancer that watches the Ingress resource and processes the rules defined within it. It is responsible for routing incoming traffic to the appropriate services based on the Ingress rules. Popular Ingress controllers include NGINX, Traefik, and HAProxy.
+
+📃 Ingress Resource: This is a Kubernetes resource that defines the rules for routing incoming traffic. It specifies the hostname, path, and destination services for different types of requests.
+
+📏 Ingress Rules: These are the rules defined within the Ingress resource that determine how incoming traffic should be routed. Rules can be based on host, path, or other criteria.
+
+ 🤩 Key Benefits:
+🔹 Load balancing ⚖ 
+🔹 SSL/TLS Termination 🔐 
+🔹 Name-based Virtual Hosting
+🔹 Path-based Routing
