@@ -1,0 +1,22 @@
+What if your Pod crashes🤷♂️and the valuable data within the pod is lost🤯❓ 
+How to mitigate the data loss❓
+
+#PersistentVolumes💡 #PersistentVolumeClaim 🙂 
+
+🔶Persistent Volume (PV)
+A Persistent Volume is a resource(piece of storage) in the cluster just like a node is a cluster resource. PVs are volume plugin that have a lifecycle ♻  independent of any individual Pod that uses the PV.
+
+🔶PersistentVolumeClaim (PVC)
+A PersistentVolumeClaim is a request for and claim to a PersistentVolume resource. Its similar to a Pod. Pods consume node resources and PVCs consume PV resources. Pods can request specific levels of resources i.e. CPU💻, Memory, etc. Claim objects request a specific size, access mode, and StorageClass for the PersistentVolume. If a PersistentVolume that satisfies the request exists or can be provisioned, the PersistentVolumeClaim is bound 🤝  to that PersistentVolume. 
+
+Persistent Volumes support following Access Modes:
+
+🔸ReadWriteOnce: The volume can be mounted as read-write by a single pod (RWO).
+🔸ReadOnlyMany: The volume can be mounted read-only by many nodes (ROX).
+🔸ReadWriteMany: The volume can be mounted as read-write by many nodes (RWX).
+
+Summary🗒of the process:
+
+🔹Create a PersistentVolume
+🔹Create a PersistentVolumeClaim
+🔹Create a Pod that uses the above created PersistentVolumeClaim for storage.
