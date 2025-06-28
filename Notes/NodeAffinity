@@ -1,0 +1,45 @@
+Assigning Pods to Nodes 📥 (Beyond Node Selectors)
+
+#NodeAffinity  🧠 
+
+Why Node Affinity ❓ 
+
+Node selectors are great for basic pod placement based on node labels 🏷 . But what if you need more control 🎮  over where your pods land 🛬 ❓  
+
+In k8s cluster node affinity offers advanced capabilities to fine-tune 🎶  pod scheduling. Node Affinity enables a conditional approach with logical operators in the matching process. It lets you define complex rules📏for where your pods can be scheduled based on node labels🏷.
+
+Think of it as creating a wish list🗒for your pod's ideal home🏠❗ 
+
+Properties in Node Affinity:
+🅰#requiredDuringSchedulingIgnoredDuringExecution:
+
+This scheduler can't schedule the Pod unless the rule is met.
+
+🅱#preferredDuringSchedulingIgnoredDuringExecution:
+
+This scheduler tries to find a node that meets the rule📏. If a matching node is not available, the scheduler still schedules the Pod.
+
+How to configure Pods with Node Affinity ❔ 
+spec:
+ affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+                - key: disktype
+                  operator: In
+                  values:
+                     - ssd
+
+(A Pod with a Node Affinity rule that targets nodes labeled disktype=ssd)
+
+The following are the logical operators that one can use in the operator field for Node Affinity and Pod Affinity:
+
+💠 In : The label value is present in the supplied set of strings.
+💠 NotIn : The label value is not🚫contained in the supplied set of strings.
+💠 Exists : A label with this key🗝exists on the object. 
+💠 DoesNotExist : No🚫label with this key exists on the object.
+
+Other ways of assigning/scheduling a pod to node are:
+#nodeSelector
+#TaintAndToleration
