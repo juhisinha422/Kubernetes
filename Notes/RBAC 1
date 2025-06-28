@@ -1,0 +1,35 @@
+Are you authorized to perform tasks on K8's❓Determine your access level🎚.
+
+#Authorization 🧐 : What can you do❓ 
+
+Authorization is like granting access🚪levels within the fortress 🏰 . It determines whether you have the necessary permissions to access specific resources.
+
+Kubernetes offers several authorization modes to manage access to cluster resources.
+
+1️⃣  Node Authorization
+This mode grants right to kubelets on nodes to communicate📲 with the API server. It authorize API requests made by kubelet. It is not intended for user authorization.
+
+2️⃣  ABAC (Attribute-Based Access Control)
+ABAC mode defines an access control paradigm ⚰whereby access rights are granted to users through the use of policies 📜 which combine attributes together. These policies consist of rules 📄 that match attributes in a user’s request with attributes in the policy.
+However, managing and updating ABAC policies can become complex 🤯  with increase in number of policies and attributes.
+
+3️⃣  RBAC (Role-based Access Control) 
+RBAC defines policies for users🧑, groups 👨👨👦👦 and processes by allowing or disallowing accesses to manage API resources. It allows cluster administrators 👨💻 to create roles and bind them to users, groups, or service accounts.
+🔸 ex: Create roles (like "dev") and assign developer or developer groups to those roles i.e. role binding.
+RBAC is widely adopted authorization mode and its the most recommended ✌way of authorization in K8's.
+
+4️⃣  Webhooks
+It leverage external tools for more complex 🤔 authorization logic. When a user or process sends a request to the Kubernetes API server, the server sends a webhook authorization request to the external authorizer. 
+The authorizer evaluates the request against the defined policies📜and sends a callback📞 response indicating whether the request is authorized ✔ or not ✖ .
+
+5️⃣  AlwaysAllow  ✅ 
+This mode allow all requests without any authorization checks. This is the default authorization mode.
+
+6️⃣  AlwaysDeny ❌ 
+This mode deny all requests without any authorization checks. 
+
+◾Configure Authorization Modes ✍ :
+1. Navigate to /etc/Kubernetes/manifests/kube-apiserver.yaml
+2. Edit the file, add the desired authorization mode to the "--authorization-mode" flag ⛳ , separating multiple modes with commas.
+
+🔸 ex: --authorization-mode=RBAC,ABAC
