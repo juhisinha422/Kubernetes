@@ -1,0 +1,30 @@
+Backup your ETCD in K8's, restore your peace of 🧠 mind-because cluster reliability is non-negotiable 🙅♂️ 
+
+#ETCD #Backup #Restore 🎒 
+
+What is ETCD in K8's ❓ 
+
+A database system Kubernetes uses to store networking🗄 information, cluster state and other persistent data.
+It stores information as key-value🔐 pairs and does not overwrite pairs when an update is required. Instead, it creates a new database entry 🗒 and appends at the end 🔚, making previous entry for future removal.
+
+Kubernetes interacts with the ETCD through its API server.
+
+ETCD must be backed up in case the cluster fails 😵or faces a security incident.
+Backing up ETCD data using 👇 :
+🔸Snapshot using etcdctl.
+🔸Replacing failed etcd member.
+🔸Restoring etcd cluster.
+
+Some important terms ✍ :
+
+🔸--data-dir ➡ Directory in which ETCD restore all its config data by default.
+
+🔸--listen-client-urls ➡ URL on which ETCD client is listening.
+
+🔸--key-file ➡ Private key certificate.
+
+🔸--cert-file ➡ Public key certificate.
+
+🔸--trusted-ca-file ➡ Certified Authority certificate.
+
+Checkout my 👨💻GitHub Repo for step-by-step illustration : https://lnkd.in/gc6kCe9G
