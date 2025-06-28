@@ -1,0 +1,43 @@
+Helm your way to Kubernetes with these commands 
+
+#Helm ⚓ 
+
+1️⃣  helm create <chart_name> 
+=> Create Helm chart
+ex: helm create helloworld
+
+2️⃣  tree <chart_name> 
+=> Show complete directory structure of Helm chart
+ex: tree helloworld
+
+3️⃣ helm install <release_name> <chart_name> 
+=> Install the chart with a name
+ex: helm install hellorelease helloworld
+
+4️⃣  helm list -a => Verify the chart is installed
+
+5️⃣  helm upgrade <release_name> <chart_name> 
+=> To apply the latest changes in chart
+ex: helm upgrade hellorelease helloworld
+
+6️⃣  helm rollback <release_name> <revision> 
+=> To rollback previous version
+ex: helm rollback hellorelease 1
+
+7️⃣  helm install <release_name> --debug --dry-run <chart_name> 
+=> Run a test installation to validate chart
+ex: helm install hellorelease --debug --dry-run helloworld
+
+8️⃣  helm template <chart_name> 
+=> To display k8s yaml manifests based on helm chart
+ex: helm template helloworld
+
+9️⃣  helm lint <chart_name> 
+=> To find any misconfiguration in chart
+ex: helm lint helloworld
+
+🔟 helm uninstall <release_name> 
+=> To uninstall a deployed helm release 
+ex: helm uninstall hellorelease
+
+Resources: https://lnkd.in/gU37fNFZ 
