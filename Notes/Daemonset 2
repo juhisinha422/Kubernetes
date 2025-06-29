@@ -1,0 +1,28 @@
+Kubernetes DaemonSet — One Pod Per Node, Automatically
+Ever needed to run the same Pod on every node in your Kubernetes cluster? That’s exactly what a DaemonSet does.
+
+What’s a DaemonSet?
+A DaemonSet ensures a specific Pod runs on all (or selected) nodes—automatically, even as nodes are added or removed.
+
+Common Use Cases
+Log collectors (Fluentd, Filebeat)
+Monitoring agents (Node Exporter)
+Security tools (Falco, Sysdig)
+Storage daemons (Ceph, Gluster)
+
+Why Use It?
+Scales automatically with the cluster
+Great for infrastructure-level services
+Easy to manage, update, and control with nodeSelector, affinity, or tolerations
+
+How DaemonSets Work:
+
+DaemonSet Controller: The DaemonSet controller is responsible for managing the pods created by the DaemonSet. It monitors the state of the cluster, creating new pods on new nodes and removing pods from nodes that are no longer available.
+
+Node Affinity: DaemonSets use node affinity to determine which nodes should run the pods. By default, DaemonSets will run on all nodes. However, you can use node selectors or taints/tolerations to restrict the DaemonSet to specific nodes.
+
+Update Strategy: DaemonSets support two update strategies:
+OnDelete: This strategy allows you to manually update pods. The DaemonSet controller will not automatically update the pods.
+RollingUpdate: This strategy automatically updates pods in a rolling fashion, minimizing downtime. The DaemonSet controller will gradually update the pods, ensuring that there are always a sufficient number of pods running.
+
+DaemonSets = Cluster-wide consistency, made easy.
