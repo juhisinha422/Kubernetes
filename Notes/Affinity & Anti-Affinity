@@ -1,0 +1,34 @@
+Affinity and Anti-Affinity in Kubernetes: Mastering Pod Scheduling
+
+Efficient pod placement is key to high performance and high availability in Kubernetes.
+
+ This is where Affinity and Anti-Affinity rules step in. Let’s break it down:
+
+🧲 Node Affinity
+
+🗂️ Schedule pods based on node labels
+ ✅ Use case: Run pods only on SSD-enabled or GPU nodes
+
+👥 Pod Affinity
+
+🏠 Place pods together ideal for apps that communicate frequently
+ ✅ Example: Co-locate frontend with backend for faster response
+
+🚫 Pod Anti-Affinity
+
+📦 Spread pods across nodes or zones to reduce risk
+ ✅ Example: Prevent all replicas from running on the same node
+
+⚙️ Hard vs. Soft Rules
+
+🧩 requiredDuringSchedulingIgnoredDuringExecution → Must match
+ 🎯 preferredDuringSchedulingIgnoredDuringExecution → Best effort
+
+🎯 Why It Matters:
+
+ ✅ High Availability
+ ✅ Reduced Latency
+ ✅ Better Fault Tolerance
+ ✅ Smarter Cluster Utilization
+
+ If you're building resilient, scalable apps make Affinity rules your secret weapon.
