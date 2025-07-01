@@ -1,0 +1,26 @@
+What Is a Service Mesh — and Why DevOps Teams Need It
+
+We’ve talked about containers, Kubernetes, GitOps, and observability — but when your microservices architecture grows complex, you need something to manage communication, security, and resilience across services.
+That’s where a Service Mesh comes in.
+🧠 What is a Service Mesh?
+A Service Mesh is a dedicated infrastructure layer that controls how microservices communicate with one another.
+✅ It handles:
+Secure service-to-service communication (mTLS)
+Retry logic, circuit breaking, and rate limiting
+Monitoring, tracing, and logging of service calls
+Traffic shifting and blue-green/canary deployments
+🔗 Key Features:
+Sidecar Proxy: Each service has a proxy (e.g., Envoy) to handle traffic
+Control Plane: Central management of policies and configurations
+Data Plane: Actual traffic routing and enforcement
+🛠️ Popular Service Mesh Tools:
+Istio (most popular, rich features, works with Kubernetes)
+Linkerd (lightweight, easy to set up)
+Consul Connect (from HashiCorp, works across platforms)
+AWS App Mesh / Kuma / Open Service Mesh (cloud-native options)
+🤔 Why DevOps Teams Use Service Mesh:
+✅ Decouple networking logic from app code
+ ✅ Improve security with mTLS
+ ✅ Gain deep traffic observability
+ ✅ Roll out progressive deployments with zero code changes
+💡 Pro Tip: Start with Linkerd if you're new — it’s simpler. Then try Istio when you’re ready for enterprise-grade use.
