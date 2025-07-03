@@ -1,0 +1,26 @@
+Node Pressure in Kubernetes 
+
+What You Need to Know
+When a Kubernetes node runs low on critical resources — like CPU, memory, disk space, or inodes.
+
+the kubelet detects this and raises node pressure conditions:
+
+⚠️ MemoryPressure
+⚠️ DiskPressure
+⚠️ PIDPressure
+⚠️ InodePressure
+
+Why does this matter?
+ When a node is under pressure, Kubernetes:
+ 
+Prioritizes system stability
+Starts evicting low-priority pods to free up resources
+Helps prevent the entire node from becoming unresponsive
+
+What can you do?
+ Design pod resource requests/limits carefully
+ Monitor node health (e.g. kubectl describe node)
+ Use taints/tolerations and pod priorities to control eviction behavior
+ Scale the cluster or optimize workloads proactively
+
+💬 “Node pressure is Kubernetes’ way of telling you: your infrastructure needs attention before it’s too late.”
