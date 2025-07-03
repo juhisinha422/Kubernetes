@@ -1,0 +1,57 @@
+Ensuring High Availability in Kubernetes with Pod Resources & Disruption Budgets
+
+In the world of cloud-native applications, resilience and availability are non-negotiable. As engineers, our job doesn’t end with getting things to run — it’s about ensuring they stay running, especially under pressure.
+Recently, I revisited a real-world Kubernetes scenario around Pod Resource Management and Pod Disruption Budgets (PDBs). Here's a breakdown of what I learned, applied, and why it matters in production environments.
+
+🔧 Part 1: Resource Requests & Limits – Your First Line of Defense
+In Kubernetes, we can define how much CPU and memory a container requests and the maximum it can use. This is essential not just for performance, but for predictable scheduling and cost control.
+
+resources:
+ requests:
+  memory: "256Mi"
+  cpu: "100m"
+ limits:
+  memory: "512Mi"
+  cpu: "500m"
+
+✅ What This Means:
+   1. Requests: The minimum guaranteed resources your pod will get. Kubernetes uses this during scheduling.
+   2. Limits: The maximum resources your pod is allowed to use. Exceed it,  and the pod could be throttled or killed (OOMKilled).
+Setting these ensures:
+  1.  Your pod won’t overconsume and starve other workloads.
+   2. Kubernetes can make smart scheduling decisions.
+   3. Cost is managed, and nodes aren’t overprovisioned.
+
+🛡️ Part 2: PodDisruptionBudgets – Guarding Availability During Chaos
+What happens when you drain a node, update your deployment, or autoscaling kicks in?
+That’s where PodDisruptionBudgets (PDBs) shine. They act as a safety layer that prevents too many pods from being voluntarily evicted at once, helping maintain application uptime.
+Example PDB:
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+ name: critical-service-pdb
+spec:
+ minAvailable: 2
+ selector:
+  matchLabels:
+   app: critical-service
+
+🔍 What This Does:
+Ensures at least 2 pods are always running and ready.
+If Kubernetes wants to evict more and doing so drops the number of available pods below 2 — it blocks that disruption.
+This is cluster-wide (not node-specific), and applies only to voluntary disruptions — like rolling updates, node upgrades, or manual drains.
+🧠 Common Misconception: Will Kubernetes Move the Pods?
+Many think Kubernetes will "move" or "protect" specific pods when using a PDB. Here's the truth:
+Kubernetes does not move pods — it evicts, and your controller (like a Deployment) recreates them on available nodes.
+If PDBs are configured correctly, at least the minimum number of pods will always stay active — giving you fault tolerance and high availability during planned disruptions.
+🧩 Wrapping It All Together
+By combining:
+Thoughtful resource requests and limits
+Well-planned PDBs
+You can:
+ ✅ Protect your application during rollouts and node drains
+ ✅ Avoid OOM kills and CPU throttling
+ ✅ Ensure your service remains highly available — even under stress
+🎯 Final Thought
+High availability isn’t a feature — it’s a discipline.
+
