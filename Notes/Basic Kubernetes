@@ -1,0 +1,25 @@
+Back to Basics - Kubernetes 
+
+Kubernetes - A Container Orchestrator that allow you to manage, deploy and Scale Containerize application efficiently at Scale.
+
+
+Container
+A ready-to run software package containing everything needed to run an application; the code and any runtime it requires.
+Cannot be deployed directly to physical or Virtual Hosts.
+
+Pod 
+Contains one or mode application containers
+Contain Zero or more storage volumes
+Smallest unit of deployment and scaling in Kubernetes.
+
+Node
+Contains one or more Pods.
+Physical/virtual host provide compute resources.
+Container runtime to retrieve container images and run containers.
+Kubelet (agent to manage Pods in node and across nodes) 
+Kube-Proxy (mange network between pods in node and across cluster)
+
+Cluster 
+Group of one or more nodes in Kubernetes environment.
+Control plane orchestrates apps through Nodes and Pods.
+
