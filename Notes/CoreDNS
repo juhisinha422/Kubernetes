@@ -1,0 +1,18 @@
+𝐄𝐯𝐞𝐫 𝐰𝐨𝐧𝐝𝐞𝐫𝐞𝐝 𝐡𝐨𝐰 𝐏𝐨𝐝𝐬 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐭𝐚𝐥𝐤 𝐭𝐨 𝐞𝐚𝐜𝐡 𝐨𝐭𝐡𝐞𝐫 𝐮𝐬𝐢𝐧𝐠 𝐧𝐚𝐦𝐞𝐬 𝐥𝐢𝐤𝐞 𝚊𝚞𝚝𝚑-𝚜𝚎𝚛𝚟𝚒𝚌𝚎.𝚍𝚎𝚏𝚊𝚞𝚕𝚝.𝚜𝚟𝚌.𝚌𝚕𝚞𝚜𝚝𝚎𝚛.𝚕𝚘𝚌𝚊𝚕?
+
+The magic behind this is 𝗖𝗼𝗿𝗲𝗗𝗡𝗦 the silent hero running inside your cluster.
+
+When a Pod needs to connect to a service, it doesn’t magically know the IP. It simply asks,
+"𝙃𝙚𝙮 𝘿𝙉𝙎, 𝙬𝙝𝙚𝙧𝙚 𝙞𝙨 𝙖𝙪𝙩𝙝-𝙨𝙚𝙧𝙫𝙞𝙘𝙚?"
+
+That’s where 𝗖𝗼𝗿𝗲𝗗𝗡𝗦 𝘀𝘁𝗲𝗽𝘀 𝗶𝗻.
+
+It checks with the Kubernetes API, finds the ClusterIP, and tells the pod
+“Here’s the IP. You’re good to go!
+
+- CoreDNS runs as a Deployment in the kube-system namespace.
+- It listens for DNS queries and resolves internal service names.
+- Without it, service discovery simply won’t work.
+
+If your services can’t talk to each other then your first suspect should be DNS. 
+Next time you nslookup a service inside your pod… remember, CoreDNS has your back
