@@ -1,0 +1,11 @@
+Kubernetes Taints & Tolerations — Keeping Your Cluster Organised
+
+Taints and Tolerations work together in Kubernetes to control which Pods run on which Nodes, giving you greater flexibility and control over your cluster.
+
+🔒 Taints are applied to Nodes. They act as a way to repel Pods, preventing them from being scheduled onto those Nodes unless the Pods explicitly tolerate the taint.
+
+✅ Tolerations are applied to Pods. They don't guarantee that a Pod will be scheduled onto a tainted Node, but they allow the scheduler to schedule the Pod there if other scheduling requirements are met.
+
+Think of it like a "Staff Only" area in a restaurant, the Taint is the sign on the door, and the Toleration is like a staff badge. Only Pods with the right Toleration (badge) can enter; all others are restricted.
+
+This helps ensure that sensitive workloads, special-purpose Nodes, or infrastructure-critical Nodes are properly isolated and that Pods don't get scheduled onto inappropriate Nodes.
