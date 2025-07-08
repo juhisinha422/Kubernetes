@@ -1,0 +1,27 @@
+Kubernetes Security
+
+Today, I dived into the world of Kubernetes Security, and it's a critical topic that demands serious attention. Here are some key areas we should focus on for a secure cluster setup
+
+Security at Workload level
+1. Role Based Access Control(RBAC) - It ensure that cluster users and workloads have only the access to resources required to execute their roles. Least privilege principle is used to assign roles to users and service accounts.
+2. Identity Providers (Okta, OIDC) -Integrate Kube-ApiServer with Identity providers(IDP) like Okta or OpenID Connect for strong, centralized authentication.
+3. Secrity for Container -Containers Images should be pulled or build from trusted sources. and Implementing image scanning tools like Trivy in CI/CD pipeline to prevent vulnerabilities.
+
+Security at Network Level
+1. Network Policies -It define rules for controlling the flow of traffic between pod groups, enforcing a secure network.
+2. Service Mesh – Use Istio/Linkerd service mesh which provides mutual TLS (mTLS) between services for encrypted and authenticated communication.
+
+Security at Control-plane and Worker node level
+1. Master & Worker Node Security - By implemneting tool like kube-bench, which checks whether a Kubernetes cluster meets the CIS benchmarks.
+2. Worker Node Hardening – Nodes should be secured and hardened by regularly apply OS patches, disable unused services to prevent unauthorized access.
+3. Pod Security Admission (PSA) -By ensuring Pod Security admission controller is running which defines labels like enforce, audit and warn which helps control plane to take action if potential violation is detected.
+
+Security at Infrastructure level
+1. Immutable Infra -By creating Immutable Infrastructure with IAC terrraform which means replacing/rebuild containers instead of patching/updating them again to reduce drifts and hidden risks.
+2. Version control-Infra -By maintaining clear history of changes, version control can significantly reduce risk of failures and results in faster deployments.
+
+Security by observability
+1. Monitoring & Alerts -By Implementing Prometheus and Grafana which helps to set up alerts which indicates malicious activity, early detection of potential security breaches.
+2. Audit Logging -Continuous Audit of logs events that have occurred within the cluster, helping in analysis tracing and monitoring.
+
+Securing Kubernetes is critical in Production Systems. If you're building with Kubernetes, make sure you're building it securely. 
