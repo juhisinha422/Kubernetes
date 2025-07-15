@@ -1,0 +1,31 @@
+How Do Kubernetes Pods Store Data Using Persistent Volumes (PV)? 🐳📦
+
+One common question for anyone working with Kubernetes is:
+
+👉 "How do pods store data that survives restarts or failures?"
+
+Here’s a quick breakdown 💡:
+
+📦 Persistent Volumes (PV) to the Rescue
+In Kubernetes, pods are ephemeral — if they restart, all data inside is gone. But when you need durable storage, you use:
+
+🔹 Persistent Volume (PV):
+A cluster-wide storage resource provisioned by an admin or dynamically via a storage class.
+
+🔹 Persistent Volume Claim (PVC):
+A request from a pod for specific storage requirements (size, access mode, etc.).
+
+🔁 How It Works
+🧾 Pod defines a PVC (Persistent Volume Claim)
+
+🎯 Kubernetes matches the PVC to an available PV (or provisions one dynamically)
+
+🔗 The PVC is mounted into the pod as a volume
+
+📁 Pod containers can now read/write data, and it's safely stored outside the pod lifecycle
+
+
+📦 This approach ensures:
+
+✅ Data survives pod restarts
+✅ Backups and snapshots
