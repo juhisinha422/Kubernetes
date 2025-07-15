@@ -1,0 +1,24 @@
+Ever wonder how Kubernetes runs its own control plane components as pods—when they’re supposed to run everything else? 🤔
+
+🔄 Bootstrap paradox? Solved with Static Pods!
+
+But what exactly are static pods?
+
+Static pods aren’t managed by the control plane components of a Kubernetes cluster. Instead, they’re managed directly by the kubelet on a specific node. Defined through configuration files located on the node’s filesystem, they’re automatically created and maintained by the kubelet. Static pods are typically used to run critical system services or to bootstrap the cluster—when the control plane needs to be deployed directly onto the nodes.
+
+🔧 How it works:
+
+1️⃣ Drop pod YAMLs into /etc/kubernetes/manifests
+2️⃣ The kubelet watches this directory and automatically creates & runs the pods
+3️⃣ Control plane components start before the cluster even exists!
+
+💡 Why static pods matter:
+
+Node-bound: Tied to the specific host node’s lifecycle
+
+Mirror pods: Reflected in the API server but not controlled by it (you’ll see them named with the node’s name)
+
+Critical role: Essential for bootstrapping and recovering the control plane
+
+
+📌 Note: Static pods are the only type of static object in Kubernetes. The kubelet operates at the pod level, managing their lifecycle independently of the API server.
