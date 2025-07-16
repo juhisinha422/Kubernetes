@@ -1,0 +1,83 @@
+Kubernetes Probes — the unsung heroes of app reliability.
+
+You’ve deployed your app — it runs, scales, stores data. But Kubernetes still needs to ask:
+
+“Is your app actually… working?”
+
+✅ Is it alive?
+
+ ✅ Is it ready to handle traffic?
+
+ ✅ Has it even finished starting up?
+
+That’s where Probes come into play — the built-in health check system in Kubernetes.
+
+Here’s a breakdown of the three types of probes and what they help us catch:
+
+🔹 Liveness Probe — “Still alive?”
+
+ Detects crashes or unresponsiveness.
+
+ If this fails → the container gets restarted.
+
+------------------------------------
+livenessProbe:
+ httpGet:
+  path: /healthz
+  port: 8080
+ initialDelaySeconds: 10
+ periodSeconds: 5
+------------------------------------
+
+🔹 Readiness Probe — “Ready to serve traffic?”
+
+ If this fails → Pod stays running, but no traffic is routed to it.
+
+ Super useful during deploys or slow initial loads.
+
+------------------------------------
+readinessProbe:
+ tcpSocket:
+  port: 5432
+ initialDelaySeconds: 5
+ periodSeconds: 10
+------------------------------------
+
+🔹 Startup Probe — “Still booting up?”
+
+ Perfect for apps that take a while to initialize (Java, large DBs, etc.).
+
+ It blocks the liveness check until the app finishes booting.
+
+------------------------------------
+startupProbe:
+ httpGet:
+  path: /startup
+  port: 8080
+ failureThreshold: 30
+ periodSeconds: 5
+------------------------------------
+
+💡 Flow Summary
+
+New pod starts → Startup probe runs
+
+If startup fails → Restart
+
+If it passes → Liveness & Readiness start
+
+Liveness fails → Restart
+
+Readiness fails → No traffic, but pod keeps running
+
+Quiz time:
+
+🧠 Which probe blocks traffic until the app is ready? → Readiness
+
+ 🧠 Which one helps with slow boots? → Startup
+
+ 🧠 Which one restarts a stuck/crashed app? → Liveness
+
+These small configs make a big difference.
+
+ They’re your best bet for keeping clusters healthy and resilient.
