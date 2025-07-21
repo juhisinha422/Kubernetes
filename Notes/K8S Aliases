@@ -1,0 +1,44 @@
+Kubernetes Aliases for Productivity
+
+🔧 Kubernetes Tip of the Day: Boost your CLI speed with kubectl aliases!
+Working with Kubernetes daily? Tired of typing long kubectl commands repeatedly?
+Here are some handy aliases I use to save time and work efficiently in the terminal 👇
+
+alias k='kubectl'
+This is the most fundamental and widely used alias.
+
+alias kgp='kubectl get pods'
+alias kgs='kubectl get svc'
+alias kga='kubectl get all -A'
+alias kgn='kubectl get nodes'
+alias kaf='kubectl apply -f'
+alias kg='k get'
+alias kgp='kg pods'
+alias kgd='kg deploy'
+alias kgs='kg svc'
+alias kgi='kg ingress'
+alias kgn='kg nodes'
+alias kgcm='kg configmaps'
+alias kgsec='kg secrets'
+alias kgns='kg namespaces'
+alias kgcrd='kg crd'
+alias krh='k rollout history'
+alias krs='k rollout status'
+alias kru='k rollout undo'
+alias klo='k logs -f'
+# Tail logs of a podalias kex='k exec -it'
+# Execute a shell in a podalias ksyslo='k logs -n kube-system -f'
+# Tail kube-system logs
+
+✅ Add these in your ~/.bashrc or ~/.zshrc, then run:
+
+# source ~/.bashrc
+You’ll be amazed how much time these save when you're deep in debugging, rolling updates, or managing workloads across multiple namespaces!
+
+👉 Add your aliases: Append the alias definitions to the end of the file.
+Basic Alias Syntax: alias <shortcut_name>='<full_command>'
+Source the file (or open a new terminal): After adding aliases, they won't be active until you load the updated configuration.
+
+source ~/.bashrc
+# OR
+source ~/.bash_aliases # if you used a separate file
