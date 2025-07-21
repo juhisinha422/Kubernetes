@@ -1,0 +1,17 @@
+Did you know Kubernetes metrics have a lifecycle just like APIs?
+
+
+1. Alpha – New metric. Cool, but it might change or disappear anytime.
+2. Stable – Safe to use. Won’t change without notice.
+3. Deprecated – Still exposed, but not for long. Start migrating.
+4. Hidden – Not visible unless you explicitly re-enable it (with a version flag).
+5. Deleted – Completely removed. Not coming back.
+
+Why does this matter?
+Because sometimes, after a Kubernetes upgrade, you’ll find that your alerts or dashboards suddenly break — and it’s not always obvious why. Turns out, the metric you were relying on might’ve just… quietly moved on in the lifecycle.
+If you're using something like Prometheus or relying on custom dashboards, this can cause real headaches.
+
+TIP -
+If something breaks after a K8s upgrade, try --show-hidden-metrics-for-version ( --show-hidden-metrics-for-version=<k8s version> ). It might save your dashboards (and your weekend).
+
+Monitoring isn’t just about collecting metrics — it’s about knowing which ones still exist.
