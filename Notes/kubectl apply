@@ -1,0 +1,11 @@
+What Happens When You Run kubectl apply?
+
+kubectl apply is the command you use to send your desired configuration to the Kubernetes API server. It's the primary way to create and update resources in your cluster.
+
+When you run kubectl apply, Kubernetes:
+- Reads your YAML file.
+- Sends the desired state to the Kubernetes API server.
+- Kubernetes compares desired vs current state.
+- Makes changes to match your desired state.
+
+This is called declarative management—you define what you want, Kubernetes makes it happen.
