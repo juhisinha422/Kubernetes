@@ -1,0 +1,19 @@
+various Deployment Strategies!
+
+Understanding the right way to roll out changes in production is crucial in DevOps, and here’s what I learned:
+
+1. Recreate – Shut down the old version completely before starting the new one. Simple but causes downtime.
+
+2. Rolling Update – Gradually replace old versions with new ones, ensuring availability during deployment.
+
+ 3. Blue-Green Deployment – Keep two environments; switch traffic from old (blue) to new (green) once everything is ready.
+
+4. Canary Deployment – Release to a small user group first to monitor impact before full rollout.
+
+5. Progressive Delivery – Controlled, step-by-step rollout using metrics and automation to reduce risk.
+
+6. A/B Testing – Serve different app versions to different users to compare performance/UX.
+
+7. Shadow Deployment – Deploy changes silently in the background to observe behavior without affecting real users.
+
+These strategies help ensure safe, smooth, and reliable software delivery.
