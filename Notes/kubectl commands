@@ -1,0 +1,19 @@
+kubectl Command: Behind the scenes!
+
+When you perform kubectl apply, Kubernetes executes a series of steps to manage the desired state of the resources defined in the provided configuration files. Here’s on what happens:
+
+1. User issues the kubectl apply -f request.
+ 
+2. The kubectl tool sends an API request to the Kubernetes API server to create or update the resource.
+
+3. The server validates the user’s request. If all looks good, the server will write the new or modified resource into etcd.
+
+4. The kube-controller-manager is a daemon that continually watches the kube-apiserver.
+
+5. It will be notified of the new deployment and proceeds to create new pods to achieve the desired state through another call to the kube-apiserver.
+
+6. Then we have kube-scheduler which is responsible for scheduling Kubernetes pods on worker nodes.
+
+6. The kube-scheduler is then notified about the new pods that have been created and proceeds to determine which nodes are valid placements for the same. The scheduler’s primary task is to identify the create request and choose the best node for a pod that satisfies the requirements.
+
+7. Finally, Kubelet is an agent component that runs on every node in the cluster that gets notified if a pod has been assigned to it. The assigned node then coordinates with the container runtime on the node to start the appropriate containers.
