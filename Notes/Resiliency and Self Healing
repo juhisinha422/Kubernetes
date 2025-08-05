@@ -1,0 +1,35 @@
+ By default, every container in a pod has a restart policy of "Always". This means Kubernetes restarts a container whenever its process terminates, regardless of the exit code.
+
+Behind the Scenes
+Kubernetes Controllers: Various controllers work tirelessly in the background to maintain the desired state of your applications.
+
+Desired State: The controllers compare the current state of the pod with its desired state and take actions to reconcile any differences.
+
+Continuous Monitoring: Kubernetes constantly monitors the health of containers and takes corrective actions when needed.
+
+Process Termination vs. Application Unresponsiveness
+In the previous lesson, we saw how Kubernetes automatically detects and restarts terminated containers. Later in this course, we'll cover liveness and readiness probes, which allow you to configure Kubernetes to detect unresponsive applications and restart them automatically.
+
+To prepare for this, it's important to understand the difference between process termination and application unresponsiveness:
+
+Process Termination:
+
+Kubernetes automatically detects when a process within a container terminates.
+
+Kubernetes immediately takes action based on the restart policy, without any additional configuration, as seen in the lesson.
+
+Examples:
+
+Out of Memory (OOM) Error: If a container exceeds its memory limit, the process is terminated by the system, triggering a restart.
+
+Application Crash: If your application encounters an unhandled exception and exits, Kubernetes will restart the container.
+
+Application Unresponsiveness:
+
+This occurs when an application is still running but not functioning correctly.
+
+Kubernetes cannot automatically detect this situation without us additionally configuring liveness probes, which will be covered in a future lesson.
+
+Examples:
+
+Deadlock Situations: In cases where your application becomes unresponsive due to a deadlock, Kubernetes can restart the container if configured with appropriate liveness probes (a topic for future lessons).
