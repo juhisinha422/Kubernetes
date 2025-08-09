@@ -1,0 +1,25 @@
+Ingress Controller (AWS Application Load Balancer)
+Kubernetes Ingress allows external traffic to reach your services.
+When using AWS ALB Ingress Controller, it provisions an Application Load Balancer (ALB) to manage access.
+ 
+🌐 Ingress Controller with AWS ALB — Interview Cheat Sheet
+💡 What is it?
+Ingress Controller manages external traffic to Kubernetes services.
+AWS ALB Ingress Controller uses Application Load Balancer to route traffic.
+ 
+ALB Listener ➡️ Rule ➡️ Target Group ➡️ Pod/Container-----> fast scaling & portable
+ALB Listener ➡️ Rule ➡️ Target Group ➡️ EC2 VM
+ 
+🧠 Easy Keywords to Remember:
+Listener – Listens on port 80/443
+Rule – Host/path-based routing
+Target Group – Holds targets (pods or VMs)
+Target – Actual service backend (pod/container)
+ 
+ 
+✅ Why use AWS ALB Ingress Controller?
+Managed by AWS – No need to install NGINX or HAProxy
+Fast Provisioning – Automatically creates ALB, rules, and targets
+Low Resources – No extra load balancer pods needed
+Fast Auto Scaling – Targets updated dynamically
+Native AWS Integration – IAM, SSL, DNS, etc.
