@@ -1,0 +1,43 @@
+Kubernetes – Day 2
+
+Topic: Kubernetes Architecture 🏗️
+
+Kubernetes isn’t just a single piece of software—it’s a distributed system that follows a master-worker architecture. Understanding this is key before diving into deployments and scaling.
+
+🧩 Core Components
+
+1. Master Node (Control Plane) – The brain of Kubernetes, responsible for making decisions about the cluster.
+
+API Server – Front door for all Kubernetes commands (kubectl, API calls).
+
+Scheduler – Assigns Pods to nodes based on resource availability.
+
+Controller Manager – Ensures the desired cluster state is maintained.
+
+etcd – Key-value store for all cluster data.
+
+2. Worker Nodes – Where your application actually runs.
+
+Kubelet – Talks to the API server and ensures containers are running.
+
+Kube-proxy – Manages networking and service discovery.
+
+Container Runtime – Runs the containers (Docker, containerd, CRI-O).
+
+🗺️ Visual Overview
+
+Master Node 🧠 → Manages the cluster
+Worker Nodes 💪 → Run your apps
+
+📌 Remember: Without understanding the architecture, troubleshooting becomes a guessing game.
+
+*Quick Quiz
+
+Q: Which Kubernetes component stores all cluster data in a key-value format?
+
+A) API Server
+B) etcd
+C) Scheduler
+D) Controller Manager
+
+Tip: Next time you run kubectl get nodes, remember that the master node is managing those worker nodes behind the scenes.
