@@ -1,0 +1,37 @@
+Kubernetes Journey – Day 1 
+
+*What is Kubernetes and Why It Matters?
+
+Kubernetes (K8s) is the brain behind managing containers at scale.
+It automates deployment, scaling, and management of containerized applications reducing human error and increasing efficiency.
+
+🔍 Why use Kubernetes?
+✅ Auto-healing of applications
+✅ Easy scaling & load balancing
+✅ Zero-downtime deployments
+✅ Infrastructure abstraction
+
+🧠 Key Concepts:
+
+Pod: Smallest deployable unit in K8s
+
+Node: Machine (VM or physical) that runs pods.
+
+Cluster: Group of nodes.
+
+Master/Control Plane: Orchestrates the whole system.
+
+kubectl: Your CLI tool to talk to K8s
+
+* Command of the Day:
+
+kubectl version --client
+
+This shows your local kubectl version your entry into Kubernetes!
+
+🧩 Quiz Time:
+What is the smallest deployable unit in Kubernetes?
+A) Container
+B) Node
+C) Pod
+D) Deployment
