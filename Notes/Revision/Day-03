@@ -1,0 +1,21 @@
+Kubernetes Journey – Day 3
+
+Real-World Production Perspective in Kubernetes, 
+
+I’m starting to connect the dots between theory and production realities. It’s not just about running kubectl commands—it’s about thinking like a production engineer.
+
+🔹 Namespaces in Production
+In real deployments, namespaces are more than just “folders” in Kubernetes—they’re an isolation strategy.
+We use them to separate environments (dev, staging, prod) and apply RBAC for controlled access.
+
+🔹 Resource Quotas & Limits
+In production, forgetting to set CPU/memory limits can cause a single pod to eat up the cluster’s resources—leading to outages.
+Always define requests and limits in manifests.
+
+🔹 Secrets & ConfigMaps
+Hardcoding credentials? ❌ Not in production.
+Instead, use Secrets for sensitive data and ConfigMaps for environment-specific configs.
+Pro tip: Always encrypt secrets at rest and integrate with tools like SealedSecrets or HashiCorp Vault.
+
+💡 Key Takeaway:
+Learning Kubernetes isn’t just about knowing what a command does—it’s about knowing why it matters in production.
