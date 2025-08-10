@@ -1,0 +1,106 @@
+*INSTALL KIND CLUSTER IN YOUR LOCAL SYSTEM TO PRACTICE***
+CKA first set of learning.
+QUESTION-1
+update your image nginx with 1.20 as its 1.19?
+kubctl get deployment -o wide
+required file deployment.yaml
+image-name=nginx-pod
+deployment name=new
+command will use: kubectl set image deployment new nginx-pod=1.20
+
+QUESTION-2
+how to change path 0f the static pod?
+requirments: learn first what are static pods and what are their usecases
+1st step: need to identify path of the static pod to change the path
+ps -aux | grep "kubelet"
+
+static pods maintained by kubelet not by control manager
+get into kubelet config file path
+nano or vi it
+you will get STATIC POD PATH=etc/kubernetes/manifests
+change and save.
+
+QUESTION-3
+upgrade the cluster from 1.26 to 1.29
+kubeadm = 1.26
+kubelet= 1.26
+kubectl=1.26
+
+cordon the node
+kubectl cordon node-ip
+
+drain the node
+kubectl drain node node-ip --dry-run --ignore=deamonsets
+
+sudo apt update
+apt install kubeadm=1.29
+kubeadm upgrade apply 1.29
+apt install kubelet=1.29
+apt install kubectl=1.29
+
+systemctl restart kubelet
+kubectl uncordon node
+
+QUESTION-4
+create pod with lablels from command line?
+pod-name:nginx
+image:alpine:1.2
+label: tier=frontend
+
+command
+kubectl run pod nginx image:alpine:1.2 -l tier=frontend
+it creates pod and label
+kubectl describe pod nginx 
+use show labels also
+
+QUESTION-5
+create deployment with 3 replicas?
+deployment: demo
+image: nginx:1.19
+command:
+kubectl create deployment demo --image=nginx:1.19 --replicas=3
+kubectl describe deployment demo
+
+QUSTION-6
+create pod with below requirments and expose it to http i mean 8080?
+pod-name: nginx-pod
+image: nginx:1.20
+service-name: pod-service
+port: 8080
+target-port: 8080
+
+kubectl run nginx-pod --image=nginx:1.20
+pod get create
+assign service
+kubectl expose pod --name=pod-service --port=8080 --target-port=8080
+kubectl describe svc pod-service
+
+QUESTION-7
+create pod under namspace dev?
+pod-name: new
+image: nginx:1.20
+namspace : dev
+command to create namspace
+kubectl create namspace dev
+dev namspace is created
+
+create a pod under this namspace:
+kubectl run new --image=nginx:1.20 -n dev
+kubectl get pods -n dev
+new (pod is present)
+
+QUESTION-8
+ create static pod with command sleep=500?
+pod: static-pod
+image: httpd
+
+1 step: ps -aux | grep "kubelet"
+nano kubelet config file path
+find the path like this
+static-pod-path: /etc/kubernetes/manifests
+now in your root terminal
+kubectl run static-pod --image=httpd --command sleep 500 --dry-run=client -o yaml
+this above command give you yaml file of pod with all configuration you added 
+copy the yaml to  /etc/kubernetes/manifests
+
+once you add file automatically it create pod, not required to apply or execute, thats the beauty of static pods
