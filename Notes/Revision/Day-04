@@ -1,0 +1,29 @@
+Kubernetes Journey – Day 4
+ 
+*Understanding Services in Kubernetes-
+
+In Kubernetes, Pods are ephemeral they can be created, destroyed, or replaced at any time. But applications often need a stable network endpoint to communicate. This is where Services come into play.
+
+🔹 What is a Service?
+A Kubernetes Service is an abstraction layer that exposes a set of Pods as a single, stable network endpoint. It ensures that even if the underlying Pods change, the communication remains uninterrupted.
+
+🔹 Common Service Types:
+1️⃣ ClusterIP – Default type; exposes the service within the cluster.
+2️⃣ NodePort – Exposes the service on a static port on each Node’s IP.
+3️⃣ LoadBalancer – Integrates with cloud providers to create an external load balancer.
+4️⃣ ExternalName – Maps the service to an external DNS name.
+
+🔹 Why Services Matter:
+✅ Enables load balancing across Pods.
+✅ Decouples applications from Pod IPs.
+✅ Supports internal and external communication.
+
+* Tip: Always pair Services with labels & selectors to dynamically discover healthy Pods.
+
+
+* Kubernetes #Quiz – Day 4
+Q: If you want to make your app accessible outside the cluster without a cloud load balancer, which Service type would you use?
+A) ClusterIP
+B) NodePort
+C) LoadBalancer
+D) ExternalName
