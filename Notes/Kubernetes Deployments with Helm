@@ -1,0 +1,46 @@
+Simplifying Kubernetes Deployments with Helm
+
+A DevOps Engineer at an e-commerce company always looking for ways to streamline application deployments. We can set up a Helm repository to manage multiple microservices efficiently.
+Example scenario – we have two services: Payments and Shipping.
+Instead of deploying each service manually, Helm allowed:
+ ✅ Package configs into reusable charts
+ ✅ Version control them in a central repo
+ ✅ Deploy both services with a single command
+I used a BusyBox image for both services — so we can focus entirely on the Helm & Kubernetes workflow.
+
+🛠 Step-by-Step Flow
+
+1️⃣ Create directories and generate Helm charts for both services:
+                mkdir -p helm-repo/{payments,shipping}
+                cd helm-repo
+                helm create payments
+                helm create shipping
+
+2️⃣ Edit values.yaml for each chart:
+image:
+  repository: busybox
+  tag: latest
+  pullPolicy: IfNotPresent
+command: ["sh", "-c", "while true; do echo <Service Name> service running; sleep 5; done"]
+
+3️⃣ Package the charts
+               helm package payments
+               helm package shipping
+
+4️⃣ Create a Helm repository index
+               helm repo index .
+
+5️⃣ Push to GitHub
+              git init
+              git remote add origin <URL>
+              git add .
+              git commit -m "Added Helm charts for Payments & Shipping"
+              git push origin main
+
+6️⃣ Install the services from the repo
+              helm repo add myrepo <URL>
+              helm repo update
+              helm install payments ecommerce/payments
+              helm install shipping ecommerce/shipping
+
+Helm drastically reduces complexity in managing Kubernetes workloads, especially when working with multiple services, making deployments faster, repeatable, and scalable.
