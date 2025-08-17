@@ -1,0 +1,28 @@
+𝗠𝗲𝗺𝗼𝗿𝘆 𝗨𝗻𝗶𝘁𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 — 𝗗𝗼𝗻’𝘁 𝗚𝗲𝘁 𝗧𝗿𝗶𝗰𝗸𝗲𝗱 𝗯𝘆 𝘁𝗵𝗲 “𝗶”!
+
+When defining memory resources in Kubernetes, it’s crucial to understand the difference between decimal and binary units. A small mistake can lead to over-provisioning or under-provisioning your pods. Let’s clear it up 👇
+
+📏 𝗗𝗲𝗰𝗶𝗺𝗮𝗹 (𝗦𝗜) 𝗨𝗻𝗶𝘁𝘀
+Used in general computing, based on powers of 10:
+
+1K = 1,000 bytes
+
+1M = 1,000,000 bytes
+
+1G = 1,000,000,000 bytes
+
+🧮 𝘽𝙞𝙣𝙖𝙧𝙮 (𝙄𝙀𝘾) 𝙐𝙣𝙞𝙩𝙨
+Used in Kubernetes and memory-related contexts, based on powers of 2:
+
+1Ki (Kibibyte) = 1,024 bytes
+
+1Mi (Mebibyte) = 1,048,576 bytes
+
+1Gi (Gibibyte) = 1,073,741,824 bytes
+
+✅ 𝘽𝙚𝙨𝙩 𝙋𝙧𝙖𝙘𝙩𝙞𝙘𝙚
+Always use Mi or Gi when setting memory in Kubernetes to ensure precise resource allocation.
+🔹 memory: 512Mi → exactly 512 × 1,048,576 bytes
+🔹 memory: 1Gi → exactly 1,073,741,824 bytes
+
+🛡️ Don’t let your pod crash or get over-provisioned just because you used M instead of Mi.
