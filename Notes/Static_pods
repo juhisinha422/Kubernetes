@@ -1,0 +1,19 @@
+𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀 𝗶𝗻 𝗸𝟴?
+
+🔹 𝙒𝙝𝙖𝙩 𝙖𝙧𝙚 𝙨𝙩𝙖𝙩𝙞𝙘 𝙥𝙤𝙙𝙨?
+Static Pods are managed directly by the Kubelet, not the Kubernetes Control Plane (no scheduler, controller, or API server involvement).
+
+🔹 𝙒𝙝𝙚𝙧𝙚 𝙖𝙧𝙚 𝙩𝙝𝙚𝙮 𝙙𝙚𝙛𝙞𝙣𝙚𝙙?
+Simply drop your pod manifest into:
+/etc/kubernetes/manifests/
+...and Kubelet will auto-create the pod ✨
+
+🔹 𝙒𝙝𝙮 𝙪𝙨𝙚 𝙩𝙝𝙚𝙢?
+ • Great for running system-level components (like kube-proxy, CoreDNS)
+ • Useful when you want tight control over pod placement
+ • Pods auto-restart if killed or the node reboots
+
+🔹 𝙃𝙤𝙬 𝙩𝙤 𝙨𝙩𝙤𝙥 𝙤𝙣𝙚?
+Just delete the manifest from the /etc/kubernetes/manifests/ directory, and Kubelet will handle the cleanup.
+
+💡 Pro Tip: You’ll see these static pods as mirror pods via kubectl get pods -A, but you can’t delete them using kubectl — you have to manage them from the node directly.
