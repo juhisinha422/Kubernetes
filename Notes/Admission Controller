@@ -1,0 +1,36 @@
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗔𝗱𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿𝘀 – 𝗠𝗮𝗸𝗶𝗻𝗴 𝗦𝗺𝗮𝗿𝘁 𝗗𝗲𝗰𝗶𝘀𝗶𝗼𝗻𝘀 𝗕𝗲𝗳𝗼𝗿𝗲 𝗣𝗼𝗱𝘀 𝗔𝗿𝗲 𝗖𝗿𝗲𝗮𝘁𝗲𝗱!
+
+When you run a command like kubectl apply, your request goes through a few checks before it actually creates anything.
+
+💡 One important checkpoint is the Admission Controller — it acts like a gatekeeper for the Kubernetes API server.
+It decides whether to:
+✅ Allow
+🛠 Modify
+⛔️ Or Deny
+a request before it gets saved in the etcd.
+
+🔧 There are two main types:
+
+1️⃣ Validating Admission Controllers
+✔️ Only check the request.
+Examples:
+𝘓𝘪𝘮𝘪𝘵𝘙𝘢𝘯𝘨𝘦𝘳: Makes sure resource limits are set
+𝘙𝘦𝘴𝘰𝘶𝘳𝘤𝘦𝘘𝘶𝘰𝘵𝘢: Keeps workloads within limits
+𝘗𝘰𝘥𝘚𝘦𝘤𝘶𝘳𝘪𝘵𝘺: Enforces pod security rules
+
+2️⃣ Mutating Admission Controllers
+✔️ Can change the request before saving.
+Examples:
+𝘔𝘶𝘵𝘢𝘵𝘪𝘯𝘨𝘈𝘥𝘮𝘪𝘴𝘴𝘪𝘰𝘯𝘞𝘦𝘣𝘩𝘰𝘰𝘬: Adds labels or sidecars automatically
+𝘋𝘦𝘧𝘢𝘶𝘭𝘵𝘚𝘵𝘰𝘳𝘢𝘨𝘦𝘊𝘭𝘢𝘴𝘴: Sets default storage for your pods
+
+⚙️ How to enable or disable them?
+Just open the file:
+📁 /etc/kubernetes/manifests/kube-apiserver.yaml
+and look for these lines:
+--𝘦𝘯𝘢𝘣𝘭𝘦-𝘢𝘥𝘮𝘪𝘴𝘴𝘪𝘰𝘯-𝘱𝘭𝘶𝘨𝘪𝘯𝘴=...
+--𝘥𝘪𝘴𝘢𝘣𝘭𝘦-𝘢𝘥𝘮𝘪𝘴𝘴𝘪𝘰𝘯-𝘱𝘭𝘶𝘨𝘪𝘯𝘴=...
+
+Use them to control which admission controllers are active in your cluster.
+
+🔐 With admission controllers, Kubernetes gets smarter — checking, fixing, or rejecting bad configs before they cause problems!
