@@ -1,0 +1,23 @@
+𝗣𝗼𝗱 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴 𝘄𝗶𝘁𝗵 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗣𝗿𝗶𝗼𝗿𝗶𝘁𝘆𝗖𝗹𝗮𝘀𝘀 ⚙️
+
+In Kubernetes, some applications are more important than others. For example, critical apps need to run no matter what, while others can wait. PriorityClass helps you set which pods should run first when there aren't enough resources.
+
+✅ You can define a PriorityClass like this:
+𝘢𝘱𝘪𝘝𝘦𝘳𝘴𝘪𝘰𝘯: 𝘴𝘤𝘩𝘦𝘥𝘶𝘭𝘪𝘯𝘨.𝘬8𝘴.𝘪𝘰/𝘷1
+𝘬𝘪𝘯𝘥: 𝘗𝘳𝘪𝘰𝘳𝘪𝘵𝘺𝘊𝘭𝘢𝘴𝘴
+𝘮𝘦𝘵𝘢𝘥𝘢𝘵𝘢:
+ 𝘯𝘢𝘮𝘦: 𝘩𝘪𝘨𝘩-𝘱𝘳𝘪𝘰𝘳𝘪𝘵𝘺
+𝘷𝘢𝘭𝘶𝘦: 100000000
+𝘥𝘦𝘴𝘤𝘳𝘪𝘱𝘵𝘪𝘰𝘯: "𝘗𝘳𝘪𝘰𝘳𝘪𝘵𝘺 𝘤𝘭𝘢𝘴𝘴 𝘧𝘰𝘳 𝘮𝘪𝘴𝘴𝘪𝘰𝘯-𝘤𝘳𝘪𝘵𝘪𝘤𝘢𝘭 𝘱𝘰𝘥𝘴"
+
+✅ Attach it to your pods:
+𝘴𝘱𝘦𝘤:
+ 𝘱𝘳𝘪𝘰𝘳𝘪𝘵𝘺𝘊𝘭𝘢𝘴𝘴𝘕𝘢𝘮𝘦: 𝘩𝘪𝘨𝘩-𝘱𝘳𝘪𝘰𝘳𝘪𝘵𝘺
+
+✅ Want this to apply to all pods by default? Just add:
+𝘨𝘭𝘰𝘣𝘢𝘭𝘋𝘦𝘧𝘢𝘶𝘭𝘵: 𝘵𝘳𝘶𝘦
+
+🔁 Kubernetes can remove lower-priority pods to run higher-priority ones — this is called preemption.
+Set 𝘱𝘳𝘦𝘦𝘮𝘱𝘵𝘪𝘰𝘯𝘗𝘰𝘭𝘪𝘤𝘺: 𝘗𝘳𝘦𝘦𝘮𝘱𝘵𝘓𝘰𝘸𝘦𝘳𝘗𝘳𝘪𝘰𝘳𝘪𝘵𝘺 to allow eviction, or 𝘕𝘦𝘷𝘦𝘳 to wait for free resources instead.
+
+🔧 This setting is useful when balancing between urgent tasks that must start immediately and less urgent tasks that can wait their turn.
