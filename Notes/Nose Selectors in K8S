@@ -1,0 +1,19 @@
+Node Selectors in Kubernetes 🚀
+Node Selectors help control pod scheduling by matching pods to specific nodes based on labels — improving performance and resource utilization.
+
+✅ How It Works:
+- Label Your Nodes:
+kubectl label node <node-name> disktype=ssd
+
+-Add Node Selector to Pod:
+spec:  
+  nodeSelector:  
+    disktype: ssd  
+
+🔹 Use Cases:
+✔️ Run GPU workloads on GPU nodes
+ ✔️ Isolate workloads based on hardware specs
+ ✔️ Schedule pods based on storage or network type
+
+🔹 Limitations:
+❌ Basic scheduling only — use Node Affinity for complex logic
