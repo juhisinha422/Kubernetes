@@ -1,0 +1,11 @@
+Kubernetes Ingress: Managing External Traffic the Smart Way!
+
+In Kubernetes, an Ingress is a resource that controls how external users access your services inside the cluster. Instead of exposing each service with a NodePort or LoadBalancer, Ingress acts as a single entry point and routes traffic based on rules.
+
+Why Use Ingress?
+- Centralized traffic management
+- Path or host-based routing (e.g., /api → backend, / → frontend)
+- SSL/TLS termination for secure connections
+- Reduces the need for multiple load balancers
+
+Example Use Case: Route web traffic to different services (frontend, backend, API) through one domain..
