@@ -1,0 +1,65 @@
+#Kubernetes Day 5
+
+Deployments
+
+🔹 What is a Deployment?
+
+A Deployment in Kubernetes is a higher-level abstraction that manage #ReplicaSets and #Pod 
+it helps you:
+
+-Roll out new versions of your application.
+-Scale the number of pods.
+-Perform rolling updates and rollbacks automatically.
+
+
+🛠️ Deployment YAML Example-
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
+
+-- This will create 3 replicas of the NGINX pod.
+
+🔹 Useful Commands-
+
+# Create a Deployment
+kubectl apply -f deployment.yaml
+
+# List Deployments
+kubectl get deployments
+
+# Scale Deployment
+kubectl scale deployment nginx-deployment --replicas=5
+
+# Check rollout status
+kubectl rollout status deployment nginx-deployment
+
+# Rollback to previous version
+kubectl rollout undo deployment nginx-deployment
+
+🧠 #Quick Quiz:
+
+1. What’s the difference between a ReplicaSet and a Deployment?
+
+2. How can you rollback a deployment in Kubernetes?
+
+3. If you want to increase pods from 3 → 6, which command will you use?
+
+
+Today in my Kubernetes learning journey (Day 5), I explored Deployments – the powerful way to manage applications with rolling updates, scaling, and rollbacks. Kubernetes Deployments ensure zero downtime while updating apps. Exciting to see how easy it is to manage production workloads with just a few YAML lines!
