@@ -1,0 +1,43 @@
+How Kubernetes Works: End-to-End Explained Simply
+
+1. Cluster Setup
+You begin by setting up a Kubernetes cluster, which includes a control plane and one or more worker nodes.
+
+2. Define Your Application
+You describe your application using YAML configuration files—these define resources like Deployments, Services, ConfigMaps, etc.
+
+3. Apply Configuration
+You apply the YAML files using kubectl apply -f <file>. This sends your request to the API Server, which is the central management component of the cluster.
+
+4. API Server Processing
+Kubernetes processes the request and decides:
+
+Whether to create a new resource (e.g., Pod, Deployment)
+
+Update or delete an existing resource
+
+Or trigger a controller to take action
+
+5. Store in etcd
+The API Server stores the resource’s specification in etcd, the cluster’s key-value store and source of truth.
+
+6. Controller Detects Change
+A relevant controller (e.g., ReplicaSet Controller) detects the new spec and responds accordingly.
+
+7. Resource Creation
+The controller initiates resource creation, instructing the scheduler to deploy Pods.
+
+8. Scheduling
+The scheduler assigns Pods to appropriate nodes based on current resource availability and scheduling policies.
+
+9. Kubelet Interaction
+Once assigned, the Kubelet on the target node receives the Pod specification and requests the container runtime to start the container.
+
+10. Container Deployment
+The container runtime pulls the required image, creates the container, and runs it inside the Pod.
+
+11. Network Assignment
+The CNI plugin (Container Network Interface) assigns a network identity to the Pod. It gets an IP address and joins the cluster network.
+
+12. Service Routing with kube-proxy
+kube-proxy sets up the routing rules to allow Services to forward traffic to the appropriate and healthy Pods.
