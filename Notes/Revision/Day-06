@@ -1,0 +1,70 @@
+Kubernetes Day 6 
+
+ConfigMaps & Secrets
+
+🔹 In real-world Kubernetes applications, we don’t want to hardcode configurations (like database URLs, API keys, credentials) inside Pods. Instead, we use ConfigMaps and Secrets.
+
+🔹 #ConfigMaps
+
+Store non-confidential data in key-value pairs.
+
+Example: database hostname, application environment (dev, prod).
+
+Can be mounted as files or exposed as environment variables.
+
+🔹 #Secrets
+
+Store sensitive information like passwords, tokens, certificates.
+
+Base64 encoded (not encrypted by default).
+
+More secure than ConfigMaps.
+
+
+ ConfigMaps & Secrets in Kubernetes
+
+Here’s a simple visual flow:
+
++----------------------+
+          |  ConfigMap / Secret  |
+          +----------------------+
+                     |
+         ---------------------------
+         |                         |
+  As Environment Variable   As Volume Mount
+         |                         |
+  +---------------+         +---------------+
+  |    Pod        |         |     Pod       |
+  |  (Container)  |         | (Container)   |
+  +---------------+         +---------------+
+
+ #Example YAML
+
+ConfigMap Example
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  APP_ENV: "production"
+  DB_HOST: "db-service"
+
+#Secret Example
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+type: Opaque
+data:
+  DB_USER: YWRtaW4=    # base64 for "admin"
+  DB_PASS: cGFzc3dvcmQ= # base64 for "password"
+
+ #Quiz Day 6
+
+1. What is the main difference between ConfigMap and Secret?
+
+2. How are Secrets stored in Kubernetes?
+
+3. Can ConfigMaps and Secrets be mounted as volumes inside Pods?
