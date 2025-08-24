@@ -1,0 +1,28 @@
+Day 7 – Container Runtime 
+
+🚀 Kubernetes Learning from Scratch
+– Day 7 (Journey to CKA)
+
+Today’s Topic: Container Runtime
+
+If Kubelet is the Captain 🚢 and Kube-Proxy is the Traffic Controller 🚦, then the Container Runtime is the Engine ⚙️ that actually runs the containers on the node.
+
+🔹 What is a Container Runtime?
+A software responsible for pulling images and running containers.
+Kubernetes doesn’t run containers directly → it asks the container runtime to do it.
+Common runtimes: Docker (earlier), containerd, CRI-O.
+🔹 Role in Kubernetes
+Kubelet gives the PodSpec → Container Runtime executes it.
+Pulls container images from registries (e.g., DockerHub, ECR, GCR).
+Starts & stops containers.
+Provides resource isolation (CPU, Memory) using Linux features like cgroups & namespaces.
+🔹 Important Note
+Kubernetes used Docker before, but now prefers containerd or CRI-O (via the Container Runtime Interface – CRI).
+Docker is still popular with developers, but Kubernetes itself doesn’t need Docker to run.
+📌 Example:
+1️⃣ You apply a Pod YAML (kubectl apply -f pod.yaml).
+2️⃣ Scheduler decides the node.
+3️⃣ Kubelet asks the container runtime → “Please pull nginx:latest and run it.”
+4️⃣ Runtime pulls the image, runs the container, and reports status back to kubelet.
+👉 In short, Container Runtime = The Engine ⚙️ that powers your Pods.
+Without it, Kubernetes is just an orchestrator with no execution power.
