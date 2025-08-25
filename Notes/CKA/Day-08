@@ -1,0 +1,44 @@
+Kubernetes Learning from Scratch
+
+– Day 8 (Journey to CKA)
+
+Today’s Topic: Pods
+👉 A Pod is the smallest deployable unit in Kubernetes.
+Think of it as a wrapper around one or more containers that always run together on the same node.
+🔹 What is inside a Pod?
+One or more containers (usually Docker, containerd, CRI-O).
+Shared network namespace → all containers in a pod share the same IP and ports.
+Shared storage volumes (if defined).
+🔹 Single-Container Pod (most common)
+Runs one main application per pod.
+Example: A pod running nginx web server.
+🔹 Multi-Container Pod
+Sometimes, you need sidecar containers to support the main container.
+All containers in the pod can talk via localhost since they share the same network.
+Common patterns:
+Sidecar → e.g., logging agent, proxy alongside app.
+Adapter → transforms data for the main container.
+Ambassador → acts as a proxy to external services.
+
+📌 Example: Multi-container Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+  - name: app
+    image: nginx
+  - name: sidecar
+    image: busybox
+    command: ["sh", "-c", "while true; do echo logging...; sleep 5; done"]
+
+Here:
+app runs Nginx web server.
+sidecar continuously logs.
+Both share the same IP and can talk over localhost.
+🔹 Why Pods, not just Containers?
+Kubernetes manages pods, not individual containers.
+Pod = Atomic unit of scaling → if you scale, you scale pods, not containers.
+Provides abstraction to attach volumes, networking, configs, and policies.
+👉 In short, Pod = A group of one or more containers with shared network & storage, managed as a single unit.
