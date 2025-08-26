@@ -39,5 +39,7 @@ C) kube-system
 
 D) kube-node-lease
 
+Ans: C - kube-system :: Used for K8s system components like API server, scheduler, controller manager, etc. These are essential for cluster operation.
+
 
 ![Image](https://github.com/user-attachments/assets/4984c977-6634-4ef4-b7af-e66b4854938f)
