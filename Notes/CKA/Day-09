@@ -1,0 +1,50 @@
+Day 9 (Journey to CKA)
+
+Today’s Topic: ReplicaSet
+
+👉 A ReplicaSet ensures that a specified number of identical pods are always running in the cluster.
+If a pod dies, the ReplicaSet creates a new one. If there are extra pods, it removes them. ✅
+🔹 Key Features of ReplicaSet
+Ensures high availability of pods.
+Provides self-healing → replaces failed pods automatically.
+Supports scaling → you can increase/decrease the replicas count.
+Works behind the scenes for Deployments (when you create a Deployment, it creates a ReplicaSet).
+📌 Example: ReplicaSet YAML
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+Here:
+replicas: 3 → ensures 3 pods are always running.
+If one pod crashes, ReplicaSet spawns a new one.
+Now many of us are confused here 👇
+
+
+🔄 ReplicationController vs ReplicaSet
+📌 API Version → RC: v1 | RS: apps/v1
+📌 Selector → RC: Equality-based | RS: Set-based (advanced)
+📌 Usage → RC: Legacy | RS: Recommended
+📌 Deployment → RC: ❌ | RS: ✅ (used inside Deployments)
+
+👉 In short:
+ReplicationController = Old way (limited).
+ReplicaSet = New way (flexible & modern).
+🔹 Important Note
+You rarely create ReplicaSets directly.
+In real-world Kubernetes, you usually create a Deployment, which in turn creates and manages ReplicaSets for rolling updates & rollbacks.
+👉 In short, ReplicaSet = The Pod Maintainer 👷♂️ that guarantees your desired pod count is always running.
+
+No alternative text description for this image
