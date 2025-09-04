@@ -1,0 +1,76 @@
+Kubernetes Object 🐳
+
+Kubernetes can feel overwhelming at first—but once you understand its core objects, everything starts to click. Here’s a structured breakdown ⬇️
+
+🔹 Workload Objects (Run Your Apps)
+
+Pod 🧩 → Smallest deployable unit that runs your containers.
+
+ReplicaSet ➕ → Ensures a set number of identical Pods are always running.
+
+Deployment 🚀 → Declarative way to manage ReplicaSets and rollouts.
+
+StatefulSet 🏗️ → Manages stateful apps (e.g., databases) with persistent IDs.
+
+DaemonSet 🛡️ → Runs a copy of a Pod on every node (great for monitoring/logging).
+
+Job ⚙️ → Runs tasks to completion (batch jobs).
+
+CronJob ⏰ → Scheduled jobs (like a cron in Linux).
+
+
+🔹 Networking Objects (Connect Your Apps)
+
+Service 🌐 → Stable network endpoint to access Pods.
+
+Ingress 🚦 → Manages external HTTP/S traffic into your cluster.
+
+EndpointSlice 📍 → Scalable way of tracking service endpoints.
+
+NetworkPolicy 🔒 → Controls traffic flow between Pods (firewall rules inside the cluster).
+
+
+🔹 Config & Storage (Manage App Data)
+
+ConfigMap 📜 → Store non-sensitive configuration data.
+
+Secret 🔑 → Store sensitive data like passwords or API keys.
+
+Volume 💽 → Temporary storage for Pods.
+
+PersistentVolume (PV) 📦 → Cluster-level storage resource.
+
+PersistentVolumeClaim (PVC) 📥 → Request storage from a PV.
+
+StorageClass 🗂️ → Defines storage types (e.g., SSD vs HDD).
+
+
+🔹 Security & Access Control (Control Access)
+
+ServiceAccount 👤 → Provides identity for Pods to interact with APIs.
+
+Role & ClusterRole 🎫 → Define permissions inside a namespace or cluster-wide.
+
+RoleBinding & ClusterRoleBinding 🔗 → Attach roles to users, groups, or service accounts.
+
+
+🔹 Cluster Management & Scheduling (Optimize Resources)
+
+Namespace 🏷️ → Logical partition of the cluster for multi-tenancy.
+
+ResourceQuota 📊 → Limits resource usage within a namespace.
+
+LimitRange ⚖️ → Sets min/max compute resources for Pods/containers.
+
+Horizontal Pod Autoscaler (HPA) 📈 → Scales Pods based on CPU/memory usage.
+
+Vertical Pod Autoscaler (VPA) 📉 → Adjusts Pod resource requests automatically.
+
+PodDisruptionBudget (PDB) 🛡️ → Ensures availability during maintenance or updates.
+
+PriorityClass ⭐ → Defines scheduling priority when resources are tight.
+
+
+
+💡 Why this matters:
+Kubernetes is powerful because each object plays a well-defined role. Once you map them out, designing, scaling, and securing apps becomes much easier.
