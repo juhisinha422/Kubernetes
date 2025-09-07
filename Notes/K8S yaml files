@@ -1,0 +1,21 @@
+Kubernetes runs on YAML files — and each one has its own purpose.
+
+If you’re learning Kubernetes or managing clusters in production, these are the 𝟏𝟓 𝐦𝐨𝐬𝐭 𝐜𝐨𝐦𝐦𝐨𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐟𝐢𝐥𝐞 𝐭𝐲𝐩𝐞𝐬 𝐲𝐨𝐮’𝐥𝐥 𝐮𝐬𝐞 👇
+
+📄 𝐩𝐨𝐝.𝐲𝐚𝐦𝐥 → Defines one or more containers with shared network and storage.
+🚀 𝐝𝐞𝐩𝐥𝐨𝐲𝐦𝐞𝐧𝐭.𝐲𝐚𝐦𝐥 → Manages scaling and rolling updates for Pods automatically.
+🔗 𝐬𝐞𝐫𝐯𝐢𝐜𝐞.𝐲𝐚𝐦𝐥 → Connects apps with a stable network name inside the cluster.
+⚙️ 𝐜𝐨𝐧𝐟𝐢𝐠𝐦𝐚𝐩.𝐲𝐚𝐦𝐥 → Stores configuration settings separately from your code.
+🔑 𝐬𝐞𝐜𝐫𝐞𝐭.𝐲𝐚𝐦𝐥 → Safely stores sensitive data like passwords or API keys.
+🌐 𝐢𝐧𝐠𝐫𝐞𝐬𝐬.𝐲𝐚𝐦𝐥 → Controls external access to apps (e.g., HTTP/HTTPS routing).
+💾 𝐩𝐯𝐜.𝐲𝐚𝐦𝐥 → Used to get storage that keeps data even after a Pod restarts.
+📈 𝐡𝐩𝐚.𝐲𝐚𝐦𝐥 → Auto-scales Pods up or down based on resource usage.
+👤 𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐚𝐜𝐜𝐨𝐮𝐧𝐭.𝐲𝐚𝐦𝐥 → Grants Pods permission to access Kubernetes APIs.
+📝 𝐫𝐨𝐥𝐞.𝐲𝐚𝐦𝐥 → Defines access rules for specific actions within a namespace.
+🔗 𝐫𝐨𝐥𝐞𝐛𝐢𝐧𝐝𝐢𝐧𝐠.𝐲𝐚𝐦𝐥 → Assigns a Role to a user or service account in a namespace.
+🌍 𝐜𝐥𝐮𝐬𝐭𝐞𝐫𝐫𝐨𝐥𝐞.𝐲𝐚𝐦𝐥 → Defines access rules that apply across the entire cluster.
+🌀 𝐝𝐚𝐞𝐦𝐨𝐧𝐬𝐞𝐭.𝐲𝐚𝐦𝐥 → Ensures a Pod runs on every node (e.g., logging/monitoring agents).
+🎯 𝐣𝐨𝐛.𝐲𝐚𝐦𝐥 → Runs one-time tasks until they complete successfully.
+🚫 𝐧𝐞𝐭𝐰𝐨𝐫𝐤𝐩𝐨𝐥𝐢𝐜𝐲.𝐲𝐚𝐦𝐥 → Restricts and controls which Pods can communicate.
+
+💡  Learning these YAML files helps you build safe, scalable, and reliable Kubernetes setups.
