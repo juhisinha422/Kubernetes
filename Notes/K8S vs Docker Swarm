@@ -1,0 +1,39 @@
+Kubernetes Vs Docker swarm:::
+
+✅ Kubernetes Architecture::
+
+Key Components from the diagram:
+	•	API Server → Acts as the control center for all operations.
+	•	Controller Manager → Manages state changes and ensures the desired state is maintained.
+	•	Scheduler → Assigns tasks to appropriate worker nodes based on availability.
+	•	ETCD → Stores cluster data and configurations.
+	•	Worker Nodes → Each node has:
+	•	Kubelet → Communicates with the master node.
+	•	Kube-proxy → Handles network traffic routing.
+	•	Container Runtime → Runs containers (Docker or others).
+
+✅ Analogy
+
+Like running a global hotel chain:
+	•	The API Server is the headquarters.
+	•	The Controller Manager ensures every branch follows rules.
+	•	The Scheduler assigns rooms to customers.
+	•	The ETCD is like a centralized database with bookings.
+	•	The worker nodes are individual hotels, each having their own staff and systems.
+
+⸻
+
+✅ Docker Swarm Architecture ::
+
+Key Components from the diagram:
+	•	CLI → Command interface to interact with the cluster.
+	•	Swarm Manager → Controls the cluster and handles scheduling and state management.
+	•	Service Discovery → Helps nodes find each other and communicate.
+	•	Swarm Nodes → Run containers using Docker runtime.
+
+✅ Analogy
+
+Like running a small family café:
+	•	The Swarm Manager is the owner coordinating tasks.
+	•	Service Discovery is how the staff finds out what’s needed.
+	•	The nodes are individual kitchen sections or branches with limited staff and simple workflows.
