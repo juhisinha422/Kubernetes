@@ -1,0 +1,56 @@
+Kubernetes Series – Post 1 | #justvisualise
+
+Kubernetes suna hai… but what exactly is it?
+
+Kubernetes is an open-source container orchestration platform, introduced by Google in 2014.
+Inspired by their internal systems (Borg & Omega), Google made it public so everyone can use and improve it.
+Today, Kubernetes is maintained by the CNCF (Cloud Native Computing Foundation) and backed by thousands of contributors worldwide.
+
+Okay… but why do we even need it? Can’t we just use containers directly?
+Great question
+
+Before Kubernetes – Monolith Era
+Earlier apps were monoliths – one big block of code running on a server.
+Scaling = buying a bigger machine. Easy to deploy, but not flexible.
+
+Shift to Microservices
+Companies broke monoliths into microservices – 50, 100, sometimes 1000 small services.
+Each service had its own codebase, team, release cycle, and dependencies.
+Containers (like Docker) helped by packaging each service with its environment.
+
+But the problem? Managing hundreds of containers:
+              Which container runs where?
+               How to restart if one crashes?
+               How to scale up during traffic spikes?
+               How to connect them to each other?
+Without automation, this was chaos.
+
+That’s where Kubernetes comes in. It became the control plane – scheduling, scaling, healing, networking… all automated.
+
+So basically, Kubernetes = automation for containers?
+Exactly but let’s go deeper.
+         Self-healing – If a container crashes, Kubernetes restarts it.
+         Scaling – Got 10x more users? Kubernetes can scale services up (or down) automatically.
+          Load balancing – Distributes traffic across pods.
+          Rollouts & Rollbacks – New version deployment? Kubernetes rolls out gradually, and if something breaks, it can roll back.
+
+So Kubernetes isn’t just “automation”. It’s the brain managing your application’s life cycle.
+
+
+And what about cloud lock-in? If I use AWS, am I stuck there?
+Earlier yes, because every cloud had its own APIs. If you wrote apps for AWS, moving to Azure was painful.
+But Kubernetes changed the game 
+All major clouds (AWS, Azure, GCP, even on-prem) support Kubernetes.
+Apps run through Kubernetes APIs, not cloud-specific APIs.
+That means you can build once, deploy anywhere.
+
+
+Kubernetes is not just a tool. It became the standard way to run modern applications – scalable, portable, reliable.
+This is why Kubernetes is everywhere – from startups to enterprises, from AWS to Azure to GCP.
+
+
+Interview Corner
+Q1. Why do we need Kubernetes if we already have Docker?
+Q2. What problem does Kubernetes solve compared to monolithic apps?
+Q3. How does Kubernetes help avoid cloud vendor lock-in?
+Q4. Can you explain the self-healing feature of Kubernetes?
