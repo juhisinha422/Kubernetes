@@ -1,0 +1,44 @@
+Kubernetes Series – Post 2 | #justvisualise
+
+Understanding Kubernetes:
+
+In the last post, we discussed why Kubernetes came into the picture and why so many companies adopted it so quickly.
+Today, let’s go a step further and try to really understand what Kubernetes is and how it changes the way we look at infrastructure.
+
+
+Think about your laptop or PC for a moment.
+You don’t tell your app where to run inside your CPU or how much memory to take. The operating system does that for you. It manages the resources, schedules processes, balances everything, and gives your apps a simple environment to run.
+Now… what if instead of one machine, you had ten, twenty, or a hundred machines working together? Managing them one by one would be a nightmare.
+
+This is where Kubernetes comes in.
+You can think of it as the operating system for your entire cluster.
+
+
+What does that mean in practice?
+With Kubernetes, you stop worrying about servers individually.
+You just say: “Here’s my app. Please run it.”
+And Kubernetes takes over the responsibility of:
+            Making sure apps can find each other (service discovery).
+            Scaling up when traffic increases and scaling down when it’s quiet.
+            Distributing load so that no single app instance gets overloaded.
+            Healing itself by restarting crashed apps or moving them to healthy machines.
+            Even deciding which instance will be the leader while others stay on standby.
+All this happens in the background, automatically.
+
+The cluster becomes one big space
+
+
+Here’s the real transformation:
+After Kubernetes is installed, all your worker nodes (servers) are seen as one single pool of resources.
+So instead of saying: “Run this app on Server A” or “Run this on Server B”, you just say: “Run this app in the cluster.”
+Kubernetes decides where it will run.
+
+It might even move it later to another machine for efficiency or recovery — and you won’t even notice.
+
+It feels like magic because suddenly, dozens of machines behave like one giant computer.
+
+
+The Big Takeaway for Freshers:
+Kubernetes frees developers from thinking about servers, machines, or infrastructure.
+You just focus on your business logic, and Kubernetes takes care of the rest.
+That’s why we often call it the Operating System of the Cloud.
