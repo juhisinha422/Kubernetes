@@ -1,0 +1,31 @@
+Kubernetes Learning from Scratch
+
+– Day 10 (Journey to CKA)
+
+Today’s Topic: Deployment
+
+👉 A Deployment in Kubernetes is a higher-level abstraction built on top of ReplicaSets.
+It not only ensures that the desired number of Pods are running (like a ReplicaSet) but also allows rolling updates, rollbacks, and version control of your applications.
+
+🔹 Key Features of Deployment
+Declarative Updates → You define what you want, Kubernetes ensures it.
+Rolling Updates → Deploy new versions without downtime.
+Rollback Support → Quickly revert to the previous stable version if something breaks.
+Self-healing → Automatically replaces failed or unhealthy Pods.
+Scalability → Easily scale apps up/down by changing replica count.
+
+Kubernetes will gradually replace old Pods with new ones.
+If something fails, you can rollback using:
+kubectl rollout undo deployment nginx-deploy
+
+🔄 ReplicaSet vs Deployment
+📌 ReplicaSet → Ensures Pod availability.
+📌 Deployment → Manages ReplicaSets, handles updates & rollbacks.
+
+👉 Think of Deployment as the manager 👨💼, and ReplicaSet as the worker 👷.
+
+🔹 Important Note
+In real-world Kubernetes, you almost always use Deployments (not ReplicaSets directly).
+They are the go-to resource for running stateless applications in production.
+👉 In short, Deployment = Smart Pod Manager 🤖
+It not only keeps Pods running but also ensures smooth upgrades, rollbacks, and scaling.
