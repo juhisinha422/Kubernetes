@@ -1,0 +1,70 @@
+Kubernetes Series – Post 4 | #justvisualise
+
+The Architecture of a Kubernetes Cluster
+If you’re new to Kubernetes, the word cluster can feel scary. But let’s break it down with a very simple comparison.
+
+Think of Kubernetes like a big company.
+Every company has:
+Management (who make decisions)
+Employees (who actually do the work)
+Facilities (tools that help everyone work better)
+
+Kubernetes works the same way.
+1. The Control Plane = Management Team (The Brains )
+This is the decision-making layer of Kubernetes. It doesn’t run your applications directly, but it controls where and how they run.
+
+API Server → The receptionist or front desk.
+Anyone (developers, admins, tools) who wants to interact with Kubernetes comes here first.
+Example: You want to deploy an app → You tell the API server.
+
+etcd → The filing cabinet .
+Stores all information: which apps are running, which nodes exist, what the desired state is.
+Without etcd, Kubernetes has no memory.
+
+Scheduler → The HR manager.
+Decides which employee (worker node) should run a new task (pod).
+Example: If Node A has free space and Node B is overloaded → Scheduler sends the app to Node A.
+
+Controllers → The supervisors .
+They keep checking: “Does reality match what we wanted?”
+If something crashes, they restart it. If a pod dies, they create a new one.
+
+
+Key takeaway: Control Plane = The brains. It ensures the cluster always stays in the desired state.
+
+
+2. Worker Nodes = Employees (The Hands )
+This is where the actual work happens — your apps and containers run here.
+Each worker node has:
+
+Kubelet → The team lead .
+Talks to management (API server).
+Makes sure containers on this node are running correctly.
+Container Runtime → The workers .
+Runs your application in containers (Docker, containerd, CRI-O etc.).
+If Kubelet says, “Run this app,” container runtime executes it.
+
+Kube Proxy → The IT/network guy .
+Ensures apps can talk to each other.
+Also helps with load balancing between pods.
+
+Key takeaway: Worker Nodes = The hands. They actually do the job assigned by the brains.
+
+
+
+How to Visualise the Cluster
+Control Plane (Bosses) → Assign work, keep records, track state.
+Worker Nodes (Employees) → Actually run the applications.
+Add-Ons (Facilities) → Provide support.
+So whenever you hear “Kubernetes cluster”, just imagine a company where:
+The bosses never do the work themselves (Control Plane).
+The employees actually get things done (Worker Nodes).
+And the facilities keep everything smooth (Add-Ons).
+
+
+As a fresher, you don’t need to remember every component in depth right now.
+Just remember who plays what role. Later, you’ll learn how they work internally.
+
+Think of it like learning to drive:
+ At first, you just need to know steering, brake, accelerator.
+ Only later do you care how the engine works.
