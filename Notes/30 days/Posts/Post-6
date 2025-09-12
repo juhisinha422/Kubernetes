@@ -1,0 +1,37 @@
+Kubernetes Series – Post 6 | #justvisualise
+
+On-Prem, Cloud, or Hybrid: Choosing Your Kubernetes Setup
+
+Till now, we have understood what Kubernetes is and why companies use it.
+But the real question is → If my organization decides to adopt Kubernetes, how do we run it?
+There are mainly three ways 
+
+1. Running Kubernetes On-Premises
+This means running Kubernetes on your own servers in your office/data center.
+Sometimes companies don’t have a choice because of rules or compliance (example: banks or govt. projects where data must stay on-site).
+You can run Kubernetes on bare-metal machines or inside VMs in your data center.
+The challenge → scaling is limited. If your apps suddenly need more resources, you can’t add servers as easily as in cloud.
+In short: More control, but more responsibility and harder to scale.
+
+
+
+2. Running Kubernetes in the Cloud
+If you don’t have on-prem servers, cloud is the obvious choice.
+Major providers like AWS, Azure, GCP give ready services (EKS, AKS, GKE).
+Big benefit → Elastic scaling:
+When workload increases → Kubernetes asks cloud to add more VMs.
+When workload decreases → Kubernetes tells cloud to remove extra VMs.
+This means better performance + cost savings.
+In short: Easy scaling, less management, pay-as-you-go.
+
+
+3. Hybrid Cloud Approach
+This is a combination of on-prem and cloud.
+Most of the time, your apps run on your own infra (so no extra cost).
+During peak times (say sale season, or year-end reporting), Kubernetes can push extra load to the cloud.
+You get best of both worlds → control of on-prem + flexibility of cloud.
+Advanced setups even use multiple clouds + on-prem together with one or multiple control planes.
+In short: Flexibility + backup option, but more complex to set up.
+
+
+For freshers: In interviews, if someone asks “How can organizations adopt Kubernetes?” — mentioning these 3 options (On-Prem, Cloud, Hybrid) along with scalability and cost optimization will make your answer stand out.
