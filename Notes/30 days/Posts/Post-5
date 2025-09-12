@@ -1,0 +1,67 @@
+Kubernetes Series – Post 5 | #justvisualise
+
+How Kubernetes Runs Your Application 
+
+When you deploy an application in Kubernetes, it’s not just “containers magically running somewhere.” Behind the scenes, there is an entire system working together. Let’s walk through it clearly 
+
+Step 1: Define Your Application
+Everything in Kubernetes starts with an object (Deployment, Pod, Service, etc.).
+You describe these objects in a YAML/JSON manifest.
+Example: a Deployment defines how many replicas of your app you want.
+Think of this as writing a blueprint for your app.
+
+
+Step 2: API Server & etcd
+You submit your manifest using kubectl apply -f file.yaml.
+The API Server checks if it’s valid and stores it in etcd (Kubernetes’ database).
+etcd now becomes the source of truth for the cluster.
+At this point, Kubernetes knows what you want, but nothing is running yet.
+
+
+Step 3: Controllers Take Charge
+A controller continuously watches etcd.
+Example: Deployment Controller sees your new Deployment and creates Pods.
+Controllers don’t run containers directly — they just create the objects needed.
+Controllers = the “managers” in Kubernetes.
+
+
+Step 4: Scheduler Decides Where to Run
+The Scheduler looks at each new Pod and decides:
+Which node has enough CPU & memory?
+Are there affinity/anti-affinity rules?
+Is the node healthy?
+Then it assigns the Pod to a node.
+Scheduler = the traffic controller of the cluster.
+
+
+Step 5: Kubelet Runs the Pod
+Each worker node runs a Kubelet.
+Once a Pod is assigned, the Kubelet instructs the container runtime (containerd/Docker) to start the container.
+Now, your application instance is running on the node.
+Kubelet = the node’s caretaker.
+
+
+Step 6: Kube Proxy Handles Networking
+Apps usually run as multiple Pods.
+Kube Proxy sets up networking & load balancing so all Pods are accessible behind one Service IP.
+Clients don’t need to know which Pod is where.
+Kube Proxy = the networking electrician.
+
+
+Step 7: Keeping Apps Healthy
+If a Pod crashes → Kubelet restarts it.
+If a node dies → Controllers reschedule Pods on another node.
+Kubernetes always tries to match desired state (your YAML) with current state (actual cluster).
+This is why we call Kubernetes a self-healing system.
+
+Visualise It Like This:
+ You give Kubernetes a blueprint (YAML) →
+ API Server saves it in etcd →
+ Controllers create Pods →
+ Scheduler places Pods →
+ Kubelet runs Pods →
+ Kube Proxy exposes Pods →
+ System auto-heals if something breaks.
+
+
+In short: You describe what you want → Kubernetes makes it happen.
