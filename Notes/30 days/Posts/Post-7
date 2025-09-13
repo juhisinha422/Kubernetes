@@ -1,0 +1,19 @@
+Kubernetes Series – Post 7 | #justvisualise
+
+Understanding Containers
+
+When microservices were fewer, it was manageable to give each one its own virtual machine. Every application got a dedicated operating system, its own set of libraries, and an isolated environment. But as systems grew larger and more microservices were introduced, this approach quickly became expensive and inefficient. Running hundreds of VMs meant wasting hardware resources, consuming unnecessary memory and CPU, and increasing operational complexity. Clearly, a new solution was required — and that’s where containers entered the picture.
+
+Containers vs. Virtual Machines
+Virtual machines and containers both solve the problem of isolation, but they do so in very different ways. A VM runs on top of a hypervisor and comes with a full-fledged operating system of its own. That means duplicate system processes, extra resource consumption, and slower startup times. On the other hand, containers don’t need a separate operating system. Instead, they share the host OS kernel, running only the application process and its dependencies. This makes containers much lighter, faster, and more resource-efficient.
+Think of it like this: a VM is like building a separate house  for each family. Every house needs its own walls, electricity, water system, and maintenance. Containers, however, are like apartments in a building 🏢. Each apartment has its own space, but all residents share the same base structure. This allows for efficiency while still maintaining a good level of isolation.
+
+Why Containers Are Preferred
+Because containers don’t carry the overhead of a full OS, they start up in seconds and consume fewer resources. This means you can afford to run one application per container, which keeps environments clean and makes troubleshooting easier. Unlike VMs, you don’t need to group multiple applications together just to save costs. Containers scale effortlessly — you can spin up more instances when traffic increases and remove them just as quickly when demand goes down.
+
+Kubernetes and Containers
+Kubernetes was designed with containers at its core. It doesn’t manage your applications directly — it manages the containers that run them. The principle is simple: one application per container. When you need multiple related apps to run together, Kubernetes uses Pods — a logical grouping of containers that share resources but remain isolated from others. This design allows Kubernetes to handle deployment, scaling, and recovery in a much more efficient way than traditional VM-based setups.
+
+Containers are the foundation of modern application deployment, and Kubernetes is the system that makes managing containers at scale possible. Without containers, Kubernetes simply wouldn’t exist. They are lighter, faster, and cheaper compared to VMs, and they’ve become the backbone of cloud-native architectures.
+
+Always remember: Kubernetes doesn’t manage your app — it manages the containers that run your app.
