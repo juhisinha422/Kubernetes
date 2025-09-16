@@ -1,0 +1,48 @@
+Kubernetes Series – Post 9 | #justvisualise
+
+What does your application really see inside a container?
+
+One of the biggest strengths of containers is environment consistency.
+Whether you run your app on your laptop, on a Dev server, or inside Kubernetes in Production → the app sees the same environment.
+
+Why?
+Because inside a container, your app only sees:
+The file system you packaged into the image
+Any extra mounts/volumes you attached
+It has no access to host files/libraries. That means:
+Different hosts (Fedora, Ubuntu, RHEL, Debian) don’t matter
+As long as the kernel and hardware architecture are compatible, the app runs the same everywhere
+
+
+Example:
+If you package your app with Red Hat Enterprise Linux (RHEL) base files, the app will believe it’s running on RHEL – even if the host is Debian.
+
+
+Understanding Image Layers
+Unlike Virtual Machines, which are huge disk images of the full OS, Docker images are made of layers.
+
+Benefits of layers:
+Reusability → Layers are shared across images. If you already pulled a common base image, new images only add missing layers.
+Efficiency → Saves time and disk space.
+Isolation → Each container gets its own read/write layer on top of shared read-only layers.
+
+Thanks to Copy-on-Write (CoW):
+If Container A modifies a file, it’s copied into its own writable layer.
+Container B using the same base layer is unaffected.
+This is why containers can share files but remain fully isolated.
+Note: Deleting a file inside a container doesn’t shrink the image size — it’s only marked deleted in the writable layer. The actual file still exists in lower layers.
+
+Portability Limitations of Containers
+Containers feel like “run anywhere,” but there are some caveats:
+1. Kernel Dependency
+Containers don’t have their own kernel, they share the host’s kernel.
+If your app needs a specific kernel version or module (e.g., networking, drivers), and the host doesn’t have it → the app may fail.
+2. Architecture Dependency
+A container built for x86 CPUs won’t magically run on an ARM machine (like Raspberry Pi).
+For cross-architecture support, you need either multi-arch images or emulation (via VMs).
+
+
+Key Takeaway
+Containers make applications lightweight, consistent, and portable.
+But you must always check kernel compatibility and hardware architecture when moving between environments.
+This is why Kubernetes is powerful → it abstracts these details and provides a unified orchestration layer across different hosts.
