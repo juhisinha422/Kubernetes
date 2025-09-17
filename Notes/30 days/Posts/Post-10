@@ -1,0 +1,23 @@
+Kubernetes series - Post 10 | #justvisualise
+
+Installing Docker & Running Your First Container
+
+Now that we know what containers are, it’s time to actually run one.
+If you’re on Linux, you can install Docker Engine directly. For Windows or macOS users, Docker Desktop makes life easy by setting up a lightweight Linux VM behind the scenes. The Docker CLI (what you type in your terminal) runs on your machine, while the Docker daemon and containers run inside that VM.
+
+Once Docker is installed, the real magic begins. Let’s run our very first container:
+                 docker run busybox echo "Hello World"
+With this one command, Docker checks if the image is already available locally. If not, it pulls it from Docker Hub (a public registry of ready-to-use images), creates a container, runs the command inside it, and then exits. No installation, no dependency management—just a clean, isolated execution.
+
+In this case, the container simply prints “Hello World” and stops. Not too fancy, but think about it: the entire environment needed to run that program was downloaded and executed in seconds. That’s the beauty of containers.
+
+Want to run something more practical? For example, Redis:
+          docker run redis:alpine
+That’s it. You’ve got Redis running without installing it on your host system. If you don’t stop it, it will keep running until you exit.
+
+You’ll also notice images often come with tags. Example:
+redis:5.0.7-alpine → Redis version 5.0.7, built on Alpine Linux
+redis:buster → Same Redis version, but built on Debian Buster
+If you don’t specify a tag, Docker assumes :latest. But here’s the catch: “latest” doesn’t always mean truly latest—it just points to a default version. Best practice? Always pin the version you need.
+
+So far, we’ve run single containers. But what happens when you need to run hundreds of containers, across multiple servers, all talking to each other? That’s where Kubernetes steps in—and that’s where we’re heading next.
