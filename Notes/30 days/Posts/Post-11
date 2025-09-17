@@ -1,0 +1,66 @@
+Kubernetes series - Post 11 | #justvisualise
+
+Understanding the Kubernetes API
+
+Kubernetes is more than just a container orchestrator – it’s an API-driven platform. Everything you do in a Kubernetes cluster, whether by a human user or by internal components, happens via the Kubernetes API.
+
+Think of the API as the central control plane of your cluster. It exposes objects that represent the state and configuration of everything in the cluster:
+Applications running inside the cluster
+Configuration of these applications
+Load balancers and networking rules
+Underlying nodes and storage
+Security privileges for users and apps
+And much more
+
+
+Why the Kubernetes API is important
+Cluster administrators and engineers interact with objects to deploy and manage applications.
+Every object defines what the cluster should look like at a given time.
+Understanding the API allows you to read, modify, and automate cluster management.
+Key Concepts
+
+1. RESTful API
+Kubernetes API is HTTP-based and follows the REST architecture:
+Resources are manipulated using standard HTTP verbs:
+POST → Create
+GET → Read
+PUT/PATCH → Update
+DELETE → Delete
+Stateless operations make it predictable and easy to automate.
+
+2. Resources vs Objects
+Resource: A URI endpoint that exposes objects. Think of it as a “view” through which you can see or act on objects.
+Object: The actual instance that represents part of your cluster’s configuration.
+Example:
+/apis/apps/v1/deployments → Lists all deployments (resource).
+/apis/apps/v1/deployments/mydeploy → Refers to a single Deployment object (object).
+A single object can be accessed through multiple resources, especially when multiple API versions exist.
+
+3. Multiple Representations
+Kubernetes sometimes exposes the same object via different API versions:
+apps/v1/deployments → Newer version
+extensions/v1beta1/deployments → Older version
+Both represent the same underlying object, but may differ slightly in schema.
+
+4. Special Resources
+Some resources don’t create objects at all, but provide functionality:
+Example: /apis/https://lnkd.in/dSpmG-RF
+You can check if a user or service has permission to perform an action.
+This POST request does not create any object; it only returns authorization info.
+
+Object Representation
+Objects are usually returned in JSON or YAML.
+Each object type (Deployment, Pod, Service, etc.) has specific fields, but all share a common structure.
+You can read, modify, and update objects by sending JSON/YAML data to the API.
+
+Analogy to Relational Databases
+Resources = Views
+Objects = Tables
+Resources are how you interact, and objects are the actual data/configuration being managed.
+
+
+Key Takeaways
+The Kubernetes API is the heart of cluster management.
+Understanding resources vs objects is crucial for automation and troubleshooting.
+
+Learning to interact with the API lays the foundation for mastering Kubernetes.
