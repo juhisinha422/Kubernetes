@@ -1,0 +1,14 @@
+Kubernetes series - Post 13 | #justvisualise
+
+Understanding the Architecture
+
+Before we dive into how Kubernetes actually works, it’s important to understand the components that form a Kubernetes cluster. As you saw earlier, a cluster is broadly divided into two parts: the Control Plane and the Worker Nodes. Together, these two pieces form the backbone of Kubernetes, but their responsibilities are very different.
+
+The Control Plane is the brain of the cluster. It decides what needs to happen, when it should happen, and where it should happen. It doesn’t run the application containers directly but instead manages and maintains the overall state of the cluster. To do this, it relies on a few critical components. At the heart of it lies etcd, a distributed, reliable, and persistent key-value store that keeps track of the entire cluster’s state. Sitting on top of that is the API Server, which acts as the central communication hub—every command, request, or update passes through it. 
+The Scheduler is another key player; it decides on which node a new container should run, based on available resources and constraints. Finally, the Controller Manager keeps an eye on everything, making sure the current state of the cluster matches the desired state defined by the user. If something drifts away, it automatically works to bring things back into alignment.
+
+
+While the Control Plane focuses on decision-making and coordination, the actual execution of workloads happens on the Worker Nodes. Each node runs a set of components that ensure your application containers are up and running smoothly. The most important of these is the Kubelet, an agent that communicates with the Control Plane and makes sure the containers defined in the configuration are actually running on the node. Working alongside it is kube-proxy, which handles networking—ensuring services can talk to each other reliably within and outside the cluster. Finally, there is the Container Runtime, such as Docker or containerd, which is responsible for pulling images and running the containers themselves.
+
+
+In short, the Control Plane acts as the command center of Kubernetes, making decisions and maintaining the cluster’s desired state, while the Worker Nodes carry out the actual work of running containers. Together, they form the powerful and flexible system that makes Kubernetes the leading container orchestration platform today.
