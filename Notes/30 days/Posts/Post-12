@@ -1,0 +1,52 @@
+Kubernetes series - Post 12 | #justvisualise
+
+When you first look at a Kubernetes manifest, it can be intimidating — sometimes hundreds of lines long! But if you understand its core structure, reading and managing manifests becomes much easier.
+The Four Main Sections of a Manifest:
+
+1. Type Metadata
+Provides information about the kind of object (Pod, Deployment, Service, etc.), the API group, and the version.
+Think of it as the “label” that tells Kubernetes what kind of object it is dealing with.
+
+2. Object Metadata
+Contains general information about the object instance:
+Name
+Namespace
+Creation timestamp
+Labels & annotations
+Owner references
+These fields are standard across all object types.
+
+3. Spec (Desired State)
+This is where you define what you want Kubernetes to do.
+
+For example, in a Pod:
+Containers and their images
+Storage volumes
+Networking settings
+You write the Spec — this tells Kubernetes the target configuration.
+
+4. Status (Actual State)
+Shows what is actually happening in your cluster.
+
+For a Pod, it might include:
+Pod condition (Running, Pending, Failed)
+Status of each container
+Pod IP and the node it’s running on
+Kubernetes controllers read your Spec and update the Status accordingly.
+
+Why Spec and Status Matter
+Spec = Desired State
+Status = Actual State
+
+You define the Spec, but controllers are the ones making it real and updating the Status.
+Each object type usually has its own controller, like the Deployment controller managing Deployment objects.
+
+
+Pro Tip:
+Some objects, like Events, don’t have Spec/Status because they are static and only provide information.
+
+Key Takeaways:
+Understanding Spec vs Status is essential for managing Kubernetes objects effectively.
+Metadata sections are always present — they help you identify and organize objects.
+
+This knowledge is the foundation before you dive into field-level details of manifests.
