@@ -1,0 +1,62 @@
+Kubernetes series - Post 14 | #justvisualise
+
+Understanding How Kubernetes Components Communicate & Run
+
+When working with Kubernetes, it’s not enough to know the names of the components. You also need to understand how they talk to each other, how they’re deployed, and how high availability is maintained. Let’s break it down:
+
+How Kubernetes Components Communicate
+All system components communicate only with the API Server.
+They do not talk to each other directly.
+The API Server is the only component that talks to etcd. Other components update the cluster state by sending requests to the API Server.
+
+Most of the time, connections are initiated by components to the API Server.
+But there are exceptions:
+When you run kubectl logs, kubectl attach, or kubectl port-forward, the API Server directly connects to the Kubelet on the worker node.
+Note: kubectl attach attaches to the main process running inside the container, unlike kubectl exec which starts a new process.
+
+
+Running Multiple Instances of Components
+Worker node components (kubelet, kube-proxy, container runtime) must run on every node.
+Control Plane components can be split across multiple servers for high availability.
+Multiple etcd and API Server instances can be active in parallel.
+For Scheduler and Controller Manager, only one active instance is allowed at a time — others remain in standby mode.
+
+Checking Component Health
+The API Server exposes a resource called ComponentStatus.
+You can check health of Control Plane components using:
+
+kubectl get componentstatuses
+Example output:
+NAME                 STATUS    MESSAGE   ERROR
+scheduler            Healthy   ok        -
+controller-manager   Healthy   ok        -
+etcd-1               Healthy   {"health":"true"}
+
+
+How Components Are Run
+Control Plane components + kube-proxy can run either:
+directly on the system as processes
+OR as pods inside Kubernetes itself.
+Kubelet is always a system component and is responsible for running all other components as pods.
+Even on the master node, kubelet runs Control Plane components as pods.
+Example: Pods Running in kube-system Namespace
+
+kubectl get po -o custom-columns=POD:metadata.name,NODE:spec.nodeName \
+--sort-by spec.nodeName -n kube-system
+Example output:
+
+POD                          NODE
+kube-controller-manager-...  master
+kube-dns-1234567    master
+etcd-master                  master
+kube-apiserver-master        master
+kube-scheduler-master        master
+kube-proxy-qwerm             node1
+kube-proxy-sp362             node2
+kube-flannel-ds-rr        node3
+kube-proxy-345f             node3
+......
+
+As you can see:
+All Control Plane components are running as pods on the master node.
+Each worker node runs kube-proxy and a Flannel pod (overlay network for pod-to-pod communication).
