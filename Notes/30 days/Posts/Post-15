@@ -1,0 +1,49 @@
+Kubernetes Series – Post 15 | #justvisualise
+ 
+How Kubernetes Stores Data in etcd
+
+When you create something in Kubernetes — whether it’s a Pod, Deployment, Service, or ConfigMap — Kubernetes needs to store it in a persistent database so that it remembers the cluster state even if components restart.
+That database is etcd – a fast, distributed, consistent key-value store.
+ It is the single source of truth for the entire cluster.
+
+
+What does Kubernetes store inside etcd?
+Every Kubernetes object is stored as a key-value pair under the /registry path in etcd.
+Here are some examples you can see if you run etcdctl ls /registry:
+/registry/pods → Stores Pod definitions and their current state.
+/registry/deployments → Stores Deployment objects and rollout details.
+/registry/daemonsets → Stores DaemonSet configurations.
+/registry/configmaps → Stores ConfigMaps (non-secret configuration).
+/registry/secrets → Stores Secrets (base64 encoded, but still inside etcd).
+/registry/services → Stores Service definitions (ClusterIP, NodePort, etc.).
+/registry/events → Stores cluster Events (who did what, and when).
+/registry/namespaces → Stores Namespace objects.
+/registry/roles & /registry/rolebindings → Stores RBAC configuration.
+
+
+Basically, every resource you create in Kubernetes gets stored in etcd under the /registry directory.
+
+
+How does data flow into etcd?
+You run → kubectl apply -f pod.yaml.
+The API server validates the request.
+The API server writes the object into etcd (e.g., /registry/pods/default/mypod).
+The Scheduler, Controller Manager, and Kubelets read that object via the API server.
+Any changes (like Pod restart or scaling) are updated back in etcd through the API server.
+
+Note: No component talks to etcd directly except the API server.
+
+
+Why this design matters?
+Persistence → Cluster state survives API server restarts.
+High Availability → etcd clusters (3/5 nodes) keep data safe even if one node fails.
+Consistency → etcd uses Raft consensus to make sure all nodes agree on data.
+Security → Secrets, RBAC policies, and sensitive configs are all stored in etcd (so access must be tightly controlled).
+Extensibility → New resource types (like CRDs) also get stored under /registry/customresourcedefinitions.
+
+
+Critical Note:
+Since etcd holds everything — if it is corrupted or lost, the cluster “forgets” all objects.
+That’s why etcd backup & recovery strategy is one of the most important tasks for Kubernetes admins.
+
+Think of etcd as the hard disk of Kubernetes. Your Pods and Services are like “files,” and the API server is the “file manager” that lets you create, read, or update them.
