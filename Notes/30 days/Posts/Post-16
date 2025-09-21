@@ -1,0 +1,48 @@
+Kubernetes Series – Post 16 | #justvisualise
+
+What the Kubernetes API Server Does
+The API Server is the beating heart of Kubernetes.
+Every client and every component — including kubectl — must pass through it.
+It provides a CRUD (Create, Read, Update, Delete) interface over a RESTful API, allowing you to query or modify the cluster state. That state is safely stored in etcd.
+
+But the API Server is not just a messenger — it also enforces rules:
+Validation → ensures no one stores misconfigured objects.
+Optimistic locking → prevents one user’s change from overwriting another’s during concurrent updates.
+
+Even a simple kubectl apply -f pod.json hides a fascinating journey. Let’s break it down
+1. Authentication – Who are you?
+The first checkpoint is authentication.
+The API Server uses authentication plugins to confirm your identity. It may:
+Check your client certificate
+Or inspect the Authorization HTTP header
+From this, Kubernetes extracts your username, ID, and groups.
+
+2. Authorization – What can you do?
+Now Kubernetes knows who you are, the next step is: Do you have permission?
+The authorization plugins verify if you’re allowed to perform the requested action.
+For example → Can you really create Pods in that namespace?
+ If at least one plugin allows it → the request moves forward.
+
+3. Admission Control – Enforcing Policies
+Before the object enters the cluster state, it flows through Admission Controllers.
+These plugins can:
+Modify requests (e.g., auto-fill missing fields)
+Reject requests (if they break rules)
+Impact other resources (not just the one you applied)
+
+Common examples:
+AlwaysPullImages → forces pods to always pull the image, ensuring freshness.
+ServiceAccount → applies a default service account if none is set.
+NamespaceLifecycle → blocks Pods in deleted/non-existent namespaces.
+ResourceQuota → ensures namespaces don’t exceed CPU/Memory limits.
+
+4. Validation & Persistence
+After clearing Admission Controllers, the object is:
+Validated
+Persisted in etcd (the cluster’s single source of truth)
+Response sent back to the client
+And just like that → your kubectl command becomes part of the Kubernetes cluster state.
+
+Key Takeaway
+The API Server isn’t just a middleman — it’s a gatekeeper, rule enforcer, and record keeper.
+Without it, Kubernetes wouldn’t have consistency, security, or stability.
