@@ -1,0 +1,50 @@
+Kubernetes Series – Post 17 | #justvisualise
+
+Understanding How the API Server Notifies Clients of Resource Changes
+
+1. API Server’s Role
+The API server doesn’t create Pods when you create a ReplicaSet or manage Service endpoints.
+It doesn’t tell controllers what to do.
+Its job is to store cluster state in etcd and allow controllers/clients to observe changes.
+
+2. Controllers Are the Actors
+Controllers (ReplicaSet, Deployment, Scheduler, Kubelet, Service Controller) watch the API server.
+They act based on changes they see in resources:
+            Create or delete Pods
+            Assign Nodes
+            Update Service endpoints
+This ensures loose coupling: controllers work independently but stay consistent via API server notifications.
+
+3. Storing Changes in etcd
+Every resource change (Pod, Deployment, Service) is first stored in etcd — the cluster’s single source of truth.
+etcd ensures all state is persistent, consistent, and versioned.
+Each object has a resourceVersion to track updates and maintain correct ordering.
+
+4. Watch Mechanism
+Clients (controllers, kubectl, operators) open an HTTP watch connection to the API server.
+API server streams changes as events: ADDED, MODIFIED, DELETED.
+This allows real-time updates without polling.
+Multiple clients can watch the same resource independently, all receiving updates automatically.
+
+5. Step-by-Step Example: Pod Lifecycle
+User creates a Pod using kubectl apply -f pod.yaml.
+API server validates and stores the Pod in etcd.
+Controllers watching Pods detect the new Pod:
+ReplicaSet Controller sees desired replicas not met → creates more Pods.
+Scheduler sees unscheduled Pod → assigns a Node.
+Kubelet on the assigned Node sees Pod → starts container.
+Service Controller updates Endpoints if Pod labels match.
+Controller actions update API server, which writes back to etcd.
+All other watchers receive the updated state, keeping the cluster consistent.
+
+6. Control Plane Notifications
+Any control plane component can request to be notified of resource creation, modification, or deletion.
+Components then react based on the latest cluster metadata.
+This ensures automation, real-time synchronization, and scalability.
+
+7. Key Takeaways
+API Server = Hub of Notifications (not a worker).
+etcd = Source of Truth, storing all cluster state.
+Controllers = Workers, continuously watching and acting.
+ResourceVersion ensures ordering and no updates are missed.
+Watch mechanism = real-time streaming of changes, enabling all clients to stay synchronized.
