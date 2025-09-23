@@ -1,0 +1,40 @@
+Kubernetes Series – Post 18 | #justvisualise
+
+Deep Dive: Controllers in the Controller Manager
+
+In Kubernetes, two key components—the API Server and the Scheduler—handle the foundational operations of the cluster:
+
+API Server: Acts as the central hub of Kubernetes. It stores all resource definitions in etcd and notifies clients about any changes in the cluster state. However, it doesn’t actively manage the state of workloads.
+
+Scheduler: Assigns Pods to appropriate nodes based on resource requirements, availability, and other constraints. It decides where a Pod should run but doesn’t ensure it stays running.
+So, how does Kubernetes ensure that the actual state of the cluster matches the desired state specified in the manifests? This is the job of controllers.
+
+What Are Controllers?
+Controllers are active, control-loop components that continuously monitor the cluster and reconcile the state. If the actual state diverges from the desired state, controllers take actions to bring them back in sync.
+Think of it like a thermostat: the desired temperature is the target, the thermostat continuously monitors the actual temperature, and it turns the heater or AC on/off to reach the target. Similarly, controllers ensure that the resources you define actually exist and behave as expected in the cluster.
+
+The Controller Manager
+The Controller Manager is a single process that currently runs multiple controllers. Each controller is responsible for reconciling a specific type of resource. In the future, controllers may be split into separate processes, allowing Kubernetes users to replace them with custom implementations if needed.
+Key Controllers in Kubernetes
+
+Here’s a list of some of the main controllers and what they do:
+Replication Controller & ReplicaSet, DaemonSet, Job controllers – ensure the correct number of Pod replicas are running, automatically replacing failed Pods.
+
+Deployment Controller – manages Deployments, handles rolling updates, and ensures applications are upgraded without downtime.
+
+StatefulSet Controller – manages stateful applications, providing stable network identifiers and persistent storage.
+
+Node Controller – monitors node health and performs actions if a node becomes unreachable.
+
+Service & Endpoints Controllers – manage networking, service discovery, and routing traffic to the correct Pods.
+
+Namespace Controller – manages the lifecycle of namespaces in the cluster.
+
+PersistentVolume Controller – ensures persistent storage is correctly provisioned and bound to claims.
+
+Other controllers – almost every resource in Kubernetes has a corresponding controller that ensures it behaves as intended.
+
+Key Takeaways
+Resources define what should run in the cluster.
+Controllers are the active agents that ensure the cluster actually reaches and maintains that state.
+Controllers make Kubernetes self-healing, scalable, and automated, which is what makes it a powerful platform for cloud-native applications.
