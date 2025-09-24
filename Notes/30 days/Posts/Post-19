@@ -1,0 +1,51 @@
+Kubernetes Series – Post 19 | #justvisualise
+
+UNDERSTANDING WHAT CONTROLLERS DO AND HOW THEY DO IT
+
+When you deploy something in Kubernetes, you don’t directly manage every Pod or Node yourself. Instead, Controllers are always working in the background to make sure the cluster’s actual state matches the desired state you defined in the manifest.
+
+* How Controllers Work
+Each controller connects to the API server and watches for changes to resources (Pods, Deployments, Services, etc.).
+When it detects a change (create, update, delete), it takes action to bring things back in line with the desired state.
+They run a continuous reconciliation loop:
+Compare actual state vs desired state (from .spec).
+Update the system until both match.
+Write the results back into .status.
+To avoid missing any event, they also do a periodic re-list of resources.
+Controllers never talk to each other – each one only knows about the resource type it manages.
+
+* Types of Controllers and Their Role
+1. Replication Manager / ReplicaSet / DaemonSet / Job
+Create Pod objects based on the template.
+Let the Scheduler decide where they run.
+Kubelet then runs the Pods on assigned nodes.
+
+2. Deployment Controller
+Ensures your Deployment’s state is in sync with the spec.
+Manages rollouts → creates a new ReplicaSet, gradually shifts traffic from old to new Pods.
+Doesn’t run Pods directly, only manages ReplicaSets.
+
+3. StatefulSet Controller
+Similar to ReplicaSet but for stateful applications.
+Creates Pods with stable identities.
+Also provisions PersistentVolumeClaims (PVCs) automatically for each Pod.
+
+4. Node Controller
+Tracks the health and availability of worker nodes.
+Keeps Node objects updated in the API server.
+If a node becomes unreachable → evicts its Pods and reschedules them elsewhere.
+
+5. Service Controller
+Manages Service objects.
+Makes sure Services route traffic correctly to the underlying Pods.
+
+In Simple Words
+Controllers = Kubernetes Managers 
+You (the user) declare what you want in YAML (spec).
+Controllers work in the background to make it happen.
+They never stop – always reconciling actual vs desired state.
+
+Why it matters?
+Without controllers, Kubernetes would just be a static API and datastore. Controllers bring life to the cluster by constantly adjusting, healing, and ensuring apps run the way you want.
+
+Think of Controllers as the “autopilot system” of Kubernetes.
