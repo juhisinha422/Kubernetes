@@ -1,0 +1,75 @@
+Kubernetes Service Mesh. 
+🔹 What is a Service Mesh?
+A service mesh is a dedicated infrastructure layer that manages service-to-service communication inside a Kubernetes (or microservices) environment.
+Instead of putting networking, security, and observability logic inside your application code, a service mesh handles it transparently.
+It usually works by deploying a sidecar proxy (like Envoy) alongside each pod to intercept traffic.
+
+🔹 Why Do We Need a Service Mesh?
+In Kubernetes, Services already provide:
+Service discovery (DNS, ClusterIP)
+Load balancing
+Basic traffic routing
+But modern microservices need more advanced features, like:
+Security → mTLS (mutual TLS) between services
+Traffic control → Canary, blue/green, A/B testing
+Reliability → Retries, failovers, rate limiting, circuit breaking
+Observability → Metrics, tracing, logging per request
+👉 Kubernetes alone doesn’t provide all of these. Service Mesh fills the gap.
+
+🔹 How a Service Mesh Works
+Data Plane
+Made up of sidecar proxies (e.g., Envoy).
+Handles all service-to-service communication.
+Enforces policies (like retries, rate limits, mTLS).
+Control Plane
+Configures and manages the data plane.
+Provides APIs to define traffic rules, security policies, telemetry.
+Examples: Istio’s istiod, Linkerd’s controller.
+
+🔹 Popular Service Mesh Tools in Kubernetes
+Istio
+Most feature-rich.
+Uses Envoy sidecar proxies.
+Strong support for security, observability, traffic shaping.
+Linkerd
+Lightweight, simpler than Istio.
+Uses Rust-based sidecar proxies.
+Focus on performance and simplicity.
+Consul Connect (by HashiCorp)
+Works across Kubernetes and VMs.
+Strong service discovery + service mesh.
+Cilium Service Mesh
+Based on eBPF (no sidecars).
+Lightweight, kernel-level performance.
+
+🔹 Key Features of a Service Mesh
+Traffic Management
+Routing, load balancing, canary, blue/green deployments
+Security
+Mutual TLS, authorization, service identity
+Reliability
+Retries, timeouts, rate limiting, circuit breaking
+Observability
+Metrics (Prometheus, Grafana)
+Distributed tracing (Jaeger, Zipkin)
+Logs
+
+🔹 Benefits
+Developers don’t need to code networking/security features.
+Consistent policies across all services.
+Better resilience and reliability.
+Enhanced visibility into microservice communication.
+
+🔹 When to Use a Service Mesh?
+✅ Good for:
+Large microservices architectures
+Need strong security (mTLS, zero trust)
+Want advanced traffic control (canary, A/B testing)
+Require deep observability into service-to-service traffic
+
+🔹 Example Flow (Istio with Envoy)
+Pod A wants to talk to Pod B.
+Pod A’s request goes to Envoy sidecar proxy.
+Envoy applies policies (TLS, routing rules).
+Envoy forwards request to Pod B’s Envoy proxy.
+Pod B’s proxy delivers traffic to Pod B.
