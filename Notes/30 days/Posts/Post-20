@@ -1,0 +1,39 @@
+Kubernetes Series – Post 20 | #justvisualise
+
+The Endpoints Controller
+
+When we create a Service in Kubernetes, on the surface it feels simple—just define a Service, attach a selector, and traffic automatically reaches the right Pods. But in reality, there is a very important background process that makes this “magic” possible. That hidden worker is called the Endpoints Controller.
+
+Why Services don’t directly talk to Pods
+A Service in Kubernetes never stores Pod IPs directly. Pods are dynamic—new ones come up, old ones get terminated, IPs change. If Services stored Pod IPs themselves, they would become outdated in seconds.
+That’s why Services rely on a separate resource called Endpoints, which contains the current list of Pod IPs + ports matching the Service selector.
+
+
+
+Role of the Endpoints Controller
+The Endpoints Controller is the active component inside the control plane that makes sure this mapping always stays accurate.
+
+Here’s what it does step by step:
+It watches both Services and Pods continuously.
+Whenever a Service is created/updated, or Pods are added, removed, or scaled:
+It checks which Pods match the Service’s label selector.
+It gathers their IP addresses and container ports.
+It updates the corresponding Endpoints object.
+If an Endpoints object doesn’t exist yet, the controller creates it.
+If the Service is deleted, the controller deletes the Endpoints object too.
+
+So essentially, the Endpoints Controller is the bridge that connects the Service definition with the actual, always-changing Pod network.
+
+
+Real-World Importance
+Let’s say you deploy 3 Pods of your frontend app, and you expose them using a Service with selector app=frontend.
+
+The Endpoints Controller builds a list of those 3 Pod IPs.
+If one Pod crashes, the controller immediately removes its IP from the Endpoints list—so traffic never goes to a dead Pod.
+If you scale up to 5 Pods, it automatically adds the new Pod IPs to the list.
+
+This ensures automatic load balancing, high availability, and zero manual intervention. Without the Endpoints Controller, Services wouldn’t know where to forward traffic.
+
+
+In short:
+The Endpoints Controller may be invisible, but it is the reason Services “just work.” It constantly keeps the service-to-pod mapping alive, ensuring your applications remain stable, scalable, and highly available.
