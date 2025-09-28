@@ -1,0 +1,26 @@
+Understanding Static Pods in Kubernes
+ 
+One of the interesting Kubernetes concepts every DevOps engineer should know! 🚀
+
+🧩 What are Static Pods?
+
+Static Pods are managed directly by the kubelet on a specific node, not by the Kubernetes control plane (like API server or controller manager).
+
+📍 Key Points:
+
+Created automatically by kubelet using manifest files located in a specific directory 
+
+(/etc/kubernetes/manifests).
+
+They are bound to a particular node — if the kubelet stops, the static pod also goes down.
+
+No ReplicaSet or Deployment manages them.
+
+Commonly used for critical control plane components such as kube-apiserver, etcd, etc.
+
+
+🧠 Why Important?
+They help bootstrap the control plane when a cluster is being initialized and give us deeper insights into how Kubernetes starts working behind the scenes.
+
+💬 My takeaway:
+Static Pods remind us that Kubernetes isn’t just about automation — it’s also about understanding the foundation!
