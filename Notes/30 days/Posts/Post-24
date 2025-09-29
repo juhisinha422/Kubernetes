@@ -1,0 +1,54 @@
+Kubernetes Series – Post 24 | #justvisualise
+
+Understanding the Container Network Interface (CNI)
+
+In Kubernetes, every Pod needs to communicate — with other Pods, Services, and sometimes the external world. But how does Kubernetes manage networking for thousands of Pods efficiently and consistently across nodes? This is where the Container Network Interface (CNI) comes in.
+
+What is CNI?
+CNI is a standard interface that allows Kubernetes to use any network plugin to manage container networking.
+It decouples the Kubernetes networking logic from the actual implementation, meaning you can choose from multiple plugins depending on your requirements.
+
+Some popular CNI plugins include:
+        Calico – networking + network policies
+        Flannel – simple overlay network
+        Romana – scalable flat networking
+        Weave Net – automatic network discovery
+        And others
+You don’t need to memorize all plugins, but it’s important to know that Kubernetes doesn’t provide a default network implementation — it relies on CNI plugins to make Pod-to-Pod communication work.
+
+
+How CNI Works
+* Network Plugin Installation
+           Installing a CNI plugin is straightforward.
+           Each plugin provides a YAML manifest (usually on their project page).
+           Deploying this YAML sets up the plugin across your cluster.
+* DaemonSet Deployment
+           The YAML usually creates a DaemonSet.
+           A DaemonSet ensures that a network agent runs on every node in the cluster.
+           This agent configures the Pod network on the node and hooks into the CNI interface.
+
+* Kubelet Configuration
+            For Kubernetes to use the CNI plugin, the Kubelet must start with:
+                                 --network-plugin=cni
+            This tells the Kubelet to delegate Pod network setup to the CNI plugin.
+
+Why This Matters
+Without CNI, Pods wouldn’t be able to communicate with each other, breaking the cluster.
+CNI ensures:
+       Consistent networking across all nodes
+        Flexibility to use different plugins based on features like network policies, encryption, or performance
+        Scalability, even in large clusters with thousands of nodes
+
+How Services Are Related
+You’ve learned about Services in Kubernetes — they give Pods a stable IP and port.
+To fully understand Services:
+You need to know how Pods are networked.
+Services rely on CNI and kube-proxy to route traffic to Pods correctly.
+When troubleshooting networking issues, knowing how CNI works is essential.
+
+Key Takeaways
+CNI = standard interface for Kubernetes networking
+Kubernetes relies on CNI plugins to connect Pods across nodes
+Installing a plugin = deploy DaemonSet + supporting resources
+Kubelet must use --network-plugin=cni
+Without CNI, Services and Pod communication won’t work
