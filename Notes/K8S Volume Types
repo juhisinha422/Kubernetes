@@ -1,0 +1,127 @@
+Kubernetes supports several volume types :
+
+A. Ephemeral Volumes (lifetime = Pod)
+
+emptyDir – scratch space on the node, deleted when Pod stops.
+
+configMap / secret – inject configuration or sensitive values.
+
+downwardAPI – exposes Pod metadata to containers.
+
+ephemeral CSI volumes – temporary storage from CSI drivers.
+
+
+B. Node-local Volumes
+
+hostPath – mounts a path from the node filesystem into the Pod.
+⚠️ Not portable, risky in managed environments (like AKS).
+
+
+C. Persistent Volumes (lifetime > Pod)
+
+Require PersistentVolume (PV) and PersistentVolumeClaim (PVC).
+
+NFS, iSCSI, GlusterFS, CephFS, etc. – classic storage backends.
+
+CSI Volumes (Container Storage Interface – modern standard).
+
+Most cloud providers (Azure, AWS, GCP) use CSI drivers now.
+
+Support dynamic provisioning (storage created on demand).
+
+
+🔹 Which Volumes Are Majorly Used?
+
+In production workloads on AKS (Azure Kubernetes Service), the most common volumes are:
+
+1. Azure Disk
+
+Block storage, backed by Azure Managed Disks.
+
+2. Azure Files
+
+Shared storage, backed by Azure Storage Account (File Share).
+
+👉 These two are the major storage options in AKS, used via CSI drivers (disk.csi.azure.com and file.csi.azure.com).
+
+
+🔹How Volumes Are Provisioned in Azure
+
+1. You create a PersistentVolumeClaim (PVC) in Kubernetes.
+
+2. Kubernetes uses a StorageClass that points to the Azure CSI driver.
+
+3. Azure automatically provisions the requested storage (Disk or File Share).
+
+4. The volume is mounted into your Pod.
+
+
+Default Storage Classes in AKS
+
+managed-csi → Azure Disk (default class, dynamic provisioning)
+
+azurefile-csi → Azure File Share (dynamic provisioning)
+
+Both are CSI-based and support dynamic creation/deletion of storage.
+
+
+Example: Azure Disk (PVC + Pod)
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-disk
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: managed-csi
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: disk-pod
+spec:
+  containers:
+  - name: app
+    image: nginx
+    volumeMounts:
+    - mountPath: /mnt/azure
+      name: disk-storage
+  volumes:
+  - name: disk-storage
+    persistentVolumeClaim:
+      claimName: my-disk
+
+
+Example: Azure File Share (PVC + Pod)
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-file
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: azurefile-csi
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: file-pod
+spec:
+  containers:
+  - name: app
+    image: nginx
+    volumeMounts:
+    - mountPath: /mnt/azurefile
+      name: file-storage
+  volumes:
+  - name: file-storage
+    persistentVolumeClaim:
+      claimName: my-file
