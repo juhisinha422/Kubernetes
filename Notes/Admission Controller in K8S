@@ -1,0 +1,24 @@
+𝗔𝗱𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿𝘀 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀
+
+Imagine you’re entering a company called 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗜𝗻𝗰.
+You walk in with your ID card that’s your 𝙠𝙪𝙗𝙚𝙘𝙩𝙡 𝙖𝙥𝙥𝙡𝙮 -𝙛 𝙥𝙤𝙙.𝙮𝙖𝙢𝙡.
+
+First, the 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗴𝘂𝗮𝗿𝗱 checks who you are (Authentication).
+Then, the 𝗽𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻𝘀 𝗱𝗲𝘀𝗸 checks what you’re allowed to do (Authorization).
+
+Now comes the front desk this is where 𝗔𝗱𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿𝘀 step in.
+They don’t care who you are. They care about 𝘄𝗵𝗮𝘁 𝘆𝗼𝘂’𝗿𝗲 𝗯𝗿𝗶𝗻𝗴𝗶𝗻𝗴 𝗶𝗻.
+
+They look into your “bag” (your YAML file) and say things like:
+- “You can’t bring this inside.”
+- “You missed your ID tag, I’ll add it.”
+- “That item isn’t allowed here.”
+Only after that check does your request enter the building (the cluster).
+
+In short, 𝗔𝗱𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿𝘀 are 𝗴𝗮𝘁𝗲𝗸𝗲𝗲𝗽𝗲𝗿𝘀 inside Kubernetes.
+They can validate requests or modify them before saving.
+
+Think of them like a party host checking guests at the door:
+You decide who gets in, who gets labeled, and who’s turned away.
+
+That’s exactly what Admission Controllers do they keep your Kubernetes cluster organized, secure, and mistake free.
