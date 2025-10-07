@@ -1,0 +1,13 @@
+Why Use Kubernetes?
+
+- Kubernetes (K8s) is an open-source container orchestration platform that helps you deploy, manage, and scale containerized applications efficiently.
+
+* Key Benefits:
+- Automatic Deployment & Scaling – Containers start, stop, or scale based on demand.
+- Self-Healing – Fails containers are automatically restarted.
+- Load Balancing & Service Discovery – Routes traffic to the right containers automatically.
+- Easy Updates & Rollbacks – Update apps without downtime and roll back if needed.
+- Efficient Resource Use – Optimizes CPU and memory across servers.
+
+💡 Bottom Line:
+ If you’re running many containers across multiple servers, Kubernetes keeps everything organized, reliable, and scalable — like a traffic controller for your apps.
