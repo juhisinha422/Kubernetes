@@ -1,0 +1,21 @@
+Multiple Containers in a Kubernetes Pod – Debugging Tips
+
+In Kubernetes, a Pod can have multiple containers:
+- Usually one main container runs the application
+- Optional sidecar containers handle tasks like logging, metrics, or proxies
+
+* Debugging a Container inside a Pod
+- Suppose you have a Pod with two containers: app and logger. You can enter a specific container using:
+
+kubectl exec -it mypod -c app -- /bin/bash
+* mypod → Pod name
+* -c app → Container name inside the Pod
+* /bin/bash → Start a shell for debugging
+
+Check Pod Resources
+- You can also see CPU/memory usage per Pod:
+
+kubectl top pod mypod
+
+💡 Takeaways:
+Pods can hold multiple containers, but usually one main + optional sidecars
