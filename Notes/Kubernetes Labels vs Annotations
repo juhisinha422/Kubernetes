@@ -1,0 +1,30 @@
+Kubernetes Labels vs Annotations – Know the Difference
+
+- In Kubernetes, metadata helps organize and manage resources. Two common types are Labels and Annotations.
+
+#Labels
+- Purpose: Connect and group internal services within the cluster.
+- Usage: Used for selectors by controllers, Services, and kubectl.
+
+Example
+metadata:
+  labels:
+    app: backend
+    environment: prod
+
+Filter resources using labels:
+kubectl get pods -l app=backend
+
+#Annotations
+- Purpose: Store extra metadata, including special characters, and can connect to external resources or tools.
+- Usage: Not used for selection; mainly for informational, operational, or integration purposes.
+
+Example
+metadata:
+  annotations:
+    description: "Backend pod for API service"
+    monitoring-url: "https://lnkd.in/gjtgVJ9P"
+
+✅ Key Difference
+- Labels: For internal connections and selection inside the cluster.
+- Annotations: For external integrations, extra info, and human-readable metadata.
