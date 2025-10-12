@@ -1,0 +1,41 @@
+Kubernetes Resource Requests & Limits:
+- In a Pod, all containers share the same memory and CPU.
+- If one container consumes all the memory, other containers cannot perform their activities.
+- If CPU is used, other containers will be slower.
+- If memory is used up, other containers may be killed.
+
+Key Concepts:
+- Requests: Minimum threshold of CPU or memory guaranteed for the container.
+- Limits: Maximum threshold a container can use.
+- Limit can be equal to or greater than request, but not smaller.
+- If the limit is reached, the container cannot consume more resources.
+
+Example
+apiVersion: v1
+kind: Pod
+metadata:
+ name: mypod
+spec:
+ containers:
+  - name: app-container
+   image: myapp:latest
+   resources:
+    requests:
+     memory: "200Mi"
+     cpu: "500m"
+    limits:
+     memory: "500Mi"
+     cpu: "1"
+  - name: sidecar-container
+   image: mysidecar:latest
+   resources:
+    requests:
+     memory: "100Mi"
+     cpu: "200m"
+    limits:
+     memory: "300Mi"
+     cpu: "500m"
+
+
+💡 Takeaway:
+- Properly setting requests and limits ensures that containers in a Pod share resources fairly and prevents one container from affecting others.
