@@ -1,0 +1,37 @@
+Kubernetes Series – Post 26 | #justvisualise
+
+Understanding How Containers Share the Same IP and Port Space
+When you deploy multiple containers inside the same Pod, Kubernetes does something really interesting behind the scenes — it makes all containers share the same network namespace.
+
+That means 
+     All containers in a Pod have the same IP address.
+     They share the same port space.
+     They can talk to each other directly using localhost.
+Sounds simple, right? But it has an important implication —
+ if two containers in the same Pod try to listen on the same port, you’ll run into a port conflict!
+
+So, containers within the same Pod must use different ports to avoid issues.
+Now, here’s the cool part 
+This port conflict issue only happens within the same Pod.
+Containers in different Pods can use the same ports freely, because:
+      Each Pod has its own IP address.
+      Each Pod has an independent port space.
+
+
+Communication Between Pods
+Kubernetes gives each Pod its own IP, and all Pods exist in a flat, NAT-less network.
+This means:
+Pods can communicate with each other just like computers in a local network (LAN).
+It doesn’t matter whether two Pods are on the same node or different nodes — communication works seamlessly.
+This network isolation and connectivity are handled by a software-defined network (SDN) layer built into Kubernetes.
+
+
+
+To Sum It Up
+Think of a Pod as a logical host —
+ It behaves much like a physical machine or a virtual machine.
+Processes running inside the same Pod = like processes on the same computer.
+The only difference is that each process runs in its own container, providing isolation and consistency.
+
+So, next time you deploy multiple containers in one Pod, remember —
+they’re all sharing the same network brain 
