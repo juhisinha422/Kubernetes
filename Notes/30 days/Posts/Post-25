@@ -1,0 +1,52 @@
+Kubernetes Series – Post 25 | #justvisualise
+
+Understanding Why We Need Pods
+Let’s take a step back and ask ourselves a simple question — Why do we even need Pods in Kubernetes?
+Why can’t we just use containers directly?
+Why would we ever want to run multiple containers together?
+And can’t we simply put all our processes inside a single container?
+
+
+Let’s break it down
+Why Multiple Containers Are Better Than One Container Running Multiple Processes
+
+Imagine you have an application that has multiple processes —
+maybe one process handles the main app, another does logging, and another syncs data.
+
+These processes often need to communicate with each other — either through IPC (Inter-Process Communication) or by sharing local files.
+So, naturally, you might think:
+        “Why not just run all these processes inside one container?”
+It sounds simple… but it’s actually not a good idea.
+
+
+The Problem with Running Multiple Processes in One Container
+Containers are designed to run a single main process (unless that process itself spawns child processes).
+If you try to pack multiple unrelated processes inside one container:
+You become responsible for managing all those processes manually
+ (start, stop, restart, and monitor each one).
+You’ll have to build a mechanism to restart a specific process if it crashes.
+All processes will log to the same standard output, making it hard to identify which process generated which log.
+Debugging and maintenance become painful and error-prone.
+In short — it breaks the whole philosophy of container simplicity and isolation.
+
+
+The Kubernetes Way – Using Pods
+Kubernetes introduces the concept of Pods to solve this exact problem.
+A Pod is the smallest deployable unit in Kubernetes — it can contain one or more containers that work together as a single logical unit.
+Each container inside the Pod:
+         Runs its own single process
+         Shares the same network namespace, so they can easily talk to each other using localhost
+        Can share volumes (storage) for common files or data
+        Is managed together — scheduled, restarted, and scaled as one unit
+
+This way, you get:
+ Clean separation of responsibilities
+ Simple container design
+ Easy communication between processes
+ Better reliability and observability
+
+
+In Short
+A Pod allows tightly coupled containers to run together, communicate easily, and behave as one application unit — without breaking the “one process per container” rule.
+Pods make your setup modular, maintainable, and production-ready.
+
