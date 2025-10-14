@@ -1,0 +1,11 @@
+In Kubernetes, PDB stands for Pod Disruption Budget. It’s a policy that helps ensure your application maintains availability during voluntary disruptions, such as:
+
+- Node maintenance or upgrades
+- Cluster autoscaling
+- Draining nodes
+
+---
+
+🛡️ What Does a PDB Do?
+
+A Pod Disruption Budget sets limits on how many pods from a deployment, replica set, or stateful set can be unavailable at any given time. This prevents too many pods from being taken down simultaneously, which could impact your app’s performance or availability.
