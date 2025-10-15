@@ -1,0 +1,55 @@
+apiVersion: Day-07
+metadata:
+ name: pod-and-yaml
+ publishedDate: 15/10/2025
+topic: "YAML and Pods in Kubernetes"
+
+content:
+ introduction: >
+  Explored one of the most essential building blocks of Kubernetes — YAML and Pods. 
+  Understanding how resources are defined is key before diving into Deployments or Services.
+
+ yamlOverview:
+  description: "YAML is clean, readable, intuitive, and preferred for Kubernetes configs."
+  features:
+   - Comments with "#"
+   - Key-value pairs, lists, dictionaries
+   - File extensions: .yaml or .yml
+
+ podCreation:
+  imperative:
+   description: "Quick commands to create resources, perfect for learning."
+   example: "kubectl run nginx --image=nginx"
+  declarative:
+   description: "Configuration files (YAML/JSON) applied with kubectl, preferred for production."
+   example:
+    apiVersion: v1
+    kind: Pod
+    metadata:
+     name: nginx-pod
+     labels:
+      env: test
+      type: frontend
+    spec:
+     containers:
+      - name: nginx-container
+       image: nginx
+       ports:
+        - containerPort: 80
+   applyCommand: "kubectl apply -f pod.yaml"
+
+ usefulCommands:
+  - "kubectl describe pod <pod_name>"
+  - "kubectl get pods -o wide"
+  - "kubectl explain pod"
+  - "kubectl run nginx --image=nginx --dry-run=client -o yaml > new-pod.yaml"
+
+ keyTakeaways:
+  - YAML is the language of Kubernetes.
+  - Pods are the smallest deployable unit.
+  - Imperative for learning, declarative for production.
+  - Labels and metadata help organize resources.
+
+read More: https://lnkd.in/drEjaPZ3
+
+ 
