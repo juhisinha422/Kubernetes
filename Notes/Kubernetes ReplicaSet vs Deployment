@@ -1,0 +1,45 @@
+ Kubernetes ReplicaSet vs Deployment 
+
+hashtag#ReplicaSet 
+- Maintains the number of pod replicas.
+- If the image version or configuration changes, pods will not be updated.
+- New pods are not automatically created when changes occur.
+
+hashtag#Deployment
+- Manages pods like ReplicaSet but also handles updates automatically.
+- If any changes are made (e.g., image version), a rolling update is done.
+- Old pods are not removed until new pods are successfully running, ensuring high availability.
+- You don’t need to rerun the YAML manually; just apply the updated Deployment and Kubernetes handles the update.
+
+Simple Example
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: myapp-deployment
+spec:
+ replicas: 3
+ selector:
+ matchLabels:
+ app: myapp
+ template:
+ metadata:
+ labels:
+ app: myapp
+ spec:
+ containers:
+ - name: myapp
+ image: myapp:2.0
+ ports:
+ - containerPort: 80
+
+Apply the updated YAML:
+kubectl apply -f deployment.yaml
+
+- Kubernetes detects the change in the Deployment spec.
+- It performs a rolling update:
+* New pods with the updated image are created
+* Old pods are gradually terminated only after the new pods are running successfully
+
+💡 Takeaway:
+- ReplicaSets: Only maintain replicas.
+- Deployments: Manage pods and updates automatically, ensuring high availability.
