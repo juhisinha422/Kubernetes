@@ -1,0 +1,35 @@
+Kubernetes CRD (Custom Resource Definition)
+
+🧩 What Kubernetes Gives You Out-of-the-Box
+When you install Kubernetes, you get:
+Pods, Deployments, ReplicaSets
+ConfigMaps, Secrets, Namespaces
+And many more…
+These cover most use cases — but what if you need something custom?
+
+ The Three Key Components
+1️⃣ CRD (Custom Resource Definition)
+ → The blueprint or template that defines your new resource type.
+2️⃣ CR (Custom Resource)
+ → The actual instance created from that CRD.
+3️⃣ Custom Controller 
+ → Manages the lifecycle of your custom resources and ensures the desired state.
+
+ Analogy:
+CRD = Class definition
+CR = Object (instance)
+Controller = Manager that keeps it in sync
+
+🔑 Key Takeaway
+CRDs let you extend Kubernetes not replace it.
+ You’re adding new capabilities while using the same powerful Kubernetes API.
+
+That’s exactly how tools like:
+ArgoCD
+Prometheus Operator
+cert-manager
+…extend Kubernetes under the hood 
+
+📚 Resources for Learning
+https://lnkd.in/g3wmvjuW
+https://lnkd.in/gTMF5HYB
