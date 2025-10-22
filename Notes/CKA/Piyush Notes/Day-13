@@ -1,0 +1,12 @@
+#Day-13
+ 
+one of the most fascinating parts of Kubernetes 
+
+🧠 Key takeaways:
+ 1️⃣ Static Pods — critical control plane components like etcd, kube-apiserver, controller-manager, and scheduler run as static pods managed directly by kubelet, not the scheduler.
+ 2️⃣ Manual Scheduling — you can manually assign a pod to a specific node using nodeName when the scheduler isn’t running.
+ 3️⃣ Labels & Selectors — help organize and filter thousands of Kubernetes resources efficiently.
+ 4️⃣ Annotations — store metadata for better debugging and version tracking.
+
+These concepts form the backbone of Kubernetes control and orchestration — knowing how the scheduler schedules itself truly deepens your DevOps understanding!"
+ https://www.linkedin.com/mwlite/feed/posts/gaurav-halnawar_day-kubernetes-devops-activity-7386393347491348480-JUoI?utm_source=share&utm_medium=member_android&rcm=ACoAACmvwaIBY96L8YpzYe3ElCPaGSb_MqQ_TOo#:~:text=Gaurav%20Halnawar%20%201st,your%20DevOps%20understanding!
