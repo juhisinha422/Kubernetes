@@ -9,6 +9,7 @@ Key Takeaways:
 2️⃣ Resource Limits — define the maximum amount of CPU or memory a container can use.
 
 If a container exceeds its memory limit, it gets OOMKilled (Out of Memory).
+
 If it exceeds its CPU limit, it gets throttled (slowed down, not killed).
 
 3️⃣ Units Matter!
