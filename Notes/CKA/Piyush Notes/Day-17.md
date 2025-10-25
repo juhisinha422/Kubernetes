@@ -3,11 +3,21 @@ Day-17
  Today I explored Kubernetes Autoscaling — HPA, VPA, and KEDA.
 
 Key Takeaways:
+
  1️⃣ Horizontal Pod Autoscaler (HPA) : scales the number of pod replicas automatically based on CPU or memory usage. Perfect for handling variable traffic without manual intervention.
+
  2️⃣ Vertical Pod Autoscaler (VPA) : adjusts resources (CPU & memory) of existing pods. Useful for workloads that can tolerate pod restarts and require dynamic resizing.
+
  3️⃣ KEDA (Kubernetes Event-Driven Autoscaler) : scales pods based on external event sources like message queues, databases, or custom metrics. It can even scale down to 0 when idle, saving resources.
+
  4️⃣ Hands-on Experiments:
+
  ✅ HPA increases pods as CPU spikes.
+
  ⚠️ VPA resizes pod resources automatically.
+
  🚀 KEDA reacts to queue length or custom metrics, enabling event-driven scaling.
+
  5️⃣ Autoscaling ensures efficient resource utilization, improves resilience, and reduces manual intervention in production environments.
+
+![Image](https://github.com/user-attachments/assets/55d16e3a-bf12-46a0-99ae-44506bd9ec18)
