@@ -1,0 +1,27 @@
+𝗣𝗿𝗼𝗺𝗲𝘁𝗵𝗲𝘂𝘀 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 (𝗗𝗲𝘃𝗢𝗽𝘀)
+
+Prometheus is a leading monitoring and alerting toolkit for modern DevOps environments.
+
+🔹 Check Version & Start
+ prometheus --version → Check the installed Prometheus version
+ prometheus --config.file=prometheus.yml → Start Prometheus using a specific configuration file
+ prometheus --storage.tsdb.path=/data → Specify the storage path for metrics data
+
+🔹 Configuration & Rules Validation
+ promtool check config prometheus.yml → Validate the Prometheus configuration file for errors
+ promtool check rules rules.yml → Verify alerting or recording rules
+ promtool test rules test_rules.yml → Test alerting/recording rules before applying
+
+🔹 API & Metrics Queries
+ curl http://localhost:9090/api/v1/targets → List all active scrape targets
+ curl http://localhost:9090/api/v1/alerts → View currently active alerts
+ curl http://localhost:9090/api/v1/query?query=up → Query specific metric data
+
+🔹 Service Management
+ systemctl start prometheus → Start Prometheus service
+ systemctl stop prometheus → Stop Prometheus service
+ systemctl restart prometheus → Restart Prometheus service
+ systemctl status prometheus → Check the status of Prometheus service
+
+🔹 Logs & Monitoring
+ journalctl -u prometheus -f → Follow Prometheus logs in real-time
