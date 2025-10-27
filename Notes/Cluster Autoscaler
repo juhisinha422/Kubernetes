@@ -1,0 +1,15 @@
+Kubernetes Cluster Autoscaler- explained simply:
+
+1. Sometimes, your pods get stuck in a pending state because there’s not enough CPU or memory left on any node.
+
+2. The Cluster Autoscaler notices these pending pods and checks all the available node groups to see where more capacity can be added.
+
+3. Once it finds a suitable group, it automatically adds a new node to the cluster.
+
+4. That new node joins the cluster, and Kubernetes schedules the pending pods onto it.
+
+5. Later, when some nodes are barely being used, the autoscaler drains and removes them to save cloud costs.
+
+👉 If you work in DevOps or Kubernetes clusters, understanding how the Cluster Autoscaler works is the foundation of cost-efficient and reliable scaling.
+
+![Image](https://github.com/user-attachments/assets/06cc70e7-7bf5-4ee3-b929-4f6c429f6508)
