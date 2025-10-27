@@ -20,4 +20,10 @@ Key Takeaways:
 
 5️⃣ Why this matters: This is a production-level best practice. It means no more hard-coding passwords in code or images. This makes applications more secure, portable, and easier to manage across different environments (dev, staging, prod).
 
+Read More: 
+
+ConfigMap: https://github.com/juhisinha422/Kubernetes/tree/main/Notes/CKA/Piyush%20Notes/Kubernetes_DevOps/Day-19
+
+Secret: https://github.com/juhisinha422/Kubernetes/tree/main/Notes/CKA/Piyush%20Notes/Kubernetes_DevOps/Day-19/secrets
+
 <img width="590" height="371" alt="Image" src="https://github.com/user-attachments/assets/40d26fca-9564-4789-81dd-8419f00bd45c" />
