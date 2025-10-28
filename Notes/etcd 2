@@ -1,0 +1,11 @@
+etcd is the brain of your Kubernetes cluster.
+
+While the API server handles communication, the etcd stores the cluster’s entire state - everything from Pod details to ConfigMaps and secrets.
+
+What etcd does:
+- Acts as Kubernetes’ key-value store
+- Records every cluster configuration and change
+- Ensures high availability and consistency across the control plane
+- If etcd fails, your cluster forgets its state - that’s how critical it is.
+
+Protect it with regular backups, encryption, and secure access.
