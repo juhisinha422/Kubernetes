@@ -1,0 +1,11 @@
+𝐇𝐨𝐰 𝐏𝐫𝐨𝐦𝐞𝐭𝐡𝐞𝐮𝐬 𝐖𝐨𝐫𝐤𝐬
+
+𝐏𝐫𝐨𝐦𝐞𝐭𝐡𝐞𝐮𝐬 is the data collector — it scrapes metrics from your servers, containers, or apps and stores them in a time-series database.
+
+Key highlights:
+🔹 Pull-based model — collects metrics via HTTP endpoints
+🔹 Powerful PromQL — custom queries for deep analysis
+🔹 Alertmanager integration — triggers alerts instantly
+🔹 Highly scalable & open-source
+
+Think of Prometheus as your metrics brain — always watching, recording, and learning from your systems.
