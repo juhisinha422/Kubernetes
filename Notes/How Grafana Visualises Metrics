@@ -1,0 +1,13 @@
+𝐇𝐨𝐰 𝐆𝐫𝐚𝐟𝐚𝐧𝐚 𝐕𝐢𝐬𝐮𝐚𝐥𝐢𝐳𝐞𝐬 𝐘𝐨𝐮𝐫 𝐌𝐞𝐭𝐫𝐢𝐜𝐬
+
+𝐆𝐫𝐚𝐟𝐚𝐧𝐚 turns raw Prometheus data into real-time dashboards — making complex metrics easy to read and act upon.
+
+Benefits of Grafana:
+✅ Custom dashboards for infrastructure, app, or business metrics
+✅ Supports multiple data sources (Prometheus, Loki, Elastic, etc.)
+✅ Alerting & sharing built right in
+✅ Beautiful, interactive visualization
+
+In short:
+Prometheus collects. Grafana visualizes.
+Together, they create complete observability.
