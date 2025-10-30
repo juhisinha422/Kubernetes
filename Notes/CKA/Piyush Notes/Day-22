@@ -1,0 +1,25 @@
+#Day-22
+
+Today was all about understanding Authentication & Authorization inside Kubernetes 🔐
+
+Key Concepts:
+
+🪪 Authentication (Who are you?)
+ Verifies your identity using certificates, tokens, or kubeconfig files.
+🛡️ Authorization (What can you do?)
+ Once identified, Kubernetes checks if you’re allowed to perform the requested action.
+
+Types of Authorization in Kubernetes:
+1️⃣ ABAC (Attribute-Based Access Control)
+ Permissions defined in a policy file.
+ Requires API server restart — not ideal for production.
+2️⃣ RBAC (Role-Based Access Control):
+ Assigns permissions via roles & role bindings.
+ Scalable, flexible, and the most commonly used method today.
+3️⃣ Node Authorization:
+Grants permissions to kubelets (nodes) to perform actions for the pods running on them.
+4️⃣ Webhook Authorization:
+ Uses external systems like OPA (Open Policy Agent) for advanced policy control — dynamic and powerful.
+
+Key Learning:
+Kubernetes uses a layered approach for access control — combining Node + RBAC + Webhook modes ensures secure, dynamic, and production-ready authorization 
