@@ -1,0 +1,16 @@
+Kubernetes Services – Making Pods Reachable
+
+- In Kubernetes, Services help with:
+1. DNS and Pod-to-Pod communication
+2. Making your application available to external users
+
+Key Points:
+- A Service is created and attached to Pods based on labels and selectors.
+-When we access a Service, traffic is routed to the actual Pods.
+- #ClusterIP: Default type, generated automatically, cannot be accessed from outside.Used for pod to pod communication
+- #NodePort: Superset of ClusterIP. A port from the range 30000-32767 is opened on all nodes. Using IP:NodePort, the app can be accessed externally. The port is also added to the security group automatically when the YAML is applied.
+- #LoadBalancer: Superset of NodePort. A DNS name is created, allowing access without IP and port.
+- Traffic routing usually follows round-robin technique.
+
+💡 Takeaway:
+- Services abstract Pods and make communication reliable, scalable, and easy both internally and externally.
