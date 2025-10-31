@@ -1,0 +1,21 @@
+#Day-23
+
+Today’s focus was on mastering RBAC (Role-Based Access Control) in Kubernetes 
+
+This session helped me understand how Kubernetes decides who can do what inside a cluster — a core part of secure DevOps practices 🔐
+
+Key Learnings:
+👤 Roles — Define what actions can be performed on specific resources (e.g., read-only access to pods).
+ 🤝 RoleBindings — Connect those permissions to specific users or service accounts.
+ 🌍 ClusterRoles & ClusterRoleBindings — Extend access cluster-wide, beyond a single namespace.
+
+Why RBAC Matters 🤔 :
+✅ Enforces the principle of least privilege — users get only what they truly need.
+ ✅ Ensures multi-user environments remain safe and compliant.
+ ✅ Offers fine-grained control and integrates easily with external identity systems.
+Hands-on Highlights:
+🔸 Verified user identities using kubectl auth whoami
+ 🔸 Tested permissions using kubectl auth can-i get pod
+ 🔸 Created custom Roles & RoleBindings for specific users
+ 🔸 Accessed the Kubernetes API securely with certificates and curl
+ This deep dive showed how RBAC forms the foundation for secure Kubernetes operations — bridging authentication and authorization seamlessly.
