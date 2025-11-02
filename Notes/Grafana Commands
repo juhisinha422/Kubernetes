@@ -1,0 +1,23 @@
+𝗚𝗿𝗮𝗳𝗮𝗻𝗮 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 (𝗗𝗲𝘃𝗢𝗽𝘀)
+
+Grafana is the leading visualization and analytics tool for monitoring metrics from Prometheus, Loki, and other data sources.
+
+🔹 Check Version & Start Service
+ grafana-server -v → Check the installed Grafana version
+ systemctl start grafana-server → Start the Grafana service
+ systemctl stop grafana-server → Stop the Grafana service
+ systemctl restart grafana-server → Restart Grafana service
+ systemctl status grafana-server → Check the current status of Grafana service
+
+🔹 Plugins & Extensions
+ grafana-cli plugins list-remote → List all available plugins in Grafana repository
+ grafana-cli plugins install <plugin-name> → Install a plugin by name
+ grafana-cli plugins update-all → Update all installed plugins to the latest version
+
+🔹 Admin & User Management
+ grafana-cli admin reset-admin-password <new-password> → Reset the Grafana admin password
+ grafana-cli admin reset-admin-password --homepath /usr/share/grafana <new-password> → Reset password using custom Grafana path
+
+🔹 Logs & Debugging
+ journalctl -u grafana-server -f → Follow Grafana logs in real-time
+ tail -f /var/log/grafana/grafana.log → View Grafana logs
