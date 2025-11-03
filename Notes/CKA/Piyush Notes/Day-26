@@ -1,0 +1,16 @@
+Day-26
+Today’s deep dive was all about understanding Network Policies in Kubernetes 
+
+I explored why network flow control matters and how to secure communication between pods in a production-grade cluster.
+
+Kubernetes allows all pods to talk to each other by default — but in real-world systems, that’s not always safe 
+
+Key Learnings:
+
+Network Policies define which pods can communicate — and on which ports.
+They work with CNIs (like Calico, Cilium, Weave Net) that enforce these rules.
+We created policies to ensure only the backend can talk to the database, blocking direct access from the frontend.
+ Implemented this using Calico as a CNI provider for advanced policy support.
+
+Best Practice:
+Start with a default deny-all policy, then explicitly allow only the traffic you need — this ensures least privilege and production-grade network isolation.
