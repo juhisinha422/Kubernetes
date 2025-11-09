@@ -1,0 +1,3 @@
+CoreDNS is the default DNS server in Kubernetes. It provides service discovery by allowing communication between Pods and Services using names instead of IP addresses.
+
+For example, a Pod can access another Pod or Service using its name (nginx-service) instead of the IP. CoreDNS handles this name-to-IP resolution automatically.
