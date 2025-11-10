@@ -1,0 +1,17 @@
+Kubernetes Image Pull Policyl Policy in simple words
+
+The imagePullPolicy in Kubernetes defines how images are pulled to nodes during Pod creation or updates.
+
+Options:
+
+𝗜𝗳𝗡𝗼𝘁𝗣𝗿𝗲𝘀𝗲𝗻𝘁: Pulls the image only if it’s not already on the node.
+𝗔𝗹𝘄𝗮𝘆𝘀: Always pulls the image from the registry.
+𝗡𝗲𝘃𝗲𝗿: Never pulls; uses only locally available images.
+
+Default behavior:
+
+If the tag is :latest → policy defaults to Always
+If a tag other than :latest is used → IfNotPresent
+If no tag is specified → Kubernetes assumes :latest and sets Always
+
+✅ Best practice: Always specify both an image tag and the imagePullPolicy explicitly to ensure consistent deployments. 
