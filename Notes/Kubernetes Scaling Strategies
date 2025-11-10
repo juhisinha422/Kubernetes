@@ -1,0 +1,15 @@
+Kubernetes Scaling Strategies:::
+
+Scaling in Kubernetes isn’t one-size-fits-all.
+Depending on your workloads and metrics, you can scale pods, nodes, or entire clusters — automatically or manually.
+
+Here are the 6 main strategies every DevOps engineer should know 👇
+
+1️⃣ **Horizontal Pod Autoscaling (HPA)** → Adds more Pods when CPU/memory usage increases.
+2️⃣ **Vertical Pod Autoscaling (VPA)** → Adjusts Pod resources up or down.
+3️⃣ **Cluster Autoscaling** → Adds or removes Nodes automatically.
+4️⃣ **Manual Scaling** → Using `kubectl scale` when full control is needed.
+5️⃣ **Predictive Scaling** → Uses ML (like KEDA) to anticipate future demand.
+6️⃣ **Custom Metrics Scaling** → Scales Pods based on business or app-specific metrics.
+
+💡 **Smart scaling = performance + cost efficiency + stability.**
