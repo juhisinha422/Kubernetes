@@ -3,6 +3,7 @@ Day-35
 Today I explored ETCD Backup & Restore in Kubernetes — the heart of cluster state management! 
 
 Key Learnings:
+
 1️⃣ ETCD is the brain of Kubernetes — every object, pod, and config lives there as key-value pairs.
 
 2️⃣ kubectl get all -A -o yaml isn’t enough — it misses PVs, PVCs, and low-level cluster state.
