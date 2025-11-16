@@ -1,0 +1,10 @@
+𝐓𝐚𝐢𝐧𝐭𝐬 & 𝐓𝐨𝐥𝐞𝐫𝐚𝐭𝐢𝐨𝐧𝐬: 𝐒𝐭𝐞𝐞𝐫𝐢𝐧𝐠 𝐏𝐨𝐝𝐬 𝐭𝐨 𝐭𝐡𝐞 𝐑𝐢𝐠𝐡𝐭 𝐍𝐨𝐝𝐞𝐬
+𝐓𝐚𝐢𝐧𝐭𝐬 𝐚𝐧𝐝 𝐓𝐨𝐥𝐞𝐫𝐚𝐭𝐢𝐨𝐧𝐬 control pod placement by defining which pods can run on which nodes. 𝐓𝐚𝐢𝐧𝐭𝐬 are applied to nodes, while 𝐓𝐨𝐥𝐞𝐫𝐚𝐭𝐢𝐨𝐧𝐬 are applied to pods.
+Since cluster nodes may vary—memory-optimized, CPU-optimized, or GPU-enabled—this mechanism ensures that 𝐰𝐨𝐫𝐤𝐥𝐨𝐚𝐝𝐬 are scheduled onto the nodes 𝐛𝐞𝐬𝐭 𝐬𝐮𝐢𝐭𝐞𝐝 for their requirements.
+
+✔️ 𝐓𝐚𝐢𝐧𝐭𝐬 𝐚𝐧𝐝 𝐓𝐨𝐥𝐞𝐫𝐚𝐭𝐢𝐨𝐧𝐬 𝐔𝐬𝐞 𝐜𝐚𝐬𝐞𝐬:
+1️⃣ 𝐃𝐞𝐝𝐢𝐜𝐚𝐭𝐞𝐝 𝐍𝐨𝐝𝐞𝐬: Ensure GPU- or memory-intensive pods run only on nodes optimized for those workloads.
+2️⃣ 𝐂𝐫𝐢𝐭𝐢𝐜𝐚𝐥 𝐖𝐨𝐫𝐤𝐥𝐨𝐚𝐝 𝐈𝐬𝐨𝐥𝐚𝐭𝐢𝐨𝐧: Keep production workloads separate from development by using taints and tolerations.
+3️⃣ 𝐏𝐫𝐨𝐭𝐞𝐜𝐭 𝐂𝐨𝐧𝐭𝐫𝐨𝐥 𝐏𝐥𝐚𝐧𝐞 𝐍𝐨𝐝𝐞𝐬: Prevent pods from scheduling on control plane nodes unless explicitly allowed.
+4️⃣ 𝐌𝐚𝐢𝐧𝐭𝐞𝐧𝐚𝐧𝐜𝐞 𝐌𝐨𝐝𝐞: Taint nodes during upgrades to stop new pods from being scheduled.
+5️⃣ 𝐑𝐞𝐬𝐨𝐮𝐫𝐜𝐞 𝐂𝐨𝐧𝐬𝐭𝐫𝐚𝐢𝐧𝐭𝐬: Block high-compute pods from running on standard nodes using taints and tolerations.
