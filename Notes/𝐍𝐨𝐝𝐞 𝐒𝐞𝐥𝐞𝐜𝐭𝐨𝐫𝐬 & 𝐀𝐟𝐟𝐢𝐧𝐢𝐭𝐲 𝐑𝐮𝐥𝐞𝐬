@@ -1,0 +1,4 @@
+𝐍𝐨𝐝𝐞 𝐒𝐞𝐥𝐞𝐜𝐭𝐨𝐫𝐬 & 𝐀𝐟𝐟𝐢𝐧𝐢𝐭𝐲 𝐑𝐮𝐥𝐞𝐬: 𝐒𝐦𝐚𝐫𝐭𝐞𝐫 𝐏𝐨𝐝 𝐒𝐜𝐡𝐞𝐝𝐮𝐥𝐢𝐧𝐠 𝐢𝐧 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬
+🅰️ Node Selector schedules pods strictly on nodes whose 𝐥𝐚𝐛𝐞𝐥𝐬 𝐞𝐱𝐚𝐜𝐭𝐥𝐲 𝐦𝐚𝐭𝐜𝐡 the specified criteria. It does 𝐧𝐨𝐭 𝐬𝐮𝐩𝐩𝐨𝐫𝐭 𝐬𝐨𝐟𝐭 𝐩𝐫𝐞𝐟𝐞𝐫𝐞𝐧𝐜𝐞𝐬—either a node matches or it doesn’t—and it 𝐜𝐚𝐧𝐧𝐨𝐭 𝐞𝐱𝐩𝐫𝐞𝐬𝐬 𝐎𝐑 𝐜𝐨𝐧𝐝𝐢𝐭𝐢𝐨𝐧𝐬, making it suitable only for 𝐬𝐢𝐦𝐩𝐥𝐞, 𝐝𝐢𝐫𝐞𝐜𝐭 𝐩𝐥𝐚𝐜𝐞𝐦𝐞𝐧𝐭 rules.
+
+🅱️ Node Affinity is an 𝐚𝐝𝐯𝐚𝐧𝐜𝐞𝐝 𝐯𝐞𝐫𝐬𝐢𝐨𝐧 of Node Selector, offering 𝐫𝐢𝐜𝐡𝐞𝐫 conditions and flexible matching rules. It supports 𝐬𝐨𝐟𝐭 𝐚𝐧𝐝 𝐡𝐚𝐫𝐝 𝐩𝐫𝐞𝐟𝐞𝐫𝐞𝐧𝐜𝐞, additional operators, and 𝐜𝐨𝐦𝐩𝐥𝐞𝐱 𝐞𝐱𝐩𝐫𝐞𝐬𝐬𝐢𝐨𝐧𝐬, making it ideal for 𝐩𝐫𝐨𝐝𝐮𝐜𝐭𝐢𝐨𝐧-𝐠𝐫𝐚𝐝𝐞 scheduling requirements.
