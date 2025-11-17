@@ -1,0 +1,5 @@
+𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐬, 𝐋𝐢𝐦𝐢𝐭𝐬, 𝐚𝐧𝐝 𝐋𝐢𝐦𝐢𝐭𝐑𝐚𝐧𝐠𝐞𝐬 𝐃𝐞𝐦𝐲𝐬𝐭𝐢𝐟𝐢𝐞𝐝 📈
+1️⃣ 𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐬: Minimum guaranteed resources (typically CPU & Memory) for a container
+2️⃣ 𝐋𝐢𝐦𝐢𝐭𝐬: Maximum resources(typically CPU & Memory) a container can use as long as the resources are available from the node.
+This ensures that even if a faulty pod is deployed on the cluster, it 𝐜𝐚𝐧𝐧𝐨𝐭 𝐜𝐨𝐧𝐬𝐮𝐦𝐞 resources beyond its defined limits. This prevents healthy pods from being 𝐝𝐢𝐬𝐫𝐮𝐩𝐭𝐞𝐝 by a Noisy Neighbour.
+3️⃣ 𝐋𝐢𝐦𝐢𝐭𝐑𝐚𝐧𝐠𝐞𝐬: A LimitRange object allows administrators to 𝐞𝐧𝐟𝐨𝐫𝐜𝐞 default requests and limits for CPU and memory in a 𝐊𝐮𝐛𝐞𝐫𝐧𝐞𝐭𝐞𝐬 𝐧𝐚𝐦𝐞𝐬𝐩𝐚𝐜𝐞. If a container does not specify resource requests or limits, the defaults from the LimitRange will be applied.
