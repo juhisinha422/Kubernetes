@@ -1,0 +1,12 @@
+Day-41
+Today I shifted gears from learning concepts to mastering the Certified Kubernetes Administrator (CKA) exam strategy — focusing on speed, efficiency, and the "imperative first" mindset.
+
+Key Learnings (Exam Strategy & Efficiency Insights):
+1️⃣ Imperative > Declarative (for speed). Don't write YAML from scratch. Use kubectl run with dry-run flags to generate skeletons instantly. export do="--dry-run=client -o yaml" saves minutes per question.
+2️⃣ The "Copy-Paste" Trap. The exam terminal is a Linux emulator. Standard shortcuts won't work. Ctrl+C = Kills the process ⚠️ Ctrl+Shift+C/V = Copy/Paste ✅ Building this muscle memory is crucial to avoid frustration.
+3️⃣ Master kubectl explain. Stop browsing documentation for every field definition. kubectl explain pv.spec.capacity gives you the answer faster than Chrome can load the page.
+4️⃣ Context is King. Every question switches clusters. If you miss the kubectl config use-context command, you fail the question—even if your solution is perfect. Read question → Set Context → Solve.
+5️⃣ Triage Your Questions. Not all tasks are created equal. • Tier 1: Pods/Scaling (Do immediately). 
+• Tier 2: Upgrades/ETCD Backup (Do mid-exam). 
+• Tier 3: Complex Network Policies/JSONPath (Bookmark for last).
+6️⃣ Vim Essentials. You don't need to be a Vim wizard, but you must know: dd (delete line), u (undo), Shift+G (jump to end), and o (insert new line below). Speed editing is a survival skill.
