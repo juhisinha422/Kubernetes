@@ -1,0 +1,18 @@
+❔Command: ['sh' , '-c']
+Mean of above command
+
+✅The command `['sh', '-c']` is a common pattern in Docker and Kubernetes (Pod) containers.
+
+Here's a breakdown of what it means:
+
+- `sh`: This is the command to run the Bourne shell (or a compatible shell) in the container. It's a Unix shell that allows you to execute commands.
+
+- `-c`: This option tells the shell to read commands from a string, which follows this option. Essentially, it allows you to pass a command string to the shell to execute.
+
+When you see `['sh', '-c']` in a Pod container, it's typically used to execute a command or a set of commands within the container. The actual command to be executed is usually provided as the next argument in the command list, like this:
+
+`['sh', '-c', 'command to execute']`
+
+For example, if the full command is `['sh', '-c', 'echo Hello World']`, the container would execute the `echo Hello World` command inside the shell.
+
+This approach is useful for running complex commands, multiple commands, or commands with redirection and piping in a container.
