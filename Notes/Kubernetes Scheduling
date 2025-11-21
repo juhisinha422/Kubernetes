@@ -1,0 +1,67 @@
+Kubernetes Scheduling Explained: nodeSelector, Affinity, Anti-Affinity, and Taints & Tolerations (with practical examples)
+
+Understanding how Kubernetes schedules Pods is essential for DevOps, SRE, and Platform Engineering teams. Here is a clear and concise breakdown of the key scheduling mechanisms and real production use cases.
+
+1. nodeSelector – Simple and direct node pinning
+The easiest way to schedule a pod on a specific type of node.
+Example:
+ Your node has a label disktype=ssd and your workload needs SSD storage.
+
+spec:
+  nodeSelector:
+    disktype: ssd
+
+2. Node Affinity – Smarter, more flexible scheduling
+Supports complex rules with operators like In, NotIn, Exists.
+Example: Run workloads only on large compute nodes.
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: instance-type
+            operator: In
+            values: ["m5.xlarge", "c6g.2xlarge"]
+
+3. Pod Affinity – Place pods close together
+Schedules a pod near another pod for performance or locality advantages.
+
+affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app: redis
+        topologyKey: kubernetes.io/hostname
+
+4. Pod Anti-Affinity – Spread pods for high availability
+Ensures replicas are distributed across nodes.
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app: frontend
+        topologyKey: kubernetes.io/hostname
+
+5. Taints and Tolerations – Nodes repel pods unless allowed
+Used to dedicate nodes to specific workloads.
+Taint the node:
+
+kubectl taint nodes gpu-node dedicated=gpu:NoSchedule
+Pod toleration:
+
+tolerations:
+- key: "dedicated"
+  operator: "Equal"
+  value: "gpu"
+  effect: "NoSchedule"
+Summary
+nodeSelector: Simple label matching
+Node Affinity: Advanced placement logic
+Pod Affinity: Co-locate pods
+Pod Anti-Affinity: Spread pods across nodes
+Taints and Tolerations: Node-level isolation
+These patterns are essential for building reliable, scalable, and predictable Kubernetes platforms.
