@@ -1,0 +1,32 @@
+Day-48
+Today I worked on migrating from Ingress to the Kubernetes Gateway API, especially as #Ingress-NGINX maintenance officially ends in March 2026.
+ This means many Platform, DevOps, and SRE teams are now evaluating what comes next — and the clear answer is Gateway API.
+
+🚫 What’s happening with Ingress?
+Ingress has been the default entrypoint for years, but:
+❌ No new features
+ ❌ No long-term maintenance
+ ❌ Annotation-heavy & vendor-specific
+ ❌ Limited to HTTP/HTTPS
+ ❌ Harder to scale across teams
+This makes it unsuitable for modern, large-scale, multi-team Kubernetes environments.
+
+ What Gateway API Brings (The Future of K8s Networking):
+Gateway API is the next-generation, standardized way to manage traffic inside Kubernetes. It supports:
+✅ HTTP / HTTPS
+ ✅ gRPC
+ ✅ TCP / UDP
+ ✅ Header-based & method-based routing
+ ✅ Traffic splitting (canary, A/B, blue-green)
+ ✅ Better security boundary
+ ✅ Clear separation between Platform Teams & App Teams
+ ✅ Standard YAML across all vendors (no annotation chaos 🎉)
+🧩 Enterprise API Gateway Examples
+
+These vendors already support Gateway API and are widely used in production:
+#Kong Gateway
+#Ambassador Edge Stack
+#Gloo Gateway
+#NGINX Gateway Fabric
+#Istio Gateway (Service Mesh + Gateway)
+These options make it easier for orgs to adopt Gateway API based on their needs performance, security, or mesh integration.
