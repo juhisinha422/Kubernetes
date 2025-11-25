@@ -1,0 +1,14 @@
+Kubelet: The Quiet Worker Behind Every Kubernetes Node
+
+Kubelet is the agent installed on every Kubernetes node, responsible for keeping Pods healthy and running exactly as the control plane expects.
+
+What Kubelet actually does:
+- Watches the API server for Pod assignments
+- Ensures containers are created, started, and running
+- Reports node & pod status back to the control plane
+- Handles probes, logging, and container lifecycle events
+- Syncs desired state vs. actual state continuously
+
+It’s the “node brain” of Kubernetes.
+If Kubelet stops, your Pods stop too.
+Understanding Kubelet helps you troubleshoot issues faster.
