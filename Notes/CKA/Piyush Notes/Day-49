@@ -1,0 +1,29 @@
+#Day-49
+Today I explored how Kubernetes can be extended beyond the default objects we all use every day Pods, Deployments, ConfigMaps, Secrets, etc.
+But what happens when Kubernetes doesn’t have the resource we need? 🤔 
+ 
+We create our own using Custom Resources.
+Kubernetes gives us a powerful way to extend the API with 3 core building blocks:
+ 1. CRD — CustomResourceDefinition (The Class / Schema)
+This defines what the new resource looks like:
+Field names
+Data types
+Versions
+Validation rules
+Think of it like creating a new “type” in Kubernetes.
+ 2. CR — Custom Resource (The Object / Instance)
+This is an actual object created from the CRD, similar to how a Deployment is created from its schema.
+ If the CR matches the CRD schema → Kubernetes accepts it.
+ If not → validation error.
+ 3. Custom Controller — The Logic / Reconciler 
+This piece watches your Custom Resources and ensures the desired state is always maintained.
+ For example, a controller can read your CR and automatically create/update:
+Deployments
+Pods
+Services
+ …or any Kubernetes resource.
+
+This is the same pattern Kubernetes itself uses internally.
+(Deployment Controller manages Deployments, ReplicaSet Controller manages ReplicaSets, etc.
+
+Kubernetes becomes truly limitless once you start extending it.
