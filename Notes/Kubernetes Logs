@@ -1,0 +1,30 @@
+Kubernetes Logs - Where to Actually Look
+A lot of DevOps beginners struggle with Kubernetes debugging because they don’t know which logs live where.
+
+Container Logs: /var/log/containers/*.log
+➜ Crashes, exceptions, misconfigurations inside the container.
+
+Pod Logs: /var/log/pods/*.log
+➜ Multi-container issues, networking problems, interactions between containers.
+
+Kubelet Logs: /var/log/kubelet.log
+➜ Pod lifecycle, scheduling, resource assignment, and node-level communication.
+
+Control Plane Logs
+     API Server: /var/log/kube-apiserver.log
+     Controller Manager: /var/log/kube-controller-manager.log
+     Scheduler: /var/log/kube-scheduler.log
+     etcd: depends on deployment
+➜ Useful for debugging cluster-level issues, API failures, scheduling problems, or controller loops.
+
+Node Logs: syslog (location depends on OS)
+➜ Hardware issues, node pressure, kernel problems.
+
+Application Logs: /var/log/app.log
+➜ Logic errors, crashes, slow responses.
+
+Custom Logs: /var/log/custom-app.log
+➜ Domain-specific behavior or critical business events.
+
+🔁 Consider a Repost if this is helpful
+
