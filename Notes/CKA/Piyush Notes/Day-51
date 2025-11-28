@@ -1,0 +1,22 @@
+#Day 51 
+Today I learned how Admission Controllers work in Kubernetes — and honestly, this is one of the coolest internal mechanisms so far.
+
+What they do:
+Admission Controllers check every API request after authentication & authorization, and before it goes into etcd.
+Think of them like:
+Security + Policy Gatekeepers for your cluster.
+ Types
+1) Mutating Webhooks → can MODIFY your request
+2) Validating Webhooks → can ACCEPT or REJECT your request
+3) Validating Policies (VAP) → built-in rules using CEL
+
+What I tested today
+Tried creating a pod in a namespace that didn’t exist → ❌ error.
+ Enabled NamespaceAutoProvision → Kubernetes automatically created the namespace → ✅ success.
+ 
+Why it matters 🤔 :
+Admission Controllers help enforce:
+ ✔ Security
+ ✔ Best practices
+ ✔ Cluster-wide rules
+ ✔ Automation
