@@ -1,0 +1,10 @@
+Kubernetes is never used alone.
+It sits at the center of a massive ecosystem.
+
+Cluster Management: EKS, AKS, GKE, Rancher, kOps, OpenShift, Kubeadm
+Infra Automation: Terraform, CloudFormation, Ansible, Pulumi, ARM
+Container Runtimes: Docker, Containerd, CRI-O, rkt
+Networking: Calico, Flannel, Weave, Cilium, kube-router
+Monitoring: Prometheus, Grafana, ELK, Datadog, Sysdig, New Relic, Dynatrace, AppDynamics, Zabbix
+
+Master Kubernetes ➜ but also master the ecosystem that powers it.
