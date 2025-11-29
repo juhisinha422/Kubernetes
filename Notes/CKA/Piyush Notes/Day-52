@@ -1,0 +1,20 @@
+#Day 52 
+Today I explored how Kubernetes handles persistent storage using Storage Classes, and the difference between Static and Dynamic provisioning something every DevOps or Cloud engineer must understand.
+
+A) Static Provisioning:
+In static provisioning, storage admins manually create PVs ahead of time.
+ A PVC is then matched to an existing PV if size, access mode, and storage class align.
+ This works, but it’s manual and can lead to unused or over-allocated storage.
+
+B) Dynamic Provisioning: 
+Dynamic provisioning is cloud-native and automatic.
+ When a developer creates a PVC and references a StorageClass, Kubernetes uses the SC’s provisioner (e.g., GCE PD, AWS EBS, Azure Disk, NFS CSI) to create a new PV on demand.
+ It reduces cost, prevents manual work, and gives flexibility (SSD/HDD/NFS, performance tiers, etc.).
+
+ StorageClass Overview
+A StorageClass defines:
+The provisioner (cloud disk, NFS, CSI driver)
+Parameters like disk type, performance, filesystem
+Reclaim policy (Retain/Delete)
+Binding mode
+This makes it easy to choose the right storage for each workload.
