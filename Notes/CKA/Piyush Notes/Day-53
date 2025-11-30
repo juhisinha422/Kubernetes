@@ -1,0 +1,6 @@
+Day 53
+Today I walked through configuring CRI-Dockerd as a container runtime for Kubernetes  a key skill for environments that still leverage the Docker Engine beneath Kubernetes.
+
+Since Kubernetes deprecated direct Docker support, CRI-Dockerd is essential for clusters that still rely on the Docker Engine. It acts as the bridge between Kubelet → Docker, ensuring smooth container operations and full CRI compatibility
+
+A valuable hands-on step in understanding Kubernetes runtime architecture and how modern clusters interact with underlying container engines.
