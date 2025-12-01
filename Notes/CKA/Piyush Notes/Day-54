@@ -1,0 +1,33 @@
+#Day-54
+Today I deep-dived into one of the MOST important areas of Kubernetes security — Pod Security, Security Context & Linux Capabilities.
+
+1. Security Context (Pod & Container Level):
+Security Context controls the identity, privileges, and permissions of your container process.
+Key fields I explored today:
+runAsUser → Set the process UID (avoid UID 0/root!)
+runAsGroup → Group ID for process
+runAsNonRoot → Ensures containers NEVER run as root
+fsGroup → Controls file permissions on mounted volumes
+allowPrivilegeEscalation: false → Prevents privilege elevation (must-know!)
+
+2. Linux Capabilities:
+Capabilities define what a container can or cannot do at kernel level.
+Dangerous capabilities to avoid unless absolutely necessary:
+CAP_NET_ADMIN – Modify network interfaces, routing tables
+CAP_SYS_ADMIN – Mount filesystems, change kernel params (very high risk)
+CAP_SYS_TIME – Modify system clock
+
+3. Pod Security Standards (PSS):
+Kubernetes defines 3 built-in security profiles:
+🔴 Privileged – No restrictions
+🟠 Baseline – Basic protections
+🟢 Restricted – Strongest isolation (used in production & CKS exam)
+
+Restricted Pods enforce:
+No root user
+No privilege escalation
+Drop all capabilities
+Seccomp RuntimeDefault
+No hostPath, hostNetwork, hostPID
+
+Mastering Pod Security means you can confidently secure workloads, protect clusters from privilege misuse, and implement zero-trust principles in Kubernetes.
