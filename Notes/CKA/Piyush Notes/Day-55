@@ -1,0 +1,11 @@
+#Day-55
+Today I built a Highly Available Kubernetes Cluster on AWS using Terraform  fully modular, automated, and production-grade.
+
+In this project I:
+ 👉 Created a custom VPC (3 AZs, public/private subnets)
+ 👉 Designed dedicated Security Groups for master, worker & HAProxy
+ 👉 Automated EC2 master/worker provisioning with reusable Terraform modules
+ 👉 Deployed HAProxy as the API load balancer (port 6443)
+ 👉 Used SSM + userdata for zero-touch kubeadm bootstrap
+ 👉 Achieved full cluster automation end-to-end
+This setup mirrors how real companies build secure, scalable, multi-AZ Kubernetes clusters using Infrastructure as Code.
