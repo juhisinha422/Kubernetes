@@ -1,0 +1,39 @@
+Stateful vs Stateless Applications
+When you hear “stateful” or “stateless,” it may sound complicated. But it’s actually very simple if we use real-life examples.
+
+1. What is a Stateless Application?
+A stateless app does not store any data about previous requests.
+Every request is independent.
+You can kill or restart a Pod → no problem.
+Scaling is easy because new Pods don’t need past information.
+
+Example:
+A simple web server that serves HTML pages
+An API that calculates and returns a result based on input
+
+Scenario:
+You have 3 web server Pods behind a LoadBalancer
+User 1 requests a page → served by Pod A
+User 2 requests a page → served by Pod B
+Pods can come and go → nothing breaks
+
+Think of it like fast-food cashiers: they take an order, process it, and forget about it.
+
+2. What is a Stateful Application?
+A stateful app remembers past interactions.
+Pod stores data or session info
+Restarting a Pod may lose data if not handled properly
+
+Scaling requires special mechanisms like Persistent Volumes or StatefulSets
+
+Example:
+Databases like MySQL, PostgreSQL
+Chat apps that track user sessions
+E-commerce apps that track shopping carts
+
+Scenario:
+User adds items to cart → stored in a Pod
+If Pod restarts without proper storage → cart is lost
+Use Persistent Volumes or StatefulSets to keep data safe
+
+Think of it like a bank teller: they need records of previous transactions to serve you correctly.
