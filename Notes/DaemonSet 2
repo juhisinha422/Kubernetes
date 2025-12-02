@@ -1,0 +1,22 @@
+Why DaemonSets exist — and why every Kubernetes cluster uses them
+
+Not every workload needs multiple replicas.
+Some workloads need one instance on every node.
+That’s where DaemonSets come in.
+
+What they do:
+• Ensure a Pod runs on every node (or selected nodes).
+• Automatically deploy new Pods when nodes join the cluster.
+• Clean up Pods when nodes leave.
+
+Where DaemonSets are used:
+• logging agents (FluentD, FluentBit)
+• monitoring agents (Prometheus node exporter, Datadog Agent)
+• networking components (CNI plugins, kube-proxy)
+• security/telemetry agents
+
+Key benefit:
+You never manually assign Pods to nodes — DaemonSets ensure they always exist everywhere they’re needed.
+
+In simple words:
+DaemonSets are Kubernetes’ way of saying “this Pod must live on every node.”
