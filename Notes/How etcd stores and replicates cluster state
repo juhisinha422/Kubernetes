@@ -1,0 +1,21 @@
+How etcd stores and replicates cluster state (Raft basics)
+
+etcd is the only place where Kubernetes stores its entire cluster state — Pods, Deployments, ConfigMaps, Nodes, everything.
+
+Here’s how it keeps that state consistent and safe:
+
+🔸 etcd uses the Raft consensus algorithm to agree on every write.
+🔸 A cluster has one leader and multiple followers.
+🔸 All writes (from the API server) go to the leader only.
+🔸 The leader replicates the data to followers and waits for a majority (quorum) to acknowledge.
+
+Once a majority agrees, the data is committed and becomes the official state.
+Followers can serve reads, but writes always go through the leader.
+Why this matters:
+
+🔸 Even if some nodes fail, etcd stays consistent as long as the quorum is alive.
+🔸 It prevents split-brain and corrupted cluster state.
+🔸 Kubernetes reliability depends entirely on etcd’s correctness.
+
+In simple words:
+etcd uses Raft to make sure every piece of Kubernetes state is safely stored and agreed upon by most nodes before it becomes “real.”
