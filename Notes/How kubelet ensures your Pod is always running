@@ -1,0 +1,18 @@
+How kubelet ensures your Pod is always running
+
+The kubelet is the node agent that makes sure whatever the API server “wants” is actually happening on the node.
+Here’s how it works:
+ • It continuously watches the API server for Pod specs assigned to its node.
+ • It checks the actual state of containers via the container runtime (containerd/CRI-O).
+ • If a container stops, crashes, or becomes unhealthy, kubelet automatically:
+     • restarts it
+     • kills it if it’s stuck
+     • recreates it based on the Pod definition
+ • It runs health checks (liveness/readiness/startup probes) and reacts accordingly.
+ • It reports node status, pod status, and resource usage back to the API server.
+
+Key point:
+The kubelet never decides what to run — it only ensures the node matches the desired state defined by the API server.
+
+In simple words:
+kubelet is the “executor” of Kubernetes — it watches, reports, corrects, and keeps your Pods alive.
