@@ -1,0 +1,13 @@
+How does a Kubernetes Pod actually get its IP?
+
+When a Pod starts, it feels like magic — an IP appears inside eth0 instantly. But behind that is a very smart workflow handled by the node, not the control plane.
+
+Every node in the cluster gets its own Pod subnet (podCIDR). When a Pod lands on a node, the IP is simply picked from that node’s local subnet.
+
+As soon as kubelet creates the Pod sandbox, it calls the CNI plugin. This plugin is responsible for everything: creating a network namespace, assigning an IP, and wiring the Pod into the cluster network.
+
+The CNI plugin creates a veth pair — one end goes inside the Pod, one stays on the node. Routing rules are added so the Pod can talk to services and other pods across nodes.
+
+The Pod just wakes up, sees eth0, and starts working like a tiny Linux machine with its own IP stack.
+
+If you want a deeper, beautifully explained walkthrough, this blog breaks it down really well: https://lnkd.in/g447fPP9
