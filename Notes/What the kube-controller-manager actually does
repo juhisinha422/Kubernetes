@@ -1,0 +1,22 @@
+What the kube-controller-manager actually does
+
+The kube-controller-manager is the engine that keeps Kubernetes running the way you expect.
+Its job: continuously watch the cluster and fix anything that drifts from the desired state.
+
+How it works:
+	•	It reads the desired state from the API server (e.g., “there should be 5 replicas”).
+	•	It checks the actual state reported by nodes and kubelets.
+	•	If something doesn’t match, it takes action to correct it:
+	•	creates new Pods
+	•	removes excess Pods
+	•	replaces failed nodes
+	•	updates ReplicaSets
+	•	manages endpoints, service accounts, jobs, etc.
+
+Kubernetes has many controllers inside it (replication, node, job, deployment…), and this component runs all of them in a loop.
+
+Key idea:
+Controllers don’t wait for instructions — they constantly observe the cluster and fix deviations automatically.
+
+In simple words:
+kube-controller-manager is the “autopilot” of Kubernetes, always making sure the cluster matches the desired state.
