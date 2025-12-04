@@ -1,0 +1,17 @@
+#Day-57
+Today I dived deep into the world of GitOps and explored some of the most popular tools that power modern Kubernetes delivery workflows.
+
+Tools like Argo CD, FluxCD, Jenkins X, and Spinnaker enable a completely new way of managing cluster deployments . where Git becomes the single source of truth, and the GitOps controller continuously ensures the cluster always matches what we declare in the repository.
+
+What really stood out today was Argo CD, a CNCF graduated project originally created at Applatix (later acquired by Intuit).
+ Its ecosystem has grown massively Argo CD, Argo Workflows, Argo Events, Argo Rollouts all backed by contributors from Akuity, Intuit, BlackRock, Codefresh, Red Hat, and more.
+
+I broke down Argo CD’s internal architecture :
+ 🔹 Repo Server (talks to Git and fetches manifests)
+ 🔹 Application Controller (continuously reconciles cluster state with Git)
+ 🔹 API Server / UI (where users interact via CLI or dashboard)
+ 🔹 Dex for Single Sign-On
+ 🔹 Redis for caching and state
+
+The magic lies in its reconciliation loop:
+ If someone manually changes a Kubernetes object, Argo CD immediately detects drift and restores the state based on Git. True self-healing, something traditional CI/CD pipelines cannot offer.
