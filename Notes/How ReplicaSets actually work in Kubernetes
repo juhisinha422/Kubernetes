@@ -1,0 +1,26 @@
+How ReplicaSets actually work in Kubernetes
+
+A ReplicaSet’s job is simple but critical:
+make sure the exact number of Pod replicas you declare are always running.
+
+Here’s what actually happens under the hood:
+
+• The ReplicaSet watches the API server for the desired number of replicas.
+• It checks how many Pods currently match its label selector.
+• If the count is lower → it creates new Pods.
+• If the count is higher → it deletes extra Pods.
+• It keeps repeating this loop continuously, maintaining the exact replica count.
+
+Important detail:
+
+• ReplicaSets don’t handle updates.
+• Deployments use new ReplicaSets for rollout and old ones for rollback.
+
+Why ReplicaSets matter:
+
+• They ensure availability of your workloads.
+• They make sure pods recover after node failures.
+• They form the foundation for Deployments and autoscaling.
+
+In simple words:
+ReplicaSets guarantee that the number of Pods you want is always the number of Pods you have.
