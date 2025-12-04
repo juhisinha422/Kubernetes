@@ -1,0 +1,21 @@
+How the kube-scheduler decides where to place a Pod
+
+The kube-scheduler’s job is simple to describe but extremely smart in execution:
+Pick the best node for every new Pod.
+Here’s how it actually works:
+🔸 First, it filters out nodes that cannot run the Pod (insufficient CPU/memory, taints, node conditions).
+🔸 Then, from the remaining nodes, it scores each one based on factors like:
+   ▪️  resource availability
+   ▪️  spreading pods across zones/nodes
+   ▪️  affinity/anti-affinity rules
+   ▪️  existing workloads
+   ▪️  custom scheduling policies
+🔸 The node with the highest score wins.
+🔸 The scheduler then sends a binding decision to the API server.
+
+Important point:
+The scheduler never starts containers — it only decides where they should run.
+The kubelet on the chosen node handles the actual creation of Pods.
+
+In simple words:
+The scheduler filters → scores → picks the best node — and that’s how every Pod finds its home.
