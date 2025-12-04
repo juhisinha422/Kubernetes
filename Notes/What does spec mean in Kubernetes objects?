@@ -1,0 +1,40 @@
+ What does spec mean in Kubernetes objects? 💥 
+spec = the desired state of the object.
+It defines what you want Kubernetes to create, manage, or maintain inside that object.
+⭐ spec tells Kubernetes what should exist inside that particular kind
+
+________________________
+ 1. For a Pod
+spec defines:
+containers
+images
+volumes
+ports
+________________________
+2. For a ReplicaSet
+spec defines:
+how many replicas
+which pod labels to match (selector)
+pod template (how the pod should look)
+________________________
+3. For a Deployment
+spec defines:
+replicas
+rolling update strategy
+pod template
+________________________
+4. For a Service
+spec defines:
+type (ClusterIP, NodePort)
+ports
+selector (which pods to forward traffic to)
+________________________
+
+Simple Memory Trick
+Think of it like this:
+metadata = who am I?
+(name, labels)
+spec = what should I do?
+(desired behavior)
+status = what is happening right now?
+(Kubernetes automatically fills this, not you)
