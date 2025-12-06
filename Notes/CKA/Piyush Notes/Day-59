@@ -1,0 +1,23 @@
+Day-59
+
+Managing multiple Kubernetes environments (Dev, QA, Test, Prod) sounds simple until one small manual change breaks production and no one knows who did it.
+In simple terms:
+CI (Continuous Integration) is about building, testing, and packaging code.
+CD (Continuous Delivery) is about safely deploying that code into    Kubernetes.
+
+Traditionally, CD is handled using Shell scripts, Ansible, or Python. While this works, it comes with serious drawbacks manual changes, no clear audit trail, configuration drift, and zero automatic rollback when something goes wrong.
+This is where GitOps changes the game. With GitOps, Git becomes the single source of truth, and your clusters automatically sync to whatever is defined in version control.
+
+There are two ways to design Argo CD for multiple clusters:
+🔹 Standalone Model – Each cluster (Dev, QA, Test, Prod) runs its own Argo CD instance and manages itself independently.
+ 🔹 Hub-Spoke Model – One central Argo CD (Hub) manages deployments to multiple clusters (Spokes) from a single control plane.
+
+The real difference is control vs independence:
+Standalone = full isolation, more operational overhead
+Hub-Spoke = centralized control, faster rollouts across all environments
+
+The biggest wins I learned today:
+ ✅ Auto-healing when someone changes things manually
+ ✅ Drift detection with real-time sync
+ ✅ Full audit logs and version control via Git
+ ✅ Faster and safer multi-cluster deployments
