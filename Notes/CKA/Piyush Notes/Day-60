@@ -1,0 +1,28 @@
+Day-60
+Today I worked on setting up ArgoCD using both Custom Manifest installation and Helm-based installation, and clearly understood why Helm is the production-recommended approach for GitOps deployments in Kubernetes.
+
+
+🚫 Challenges with Custom (Manifest) Installation:
+ While great for learning and quick demos, custom installs come with limitations:
+ ❌ No built-in upgrade management
+ ❌ Hard to customize at scale
+ ❌ Manual configuration overhead
+ ❌ Limited production controls
+ ❌ Not ideal for enterprise GitOps workflows
+This makes it less suitable for long-term production environments.
+
+✅ Why Helm Installation is Production-Recommended:
+✅ Version-controlled deployments
+ ✅ Easy upgrades & rollbacks
+ ✅ Environment-specific configuration via values.yaml
+ ✅ Production-grade scalability
+ ✅ Better security & RBAC management
+ ✅ Industry standard across DevOps teams
+ ✅ Perfect fit for GitOps & CI/CD pipelines
+
+🧩 Real-World Use Cases of Helm-Based ArgoCD:
+ Helm-based ArgoCD is widely used for:
+Multi-cluster GitOps management
+Canary & blue-green deployments
+Platform engineering automation
+Secure enterprise Kubernetes delivery pipelines
