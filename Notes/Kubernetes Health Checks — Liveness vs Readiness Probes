@@ -1,0 +1,80 @@
+Kubernetes Health Checks — Liveness vs Readiness Probes (Simple Guide)
+
+When running apps in Kubernetes, a pod may show as running… but the application inside may not be healthy.
+
+Example issues: ✔️ App deadlock
+✔️ Memory leak
+✔️ High CPU usage
+✔️ App accessible internally but not responding to traffic
+
+Kubernetes uses Probes to detect and fix these issues automatically 👇
+---
+🩺 Liveness Probe — Is the app alive?
+
+Kubelet by default only checks if container process is running, not if the app is healthy.
+If liveness probe fails → Kubernetes restarts the container.
+
+📌 Example Scenario
+App is running but unresponsive due to memory leakage → Liveness probe detects failure → Restart fixes issue.
+
+📍 Sample YAML
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 5  # Wait before first check
+  periodSeconds: 5        # Check every 5 sec
+
+✨ Benefit: If health check fails → Auto healing of the application
+---
+🚧 Readiness Probe — Is the app ready for traffic?
+
+Even if the app is running, it may not be ready to serve users.
+If readiness probe fails → Service removes the pod from endpoints → No traffic sent to this pod.
+
+📌 Example Scenario
+App is booting and still connecting to DB → Don’t send traffic yet → Readiness probe ensures zero user errors.
+
+📍 Sample YAML
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 3  # Start checking after 3 sec
+  periodSeconds: 5        # Check every 5 sec
+
+✨ Benefit: Traffic only goes to healthy & fully-ready pods
+---
+🔍 What Happens When Probes Fail?
+
+> If readiness probe fails, kubelet removes the pod from service endpoint. 
+> And liveness probe checks on same pod, if it fails restarts the container. 
+> Here again readiness probe checks if container is ready to accept traffic, if healthy then adds it to service endpoint. 
+---
+🎯 Practical Use Cases
+
+Issue	Probe Solution
+
+Deadlock, memory leak, CPU spike	Restart via Liveness Probe
+App still initializing resources	Block traffic using Readiness Probe
+Rolling upgrades	Use readiness to avoid sending traffic during restart
+Avoid downtime during deployments	Readiness ensures smooth routing
+---
+⚙️ Common Probe Config Options (from your notes)
+
+Parameter	Purpose
+
+initialDelaySeconds	Wait before running first check
+periodSeconds	Check frequency
+timeoutSeconds	Max wait time per check
+failureThreshold	No. of failures before action
+successThreshold	No. of successes before marking ready
+---
+🧠 Key Takeaways
+
+✔️ Kubernetes process running ≠ App healthy
+✔️ Restarting containers can automatically fix many runtime issues
+✔️ Probes = stability + smooth deployments + better UX
+✔️ Readiness ensures services never send traffic to unhealthy pods
