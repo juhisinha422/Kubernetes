@@ -1,0 +1,29 @@
+#Day-61
+Today I deep-dived into the Argo CD UI and GitOps workflow, understanding why each UI component exists and how it fits into real-world Kubernetes continuous delivery. GitOps is not just a toolset anymore — it’s the operating model for modern DevOps & Platform teams. 
+
+🔄 Why Argo CD & GitOps Matter
+ Argo CD enables declarative, version-controlled, and automated deployments where:
+🧩 Key Argo CD UI Components I Worked On Today
+📦 Applications – Defines what gets deployed and keeps it always in sync
+ 🗂️ Projects – Security and logical boundaries for microservices (frontend, backend, DB)
+ 🔗 Repositories – Secure GitHub/GitLab/Bitbucket integration via HTTPS, SSH, GitHub App & GCP
+ 🌍 Clusters – Multi-cluster GitOps deployment (Dev, Staging, Production)
+ 🔐 Accounts & RBAC – Fine-grained access control
+ 🎨 Appearance – UI personalization for better DevOps experience
+ 👤 User Info – Admin password & profile management
+ 🔏 GnuPG & Certificates – Verified commits & secure repo trust
+🖥️ Important CLI Learning
+ To securely add new Kubernetes clusters to Argo CD, CLI authentication is required:
+ argocd login → argocd cluster add
+ This ensures controlled, audited, and secure multi-cluster access.
+⚙️ Application Creation – Production-Grade Controls
+
+ ✅ Sync Policies (Manual / Auto)
+ ✅ Namespace Auto-Creation
+ ✅ Pruning & Self-Healing
+ ✅ Server-Side Apply
+ ✅ Git Branch, Path & Revision Control
+ ✅ Multi-Cluster & Multi-Namespace Targeting
+
+💡 Big Takeaway
+ Argo CD is not just a CD tool  it’s a control plane for Kubernetes deployments, enabling scalable GitOps across teams, clusters, and environments.
