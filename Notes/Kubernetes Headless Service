@@ -1,0 +1,52 @@
+ Kubernetes Headless Service — Why & When Do We Use It?
+
+In Kubernetes, a Headless Service is used when we don’t want load-balancing across Pods but instead need direct Pod-to-Pod communication.
+Unlike a ClusterIP Service, a headless service doesn’t allocate a cluster-internal IP.
+➡️ Instead, Querying headless service gives individual Pod IPs.
+---
+🔍 Why Headless Service?
+
+There are many scenarios where applications need to talk directly to specific Pod replicas — not behind a load balancer:
+
+✔️ Peer-to-Peer Discovery
+✔️ Database Replication
+✔️ Leader-Follower Communication
+✔️ Work Distribution Without Load Balancing
+---
+📌 Key Use Case: Stateful Applications (Ex: Databases)
+
+📌 When deploying StatefulSets, each Pod requires a unique identity and its own storage.
+Example: redis/timeseries dbs for Prometheus
+
+> Each Pod replica has its own Persistent Volume
+
+> Pods discover each other using direct Pod DNS records
+
+> Replication can happen Pod ↔ Pod, not via service proxy
+
+🧠 DNS behavior:
+
+ClusterIP Service → Returns service IP
+
+Headless Service → Returns Pod IPs
+
+👉 This makes it perfect for primary/secondary DB syncing.
+---
+🛠️ Example Workload
+
+A MongoDB cluster using:
+
+StatefulSet → Creates pods with stable hostnames
+
+PV/PVC → Stores individual data per replica
+
+Headless Service → Internal DB replication
+
+ClusterIP → Allows application traffic to DB
+
+🌟 Summary
+
+Service Type When to Use
+
+Headless Service Peer-to-peer apps, DB replication, direct pod communication
+ClusterIP Service Standard service discovery & load balancing
