@@ -1,0 +1,25 @@
+Pods don’t have to run anywhere: you can guide where Kubernetes places them.
+
+Node Affinity and Anti-Affinity let you influence pod scheduling based on node labels, helping you control workload placement intelligently.
+
+Node Affinity - Tells Kubernetes where a pod should run.
+Use cases:
+- Run GPU workloads only on GPU nodes
+- Place apps in specific zones
+- Keep certain apps on high-memory nodes
+
+Pod Anti-Affinity - Tells Kubernetes where a pod should NOT run.
+Use cases:
+- Spread replicas across nodes for high availability
+- Avoid placing two heavy workloads on the same machine
+- Reduce risk of simultaneous failures
+
+Why it matters
+Proper affinity rules help you:
+- Improve reliability
+- Balance performance
+- Optimize resource usage
+- Prevent noisy-neighbor problems
+Smart scheduling = smarter clusters.
+
+Do you rely more on affinity rules for performance, or for high availability?
