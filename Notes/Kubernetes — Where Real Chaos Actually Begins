@@ -1,0 +1,37 @@
+Kubernetes — Where Real Chaos Actually Begins
+
+Running Kubernetes in production isn’t just deployments and YAML files… it’s a battlefield where only real engineers survive! ⚔️🚀
+Here are the REAL issues you’ll face when K8s goes wild:
+🔸 CrashLoopBackOff
+ Misconfigured env vars, faulty init containers, or apps failing to reach DB.
+🔸 OOMKilled
+ Pod memory limits too strict — your app gets mercilessly killed.
+🔸 Node Not Ready
+ Disk pressure, network plugin crashes, or kernel-level issues.
+🔸 Pod stuck in Pending
+ NodeSelector, taints, or tolerations not aligned.
+🔸 High etcd Latency
+ Large clusters, oversized objects, or missing compaction.
+🔸 DNS failures inside pods
+ CoreDNS crashes, throttling, or CNI misconfigurations.
+🔸 Services not reachable
+ Wrong selectors, bad endpoints, or incorrect Service type.
+🔸 HPA not scaling
+ Metrics-server missing, wrong metrics API, or slow scrape intervals.
+🔸 PVC stuck in Pending
+ StorageClass mismatch or provisioner unavailable.
+🔸 Pods evicted
+ Node resource pressure — CPU, memory, or disk.
+🔸 ImagePullBackOff
+ Incorrect tags or failing registry authentication.
+🔸 Liveness/Readiness probe failures
+ App not ready or misconfigured probe endpoints.
+🔸 NetworkPolicy blocking traffic
+ Too-restrictive ingress/egress rules.
+🔸 Ingress not routing
+ Missing annotations, wrong pathType, or backend mismatches.
+🔸 ConfigMap updates not reflecting
+ Pods need a restart — mounted volumes don’t hot-reload.
+🔥 Kubernetes isn’t hard — it’s brutally honest.
+ If you want to grow as a DevOps or SRE engineer, this is the playground.
+ If you can survive here… you can survive anywhere. 😄
