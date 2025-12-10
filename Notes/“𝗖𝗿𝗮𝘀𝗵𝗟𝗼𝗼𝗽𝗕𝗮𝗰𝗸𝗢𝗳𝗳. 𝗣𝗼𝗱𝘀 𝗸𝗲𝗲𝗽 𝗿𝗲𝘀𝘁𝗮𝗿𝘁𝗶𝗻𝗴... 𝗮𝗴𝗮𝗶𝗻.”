@@ -1,0 +1,11 @@
+“𝗖𝗿𝗮𝘀𝗵𝗟𝗼𝗼𝗽𝗕𝗮𝗰𝗸𝗢𝗳𝗳. 𝗣𝗼𝗱𝘀 𝗸𝗲𝗲𝗽 𝗿𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴... 𝗮𝗴𝗮𝗶𝗻.”
+
+Ever deployed a service on Kubernetes — and watched the pods go into a crash-loop? 😬
+
+🔹 App errors or misconfigurations inside the container
+🔹 Strict or incorrect liveness/readiness probes
+🔹 Resource limits (memory / CPU) too tight — causing OOM or failure under load
+🔹 Broken or wrong container image / config / secrets / environment variables
+🔹 External dependencies (DB / API / volume mount / network) not available or mis-configured
+
+What I love (and also hate) about Kubernetes: it tries to handle failures automatically — restart, retry, back-off. But it also forces you to learn fast: logs + probes + configs + resource profiles.
