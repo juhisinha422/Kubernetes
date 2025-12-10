@@ -1,0 +1,45 @@
+Some Kubernetes Common Errors
+Working with Kubernetes daily means facing a few recurring pod-level issues.
+
+1️⃣ .ImageBackPullOff
+> We face this issue when the image is not present in registry or the given image tag is wrong.
+
+> Make sure you provide correct registry url, image name and image tag.
+
+> We might face authentication failures, when image is being stored in a private registry, make sure to create secret with private registry credentials and add created secret in Kubernetes Deployment File to pull docker image.
+
+2️⃣ . CrashLoopBackOff
+> We face this issue when the process deployed inside container not running then the POD will be moved to CrashLoopBackOff.
+
+> POD might be running out of CPU or memory, POD should get enough resources allocated that’s cpu and memory for an application to be up and running, to fix that check in Resources Requests and Resources Limits.
+
+3️⃣ .OOM Killed - Out Of Memory
+> We face this issue when PODs tries to utilise more memory than the limits we have set.
+> We can resolve it by setting appropriate resource request and resource limit.
+
+4️⃣ .POD Status - Pending
+> When nodes might not be ready and required resources like CPU and Memory may not be available in nodes for the PODs to be up and running.
+
+> To fix this we can scale up cluster or node group to provide more cpu/memory
+>Remove or handle the taints and tolerations if any configured.
+
+5️⃣ .POD Status - Waiting:
+> POD will be scheduled to a node but POD won’t be running in scheduled node.
+> We can fix this by providing correct image name, image tag and authentication to registry.
+
+6️⃣ .POD will be up and running and application is not accessible:
+> This Issue might occure due to no service created ot wrong service type.
+OR if service and pod may be in different namespace.
+
+> We can fix this by creating appropriate service.
+I> f service is already created and application is still not accessible, make sure application and service are deployed in same namespace.
+
+7️⃣ .POD Status - Evicted:
+> Kubelet evicts pods when node is under resource pressure like low disk space and low node memory.
+
+>We can resolve this by setting appropriate resource requests and resource limits for the PODs and having enough resources in worker nodes.
+
+🆑 Conclusion:
+Most Kubernetes issues come from resource misconfiguration, image pull problems, or application-level errors.
+ Understanding these basics will make troubleshooting faster and easier.
+If you found this helpful, feel free to like/comment! 
