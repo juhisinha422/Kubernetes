@@ -1,0 +1,18 @@
+Day-63
+Argo CD GitOps Deployment – Application vs App-of-Apps vs ApplicationSet
+
+Here is the practical difference:
+✅ Application
+ Use when you need to deploy one service to one environment.
+ Best for simple, standalone deployments.
+✅ App-of-Apps
+ Use when you want one parent application to manage multiple child applications.
+ Commonly used for cluster bootstrapping and managing a group of services together.
+✅ ApplicationSet
+ Use when you need dynamic, scalable deployments.
+ Best for multi-cluster, multi-environment, preview environments, and large microservice platforms.
+
+Quick rule of thumb:
+ Application → Single deployment
+ App-of-Apps → Static group of deployments
+ ApplicationSet → Dynamic factory for deployments
