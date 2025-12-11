@@ -1,0 +1,10 @@
+Helm & Charts — Kubernetes Made Simple
+================================ 
+
+Kubernetes --> remember these two lines:
+
+👉 Helm = The Package Manager for Kubernetes
+ Just like apt, yum, or Homebrew — Helm helps you install, upgrade, and manage applications on K8s with a single command.
+
+👉 Helm Chart = Templatized Kubernetes Manifest Files
+ Charts let you reuse, parameterize, and version your Kubernetes YAML instead of copying the same configs everywhere.
