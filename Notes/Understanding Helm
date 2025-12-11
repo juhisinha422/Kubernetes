@@ -1,0 +1,55 @@
+Understanding Helm in Kubernetes – A Simple Guide
+
+If you’re working with Kubernetes, you’ve probably heard about Helm. Today, I wanted to break it down in a simple and practical way for anyone starting their cloud-native journey.
+
+🔹 What is Helm?
+Helm is a package manager for Kubernetes.
+ Just like apt for Ubuntu or yum for CentOS, Helm helps us install, manage, and upgrade applications inside Kubernetes using simple commands.
+Instead of writing multiple YAML files, Helm bundles everything into reusable packages called charts.
+
+🔹 Why are we using Helm?
+Managing Kubernetes resources manually becomes difficult when applications grow.
+ Helm helps us by:
+Avoiding repetitive YAML files
+Providing version-controlled deployments
+Automating complex Kubernetes setups
+Making rollbacks super easy
+Ensuring consistent deployments across environments
+
+🔹 Advantages of Helm
+✅ Reduces manual configuration
+ ✅ Faster and repeatable deployments
+ ✅ Easy upgrades and rollbacks
+ ✅ Allows templating with variables
+ ✅ Helps teams collaborate by sharing charts
+ ✅ Works great with CI/CD pipelines
+
+🔹 Common Helm Commands (With Examples & Use Case)
+
+1️⃣ Install a Chart
+helm install myapp bitnami/nginx
+Use case: Deploy an NGINX application in one command without writing YAML.
+
+2️⃣ Upgrade a Release
+helm upgrade myapp bitnami/nginx
+Use case: Push new app versions without downtime.
+
+3️⃣ Uninstall a Release
+helm uninstall myapp
+Use case: Clean up a deployment completely from the cluster.
+
+4️⃣ Check Installed Releases
+helm list
+Use case: View all applications deployed via Helm.
+
+5️⃣ Create a Helm Chart
+helm create mychart
+Use case: Generate a pre-built chart structure to customize your own application deployment.
+
+6️⃣ Dry Run Before Deployment
+helm install myapp ./mychart --dry-run
+Use case: Verify templates before pushing to production.
+
+7️⃣ Pull a Chart for Review
+helm pull bitnami/nginx --untar
+Use case: Download and inspect chart files locally.
