@@ -1,0 +1,25 @@
+How to onboard a new team to EKS — the secure way 👇
+
+1️⃣ Give them a space
+➡ Create a Namespace just for their workloads
+
+2️⃣ Give them an identity
+➡ Create an IAM User (CLI access only)
+
+3️⃣ Give them a keycard
+➡ Minimal IAM policy like eks:DescribeCluster 😎
+
+4️⃣ Tell the cluster who they are
+➡ Map IAM User → Kubernetes Group via aws-auth
+
+5️⃣ Define what they can do
+➡ Role + RoleBinding inside only their namespace
+
+6️⃣ Hand them the access badge
+➡ aws configure + aws eks update-kubeconfig
+---
+🎯 Result:
+They can deploy freely — but only where they’re supposed to.
+🛡️ Security ✔️
+🧩 Least privilege ✔️
+🚀 Smooth onboarding ✔️
