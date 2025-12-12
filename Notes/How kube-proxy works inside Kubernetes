@@ -1,0 +1,26 @@
+How kube-proxy works inside Kubernetes
+
+kube-proxy is responsible for making Services work — it ensures traffic reaches the correct Pods.
+
+Here’s how it actually works:
+
+1. kube-proxy watches the API server for Service and Endpoint changes.
+2. It updates routing rules on each node using:
+  a. iptables mode (rules in kernel)
+  b. IPVS mode (faster, load-balancer style)
+3. These rules forward traffic from:
+  - ClusterIP → Pods
+  - NodePort → Pods
+  - LoadBalancer → NodePort → Pods
+4. kube-proxy handles load balancing by distributing traffic across all healthy Pod endpoints.
+5. If Pods change (created, deleted, unhealthy), kube-proxy updates rules instantly.
+
+Why kube-proxy matters:
+
+1. It ensures Services work without hardcoding Pod IPs.
+2. It provides built-in load balancing.
+3. It updates routing automatically when Pods scale up/down.
+4. It abstracts Pod networking behind a stable Service IP.
+
+In simple words:
+kube-proxy makes sure “Service → Pod” routing always works, even as Pods constantly change.
