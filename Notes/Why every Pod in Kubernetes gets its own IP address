@@ -1,0 +1,26 @@
+Why every Pod in Kubernetes gets its own IP address
+
+Kubernetes networking follows a simple but powerful rule:
+“Every Pod gets a unique IP, and all Pods can talk to each other without NAT.”
+
+Here’s why this design exists:
+
+1. Pods are treated like standalone network endpoints.
+2. Each Pod gets its own network namespace and virtual Ethernet interface.
+3. The CNI plugin (Calico, Cilium, Flannel, etc.) assigns the Pod a unique IP.
+4. Pod-to-Pod communication works directly across nodes because:
+   a. CNI sets routing rules
+   b. No NAT is required
+   c. Every Pod is reachable flat across the cluster
+5. When a Pod dies, its IP dies with it — a new Pod gets a new IP.
+
+Why Kubernetes does this:
+
+1. Simplifies distributed application communication.
+2. Makes service discovery easier.
+3. Avoids port conflicts between containers.
+4. Works reliably across multi-node clusters.
+5. Allows network policies and service meshes to work cleanly.
+
+In simple words:
+Each Pod gets its own IP because Kubernetes treats Pods like independent machines in a flat, virtual network.
