@@ -1,0 +1,20 @@
+kubernetes | Nodes and Node selector
+
+A kubernetes node is a physical or virtual machine that functions as worker machine that provides the compute services to run the containerized applications.
+
+A single worker node might not have enough resources to handle the load of all the pods. Adding more worker nodes allows you to distribute the workload across the worker nodes.
+
+Command to list the nodes is
+kubectl get nodes
+
+Node selector:
+     Node selector is a machanism used to control the placement of pods onto a specific nodes within the cluster.
+
+Under spec section in manifest file we can mention node selector. So, if you know a pod takes huge amount of resources then we can mention size as large so that pod is only deployed to large node.
+
+Now the question is how does kubernetes know that it is micro, medium and large?
+You will be assigning a label to each worker node so that to select that particular node.
+
+Why use node selector?
+1) To ensure certain workloads run on a specific nodes with special hardware or configuration.
+2) To segregate workloads for complaince, performance or isolation purposes
