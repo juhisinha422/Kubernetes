@@ -1,0 +1,17 @@
+#Day 65:
+Advancing My DevOps Journey – Integrating GitHub SSO with ArgoCD + SSL Hardening
+
+Today’s milestone was all about strengthening security, access management, and operational efficiency by implementing GitHub Single Sign-On (SSO) with ArgoCD, backed by NGINX reverse proxy and Certbot SSL.
+
+Modern DevOps environments demand secure, centralized identity managementespecially when working with GitOps platforms like ArgoCD. By integrating GitHub OAuth, I established a streamlined authentication pipeline that removes credential friction while enforcing strong security controls across the CI/CD lifecycle.
+Key Highlights:
+ • Configured DNS & deployed NGINX as a secure reverse proxy
+ • Automated SSL/TLS certificate issuance with Certbot
+ • Registered and configured a GitHub OAuth App for ArgoCD SSO
+ • Deployed ArgoCD on Kubernetes and enabled external access
+ • Integrated GitHub SSO to deliver a unified, secure login experience
+ • Validated end-to-end flow with OAuth, SSL, and ArgoCD dashboard access
+
+This workflow significantly improves security posture, reduces manual overhead, and enhances developer experiencean essential step toward a fully mature GitOps model.
+Why this matters:
+ Centralized authentication isn’t just a convenience it is a foundational component of scalable DevOps ecosystems. 
