@@ -1,0 +1,25 @@
+Day 66  | Enterprise SSO for Argo CD with Okta 🔐
+
+Most Argo CD setups fail in one critical area: identity and access management.
+Local users. Shared admin credentials.
+ No centralized control. No audit trail.
+That does not scale.
+
+Today I implemented enterprise-grade Single Sign-On (SSO) for Argo CD using Okta, running on Kubernetes.
+What this setup delivers:
+ • Centralized authentication via Okta
+ • Secure SSO flow using SAML + Dex
+ • Group-based RBAC inside Argo CD
+ • HTTPS access via AWS ALB + ACM
+ • No local users, no credential sprawl
+Architecture highlights:
+ Okta → Dex → Argo CD → Kubernetes 
+ TLS terminated at the Load Balancer
+ Authorization enforced via Argo CD RBAC
+This is how you move from a demo-grade Argo CD setup to a production-ready platform.
+
+SSO is not a “nice to have”.
+It is mandatory once multiple teams touch your cluster.
+
+Question for the community:
+Are you using OIDC or SAML for Argo CD authentication in production — and why?
