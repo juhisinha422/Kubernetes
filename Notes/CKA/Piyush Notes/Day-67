@@ -1,0 +1,19 @@
+Day 67
+Argo CD Best Practices for GitOps at Scale
+Today’s focus was on how Argo CD behaves in real-world GitOps platforms beyond basic syncs and YAML.
+
+Key takeaways:
+• The Argo CD Application is the atomic unit
+Sync, health, drift detection, and reconciliation all operate within this boundary.
+• Cross-Application dependencies aren’t native
+Choose intentionally between eventual consistency, App-of-Apps, or ProgressiveSyncs (ApplicationSets).
+• Health checks are mandatory
+Sync waves and ordering depend on health, not just resource creation. Missing CRD/Application health checks break ordering silently.
+• Apply sync options at the correct layer
+Application-level options define global behavior; resource-level annotations should be used sparingly.
+• Helm is the right installation choice
+Helm + Kustomize enables upgrade safety, HA, and environment-specific customization. Raw YAML doesn’t scale.
+• Scaling requires intent
+The Application Controller is the bottleneck. Sharding and Redis are essential for HA.
+Bottom line:
+GitOps with Argo CD is less about YAML and more about modeling, health semantics, and operational discipline.
