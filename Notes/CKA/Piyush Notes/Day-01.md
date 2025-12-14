@@ -16,3 +16,5 @@ Containers = apartment in shared building (lightweight, fast, efficient)
 Key takeaway:
 Containers with Docker simplify deployment, improve developer-ops collaboration, and optimize resource usage.
 
+<img width="1056" height="1236" alt="Image" src="https://github.com/user-attachments/assets/27b5d1d0-36d8-444b-9ecb-9565e04ac4b4" />
+
