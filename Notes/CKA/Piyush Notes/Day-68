@@ -1,0 +1,26 @@
+Day 68
+Revisiting Argo CD | GitOps in Practice
+After working extensively with Kubernetes, one lesson becomes very clear:
+deployment is easy dependency management is not.
+
+Today, I revisited Argo CD and went deeper into how GitOps actually works at scale.
+
+Key learnings:
+🔹 Argo CD Application = atomic deployment unit
+It manages a group of loosely coupled Kubernetes resources, not just manifests.
+🔹 Ordering matters
+CRDs, controllers, and dependent services require:
+Sync Waves
+App-of-Apps pattern
+Progressive Syncs (ApplicationSets)
+🔹 Cross-application dependencies are real
+There is no “one-click” solution. You choose based on system design:
+Eventual consistency
+App-of-Apps (great for bootstrapping)
+Progressive Syncs for controlled rollouts
+🔹 Health checks are non-negotiable
+Readiness & Liveness probes
+Argo CD Application health checks
+Without them, automation is blind.
+🔹 GitOps is more than YAML
+Repo structure, retry strategies, sync options, and installation choices (Helm + Kustomize) directly impact reliability and scalability.
