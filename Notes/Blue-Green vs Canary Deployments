@@ -1,0 +1,141 @@
+Blue-Green vs Canary Deployments
+
+Most engineers think Blue-Green or Canary are Kubernetes or AWS features.
+They’re not.
+They’re release strategies you can use anywhere — K8s, AWS, VMs, on-prem, you name it.
+
+And if you’re working on high-impact services, understanding these two patterns is a game-changer.
+
+Blue-Green Deployment
+
+A simple idea that saves you from production nightmares.
+
+You maintain two identical environments:
+
+Blue → The version users are currently hitting
+
+Green → The new version you prepare quietly behind the curtain
+
+
+You deploy and test on Green while Blue keeps serving traffic.
+When everything looks clean, you flip the switch.
+Users instantly move to Green.
+Blue becomes your backup.
+Rollback? One click. Zero downtime.
+The trade-off? Double infrastructure.
+
+Use Blue-Green when:
+
+You need instant rollback
+
+You want true zero-downtime releases
+
+Your app is stable and predictable
+
+You're fine running duplicate environments
+
+Canary Deployment
+
+This is the “slow and smart” rollout strategy.
+
+Instead of switching everything at once, you expose a small % of traffic to the new version:
+5%, 10%, 20% — whatever your comfort zone is.
+
+You monitor real metrics, real users, real behaviour.
+If everything is healthy, you increase traffic gradually.
+If something feels off? Roll back before anyone else even notices.
+It’s all about progressive exposure.
+
+Use Canary when:
+
+You want to catch issues early
+
+You have good observability (metrics, logs, tracing)
+
+You deploy frequently
+
+You run microservices or fast-changing systems
+ 
+I'm sharing Sample  Yaml format 
+
+ ================================
+# -------- BLUE DEPLOYMENT --------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      version: blue
+  template:
+    metadata:
+      labels:
+        version: blue
+    spec:
+      containers:
+        - name: myapp
+          image: myapp:v1
+          ports:
+            - containerPort: 80
+---
+-------- GREEN DEPLOYMENT --------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      version: green
+  template:
+    metadata:
+      labels:
+        version: green
+    spec:
+      containers:
+        - name: myapp
+          image: myapp:v2
+          ports:
+            - containerPort: 80
+
+---
+# CANARY DEPLOYMENT
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-canary
+spec:
+  replicas: 1       # controls canary traffic percentage
+  selector:
+    matchLabels:
+      version: canary
+  template:
+    metadata:
+      labels:
+        version: canary
+    spec:
+      containers:
+        - name: myapp
+          image: myapp:v2
+          ports:
+            - containerPort: 80
+
+---
+
+#  SERVICE (SWITCH TRAFFIC) 
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-svc
+spec:
+  type: ClusterIP
+  selector:
+    version: blue      # switch here → green / stable / canary
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
