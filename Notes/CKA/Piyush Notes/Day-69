@@ -1,0 +1,18 @@
+Day 69 
+Argo Rollouts: Progressive Delivery on Kubernetes 
+
+Shipping to production should not feel like a gamble.
+Kubernetes Deployments are great but they stop short when you need:
+ • Controlled traffic shifting
+ • Safe production validation
+ • Automated rollbacks based on real metrics
+That’s where Argo Rollouts comes in.
+
+What Argo Rollouts enables:
+ ✔️ Blue-Green deployments for last-minute production testing
+ ✔️ Canary releases with gradual traffic percentages (10% → 30% → 100%)
+ ✔️ Automated promotion or rollback using metrics
+ ✔️ Seamless integration with Ingress & service meshes
+
+Why it matters:
+ Argo Rollouts helps teams release faster without sacrificing reliability a critical skill for modern DevOps and SRE roles.
