@@ -67,7 +67,7 @@ k8s-manifests/
     └── nginx-secret.yaml
 
 
-4. GitOps and GitHub Workflow
+## 4. GitOps and GitHub Workflow
 
 GitOps is an operational framework for Kubernetes that uses Git repositories as the source of truth for the desired state of applications and infrastructure. In a GitOps workflow, changes made to Git repositories automatically trigger the update of resources in the Kubernetes cluster.
 
@@ -81,7 +81,7 @@ CI/CD pipelines (using GitHub Actions or other CI tools) trigger the changes to 
 
 Argo CD/Flux automatically detects and applies the new state from the GitHub repository to the cluster.
 
-5. GitHub Actions for CI/CD
+## 5. GitHub Actions for CI/CD
 
 GitHub Actions can automate workflows, such as testing, building, and deploying Kubernetes applications.
 
@@ -111,13 +111,13 @@ jobs:
         kubectl apply -f k8s-manifests/deployments/nginx-deployment.yaml
         kubectl apply -f k8s-manifests/services/nginx-service.yaml
 
-6. Kubernetes Workflow Automation
+## 6. Kubernetes Workflow Automation
 
 K8s Workflows refer to the automation of tasks and the deployment of services in a Kubernetes environment. This is often managed using GitOps, CI/CD pipelines, and tools like Helm.
 
 Helm is a Kubernetes package manager that simplifies the deployment and management of Kubernetes applications. You can store Helm charts in GitHub repositories and use GitHub Actions or Argo CD to deploy them automatically.
 
-7. Best Practices for Storing Manifests in Git
+## 7. Best Practices for Storing Manifests in Git
 
 Immutable Infrastructure: Treat Kubernetes manifests as immutable. Any change to the infrastructure should be made via a new commit in Git, not manually applied to the cluster.
 
@@ -129,13 +129,13 @@ Sensitive Data Management: Be cautious with sensitive data like passwords and se
 
 Automate Validation: Use tools like kubeval, kubetest, or kube-score to validate your YAML files before applying them to Kubernetes. You can automate this validation in GitHub Actions.
 
-8. GitHub and Kubernetes Cluster Integration
+## 8. GitHub and Kubernetes Cluster Integration
 
 GitHub Secrets: Store sensitive information (like Kubernetes cluster credentials) securely in GitHub Secrets, which are encrypted and used in GitHub Actions workflows.
 
 Service Accounts: Set up Kubernetes Service Accounts with the necessary permissions to allow CI/CD tools (like GitHub Actions) to deploy to Kubernetes clusters securely.
 
-9. CI/CD Pipeline Example with Kubernetes
+## 9. CI/CD Pipeline Example with Kubernetes
 
 A full GitHub Actions-based CI/CD pipeline typically involves:
 
@@ -155,19 +155,19 @@ Push images to Docker Hub or a container registry.
 
 Deploy the new image using kubectl or Helm to the Kubernetes cluster.
 
-10. Scaling and Rollbacks
+## 10. Scaling and Rollbacks
 
 Scaling: GitHub Actions or other CI/CD tools can handle scaling operations by modifying the Kubernetes manifest or Helm chart values (e.g., changing the replica count of a Deployment).
 
 Rollbacks: Use the Git repository to version control Kubernetes manifests. If there’s a failure after a deployment, you can roll back to a previous version of the manifest using Git, e.g., by reverting to a prior commit and applying it to the cluster.
 
-11. Monitoring and Observability
+## 11. Monitoring and Observability
 
 After deploying Kubernetes manifests via GitHub workflows, ensure your Kubernetes cluster is properly monitored. Tools like Prometheus, Grafana, and ELK Stack can help monitor logs and metrics.
 
 You can integrate observability tools into your GitHub workflows by adding deployment steps that monitor the success or failure of the deployment.
 
-12. Conclusion
+## 12. Conclusion
 
 Storing Kubernetes manifests and workflows in Git and GitHub enhances collaboration, version control, and automation. GitOps practices, CI/CD pipelines, and integrations with tools like GitHub Actions, Argo CD, and Helm help streamline the process of deploying and managing applications in Kubernetes.
 
