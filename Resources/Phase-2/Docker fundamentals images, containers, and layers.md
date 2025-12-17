@@ -61,3 +61,64 @@ To use a pre-built image from a registry like Docker Hub, you can pull the image
 
 docker pull node:14
 
+## 2. Docker Containers
+**What is a Docker Container?**
+
+**Docker Container:** A container is a running instance of a Docker image. Containers provide a lightweight, isolated environment for running applications.
+
+Unlike virtual machines, containers share the host system’s OS kernel, making them more efficient.
+
+## Container Lifecycle
+
+**Create:** A container is created from a Docker image using the docker create or docker run command.
+
+**Run:** A container starts running once created, executing the command defined in the image.
+
+**Stop:** You can stop a running container with docker stop <container_id>.
+
+**Remove:** To remove a container, use docker rm <container_id>.
+
+**Example:**
+
+Running a container:
+
+docker run -d --name my-container -p 8080:8080 node:14
+
+This runs the node:14 image, names the container my-container, and binds port 8080 on the container to port 8080 on the host.
+
+## Container vs Image
+
+**Image:** A static file that contains everything needed to run a program (code, libraries, etc.).
+
+**Container:** A running instance of an image with its own file system and processes.
+
+## 3. Docker Layers
+**What are Docker Layers?**
+
+**Docker Layers:** Each step in a Dockerfile corresponds to a layer in the image. Layers are used to build up the image incrementally.
+
+Layers are cached to speed up the build process. If a layer hasn’t changed, Docker uses the cached version, which makes builds faster.
+
+**How Docker Layers Work**
+
+Each command in a Dockerfile (e.g., RUN, COPY, ADD) creates a new layer.
+
+**Layer Caching:** Docker caches layers to avoid re-running unchanged instructions. This helps speed up subsequent builds.
+
+**Image Layering:** When an image is built, each layer is stacked on top of the previous one.
+
+**Example:**
+
+If a Dockerfile has these three commands:
+
+```
+FROM ubuntu:20.04
+RUN apt-get update && apt-get install -y curl
+COPY . /app
+```
+
+The first layer is the ubuntu:20.04 base image.
+
+The second layer contains the changes made by the RUN command (installing curl).
+
+The third layer contains the copied application files (COPY).
