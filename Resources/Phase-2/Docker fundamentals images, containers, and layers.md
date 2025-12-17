@@ -82,7 +82,9 @@ Unlike virtual machines, containers share the host system’s OS kernel, making 
 
 Running a container:
 
+```
 docker run -d --name my-container -p 8080:8080 node:14
+```
 
 This runs the node:14 image, names the container my-container, and binds port 8080 on the container to port 8080 on the host.
 
