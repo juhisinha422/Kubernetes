@@ -117,8 +117,35 @@ RUN apt-get update && apt-get install -y curl
 COPY . /app
 ```
 
-The first layer is the ubuntu:20.04 base image.
+- The first layer is the ubuntu:20.04 base image.
 
-The second layer contains the changes made by the RUN command (installing curl).
+- The second layer contains the changes made by the RUN command (installing curl).
 
-The third layer contains the copied application files (COPY).
+- The third layer contains the copied application files (COPY).
+
+## Benefits of Layers: 
+
+**Efficiency:** Docker uses caching, so unchanged layers don’t need to be rebuilt.
+
+**Reuse:** Layers can be reused across different images. For example, if multiple images use the same base image, the base image layer will only be stored once.
+
+**Separation of Concerns:** Layers make it easy to modify individual steps of the image build process without rebuilding the entire image.
+
+
+## Inspecting Layers
+
+You can inspect the layers of an image using the docker history command:
+
+```
+docker history <image_name>
+```
+
+This command shows the layers and how much space each one consumes.
+
+## Summary: 
+
+**Docker Images:** Docker images are the blueprints used to create containers. They are read-only, contain everything needed to run an application, and are created from a Dockerfile.
+
+**Docker Containers:** Containers are the running instances of Docker images. They are lightweight, isolated environments for executing applications.
+
+**Docker Layers:** Docker images are made up of layers that are cached and reused to speed up builds. Each layer corresponds to an instruction in the Dockerfile.
