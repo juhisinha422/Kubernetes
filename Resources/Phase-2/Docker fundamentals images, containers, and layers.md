@@ -53,3 +53,11 @@ EXPOSE 8080
 
 # Define the command to run the app
 CMD ["node", "app.js"]
+```
+
+### Pulling Images
+
+To use a pre-built image from a registry like Docker Hub, you can pull the image using the docker pull command:
+
+docker pull node:14
+
