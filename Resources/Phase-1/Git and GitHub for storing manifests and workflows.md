@@ -51,7 +51,7 @@ spec:
         - containerPort: 80
 
 
-3. Storing Manifests in GitHub
+## 3. Storing Manifests in GitHub
 
 Version Control: Storing Kubernetes manifests in Git enables version control. This ensures that any changes to the infrastructure can be tracked, and any modifications can be rolled back if needed.
 
