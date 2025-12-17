@@ -1,0 +1,35 @@
+Multicontainer pods 
+
+A multicontainer pod in Kubernetes is a pod that runs two or more containers together within the same pod, sharing the same network namespace, IP address, and storage volumes. These containers are tightly coupled and designed to work collaboratively as a single unit.
+
+Multicontainer pods are a way to group related containers that must share resources and lifecycle, making them ideal for sidecars, adapters, and tightly integrated services
+
+- Pod Basics:
+- In Kubernetes, a pod is the smallest deployable unit.
+- It can contain one or more containers that are co-located, co-scheduled, and share resources.
+
+- MultiContainer Pod Definition:
+- Instead of a single container, a pod can host multiple containers.
+- These containers run in the same environment, meaning they share:
+- Networking: Same IP address and port space.
+- Storage: Shared volumes for exchanging data.
+- Lifecycle: They start, stop, and restart together.
+
+- Why Use MultiContainer Pods?
+- Sidecar Pattern: A helper container runs alongside the main app (e.g., logging, monitoring, proxy).
+- Adapter Pattern: A container transforms data or requests for the main app.
+- Ambassador Pattern: A container acts as a proxy to external services.
+- These patterns allow modular design while keeping containers closely integrated
+
+- Communication Inside Pod:
+- Containers communicate via localhost since they share the same network namespace.
+- They can also use shared volumes for file‑based communication.
+- Best Practices:
+- Use multi‑container pods only when containers are tightly coupled and must run together.
+- Avoid overloading pods with unrelated containers; instead, use separate pods for scalability and resilience.
+
+Example 
+Imagine a web application:
+- Main container: Runs the web server.
+- Sidecar container: Collects logs and forwards them to a monitoring system.
+Both containers live in the same pod, ensuring logs are captured consistently without extra networking setup.
