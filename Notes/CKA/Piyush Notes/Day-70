@@ -1,0 +1,23 @@
+#Day 70 
+Blue-Green Deployment Strategy with Argo Rollouts on Kubernetes
+
+Today’s focus was on implementing a production-grade Blue-Green deployment using Argo Rollouts, NGINX Ingress, and Kubernetes — without downtime and with full traffic control.
+
+🔹 What I worked on
+Implemented Blue-Green deployments using Argo Rollouts
+Used Active and Preview Services to control traffic flow
+Managed version changes using a single Docker image and environment variables
+Integrated NGINX Ingress (NodePort) for external access
+Performed manual promotion to safely switch live traffic
+🔹 Key Learnings
+Argo Rollouts extends Kubernetes Deployments with advanced strategies
+Any change in spec.template triggers a new ReplicaSet
+Blue-Green traffic switching is handled by service selector manipulation using pod-template-hash
+Preview environments allow validation before production promotion
+Zero downtime is achievable with the right rollout strategy
+🔹 Why this matters
+ Blue-Green deployments are widely used in real-world systems to:
+ ✅ Reduce deployment risk
+ ✅ Enable instant rollbacks
+ ✅ Improve release confidence
+ ✅ Maintain application availability
