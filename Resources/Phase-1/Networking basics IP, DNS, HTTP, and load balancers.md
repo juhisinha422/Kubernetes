@@ -112,10 +112,10 @@ spec:
 
 ## Summary
 
-IP Addressing: Every pod and node in Kubernetes gets an IP address for communication.
+**IP Addressing:** Every pod and node in Kubernetes gets an IP address for communication.
 
-DNS: Kubernetes provides an internal DNS system to resolve names of services and pods, simplifying communication.
+**DNS:** Kubernetes provides an internal DNS system to resolve names of services and pods, simplifying communication.
 
-HTTP: HTTP is commonly used to expose and interact with services within Kubernetes. Ingress and Ingress controllers are essential for routing external HTTP traffic to the appropriate services.
+**HTTP:** HTTP is commonly used to expose and interact with services within Kubernetes. Ingress and Ingress controllers are essential for routing external HTTP traffic to the appropriate services.
 
-Load Balancers: Kubernetes integrates with external load balancers to distribute traffic to services, helping to scale applications efficiently.
+**Load Balancers:** Kubernetes integrates with external load balancers to distribute traffic to services, helping to scale applications efficiently.
