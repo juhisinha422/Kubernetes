@@ -1,0 +1,9 @@
+#Day-71   
+Canary Deployments in Kubernetes with Argo Rollouts
+
+Key concepts covered:
+1) maxSurge: controls how many additional pods can be created during an update, enabling faster rollouts without sacrificing capacity.
+2) maxUnavailable: defines how many pods can be taken offline during updates, ensuring availability is maintained.
+3) Rolling Update Canary strategy with real-time visibility via the Argo Rollouts dashboard.
+
+Designed for engineers who care about availability, safety, and production-grade deployments.
