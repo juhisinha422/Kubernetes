@@ -1,0 +1,20 @@
+#Day-72
+Canary Deployments with Argo Rollouts (setWeight) 
+
+Canary deployments allow you to release new application versions gradually, reducing risk and protecting users from widespread failures.
+In this example, I explored Argo Rollouts using the setWeight strategy, where traffic is shifted in steps (20% → 40% → 60% → 80% → 100%) with optional pause points for validation.
+
+🔑 Key insights:
+setWeight controls traffic exposure, not just pod count
+With NodePort or ClusterIP, traffic is split indirectly by scaling Canary pods and relying on Kubernetes Service load balancing
+For production-grade traffic control, a cloud LoadBalancer, Ingress, or service mesh (NGINX, ALB, Istio) is recommended for precise routing and observability
+
+🌍 Real-world use case:
+ Imagine deploying a new payment service version:
+Start with 20% of users
+Monitor errors, latency, and business metrics
+Pause if needed
+Gradually expand once confidence is built
+This approach is especially valuable for mission-critical systems, where safety matters more than speed.
+
+🧠 Canary isn’t about deploying faster — it’s about deploying smarter.
