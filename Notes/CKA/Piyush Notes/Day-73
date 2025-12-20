@@ -1,0 +1,20 @@
+Day-73
+Learning GitHub Actions (the right way)
+Today I focused on GitHub Actions, not from a “copy-paste YAML” perspective, but from an engineering discipline standpoint.
+
+What I worked on:
+Designing workflows using standard GitHub Actions conventions
+Structuring a monorepo with isolated learning modules (day73)
+Implementing test workflows scoped to specific paths
+Understanding when and why to use CI validation vs build automation
+Learning the tradeoffs between GitHub Actions, Jenkins, GitLab CI, and CircleCI
+
+The key takeaway:
+1) CI/CD is not about tools. It’s about reducing risk, accelerating feedback, and enforcing consistency.
+2) GitHub Actions stands out not because it’s perfect, but because:
+CI lives next to the code
+3) Integration with PRs, checks, and permissions is native
+
+This is part of a long-term Cloud & DevOps learning track where the goal is job-ready skills, not surface-level familiarity.
+
+I’m open to conversations around CI/CD, cloud infrastructure, and DevOps engineering roles.
