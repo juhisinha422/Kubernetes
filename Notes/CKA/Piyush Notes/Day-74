@@ -1,0 +1,14 @@
+#Day -74
+Most CI/CD failures don’t come from tools.
+They come from misunderstanding scope, triggers, and data flow.
+
+Today’s focus:
+How workflows are actually triggered (manual, push, PR, cron)
+Environment variable scope (workflow ≠ job ≠ step)
+Passing data correctly between jobs (not abusing env vars)
+Secrets vs variables vs environments  and why it matters in production
+GitHub Actions looks simple until you scale it.
+
+ Then these details stop being “nice to know” and start being operational risk.
+Building this as part of an open-source DevOps learning series practical, opinionated, and production-focused.
+If you work with CI/CD at scale, you already know why this matters.
