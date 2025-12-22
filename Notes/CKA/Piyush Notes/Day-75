@@ -1,0 +1,12 @@
+Day -75  
+Advanced GitHub Actions
+GitHub Actions is more than YAML glue.
+
+Today I went deep into:
+Runner strategies (GitHub-hosted vs third-party vs self-hosted)
+Containers on runners
+Artifacts vs caches (and when each actually makes sense)
+Performance trade-offs and cost implications
+Tight permission scoping with GITHUB_TOKEN
+The difference between “CI that works” and “CI that scales” is how intentionally you design these pieces.
+I’m actively exploring DevOps / Cloud / Platform Engineering roles where build performance, security, and reliability actually matter not just green checkmarks.
