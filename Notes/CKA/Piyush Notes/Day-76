@@ -1,0 +1,17 @@
+Day-76  GitHub Actions → AWS Authentication (Best Practice)
+
+Static AWS credentials are useful only for demos and explaining fundamentals.
+In real CI/CD systems, they are technical debt.
+
+In production, the correct approach is:
+1) GitHub Actions issuing an OIDC token
+2) AWS STS AssumeRoleWithWebIdentity
+3) Short-lived credentials generated at runtime
+4) No secrets stored in GitHub
+
+This is not about being fancy.
+It’s about reducing blast radius, eliminating key rotation, and enforcing repo- and branch-level trust through IAM.
+
+Static credentials help you learn.
+OIDC is how you operate securely at scale.
+I’ve documented a complete, reproducible demo static vs OIDC—along with IAM trust policies and verification using sts get-caller-identity.
