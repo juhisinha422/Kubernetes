@@ -1,0 +1,15 @@
+Day-77
+Modern CI/CD is no longer about getting the workflow to pass.
+ It is about engineering delivery systems that scale with teams and products.
+
+In GitHub Actions, the core patterns remain consistent:
+1) Lint early to fail fast
+2) Test deterministically with proper dependency caching
+3) Build reproducible, traceable artifacts
+4) Deploy using short-lived credentials (OIDC over static secrets)
+5) Prefer GitOps when auditability and rollback matter
+
+What separates basic pipelines from production-grade CI/CD is intentional design:
+ incremental execution, clear ownership boundaries, security by default, and observability built into the workflow itself.
+This is the mindset I focus on while designing and reviewing pipelines optimizing for reliability, clarity, and long-term operability, not just green checks.
+If you are building or evolving CI/CD at scale, these fundamentals matter more than tools.
