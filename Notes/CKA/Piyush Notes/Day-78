@@ -1,0 +1,27 @@
+Day-78 – GitHub Actions Marketplace: Use It Smart, Not Blind
+The GitHub Actions Marketplace can accelerate CI/CD—or quietly introduce risk.
+
+The difference is how you evaluate what you use.
+Marketplace actions are not “just YAML shortcuts.”
+They execute with your repository access, secrets, and permissions. Treat them like production dependencies.
+
+What I focused on today:
+How to evaluate third-party actions beyond stars and downloads
+Why Verified badges help but are not enough
+What “project health” actually means (commits, releases, maintainer activity)
+When writing a custom step is safer than using an action
+One non-negotiable best practice:
+Always pin actions to commit SHAs, not tags.
+Tags can be retargeted. Commits are immutable.
+This single habit can protect your pipeline from supply-chain attacks.
+Actions I trust and regularly see in production:
+actions/checkout, actions/cache
+actions/setup-node / go / java
+Cloud auth via OIDC (aws-actions, azure/login, google-github-actions)
+docker/build-push-action for multi-arch images
+
+Key takeaway:
+The Marketplace is a discovery layer, not a trust layer.
+Professional DevOps engineers audit, pin, and own their dependencies.
+Actively building and reviewing production-grade CI/CD workflows.
+Open to discussions and opportunities in DevOps / Platform / Cloud Engineering.
