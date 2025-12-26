@@ -1,0 +1,26 @@
+#Day-79 | GitHub Actions  Local-First CI/CD (No More Blind Pushes)
+
+Most engineers still debug GitHub Actions the slow way.
+Make a change → push → wait → fail → repeat.
+That’s not “CI/CD experience.”
+ That’s wasted time disguised as workflow.
+Today, I focused on local-first development for GitHub Actions — the way CI pipelines should be built.
+
+What I practiced and implemented:
+• Running custom GitHub Actions locally using @github/local-action
+ • Validating inputs and outputs without pushing commits
+ • Understanding why Node version parity (16/18 vs 20) actually matters
+ • Fixing real execution issues instead of guessing via CI logs
+
+Key lesson (that many skip):
+YAML is orchestration glue, not a place for business logic.
+ If you are debugging workflows only after pushing, your feedback loop is broken.
+In real production teams:
+Faster iteration = fewer failed pipelines
+Local testing = cleaner CI history
+Confidence before push = senior-level behavior
+This is not about “learning GitHub Actions.”
+ This is about engineering discipline in CI/CD.
+If you’re a DevOps engineer still pushing commits just to see “what happens,” you’re slowing yourself down.
+
+I’m actively working deep into CI/CD, GitHub Actions, Kubernetes, and production-grade DevOps practices and open to conversations where DevOps is treated as an engineering function  not a YAML-writing role.
