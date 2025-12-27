@@ -1,0 +1,25 @@
+#Day-80 | Debugging GitHub Actions the SRE Way
+Most CI/CD failures are not "hard problems".
+They’re the result of:
+Poor observability
+Hidden assumptions
+Blind log scrolling
+
+What many engineers call debugging is guesswork.
+ What SRE teams do is systematic fault isolation.
+Over time, I’ve learned that reliable pipelines are not defined by how often they pass  but by how quickly failures can be diagnosed without panic or SSH access.
+
+Key principles I now follow when debugging GitHub Actions:
+• Never debug blindly  identify what changed
+ • Classify failures before fixing (deterministic vs flaky vs environment-specific)
+ • Turn on debug logging temporarily, not permanently
+ • Verify inputs explicitly  most bugs start there
+ • Isolate the failing step instead of touching everything
+ • Capture artifacts, not screenshots
+ • Avoid SSH unless the pipeline design has already failed
+
+If you need SSH access regularly, the problem isn’t GitHub Actions.
+ It’s observability discipline.
+CI/CD should explain itself.
+ If it doesn’t, that’s an engineering gap  not a tooling issue.
+I’m actively working deeper into GitHub Actions, CI observability, and SRE-style pipeline design and open to conversations around DevOps / Platform / SRE roles where reliability actually matters.
