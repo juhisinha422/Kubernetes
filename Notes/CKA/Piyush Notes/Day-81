@@ -1,0 +1,20 @@
+#Day-81 
+CI/CD doesn’t fail because of YAML.
+It fails because of poor engineering decisions.
+
+Most GitHub Actions pipelines slow down over time due to:
+No performance baselines
+No change detection
+Over-permissioned workflows
+Copy-pasted YAML with no ownership
+
+Senior DevOps / SRE teams treat CI as production infrastructure:
+Measure execution time, not guesses
+Fail fast, not at minute 40
+Cache intentionally, not blindly
+Standardize build/test entry points
+Enforce least-privilege and OIDC
+Fast pipelines are not a “nice to have.”
+ They are a developer productivity multiplier.
+Currently refining secure, reliable GitHub Actions pipelines with an SRE mindset.
+ Always open to discussions around CI architecture, scale, and reliability.
