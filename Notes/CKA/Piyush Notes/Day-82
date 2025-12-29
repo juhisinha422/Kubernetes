@@ -1,0 +1,11 @@
+Day-82 
+Built & validated a manual Docker image release workflow using GitHub Actions
+Today I implemented a clean, controlled CI workflow that builds and publishes Docker images for both backend and frontend services to Docker Hub using GitHub Actions.
+
+What this setup demonstrates:
+Multi-service Docker builds from a single repository
+Secure Docker Hub authentication using GitHub Secrets
+Clear separation of backend and frontend build contexts
+Reliable, repeatable image publishing with minimal moving parts
+This exercise reinforced an important principle:
+CI/CD pipelines should be predictable and deliberate not just automated for the sake of automation.
