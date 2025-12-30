@@ -1,0 +1,7 @@
+Kubernetes Priority Classes: Making Sure the Right Pods Win
+
+When cluster resources are limited, Kubernetes needs to know which Pods matter most. Priority Classes let you assign importance levels so critical workloads get scheduled first and lower-priority Pods can be preempted when necessary.
+
+This is especially useful for protecting system components, production services, and mission-critical jobs during resource pressure.
+
+Not all Pods are equal. Priority Classes help Kubernetes act accordingly.
