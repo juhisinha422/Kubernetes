@@ -1,0 +1,19 @@
+Day-83
+Most GitHub Actions workflows are designed to pass.
+SREs design workflows to survive failure.
+
+A "working" pipeline is not production-ready if:
+One failed step collapses the entire workflow
+Re-running jobs makes things worse
+latest tags destroy rollback safety
+CI failures give logs but no signal
+Credentials are shared like config files
+CI/CD is production infrastructure.
+ If it isn’t fault-tolerant, observable, and recoverable
+ your delivery pipeline is your next outage.
+Today I documented how I’m redesigning my workflows the SRE way:
+ failure isolation, fail-fast signals, immutable artifacts, and explicit recovery paths.
+
+This is the difference between automation and reliability.
+If you’re building GitHub Actions at scale, you already know this.
+ If not, now you do.
