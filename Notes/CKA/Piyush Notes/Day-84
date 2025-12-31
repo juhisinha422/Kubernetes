@@ -1,0 +1,29 @@
+#Day-84 | Capstone Project  Production-Grade CI/CD with GitHub Actions
+
+Most CI/CD pipelines fail not because of tooling, but because of poor structure and over-triggering.
+
+Key highlights:
+Multi-language services (Go, Node.js, Python, React)
+Database migrations isolated from application logic
+Unified task execution using go-task
+Local developer experience standardized with Devbox
+Dynamic GitHub Actions workflows
+Path-based change detection to avoid unnecessary CI runs
+Matrix-driven test execution per service
+Multi-architecture Docker builds using QEMU
+Clean upstream → downstream workflow orchestration
+Zero hardcoded paths, zero duplicated pipelines
+
+🔹 Why this matters
+Most pipelines I see in the wild still:
+Run all jobs on every change
+Mix application logic with CI logic
+Scale poorly as services grow
+Become impossible to maintain after 5–10 services
+
+Only changed services trigger:
+Tests
+Builds
+Image publishing
+Downstream deployments
+That’s how production CI/CD should work.
