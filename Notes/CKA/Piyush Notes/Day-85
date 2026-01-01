@@ -1,0 +1,16 @@
+Day 85 | Terraform Isn’t About Tools. It’s About Scale.
+
+Most people learn Terraform by memorizing commands.
+That’s the wrong approach.
+Terraform exists because manual infrastructure does not scale:
+Not across environments
+Not across teams
+Not across hundreds of applications
+
+Infrastructure as Code is about:
+Consistency over convenience
+Automation over heroics
+Engineering discipline over ad-hoc fixes
+Terraform is not “DevOps tooling.”
+ It’s production infrastructure engineering.
+Hands-on starts next. Foundations first. Always
