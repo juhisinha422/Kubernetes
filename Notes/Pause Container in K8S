@@ -1,0 +1,36 @@
+✅*Pause Container in K8S*
+
+✅ In Kubernetes, a *pause container* is a special type of container that is created and managed by the Kubernetes pod infrastructure. It's also known as the "pause" or "infra" container.
+
+*Purpose:*
+
+1. *Hold the network namespace*: The pause container holds the network namespace for the pod, allowing other containers in the pod to share the same network stack.
+2. *Keep the pod running*: The pause container keeps the pod running, even if the main application container(s) exit or crash.
+3. *Enable pod-level networking*: The pause container allows Kubernetes to manage pod-level networking, such as IP address allocation and port mapping.
+
+*Characteristics:*
+
+1. *Minimal image*: The pause container uses a minimal image, typically a few kilobytes in size.
+2. *No application code*: The pause container doesn't run any application code.
+3. *Runs indefinitely*: The pause container runs indefinitely, until the pod is deleted.
+
+*How it works:*
+
+1. When a pod is created, Kubernetes creates a pause container first.
+2. The pause container is assigned an IP address and network namespace.
+3. Other containers in the pod join the pause container's network namespace.
+4. If the main application container(s) exit or crash, the pause container keeps the pod running.
+
+*Example:*
+
+You can see the pause container in a Kubernetes pod using `kubectl describe pod <pod-name>`:
+Containers:
+ pause:
+ Image: k8s.gcr.io/pause:3.2
+ Command: /pause
+ ...
+ my-app:
+ Image: my-app-image
+ ...
+
+In this example, the `pause` container is the pause container, and `my-app` is the main application container.
