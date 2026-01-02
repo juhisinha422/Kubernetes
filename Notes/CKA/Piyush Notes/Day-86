@@ -1,0 +1,18 @@
+Day-86 | Terraform AWS Provider  what most people misunderstand
+Terraform doesn’t talk to AWS.
+ The AWS Provider does.
+That distinction matters more than most teams realize.
+
+The provider is the execution layer that:
+Translates HCL into AWS API calls
+Enforces compatibility between Terraform core and AWS services
+Decides whether your infra is reproducible or fragile
+If you don’t pin provider versions, you’re not doing Infrastructure as Code —
+ you’re doing Infrastructure by Chance.
+
+What serious teams do instead:
+Lock Terraform core and provider versions
+Use pessimistic constraints (~>)
+Test upgrades before production
+Treat providers as production dependencies, not boilerplate
+Most outages caused by “Terraform bugs” are actually provider version mistakes.
