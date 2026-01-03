@@ -21,7 +21,6 @@ Running & Inspecting the Container:
 Key Takeaway:
  Multi-stage builds make Docker images smaller, faster, and secure, following best DevOps practices.
 
-Read More: https://lnkd.in/d-StMz_G
 
 
 ![Image](https://github.com/user-attachments/assets/b047b525-4dd8-49d5-a264-25e4f7ff0637)
