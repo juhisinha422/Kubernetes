@@ -6,7 +6,7 @@ Prepared environment to build and run containers
 
 2. Cloning the Application Repository:
 Fetched the sample application code from GitHub:
- git clone https://lnkd.in/diHWv-f2
+ git clone https://github.com/docker/getting-started-app
 
 3. Understanding the Dockerfile:
 Layers: Base Image → Working Directory → Copy Files → Install Dependencies → Expose Port → CMD Run
