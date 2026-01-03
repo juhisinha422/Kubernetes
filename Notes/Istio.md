@@ -3,9 +3,13 @@ Istio explained in a simple way :
 When we deploy applications in Kubernetes, basic networking works fine. Pods can talk to each other using services. But in real projects, we need more control.
 
 For example:
+
 - Who can talk to whom
+
 - How much traffic should go to new version
+
 - How to handle retries, timeouts
+
 - How to secure traffic between services
 
 This is where Istio comes into picture.
@@ -15,9 +19,13 @@ Istio is a service mesh. It sits between microservices and manages traffic, secu
 Istio works using sidecar concept. For every application pod, an Envoy proxy is injected automatically. All incoming and outgoing traffic goes through this proxy. Because of this, Istio can control traffic behavior.
 
 Using Istio we can do:
+
 - Traffic splitting like 90 percent to v1 and 10 percent to v2
+
 - mTLS between services for security
+
 - Retries and circuit breaking
+
 - Detailed metrics and traces
 
 Developers focus only on application logic. DevOps controls traffic and security at platform level.
@@ -25,3 +33,5 @@ Developers focus only on application logic. DevOps controls traffic and security
 In most real time Kubernetes projects, Istio is used when application grows and simple service networking is not enough.
 
 Once you understand sidecar proxy and traffic flow, Istio becomes much easier.
+
+<img width="800" height="800" alt="Image" src="https://github.com/user-attachments/assets/11d3935f-6eba-4a6f-884a-ebb30facc720" />
