@@ -1,0 +1,26 @@
+#Day-87 | DevOps Reality Check
+Running Terraform locally is fine for learning and quick testing.
+That’s how most of us start.
+But in production, that model fails.
+❌ Not scalable
+❌ Not auditable
+❌ Not real DevOps
+
+Production DevOps follows GitOps:
+Git is the single source of truth
+Changes go through PRs
+Pipelines apply infra not laptops
+Access is short-lived and traceable
+If your local machine can change prod infra, you already have a problem.
+What I did today
+
+Before automating Terraform, I set up the foundation:
+GitHub Actions → AWS OIDC
+No hardcoded access keys.
+No stored secrets.
+GitHub assumes an IAM role dynamically  least privilege, auditable, secure.
+Takeaway
+Local Terraform = learning
+GitOps + CI/CD = production
+DevOps isn’t about running commands.
+It’s about building safe, scalable systems.
