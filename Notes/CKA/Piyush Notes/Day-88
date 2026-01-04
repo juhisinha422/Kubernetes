@@ -1,0 +1,16 @@
+#Day-88 | Terraform Remote State (Why It’s Non-Negotiable)
+Terraform doesn’t manage infrastructure by scanning the cloud.
+ It trusts the state file.
+
+Keeping state locally breaks the moment you work in a team:
+No locking
+No collaboration
+High risk of corruption
+A remote backend (S3 + native state locking):
+Creates a single source of truth
+Prevents concurrent terraform apply
+Secures sensitive data with encryption
+Enables recovery via versioning
+
+From Terraform 1.10+, S3 native state locking replaces DynamoDB — simpler, cheaper, and the recommended path.
+Terraform state is production infrastructure. Treat it that way.
