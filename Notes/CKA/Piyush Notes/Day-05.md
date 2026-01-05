@@ -20,7 +20,7 @@ This ensures that workloads are automatically scheduled, monitored, and self-hea
 Takeaway:
 Kubernetes acts as the brain of container orchestration, providing scalability, reliability, and automation — making it the backbone of modern DevOps workflows.
 
-Read More: https://lnkd.in/dkf6RrVW
+Read More: https://github.com/juhisinha422/Kubernetes/tree/main/Notes/CKA/Piyush%20Notes/Kubernetes_DevOps/Day-05
 
 
 ![Image](https://github.com/user-attachments/assets/3a74d6c8-12bf-4206-9480-6f155f57f296)
