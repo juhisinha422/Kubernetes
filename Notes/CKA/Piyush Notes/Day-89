@@ -1,0 +1,18 @@
+#Day-89 | Terraform State is Production Infrastructure.
+
+If your Terraform state backend is:
+Not versioned
+Not encrypted
+Not locked
+Not audited
+You are not doing DevOps.
+ You are automating outages.
+
+I documented how a serious Platform team should design a secure S3 backend for Terraform state:
+Native S3 state locking (no DynamoDB hacks)
+SSE-KMS encryption
+Least-privilege IAM
+CloudTrail auditing
+Zero public access
+Terraform state is your source of truth and a high-value attack target.
+ Treat it with the same rigor as databases and secrets or accept the blast radius.
