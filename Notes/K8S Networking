@@ -1,0 +1,54 @@
+Kubernetes networking looks simple at first.
+Every Pod gets an IP. Every Pod can talk to every other Pod.
+
+That simplicity is exactly where the confusion starts.
+
+1. There is no default router you control
+Kubernetes does not implement networking itself.
+It delegates everything to the CNI plugin.
+
+So behavior changes depending on:
+➜ Calico vs Cilium vs Flannel
+➜ Overlay vs routed networking
+➜ iptables vs eBPF datapaths
+Same YAML. Different outcomes.
+
+2. Pod IPs ≠ Reachable IPs
+Pods have real IPs, but:
+➜ They are ephemeral
+➜ They usually live on overlay networks
+➜ They are not routable outside the cluster
+That’s why Services exist - not for load balancing, but for stable identity.
+
+3. kube-proxy is invisible… until it breaks
+Most traffic never hits a load balancer.
+It flows through:
+➜ iptables rules, or
+➜ eBPF programs
+When traffic fails, there’s no process to restart - only rules to debug.
+
+4. Services don’t forward traffic the way people expect
+➜ ClusterIP ≠ a real virtual IP
+➜ NodePort ≠ open to the internet
+➜ LoadBalancer ≠ always cloud-native magic
+Each is just a different way of sending packets to Pods.
+
+5. NetworkPolicies are deny lists, not firewalls
+➜ They do nothing until enforced by the CNI
+➜ They are allow-rules on top of an open network
+➜ A single missing selector can break everything
+
+6. Debugging crosses too many layers
+When networking fails, the issue could be:
+➜ App-level (ports, listeners)
+➜ Kubernetes-level (Service, endpoints)
+➜ Node-level (iptables, routes)
+➜ CNI-level (encapsulation, policy)
+➜ Cloud-level (NACLs, security groups)
+Most tools only show one layer at a time.
+
+The real reason it’s hard
+
+Kubernetes networking is not one system.
+It’s multiple systems working together.
+Once you follow the packet path, everything clicks.
