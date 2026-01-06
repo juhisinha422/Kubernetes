@@ -1,0 +1,19 @@
+Day-90 | Terraform + GitHub Actions (Production-grade IaC)
+Today’s focus was running Terraform from GitHub Actions the right way not shortcuts, not hardcoded secrets.
+
+What was implemented:
+ • Terraform creates AWS resources (S3) via GitHub Actions
+ • OIDC-based authentication no long-lived AWS keys
+ • Least-privilege IAM role scoped only to what Terraform needs
+ • Remote state with S3 + DynamoDB locking
+ • Separated workflows for apply and destroy to enforce intent
+
+Why this matters:
+Infrastructure automation without security discipline is just automated risk.
+Using OIDC with Terraform:
+Eliminates credential sprawl
+Reduces blast radius
+Aligns with how real platform teams operate
+Creation and destruction are explicit actions, not side effects.
+This is not "Terraform basics".
+ This is production-safe IaC execution.
