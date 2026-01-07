@@ -1,0 +1,39 @@
+what is PDB
+✅ *PDB in Kubernetes (K8s)*
+
+PDB stands for *Pod Disruption Budget* in Kubernetes. It's a policy that ensures a minimum number of pods are available during voluntary disruptions, such as:
+
+- Node maintenance
+- Node upgrades
+- Node scaling
+- Pod eviction
+
+A PDB defines the maximum number of pods that can be evicted or terminated simultaneously, ensuring that a certain number of pods are always available to serve traffic.
+
+*Key components of a PDB:*
+
+1. *minAvailable*: The minimum number of pods that must be available at all times.
+2. *maxUnavailable*: The maximum number of pods that can be unavailable at any given time.
+3. *selector*: A label selector that identifies the pods to which the PDB applies.
+
+*Example PDB YAML file:*
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: example-pdb
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: example
+
+In this example, the PDB ensures that at least 2 pods with the label `app=example` are available at all times.
+
+*Benefits of PDBs:*
+
+1. *Improved availability*: Ensures that a minimum number of pods are always available to serve traffic.
+2. *Reduced disruptions*: Minimizes the impact of voluntary disruptions on applications.
+3. *Better resource management*: Helps with node maintenance, upgrades, and scaling without affecting application availability.
+
+
+A  Kubernetes  administrator  can  create  a  deployment  of  a  kind:  PodDisruptionBudgetfor  high  availability  of  the  application,  it  makes  sure  that  the  minimum  number  isrunning  pods  are  respected  as  mentioned  by  the  attribute  minAvailable  spec  file.  Thisis  useful  while  performing  a  drain  where  the  drain  will  halt  until  the  PDB  is  respectedto  ensure  the  High  Availability(HA)  of  the  application.  The  following  spec  file  alsoshows  minAvailable  as  2  which  implies  the  minimum  number  of  an  available  pod(even  aer  the  election).
