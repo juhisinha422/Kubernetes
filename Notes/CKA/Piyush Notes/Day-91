@@ -1,0 +1,19 @@
+#Day-91 | Terraform Variables Engineering for Scale, Not Demos
+Hard-coding works for tutorials.
+It fails immediately in real environments.
+
+At scale, Terraform must be:
+Parameter-driven, not copy-pasted
+Environment-agnostic, not dev-only
+Consistent by design, not by discipline
+
+Best practices applied:
+Input variables for external control
+Locals for derived values and naming standards
+Outputs for controlled visibility
+Zero hard-coded environments
+One codebase → multiple environments
+If you’re editing Terraform files to switch from dev to prod,
+ you’re not managing infrastructure you’re babysitting it.
+Write Terraform like software.
+ Design once. Scale safely.
