@@ -1,0 +1,63 @@
+Easily explained Core Kubernetes Concepts
+
+- What the hell Kubernetes is?
+Kubernetes is a system that runs and manages containers for you.
+Instead of manually starting containers, Kubernetes ensures the right number of containers are always running, restarts failed ones, and scales them when traffic increases.
+
+- Cluster Basics
+A Kubernetes cluster is split into two parts:
+• Control Plane decides what should happen
+• Worker Nodes do the actual work
+
+All commands go through the API Server, making Kubernetes fully declarative and API-driven.
+
+- Pods
+A Pod is Kubernetes wrapper around containers.
+Containers inside a Pod:
+• Share the same network (IP, ports)
+• Can share storage volumes
+• Pods are temporary by design Kubernetes replaces them instead of fixing them.
+
+- Deployments
+Deployments manage Pods so you don’t have to.
+If a Pod crashes, the Deployment creates a new one.
+During updates, it replaces Pods gradually to avoid downtime.
+
+This makes Deployments ideal for stateless applications like APIs and web apps.
+
+- StatefulSets
+StatefulSets are for workloads that need identity and persistence.
+Each Pod gets:
+• A stable name
+• A dedicated volume
+• Ordered startup and shutdown
+
+That’s why databases and queues rely on StatefulSets.
+
+- Services
+Pods come and go, but Services stay.
+A Service provides a stable IP and DNS name and automatically load-balances traffic to healthy Pods behind it.
+
+Without Services, reliable communication in Kubernetes wouldn’t be possible.
+
+- Ingress
+Ingress controls how external users access applications.
+It routes HTTP/HTTPS traffic based on domain names and paths and often handles TLS certificates.
+
+Ingress lets you expose many services using a single external endpoint.
+
+- ConfigMaps & Secrets
+They separate configuration from application code.
+ConfigMaps store non-sensitive settings, while Secrets store credentials in encoded form.
+
+This allows the same container image to run safely across multiple environments.
+
+- Namespaces
+Namespaces are logical boundaries inside a cluster.
+They help teams share a cluster without interfering with each other and are commonly used for environment separation.
+
+RBAC and quotas are usually applied at the namespace level.
+
+- Labels & Selectors
+Labels describe resources; selectors group them.
+Services, Deployments, monitoring tools, and policies all rely on labels to find the right Pods
