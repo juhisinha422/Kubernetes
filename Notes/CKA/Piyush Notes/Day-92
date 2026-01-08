@@ -1,0 +1,24 @@
+Day-92 
+Today I focused on Terraform Variable Design at Scale  moving beyond flat variables to structured, validated configurations that actually survive production environments.
+
+Key Learnings (Scale & SRE Mindset):
+1️⃣ Flat variables don’t scale → structured data does
+ Using map and object types allows a single Terraform codebase to cleanly support dev, staging, and prod without copy-paste or conditionals.
+2️⃣ One environment = one config object
+ Instead of scattered variables, define complete environment definitions (map(object)), including CIDR, instance sizes, and feature flags.
+ Cleaner inputs → safer deployments.
+3️⃣ Locals are not optional  they’re a computation layer
+ Locals help standardize naming, tags, and derived values.
+ If the same string is built more than once, it belongs in locals.
+4️⃣ Lists vs Sets matter more than people think
+ Security rules and IAM principals should use set to avoid duplicates.
+ Using the wrong type silently introduces risk.
+5️⃣ Validation blocks prevent outages before they exist
+ Validating environments, CIDRs, and allowed values ensures Terraform fails fast at plan time, not during deployment.
+6️⃣ Zero hard-coding, zero environment branches
+ No if env == prod logic spread across files.
+ One design → many environments → predictable behavior.
+
+Pro Tip:
+ If your Terraform needs constant edits to support production, the problem isn’t Terraform it’s your variable design.
+Infrastructure should break at validation, not at runtime.
