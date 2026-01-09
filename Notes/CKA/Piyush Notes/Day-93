@@ -1,0 +1,21 @@
+#Day-93
+ Today I focused on Terraform Variable Types & Type Constraints  the part most people skip, and later pay for in production.
+
+Key Learnings (Real-World Terraform):
+1️⃣ Variables are defined by purpose and value
+ Input, Output, and Locals exist for different reasons.
+ Mixing them leads to fragile code.
+2️⃣ Primitive types don’t scale complex types do
+ Production Terraform relies on list, set, map, object, and tuple to model real infrastructure.
+3️⃣ Lists vs Sets is a risk decision
+ If duplicates are invalid (security rules, IAM principals), set is mandatory.
+ Using list here is a silent failure.
+4️⃣ Objects enforce intent, not just structure
+ If your config has names, flags, and sizes, it belongs in an object not scattered variables.
+5️⃣ any and null are escape hatches
+ If you default to them, you skipped design.
+ Type constraints exist to fail fast.
+
+Pro Tip:
+ If Terraform breaks only at apply time, your variable design already failed.
+ Good infrastructure fails at validation, not in production.
