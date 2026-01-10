@@ -1,0 +1,28 @@
+#Day-94
+Today I deep-dived into Terraform Meta-Arguments the real control plane of Terraform that decides how infrastructure is created, scaled, and destroyed.
+
+Key Learnings (Production-Grade Terraform):
+1️⃣ count is simple  and dangerous
+ Great for identical, disposable resources.
+ Terrible for long-lived infrastructure due to index shifting and unintended recreation.
+2️⃣ for_each is the default choice in production
+ Stable resource identity, predictable plans, clean diffs.
+ If keys matter, for_each is non-negotiable.
+3️⃣ depends_on is not a fix  it’s a last resort
+ If you need it everywhere, your dependency design is broken.
+ Terraform already builds a graph don’t fight it.
+4️⃣ lifecycle meta-arguments protect critical resources
+ prevent_destroy saves databases.
+ create_before_destroy prevents downtime.
+ ignore_changes must be used surgically, or Terraform stops being the source of truth.
+5️⃣ for expressions belong in locals, not resources
+ Transform data once.
+ Keep resource blocks boring and readable.
+6️⃣ Meta-arguments control blast radius
+ Misuse them and Terraform becomes unpredictable.
+ Use them correctly and infra changes become boring which is the goal.
+
+Pro Tip:
+ If your Terraform plan surprises you, that’s not “Terraform being complex”.
+ That’s poor use of meta-arguments.
+Infrastructure should change deliberately, not accidentally.
