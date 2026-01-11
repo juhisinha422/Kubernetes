@@ -1,0 +1,20 @@
+Day-95
+Today I worked on Terraform Lifecycle Meta-Arguments one of the most important but often ignored parts of Terraform.
+Most Terraform incidents in production don’t happen because of bad code.
+They happen because default lifecycle behavior was trusted blindly.
+
+Key lifecycle rules that actually matter:
+1) create_before_destroy:
+Used to avoid downtime when a resource must be replaced (EC2, launch templates, AMI updates).
+2) prevent_destroy:
+A safety guardrail for critical resources like production databases, S3 buckets, and state backends.
+3) ignore_changes:
+Allows Terraform to coexist with auto scaling, policies, and external automation without constant drift.
+4) replace_triggered_by:
+Forces resource replacement when dependent resources change useful for immutable infrastructure.
+5) precondition / postcondition:
+Enforces validation and compliance directly in Terraform before and after resource creation.
+
+Terraform lifecycle rules don’t change AWS or Azure.
+They change how Terraform plans risk.
+If you’re using Terraform in production and not using lifecycle rules, you’re leaving stability to chance.
