@@ -1,0 +1,29 @@
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗖𝗹𝘂𝘀𝘁𝗲𝗿 𝗔𝘂𝘁𝗼𝘀𝗰𝗮𝗹𝗲𝗿
+
+When Pods can’t be scheduled due to lack of node resources, scaling Pods alone isn’t enough — the cluster itself must grow. That’s where Cluster Autoscaler comes in.
+
+🧠 What Cluster Autoscaler does?
+• Automatically adds nodes when Pods are pending
+• Removes unused nodes when capacity is no longer needed
+• Works with cloud provider auto-scaling groups
+
+👉 It ensures your cluster always has just enough infrastructure.
+
+⚙️ How it works (simple)?
+• Watches for unschedulable Pods
+• Checks which node groups can host them
+• Increases node count when needed
+• Removes nodes that are underutilized
+
+👉 It runs in a continuous decision loop.
+🆚 Cluster Autoscaler vs HPA
+
+• HPA → scales Pods
+• Cluster Autoscaler → scales Nodes
+📌 Both are required for true elasticity.
+
+📊 Why it matters in production
+• Prevents failed deployments
+• Reduces cloud cost
+• Handles traffic spikes
+• Enables large-scale workloads
