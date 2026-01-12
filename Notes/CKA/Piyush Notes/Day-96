@@ -1,0 +1,15 @@
+#Day-96 | Terraform Expressions (Simple, Practical, Useful)
+Today I focused on Terraform Expressions small syntax features that make a big difference in real infrastructure code.
+Why they matter
+They help you avoid hardcoding, duplication, and messy configs.
+
+Key takeaways:
+1) Conditional expressions → change behavior based on environment
+Example: smaller EC2 for dev, bigger for prod
+2) Dynamic blocks → generate repeated nested blocks cleanly
+Example: multiple security group rules without copy-paste
+3) Splat expressions → extract values from multiple resources in one line
+Example: get all EC2 instance IDs safely
+Bottom line
+If your Terraform feels repetitive or rigid, you’re probably not using expressions properly.
+Clean code scales. Static code breaks.
