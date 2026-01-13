@@ -1,0 +1,11 @@
+Kubernetes Disaster Recovery: What’s Worth Backing Up?
+
+Disaster recovery in Kubernetes isn’t about backing up everything, it’s about backing up the right things. Containers are ephemeral, but some parts of your cluster are critical to restore operations quickly.
+
+Focus your backups on:
+- etcd / cluster state (depending on your setup)
+- Kubernetes manifests & Helm values
+- Persistent Volumes and application data
+- Secrets and ConfigMaps (securely)
+
+If you can’t rebuild your cluster from backups and Git, your DR plan isn’t complete.
