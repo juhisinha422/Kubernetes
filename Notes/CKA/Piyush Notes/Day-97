@@ -1,0 +1,18 @@
+#Day-97 | Terraform Functions
+Terraform functions are not "nice to have".
+They are what separate toy IaC from production-ready infrastructure.
+
+Without functions:
+Inputs stay unvalidated
+Resource names break AWS constraints
+Configurations become environment-specific
+Errors surface during apply instead of plan
+
+Terraform functions solve this by:
+Normalizing user input
+Enforcing constraints early
+Handling dynamic values safely
+Making modules reusable and predictable
+If you are writing Terraform without regularly using functions like lookup, merge, regex, can, or formatdate, you are leaving correctness to chance.
+Functions are guardrails.
+ Remove them, and your infrastructure becomes fragile.
