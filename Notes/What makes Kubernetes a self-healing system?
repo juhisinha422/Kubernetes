@@ -1,0 +1,21 @@
+What makes Kubernetes a self-healing system?
+One of Kubernetes’ biggest strengths is its ability to fix things on its own.
+Here’s how self-healing works:
+• The desired state is stored in etcd.
+• Controllers continuously check the actual state.
+• When something goes wrong — pod crash, node failure, restart, drift —
+ Kubernetes automatically corrects it by:
+ • recreating Pods
+ • rescheduling workloads
+ • restarting containers
+ • replacing replicas
+No human intervention — just reconciliation loops doing their job.
+
+Why this matters:
+• Higher availability
+• Faster recovery
+• Less manual operational effort
+• Predictable behavior
+
+In simple words:
+Kubernetes heals itself because controllers constantly detect gaps and fix them based on the desired state.
