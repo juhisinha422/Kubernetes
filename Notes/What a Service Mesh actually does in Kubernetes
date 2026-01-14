@@ -1,0 +1,75 @@
+What a Service Mesh actually does in Kubernetes (Istio / Linkerd basics)
+
+Kubernetes handles traffic routing.
+A Service Mesh handles traffic behavior.
+
+They solve different problems.
+
+What a Service Mesh is:
+
+1. A dedicated infrastructure layer for service-to-service communication.
+2. It works by injecting a sidecar proxy next to each Pod.
+3. Application code never talks directly to other services.
+4. All traffic flows through the sidecar proxy.
+
+How it works internally:
+
+1. A sidecar proxy (Envoy) is injected into the Pod.
+2. All inbound and outbound traffic goes through the proxy.
+3. The control plane configures these proxies dynamically.
+4. Policies are enforced without changing application code.
+
+What problems it solves:
+
+1. mTLS (mutual TLS) between services.
+2. Traffic retries, timeouts, and circuit breaking.
+3. Fine-grained traffic control (canary, shadowing).
+4. Deep observability (latency, errors, request tracing).
+
+Important reality check:
+
+1. Service Mesh adds complexity.
+2. Not every cluster needs it.
+3. Best suited for large microservice architectures.
+4. Overkill for small or simple systems.
+
+In simple words:
+Kubernetes moves traffic.
+A Service Mesh controls, secures, and observes that traffic.
+
+Kubernetes handles traffic routing.
+A Service Mesh handles traffic behavior.
+
+They solve different problems.
+
+What a Service Mesh is:
+
+1. A dedicated infrastructure layer for service-to-service communication.
+2. It works by injecting a sidecar proxy next to each Pod.
+3. Application code never talks directly to other services.
+4. All traffic flows through the sidecar proxy.
+
+How it works internally:
+
+1. A sidecar proxy (Envoy) is injected into the Pod.
+2. All inbound and outbound traffic goes through the proxy.
+3. The control plane configures these proxies dynamically.
+4. Policies are enforced without changing application code.
+
+What problems it solves:
+
+1. mTLS (mutual TLS) between services.
+2. Traffic retries, timeouts, and circuit breaking.
+3. Fine-grained traffic control (canary, shadowing).
+4. Deep observability (latency, errors, request tracing).
+
+Important reality check:
+
+1. Service Mesh adds complexity.
+2. Not every cluster needs it.
+3. Best suited for large microservice architectures.
+4. Overkill for small or simple systems.
+
+In simple words:
+Kubernetes moves traffic.
+A Service Mesh controls, secures, and observes that traffic.
