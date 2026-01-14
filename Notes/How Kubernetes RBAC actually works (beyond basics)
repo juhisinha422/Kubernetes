@@ -1,0 +1,51 @@
+How Kubernetes RBAC actually works (beyond basics)
+
+RBAC controls WHO can do WHAT inside a Kubernetes cluster.
+However, most production issues arise from a misunderstanding of how it actually works.
+
+RBAC building blocks:
+
+1. Subjects
+ a. User
+ b. Group
+ c. ServiceAccount
+
+2. Roles
+ a. Define permissions (verbs + resources)
+ b. Can be namespace-scoped (Role)
+ c. Or cluster-wide (ClusterRole)
+
+3. RoleBindings
+ a. Attach a Role to a subject in a namespace
+
+4. ClusterRoleBindings
+ a. Attach a ClusterRole across the entire cluster
+
+How a request is evaluated:
+
+1. A request reaches the API server.
+2. API server authenticates the identity.
+3. RBAC checks:
+ a. requested verb (get, list, create, delete)
+ b. requested resource (pods, secrets, nodes)
+ c. namespace scope
+4. If ANY matching rule allows it → request succeeds.
+5. If no rule matches → request is denied.
+
+Common RBAC mistakes:
+
+1. Using ClusterRole when Role is enough.
+2. Binding admin roles to applications.
+3. Overusing wildcard permissions (*).
+4. Forgetting ServiceAccounts exist.
+
+Why RBAC matters:
+
+1. Limits blast radius during compromise.
+2. Protects cluster-critical resources.
+3. Mandatory for multi-tenant clusters.
+4. Required for compliance and audits.
+
+In simple words:
+RBAC is not optional security.
+It is the gatekeeper of your entire Kubernetes cluster.
