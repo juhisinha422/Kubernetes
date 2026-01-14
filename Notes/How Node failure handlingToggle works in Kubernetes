@@ -1,0 +1,30 @@
+How Node failure handlingToggle works in Kubernetes
+
+Nodes can fail at any time — network issues, hardware crash, cloud VM termination.
+Kubernetes is designed to detect this and recover automatically.
+
+Here’s what happens when a node goes down:
+
+1. The kubelet on the node stops sending heartbeats.
+2. The Node Controller notices the missing heartbeats.
+3. After a grace period, the node is marked as NotReady.
+4. Pods running on that node are marked as unavailable.
+5. Kubernetes starts rescheduling those Pods to healthy nodes.
+6. New Pods are created to match the desired replica count.
+
+Important details:
+
+1. Node failure handling is controlled by the Node Controller.
+2. Pods are NOT immediately deleted — Kubernetes waits to avoid false positives.
+3. PodDisruptionBudgets are respected during rescheduling.
+4. Stateful workloads depend on storage and may take longer to recover.
+
+Why this matters:
+
+1. No manual intervention needed during node crashes.
+2. Applications stay available even when infrastructure fails.
+3. Works seamlessly with autoscaling and self-healing.
+4. This is core to Kubernetes reliability.
+
+In simple words:
+When a node dies, Kubernetes notices, waits, and then moves your workloads to healthy nodes automatically.
