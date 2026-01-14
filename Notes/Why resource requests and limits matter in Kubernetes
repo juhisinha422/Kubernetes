@@ -1,0 +1,34 @@
+Why resource requests and limits matter in Kubernetes
+
+Kubernetes does not guess how much CPU or memory your app needs.
+You must tell it — using resource requests and limits.
+
+Here’s how they work:
+
+1. Resource Requests
+ a. Define the minimum CPU and memory a Pod needs.
+ b. Used by the scheduler to decide which node can run the Pod.
+ c. If a node can’t satisfy the request, the Pod stays Pending.
+
+2. Resource Limits
+ a. Define the maximum CPU and memory a Pod is allowed to use.
+ b. Enforced by the container runtime.
+ c. Exceeding memory limit → Pod gets OOMKilled.
+ d. Exceeding CPU limit → Pod gets throttled.
+
+Why this separation exists:
+
+1. Requests help Kubernetes place Pods correctly.
+2. Limits protect the node from noisy neighbors.
+3. Overcommitting requests improves cluster utilization.
+4. Incorrect limits cause crashes and performance issues.
+
+Common mistakes:
+
+1. Setting limits without requests.
+2. Setting both too high “just to be safe”.
+3. Ignoring memory limits (most production outages come from this).
+
+In simple words:
+Requests decide WHERE a Pod runs.
+Limits determine how much is allowed to be consumed.
