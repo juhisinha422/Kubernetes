@@ -123,12 +123,20 @@ No external LB needed for internal traffic
 
 Pods can come and go freely
 
-Types of Kubernetes Services (Quick Overview)
-Type	Purpose
-ClusterIP	Internal-only access (default)
-NodePort	Exposes service on node IP
-LoadBalancer	Cloud-provider load balancer
-Headless	Direct Pod access (no ClusterIP)
+## Types of Kubernetes Services (Quick Overview)
+
+In **:contentReference[oaicite:0]{index=0}**, Services expose applications in different ways depending on access needs.
+
+| Service Type | Purpose |
+|-------------|---------|
+| **ClusterIP** | Internal-only access within the cluster (default) |
+| **NodePort** | Exposes the Service on a static port on each node’s IP |
+| **LoadBalancer** | Exposes the Service using a cloud provider’s external load balancer |
+| **Headless** | Provides direct Pod access without a ClusterIP |
+
+**Key takeaway:**  
+Choose the Service type based on **who needs access** and **from where**.
+
 
 ## Common Mistakes
 ```bash
