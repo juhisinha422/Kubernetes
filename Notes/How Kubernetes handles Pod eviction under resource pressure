@@ -1,0 +1,41 @@
+How Kubernetes handles Pod eviction under resource pressure
+
+When a node starts running out of CPU, memory, or disk,
+Kubernetes must protect the node and the cluster.
+
+That’s when Pod eviction happens.
+
+Here’s how eviction works:
+
+1. kubelet monitors node conditions:
+ a. MemoryPressure
+ b. DiskPressure
+ c. PIDPressure
+
+2. When pressure crosses safe limits:
+ a. kubelet triggers eviction
+ b. Pods are terminated to free resources
+
+Eviction order is NOT random:
+
+1. BestEffort Pods are evicted first.
+2. Burstable Pods are evicted next.
+3. Guaranteed Pods are evicted last.
+
+Other factors considered:
+
+1. Pod priority.
+2. PodDisruptionBudgets (PDBs).
+3. Graceful termination periods.
+4. Critical system Pods are protected.
+
+Why this matters:
+
+1. Prevents node crashes.
+2. Keeps the cluster stable.
+3. Highlights why proper requests and limits are critical.
+4. Explains many “unexpected” Pod restarts in production.
+
+In simple words:
+When a node is under stress, Kubernetes sacrifices low-priority Pods
+to keep the system alive.
