@@ -1,0 +1,46 @@
+How CSI (Container Storage Interface) works in Kubernetes
+
+Kubernetes does not talk directly to storage systems.
+It uses CSI as a standard interface.
+
+CSI makes storage pluggable and vendor-independent.
+
+What CSI is:
+
+1. A standard API for storage providers.
+2. Allows Kubernetes to work with any storage backend.
+3. Replaces old in-tree volume plugins.
+4. Used by cloud and on-prem storage systems.
+
+CSI architecture:
+
+1. CSI Controller
+ a. Runs in the control plane.
+ b. Handles volume creation, deletion, and attachment.
+2. CSI Node Plugin
+ a. Runs on every worker node.
+ b. Mounts and unmounts volumes into Pods.
+3. CSI Driver
+ a. Implemented by storage vendors.
+ b. Talks to the actual storage system.
+
+How a volume is created:
+
+1. A Pod requests storage using a PVC.
+2. Kubernetes calls the CSI controller.
+3. CSI driver creates the volume in the storage backend.
+4. Volume is attached to the target node.
+5. CSI node plugin mounts it into the Pod.
+
+Why CSI matters:
+
+1. No Kubernetes core changes needed for new storage.
+2. Easier upgrades and maintenance.
+3. Supports advanced features:
+ a. snapshots
+ b. volume expansion
+ c. cloning
+4. Works consistently across cloud providers.
+
+In simple words:
+CSI is the bridge between Kubernetes and storage systems.
