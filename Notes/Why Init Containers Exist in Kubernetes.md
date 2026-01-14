@@ -105,11 +105,13 @@ Predictable behavior in distributed systems
 
 ### Init Containers vs Sidecar Containers
 
-Init Container	        Sidecar Container
-Runs before app	        Runs alongside app
-Runs once	              Runs continuously
-Blocks startup	        Does not block startup
-Setup-focused	          Runtime support
+| Feature | Init Container | Sidecar Container |
+|------|----------------|------------------|
+| Startup time | Runs before app | Runs alongside app |
+| Execution | Runs once | Runs continuously |
+| Startup blocking | Blocks app startup | Does not block startup |
+| Primary role | Setup & preparation | Runtime support |
+| Failure impact | App never starts | App keeps running |
 
 ## In Simple Words
 
