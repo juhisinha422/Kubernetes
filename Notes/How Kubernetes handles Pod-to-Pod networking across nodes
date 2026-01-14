@@ -1,0 +1,37 @@
+How Kubernetes handles Pod-to-Pod networking across nodes
+
+One of Kubernetes’ biggest strengths is that Pods can talk to each other
+even when they run on different nodes — without NAT.
+
+Here’s how this works:
+
+1. Every Pod gets a unique IP address.
+2. That IP is routable across the entire cluster.
+3. The CNI plugin sets up routing rules between nodes.
+4. Each node knows how to reach Pods on other nodes.
+5. Packets move directly from Pod → Pod, even across nodes.
+
+What makes this possible:
+
+1. CNI plugins (Calico, Cilium, Flannel, etc.).
+2. Overlay or native routing networks.
+3. No port mapping or NAT between Pods.
+4. Flat cluster-wide network model.
+
+Traffic flow example:
+
+1. Pod A (Node 1) sends traffic to Pod B (Node 2).
+2. Packet exits Node 1 via CNI routing.
+3. Packet enters Node 2.
+4. Pod B receives traffic directly on its IP.
+
+Why this matters:
+
+1. Simplifies microservice communication.
+2. Makes service meshes and policies possible.
+3. Avoids complex networking hacks.
+4. Matches the “one IP per workload” model.
+
+In simple words:
+Kubernetes makes the entire cluster behave like one flat network,
+no matter how many nodes you have.
