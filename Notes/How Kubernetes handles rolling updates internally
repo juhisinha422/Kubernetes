@@ -1,0 +1,38 @@
+How Kubernetes handles rolling updates internally
+
+Rolling updates allow Kubernetes to update applications
+without taking everything down at once.
+
+Here’s what actually happens during a rolling update:
+
+1. You update the Deployment (image, config, or version).
+2. Kubernetes creates a NEW ReplicaSet with the updated Pod template.
+3. New Pods are started gradually based on rollout settings.
+4. Old Pods are terminated one by one.
+5. At no point does Kubernetes bring down all Pods together.
+
+Key rollout controls:
+
+1. maxUnavailable
+ a. Maximum number of Pods that can be unavailable during update.
+2. maxSurge
+ a. Extra Pods Kubernetes can create temporarily.
+3. readiness probes
+ a. Ensure traffic goes only to healthy Pods.
+
+Why rolling updates are reliable:
+
+1. Traffic is shifted gradually.
+2. Failed Pods stop the rollout automatically.
+3. Easy rollback to the previous ReplicaSet.
+4. No downtime for stateless services.
+
+Common mistakes:
+
+1. Missing readiness probes.
+2. Setting maxUnavailable too high.
+3. Assuming rolling updates work for stateful apps the same way.
+
+In simple words:
+Rolling updates replace Pods slowly and safely,
+keeping your application available throughout the update.
