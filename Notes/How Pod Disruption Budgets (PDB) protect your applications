@@ -1,0 +1,30 @@
+How Pod Disruption Budgets (PDB) protect your applications
+
+Kubernetes can restart, move, or evict Pods — but not all at once.
+That’s where Pod Disruption Budgets come in.
+
+What a PDB does:
+
+1. It defines how many Pods must stay available during voluntary disruptions.
+2. It applies during:
+ a. node drain
+ b. cluster autoscaling
+ c. rolling updates
+3. It prevents too many Pods from going down at the same time.
+
+How it works:
+
+1. You define a minimum number or percentage of Pods that must be running.
+2. Kubernetes checks the PDB before evicting any Pod.
+3. If eviction would break availability, Kubernetes blocks it.
+
+Why PDBs matter:
+
+1. Protect critical services during maintenance.
+2. Prevent cascading failures.
+3. Improve application reliability.
+4. Work seamlessly with rolling updates and autoscaling.
+
+In simple words:
+Pod Disruption Budgets tell Kubernetes,
+“Don’t break my app while trying to fix the cluster.”
