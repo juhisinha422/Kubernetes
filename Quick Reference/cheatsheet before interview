@@ -37,3 +37,8 @@ Readiness probe → Zero-downtime traffic
 
 
 3. In multicontainer pod how liveness and readiness probe work?
+It works on a per container basis means If one container’s liveness probe fails only that container is restarted.Other containers in the Pod keep running and
+Pod is NOT recreated.
+ALL containers that have readiness probes must be Ready
+If any container is Not Ready →
+➡ Entire Pod is removed from Service endpoints
