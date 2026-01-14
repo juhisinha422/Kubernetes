@@ -1,0 +1,41 @@
+Preparing for a Kubernetes interview? Understanding Kustomize is essential for managing configurations across multiple environments! 🚀
+
+1. What is Kustomize in Kubernetes?
+
+Kustomize is a configuration management tool built into kubectl that customizes Kubernetes resource files using a kustomization.yaml file to define modifications without altering original manifests.
+
+2. How does Kustomize differ from Helm?
+
+Kustomize uses pure YAML with patches and overlays, while Helm relies on Go templating. Kustomize is template-free and integrated into kubectl, whereas Helm requires separate installation.
+
+3. What are bases and overlays in Kustomize?
+
+Bases contain common resource definitions shared across environments. Overlays apply environment-specific customizations on top of bases for dev, staging, and production deployments.
+
+4. How do you create a kustomization.yaml file?
+
+A kustomization.yaml file lists resources, defines namespace, and applies transformations. Include resources as YAML file paths and specify commonLabels for consistent labeling.
+
+5. What are strategic merge patches and JSON patches?
+
+Strategic merge patches intelligently merge fields based on Kubernetes schemas. JSON patches provide precise modifications using RFC 6902 operations for targeted field changes.
+
+6. How do ConfigMap and Secret generators work?
+
+Kustomize generates ConfigMaps and Secrets from files or literals. It automatically appends content hashes to names, triggering pod restarts when configurations change.
+
+7. What are transformers in Kustomize?
+
+Transformers systematically modify resources across all manifests, including commonLabels, commonAnnotations, namePrefix, nameSuffix, and namespace transformations.
+
+8. How do you apply Kustomize configurations?
+
+Use `kubectl apply -k <directory>` to apply configurations. Use `kubectl kustomize <directory>` to preview generated manifests before applying.
+
+9. What are components in Kustomize?
+
+Components are reusable configuration pieces selectively included in overlays, enabling modular configuration management across environments.
+
+10. How do you manage multi-environment deployments?
+
+Create a base directory with common resources and separate overlay directories for each environment, applying environment-specific patches for replicas and images.
