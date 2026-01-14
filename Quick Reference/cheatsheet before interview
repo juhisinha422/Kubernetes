@@ -1,0 +1,39 @@
+1. What k8s readiness prob do?
+  Readiness probe checks whether pod is ready to serve  the traffic or not
+
+ask from object like 
+Pod
+Service,
+Deployment
+PersistenVolumeClaim
+ClusterConfig
+ServiceMonitor  (for grafana)
+HPA
+ReplicaSet
+
+then ask labels so pod can connect with each other by using labels
+
+2. And how it is different from liveness prob
+In Kubernetes, a Liveness Probe answers one critical question:
+“Is this container still healthy, or is it stuck and needs a restart?”
+If the answer is NO, Kubernetes kills and restarts the container.
+
+Difference from readiness
+Probe
+Purpose
+Failure result
+Liveness
+Is app stuck/dead?
+Container restarted
+Readiness
+Can accept traffic?
+Removed from Service
+
+In real DevOps pipelines
+You use:
+Startup probe → Slow apps
+Liveness probe → Crash recovery
+Readiness probe → Zero-downtime traffic
+
+
+3. In multicontainer pod how liveness and readiness probe work?
