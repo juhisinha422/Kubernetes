@@ -1,0 +1,22 @@
+The real job of the API Server — why it’s the “brain” of Kubernetes
+
+The kube-apiserver is the central gateway for all operations within Kubernetes.
+
+Nothing enters or leaves the cluster state without passing through it.
+Here’s what makes it the “brain” of Kubernetes:
+
+1. It is the only component that talks to etcd, the source of truth for the cluster.
+2. Every request (kubectl, controllers, kubelet, scheduler) must go through the API server.
+3. It performs validation, authentication, and authorization for all operations.
+4. It exposes the entire Kubernetes API (Pods, Deployments, Nodes, ConfigMaps, etc.).
+
+It ensures the cluster remains consistent through versioned API objects.
+Why it's the “brain”:
+
+1. It holds the complete state of the cluster (through etcd).
+2. It coordinates every interaction between control-plane components.
+3. It lets kubelet, scheduler, and controllers know what the desired state is.
+4. If the API server is down, the entire cluster becomes read-only — no new changes can happen.
+
+In simple words:
+The API server is the front door, the traffic controller, and the decision maker of Kubernetes. Everything and everyone goes through it.
