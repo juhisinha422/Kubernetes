@@ -1,0 +1,28 @@
+Why liveness, readiness, and startup probes matter in Kubernetes
+
+Kubernetes needs a way to understand the internal health of your application.
+That’s why probes exist — each serving a different purpose.
+
+Liveness Probe
+• Checks if the container is alive.
+• If it fails → Kubernetes restarts the container.
+• Prevents apps from getting stuck in bad states.
+
+Readiness Probe
+• Checks if the container is ready to receive traffic.
+• If it fails → Pod is removed from Service endpoints.
+• Prevents broken apps from receiving requests.
+
+Startup Probe
+• Ensures slow-starting apps get enough time to boot.
+• Kubernetes won’t run liveness/readiness until startup succeeds.
+• Prevents premature restarts.
+
+Why these probes matter:
+• Reduced downtime
+• More reliable rollouts
+• Accurate traffic routing
+• Faster failure detection
+
+In simple words:
+Probes tell Kubernetes when to start, stop, restart, or route traffic to your Pods.
