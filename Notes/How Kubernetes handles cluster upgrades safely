@@ -1,0 +1,40 @@
+How Kubernetes handles cluster upgrades safely
+
+Upgrading a Kubernetes cluster is not just about bumping a version.
+It’s about keeping workloads running while the control plane and nodes change.
+
+Here’s how Kubernetes handles upgrades safely:
+
+Control plane upgrade:
+
+1. API server is upgraded first.
+2. New API versions are introduced while old ones remain supported.
+3. Backward compatibility is maintained for running workloads.
+4. etcd schema remains compatible during the upgrade.
+
+Node upgrade process:
+
+1. Nodes are upgraded one at a time.
+2. Each node is drained before upgrade:
+ a. Pods are evicted gracefully.
+ b. PodDisruptionBudgets are respected.
+3. Workloads are rescheduled to healthy nodes.
+4. Upgraded node rejoins the cluster.
+
+Why workloads stay available:
+
+1. Desired state is preserved in etcd.
+2. ReplicaSets ensure enough Pods are always running.
+3. Services keep routing traffic to healthy Pods.
+4. Controllers continuously reconcile state.
+
+Common mistakes during upgrades:
+
+1. Skipping minor versions.
+2. Ignoring deprecated APIs.
+3. Not testing workloads before production upgrades.
+4. Forgetting to upgrade kubectl and add-ons.
+
+In simple words:
+Kubernetes upgrades the brain first, then the workers,
+while controllers make sure your applications never stop running.
