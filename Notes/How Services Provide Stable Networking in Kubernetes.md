@@ -80,14 +80,24 @@ It acts as:
 ✅ Service stays the same
 
 
-### What Happens When Pods Change?
-```bash
-Pod Event	Service Behavior
-Pod crashes	Traffic stops going to it
-New Pod starts	Automatically added
-Pod IP changes	Service unaffected
-Scaling up/down	Load balancing adjusts
-```
+## What Happens When Pods Change?
+
+In **:contentReference[oaicite:0]{index=0}**, Pods are dynamic, but **Services remain stable**.
+
+The table below shows how a Service reacts to different Pod lifecycle events:
+
+| Pod Event | Service Behavior |
+|----------|------------------|
+| Pod crashes | Traffic is immediately stopped from routing to that Pod |
+| New Pod starts | Pod is automatically discovered and added to the Service |
+| Pod IP changes | Service remains unaffected and continues working |
+| Scaling up/down | Load balancing automatically adjusts to the new number of Pods |
+
+👉 **Applications continue working without any configuration changes**, even as Pods come and go.
+
+**Key idea:**  
+> Pods change. Services don’t.
+
 
 **👉 Applications never need to know Pod IPs**
 
