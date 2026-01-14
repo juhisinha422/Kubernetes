@@ -1,0 +1,39 @@
+How Taints and Tolerations control Pod placement in Kubernetes
+
+By default, Kubernetes tries to place Pods on any available node.
+Taints and Tolerations let you control where Pods should NOT run.
+
+Here’s how taints work:
+
+1. A taint is applied to a node.
+2. It marks the node as restricted.
+3. Pods without a matching toleration cannot be scheduled there.
+
+Taint effects:
+
+1. NoSchedule
+ a. Pod will not be scheduled on the node.
+2. PreferNoSchedule
+ a. Kubernetes avoids the node if possible.
+3. NoExecute
+ a. Existing Pods without toleration are evicted.
+
+How tolerations work:
+
+1. A toleration is added to a Pod.
+2. It tells Kubernetes:
+ “This Pod is allowed to run on tainted nodes.”
+3. Only Pods with matching tolerations can be scheduled.
+
+Common use cases:
+
+1. Dedicated nodes for databases.
+2. Isolating critical workloads.
+3. GPU or special hardware nodes.
+4. Preventing noisy neighbors.
+
+In simple words:
+Taints repel Pods.
+Tolerations allow Pods to pass.
+
+Together, they give you fine-grained control over Pod placement.
