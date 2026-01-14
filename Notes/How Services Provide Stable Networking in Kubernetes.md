@@ -173,3 +173,5 @@ Kubernetes networking works because
 Services abstract away Pod instability.
 
 Without Services, Kubernetes would not scale reliably.
+
+<img width="800" height="533" alt="Image" src="https://github.com/user-attachments/assets/34d45ee0-c6a1-4926-b44d-0c95f13238dc" />
