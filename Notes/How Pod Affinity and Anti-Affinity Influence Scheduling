@@ -1,0 +1,39 @@
+How Pod Affinity and Anti-Affinity Influence Scheduling
+
+Sometimes it’s not enough to say where a Pod can run.
+You also need to say where it SHOULD or SHOULD NOT run relative to other Pods.
+
+That’s where affinity rules come in.
+
+Types of affinity rules:
+
+1. Pod Affinity
+ a. Tells Kubernetes to place a Pod close to other specific Pods.
+ b. Useful when services need low-latency communication.
+ c. Example: app Pods close to cache Pods.
+
+2. Pod Anti-Affinity
+ a. Tells Kubernetes to keep Pods away from each other.
+ b. Used to spread replicas across nodes or zones.
+ c. Improves high availability and fault tolerance.
+
+How these rules work:
+
+1. Rules are defined using Pod labels.
+2. Scheduler evaluates them during Pod placement.
+3. They can be:
+ a. requiredDuringScheduling (hard rule)
+ b. preferredDuringScheduling (soft rule)
+
+Common use cases:
+
+1. Spreading replicas across availability zones.
+2. Avoiding single-node failures.
+3. Co-locating tightly coupled services.
+4. Improving resilience for production workloads.
+
+In simple words:
+Affinity pulls Pods together.
+Anti-affinity pushes Pods apart.
+
+Together, they help you design highly available and intelligent scheduling strategies.
