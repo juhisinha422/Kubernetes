@@ -1,0 +1,95 @@
+How Kubernetes Admission Controllers control what gets deployed
+
+Not every request that reaches the API server is allowed.
+Admission Controllers decide what is accepted and what is rejected.
+
+They run AFTER authentication and authorization.
+
+What Admission Controllers do:
+
+1. Inspect requests before objects are stored in etcd.
+2. Enforce security, policy, and best practices.
+3. Can modify or reject requests.
+4. Act as the last safety gate before persistence.
+
+Types of Admission Controllers:
+
+1. Mutating Admission Controllers
+ a. Modify requests.
+ b. Example:
+ - injecting sidecars
+ - adding default labels
+ - setting resource limits
+
+2. Validating Admission Controllers
+ a. Only allow or reject requests.
+ b. Example:
+ - block privileged containers
+ - enforce image policies
+ - restrict namespaces
+
+Common built-in controllers:
+
+1. PodSecurity (Baseline / Restricted).
+2. LimitRanger.
+3. ResourceQuota.
+4. NamespaceLifecycle.
+5. NodeRestriction.
+
+Why Admission Controllers matter:
+
+1. Prevent insecure workloads from running.
+2. Enforce standards automatically.
+3. Reduce human error.
+4. Critical for multi-team and production clusters.
+
+In simple words:
+Admission Controllers are Kubernetes’ policy gatekeepers.
+If something violates the rules, it never enters the cluster.
+
+Not every request that reaches the API server is allowed.
+Admission Controllers decide what is accepted and what is rejected.
+
+They run AFTER authentication and authorization.
+
+What Admission Controllers do:
+
+1. Inspect requests before objects are stored in etcd.
+2. Enforce security, policy, and best practices.
+3. Can modify or reject requests.
+4. Act as the last safety gate before persistence.
+
+Types of Admission Controllers:
+
+1. Mutating Admission Controllers
+ a. Modify requests.
+ b. Example:
+ - injecting sidecars
+ - adding default labels
+ - setting resource limits
+
+2. Validating Admission Controllers
+ a. Only allow or reject requests.
+ b. Example:
+ - block privileged containers
+ - enforce image policies
+ - restrict namespaces
+
+Common built-in controllers:
+
+1. PodSecurity (Baseline / Restricted).
+2. LimitRanger.
+3. ResourceQuota.
+4. NamespaceLifecycle.
+5. NodeRestriction.
+
+Why Admission Controllers matter:
+
+1. Prevent insecure workloads from running.
+2. Enforce standards automatically.
+3. Reduce human error.
+4. Critical for multi-team and production clusters.
+
+In simple words:
+Admission Controllers are Kubernetes’ policy gatekeepers.
+If something violates the rules, it never enters the cluster.
