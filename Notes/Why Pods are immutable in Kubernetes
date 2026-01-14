@@ -1,0 +1,23 @@
+Why Pods are immutable in Kubernetes
+
+In Kubernetes, a Pod is treated as a fixed, never-updated unit.
+If anything inside a Pod needs to change — Kubernetes doesn’t modify it.
+It replaces it.
+
+Here’s why Pods are immutable:
+
+• Changing a running container breaks consistency across nodes.
+• Immutable Pods ensure predictable rollouts and rollbacks.
+• Controllers (like Deployments) can easily recreate new Pods with updated specs.
+• It avoids hidden state issues inside long-running containers.
+• Reliability increases because every update becomes a clean, fresh start.
+
+What happens during a change?
+
+• You update the Deployment/StatefulSet spec.
+• A new ReplicaSet is created.
+• Old Pods are terminated and new Pods with new specs are created.
+
+In simple words:
+Pods are not updated — they’re replaced.
+This guarantees consistency, stability, and clean deployments.
