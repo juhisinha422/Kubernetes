@@ -1,0 +1,42 @@
+How Kubernetes DNS works (CoreDNS explained simply)
+
+Pods don’t talk to each other using IPs.
+They talk using names — and Kubernetes DNS makes that possible.
+
+Here’s how DNS works inside Kubernetes:
+
+1. Kubernetes runs CoreDNS as a system component.
+2. CoreDNS watches the API server for:
+ a. Services
+ b. Endpoints
+ c. Pods (optional)
+3. For every Service, CoreDNS creates a DNS record.
+4. Pods automatically get DNS configuration injected at startup.
+5. DNS queries from Pods go to CoreDNS, not the internet.
+
+Common DNS formats:
+
+1. service-name
+2. service-name.namespace
+3. service-name.namespace.svc.cluster.local
+
+Example:
+backend.default.svc.cluster.local
+
+What happens behind the scenes:
+
+1. A Pod sends a DNS query.
+2. CoreDNS resolves it to the Service ClusterIP.
+3. kube-proxy routes traffic to one of the healthy Pods.
+4. If Pods change, DNS stays valid.
+
+Why this matters:
+
+1. No hardcoded IPs in applications.
+2. Services remain discoverable during scaling.
+3. Enables microservice communication.
+4. Critical for reliability in dynamic clusters.
+
+In simple words:
+CoreDNS turns dynamic Pods into stable, discoverable services
+using DNS names instead of IP addresses.
