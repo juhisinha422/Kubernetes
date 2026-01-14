@@ -1,0 +1,43 @@
+How Kubernetes uses StorageClasses for dynamic provisioning
+
+Manually creating storage for every Pod does not scale.
+Kubernetes solves this with StorageClasses.
+
+What a StorageClass does:
+
+1. Defines how storage should be created.
+2. Specifies:
+ a. storage type (EBS, PD, Azure Disk, NFS, etc.)
+ b. performance tier
+ c. reclaim policy
+3. Acts as a template for dynamic volume creation.
+
+How dynamic provisioning works:
+
+1. A Pod requests storage using a PVC.
+2. The PVC references a StorageClass.
+3. Kubernetes asks the CSI driver to create a volume.
+4. A PersistentVolume (PV) is created automatically.
+5. The PV is bound to the PVC and mounted into the Pod.
+
+Key StorageClass settings:
+
+1. provisioner
+ a. CSI driver responsible for volume creation
+2. reclaimPolicy
+ a. Delete (default)
+ b. Retain
+3. volumeBindingMode
+ a. Immediate
+ b. WaitForFirstConsumer
+
+Why this matters:
+
+1. No manual storage management.
+2. Faster application deployments.
+3. Consistent storage behavior across environments.
+4. Works perfectly with StatefulSets and databases.
+
+In simple words:
+StorageClasses tell Kubernetes
+How to create storage when your application asks for it.
