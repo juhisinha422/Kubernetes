@@ -1,0 +1,11 @@
+Day-99 | Terraform Data Sources
+If you’re hardcoding AMI IDs, VPC IDs, or subnet IDs, you’re not doing Infrastructure as Code  you’re doing scripted guesswork.
+
+Terraform data sources are how real environments work:
+Read existing infrastructure
+Reuse shared VPCs and subnets
+Fetch the latest AMIs automatically
+Consume remote state instead of copy-pasting values
+Data sources don’t create.
+ They connect your stacks safely and cleanly.
+This is the difference between demo Terraform and production Terraform.
