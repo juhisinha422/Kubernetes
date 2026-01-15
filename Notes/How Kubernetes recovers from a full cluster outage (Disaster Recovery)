@@ -1,0 +1,48 @@
+How Kubernetes recovers from a full cluster outage (Disaster Recovery)
+
+A full cluster outage is the worst-case scenario.
+Kubernetes recovery depends on what failed — and what you backed up.
+
+Types of failures:
+
+1. Control plane failure
+2. Worker node failure
+3. Complete cluster loss (control plane + nodes)
+
+How Kubernetes recovers:
+
+1. Control plane failure
+  a. Restore etcd from the latest snapshot.
+  b. Bring up API server, scheduler, and controllers.
+  c. Desired state is restored automatically.
+  d. Nodes reconnect and workloads resume.
+
+2. Worker node failure
+  a. Unhealthy nodes are marked NotReady.
+  b. Pods are rescheduled to healthy nodes.
+  c. Desired replica count is maintained.
+
+3. Complete cluster loss
+  a. Create a new cluster.
+  b. Restore etcd snapshot (if available).
+  c. Reinstall add-ons and controllers.
+  d. Reattach Persistent Volumes if supported.
+  e. Applications return to last known desired state.
+
+What backups are REQUIRED:
+
+1. etcd snapshots (mandatory).
+2. Persistent volume backups (app data).
+3. Git repositories (manifests, Helm charts).
+4. Secrets stored securely outside the cluster.
+
+Why GitOps helps here:
+
+1. Cluster config is reproducible.
+2. New cluster can be rebuilt quickly.
+3. Less manual recovery work.
+4. Faster RTO (Recovery Time Objective).
+
+In simple words:
+Kubernetes can recover from almost any failure —
+but only if you have backups and automation in place.
