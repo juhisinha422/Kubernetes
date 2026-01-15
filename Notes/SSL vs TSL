@@ -1,0 +1,56 @@
+SSL aur TLS – Bilkul Basic Samjho
+
+Problem kya thi?
+Jab internet naya-naya tha:
+          Data plain text me jaata tha
+          Koi bhi beech me padh sakta tha
+          Password, login sab dikh jaata tha 
+Is problem ka solution chahiye tha.
+
+
+SSL kyu aaya?
+SSL ka full form: Secure Sockets Layer
+SSL bola:
+“Browser aur Server ke beech
+data ko lock kar dete hain”
+Shuru me ye kaam chal gaya.
+
+Par SSL me problem aa gayi
+Time ke saath:
+Hackers smart ho gaye
+SSL ke bugs mil gaye
+Data todna possible ho gaya
+Isliye:  SSL 2.0, 3.0 band kar diye gaye
+
+
+
+
+
+TLS aaya (SSL ka bada bhai)
+TLS ka full form: Transport Layer Security
+TLS bola:
+“Main SSL ka improved version hoon
+aur zyada secure hoon.”
+
+TLS ne:
+Strong locks use kiye
+Fast connection banaya
+Old problems hata di
+
+
+Aaj ke time me kya use hota hai?
+Browser → TLS use karta hai
+Server → TLS use karta hai
+HTTPS = TLS enabled connection
+
+Log bolte hain:
+“SSL lagaya hai”
+Par asal me: TLS chal raha hota hai
+
+
+
+
+Fresher ke liye 5 super simple points
+1. SSL purana hai
+2. TLS new aur safe hai
+3. HTTPS ka matlab TLS 
