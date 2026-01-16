@@ -1,0 +1,26 @@
+Day-100 – Static Website Hosting on AWS (Production-Grade Setup)
+Completed a secure and production-ready static website hosting solution on AWS, implemented entirely using Terraform (Infrastructure as Code).
+This exercise wasn’t about simply putting a website online.
+
+What was implemented:
+Private Amazon S3 bucket with all public access blocked
+Amazon CloudFront for global content delivery, caching, and compression
+Origin Access Control (OAC) to securely connect CloudFront to S3
+ACM certificate (us-east-1) to enable HTTPS
+Amazon Route53 for custom domain configuration (space9.in)
+Static assets (HTML, CSS, JavaScript) deployed using Terraform
+
+Why this approach matters:
+S3 is never directly exposed to the internet
+HTTPS is enforced end-to-end
+Least-privilege access is consistently applied
+The architecture scales without redesign
+Infrastructure is fully reproducible using IaC
+This setup reflects how static frontends are hosted in real-world AWS production environments, not demo or shortcut-based implementations.
+
+Tech stack:
+ AWS · S3 · CloudFront · ACM · Route53 · Terraform
+Day 100 completed.
+ On to the next challenge.
+
+Access my site: https://space9.in/
