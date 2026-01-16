@@ -1,0 +1,57 @@
+Understanding Stateless vs Stateful Applications in Kubernetes
+
+In Kubernetes, applications are broadly classified into Stateless and Stateful applications. Choosing the right controller is very important for stability and data safety.
+
+🔹 Stateless Applications
+Do not store past data
+Data is non-persistent
+If a Pod or Node restarts, data is lost
+Pods are interchangeable
+Requests can go to any Pod
+✅ Controller used: Deployment
+✅ Examples: Web apps, APIs, frontend services
+👉 Deployments use ReplicaSets and support auto-scaling (HPA). Pods can be created or deleted in parallel.
+
+🔹 Stateful Applications
+Store and track past data
+Data must persist even if Pods restart
+Each Pod has a stable identity
+Each Pod gets its own Persistent Volume (PVC)
+✅ Controller used: StatefulSet
+✅ Examples: Databases (MySQL, PostgreSQL), Kafka, Zookeeper
+👉 StatefulSets do not use ReplicaSets. Pods are created and deleted in an ordered manner.
+
+❓ Why can’t we use Deployment for Databases?
+If we use Deployment:
+Pods are deleted randomly during scale-down
+Pod names change
+Risk of data inconsistency or loss
+StatefulSet solves this by providing:
+Fixed Pod names (db-0, db-1, db-2)
+Ordered scaling (FIFO / reverse order on scale-down)
+Separate PVC per Pod
+Data is preserved even if Pod restarts
+
+📌 Scale-down behavior:
+Deployment → deletes Pods randomly
+StatefulSet → deletes last created Pod first (LIFO)
+
+🔹 DaemonSet in Kubernetes
+A DaemonSet ensures that one Pod runs on every worker node.
+When a new node is added → Pod is created automatically
+When a node is removed → Pod is deleted automatically
+No replicas concept
+Scheduling is node-based, not load-based
+✅ Use cases:
+Log collection (Fluentd, Filebeat)
+Monitoring agents (Node Exporter, Datadog)
+CNI plugins
+Node-level scripts
+
+👉 Deployments and StatefulSets do not automatically create Pods when new nodes are added — DaemonSet does.
+
+🔑 Final Summary
+Deployment → Stateless applications
+StatefulSet → Stateful applications / Databases
+DaemonSet → Node-level services
+Choosing the right Kubernetes controller ensures scalability, reliability, and data safety.
