@@ -1,0 +1,37 @@
+What are the major limitations of Docker that Kubernetes overcomes?
+
+Key Problems Docker Has, That Kubernetes Solves
+
+1⃣ Single Host Limitation
+• Docker (when used alone, without orchestration tools) runs containers on a single machine.
+This means all containers are limited to one host.
+• Kubernetes runs containers across multiple machines (a cluster), allowing for better
+resource utilization, redundancy, and scalability.
+2⃣ Auto Scaling
+• Docker requires manual scaling—you have to manually spin up more containers using
+commands like docker run or docker-compose scale.
+• Kubernetes has Horizontal Pod Autoscaling (HPA), which can automatically increase or
+decrease the number of running container instances based on CPU, memory, or custom
+metrics.
+3⃣ Auto Healing
+• Docker does not automatically restart failed containers (unless you use something like
+docker restart policies).
+• Kubernetes has a built-in self-healing mechanism:
+✅ It restarts failed containers
+✅ It replaces unresponsive containers
+✅ It reschedules containers if a node fails (Kubernetes automatically reschedules the
+containers (Pods) running on that node to other available healthy nodes in the cluster.)
+4⃣ Enterprise Support & Management
+• Docker (Standalone) is not built for large-scale, enterprise-level deployments. It lacks
+built-in features for load balancing, service discovery, rolling updates, or advanced
+security policies.
+• Kubernetes is designed with enterprise needs in mind:
+✅ Supports RBAC (Role-Based Access Control) for security
+✅ Offers rolling updates & rollbacks
+✅ Has built-in networking & service discovery
+✅ Works with multi-cloud & hybrid cloud environments
+
+
+Summary
+Docker is great for containerization, but Kubernetes is a full-fledged orchestration system that
+solves real-world problems in scalability, high availability, and automation.
