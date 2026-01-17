@@ -1,0 +1,46 @@
+How Kubernetes implements observability (logs, metrics, traces)
+
+Running workloads is not enough.
+You must be able to SEE what’s happening inside the cluster.
+
+That’s where observability comes in.
+
+Observability has three pillars:
+
+1. Logs
+  a. Application logs (stdout / stderr).
+  b. Collected from Pods by agents.
+  c. Usually sent to systems like ELK, Loki, or OpenSearch.
+
+2. Metrics
+  a. Numerical data over time.
+  b. Examples:
+   - CPU usage
+   - memory usage
+   - request latency
+  c. Collected by Prometheus from kubelet and services.
+
+3. Traces
+  a. Track a request across multiple services.
+  b. Show where latency or failures happen.
+  c. Tools: Jaeger, Tempo, AWS X-Ray.
+
+How Kubernetes enables observability:
+
+1. kubelet exposes node and Pod metrics.
+2. Metrics Server provides basic metrics.
+3. Prometheus scrapes metrics via Service endpoints.
+4. Logging agents run as DaemonSets.
+5. Tracing libraries are added at application level.
+
+Why this matters:
+
+1. Faster incident detection.
+2. Easier root-cause analysis.
+3. Better performance tuning.
+4. Required for production reliability.
+
+In simple words:
+Logs tell you WHAT happened.
+Metrics tell you HOW BAD it is.
+Traces tell you WHERE it broke.
