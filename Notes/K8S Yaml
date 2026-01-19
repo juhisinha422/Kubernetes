@@ -1,0 +1,23 @@
+In Kubernetes, YAML files tell the cluster what you want.
+
+Every YAML mainly has 3 parts:
+
+1. Metadata (identity): This tells who the resource is.
+➜ name
+➜ namespace
+➜ labels (used to group and select resources)
+
+2. Spec (desired state): This tells what you want Kubernetes to do.
+➜  how many pods
+➜ which image
+➜ ports, env vars, volumes
+
+3. Status (actual state): This is written by Kubernetes, not you.
+➜ Is the pod running or failed?
+➜How many replicas are ready?
+
+The magic part 🔄 (control loop)
+➜ You apply YAML
+➜ Kubernetes stores it in etcd
+➜ Controllers compare spec vs status
+➜If something breaks, Kubernetes fixes it automatically
