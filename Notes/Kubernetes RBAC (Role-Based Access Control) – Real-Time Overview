@@ -1,0 +1,53 @@
+ Kubernetes RBAC (Role-Based Access Control) – Real-Time Overview
+
+RBAC is a critical security feature in Kubernetes that allows us to define and manage access to cluster resources based on roles and permissions. It ensures that users and applications have only the permissions they actually need (principle of least privilege).
+
+🧩 How RBAC Works (High Level Flow)
+When a user runs a command like kubectl get pods, Kubernetes follows this flow:
+1️⃣ Authentication
+→ Verifies who the requester is (user or service account).
+2️⃣ Authorization (RBAC)
+→ Checks what actions the requester is allowed to perform based on Roles and RoleBindings.
+3️⃣ Admission Control
+→ Validates whether the request is secure and compliant with cluster policies.
+Only after passing all these stages does Kubernetes allow access to the requested object.
+
+👥 Types of Accounts in Kubernetes
+Kubernetes supports two main account types:
+
+🔹 User Account
+Used by humans to access the cluster
+Requires credentials (certificates, tokens, OIDC, etc.)
+Managed externally (not stored directly in Kubernetes)
+🔹 Service Account
+Used by applications/pods to communicate with Kubernetes APIs or other resources
+Automatically created inside namespaces
+Most commonly used in real-time production environments
+
+🧱 Core Components of RBAC in Kubernetes
+1️⃣ Role – Namespace-scoped permissions
+2️⃣ ClusterRole – Cluster-wide permissions
+3️⃣ RoleBinding – Binds a Role to a user or service account
+4️⃣ ClusterRoleBinding – Binds a ClusterRole across the entire cluster
+
+📌 Role vs ClusterRole (Real-Time Usage)
+🔸 Role + RoleBinding
+Used when access is required only within a specific namespace
+Example: A developer viewing pods/services in the dev namespace
+🔸 ClusterRole + ClusterRoleBinding
+Used when access is required across all namespaces
+Example: Admins, CI/CD tools, monitoring tools
+🔄 Context Switching
+To switch between users or clusters, Kubernetes uses contexts.
+Contexts help manage multiple clusters and credentials efficiently using kubectl.
+
+🧠 Key Real-Time Best Practices
+✔ Always use YAML manifests for RBAC (avoid imperative commands in production)
+✔ Store RBAC configs in Git (GitOps approach)
+✔ Prefer ServiceAccounts over UserAccounts for applications
+✔ Follow the Principle of Least Privilege
+✔ Regularly audit Roles and RoleBindings for security
+
+🏁 Summary
+Attaching a Role to a user or service account using a binding is called RoleBinding.
+RBAC is essential for security, compliance, and access control in Kubernetes production environments.
