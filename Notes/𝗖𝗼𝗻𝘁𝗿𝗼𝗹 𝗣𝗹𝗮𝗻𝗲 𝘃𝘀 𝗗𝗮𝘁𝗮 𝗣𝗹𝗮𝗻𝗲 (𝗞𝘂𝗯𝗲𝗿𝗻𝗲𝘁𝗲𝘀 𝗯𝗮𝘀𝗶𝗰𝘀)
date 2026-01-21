@@ -1,0 +1,37 @@
+𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗣𝗹𝗮𝗻𝗲 𝘃𝘀 𝗗𝗮𝘁𝗮 𝗣𝗹𝗮𝗻𝗲 (𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗯𝗮𝘀𝗶𝗰𝘀)
+
+When learning Kubernetes, one thing that helped me a lot was clearly separating who decides and who does the work.
+
+That’s where the Control Plane and Data Plane (Worker Nodes) come in.
+
+𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗣𝗹𝗮𝗻𝗲
+
+The control plane is the decision-making layer of Kubernetes.
+
+Its responsibilities:
+• Accept requests (from kubectl, users, CI/CD, etc.)
+• Decide what should run and where
+• Maintain the desired state of the cluster
+• Store and manage cluster state
+
+The control plane does not run application containers.
+It only manages and coordinates.
+
+It contains components like:
+API server, scheduler, controller manager, and ETCD.
+
+𝗗𝗮𝘁𝗮 𝗣𝗹𝗮𝗻𝗲 (𝗪𝗼𝗿𝗸𝗲𝗿 𝗡𝗼𝗱𝗲𝘀)
+
+Worker nodes are where the actual work happens.
+
+Their responsibilities:
+• Run application pods
+• Execute containers
+• Handle networking and storage for workloads
+• Report status back to the control plane
+
+Each worker node has components that listen to the control plane and ensure the desired state is met. One important component here is kubelet, which runs on every node.
+
+In simple words:
+𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗽𝗹𝗮𝗻𝗲 𝗱𝗲𝗰𝗶𝗱𝗲𝘀 𝘄𝗵𝗮𝘁 𝘀𝗵𝗼𝘂𝗹𝗱 𝗵𝗮𝗽𝗽𝗲𝗻
+𝗗𝗮𝘁𝗮 𝗽𝗹𝗮𝗻𝗲 𝗺𝗮𝗸𝗲𝘀 𝗶𝘁 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗵𝗮𝗽𝗽𝗲𝗻
