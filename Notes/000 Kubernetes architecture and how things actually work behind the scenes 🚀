@@ -1,0 +1,26 @@
+Kubernetes architecture and how things actually work behind the scenes 🚀
+
+At a high level, Kubernetes is divided into Control Plane and Data Plane (Worker Nodes).
+
+🔹 Pod
+The smallest unit in Kubernetes — a pod can contain one or more containers that run together.
+
+🧠 Control Plane (Master Node)
+API Server – Entry point of Kubernetes; handles all requests and exposes the cluster
+
+etcd – Key-value store that holds the cluster state
+
+Scheduler – Decides where pods should run based on resources
+
+Controller Manager – Ensures desired state (replicas, nodes, etc.) is maintained
+
+Cloud Controller Manager – Integrates Kubernetes with cloud providers (AWS, Azure, GCP)
+
+⚙️ Data Plane (Worker Node)
+kubelet – Creates and monitors pods on the node
+
+kube-proxy – Handles networking and service load balancing
+
+Container Runtime – Runs containers inside pods (Docker, containerd, etc.)
+
+Slowly building a strong Kubernetes foundation 💪
