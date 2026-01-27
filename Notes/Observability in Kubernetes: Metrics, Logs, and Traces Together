@@ -1,0 +1,11 @@
+Observability in Kubernetes: Metrics, Logs, and Traces Together
+
+Monitoring alone isn’t enough in Kubernetes. True observability combines metrics, logs, and traces to help teams understand what’s happening and why.
+
+Each signal plays a role:
+- Metrics - What’s slow or broken
+- Logs - What actually happened
+- Traces - Where time is spent across services
+When these signals are connected, teams debug faster, reduce MTTR, and gain confidence in complex systems.
+
+Observability isn’t a tool; it’s a capability.
