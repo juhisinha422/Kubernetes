@@ -1,0 +1,41 @@
+𝗣𝗼𝗱 𝘀𝘁𝗮𝘁𝘂𝘀𝗲𝘀 𝘁𝗵𝗮𝘁 𝗰𝗼𝗻𝗳𝘂𝘀𝗲 𝗲𝘃𝗲𝗿𝘆𝗼𝗻𝗲 (𝗱𝗲𝗰𝗼𝗱𝗲𝗱)
+
+Pod status messages look scary, but most of them are just signals.
+
+𝟬/𝟮 𝗜𝗻𝗶𝘁
+→ Init containers haven’t finished. The app hasn’t even started yet.
+
+𝗣𝗲𝗻𝗱𝗶𝗻𝗴
+→ Kubernetes wants to run the pod, but can’t find resources or a node.
+
+𝟭/𝟮 𝗥𝘂𝗻𝗻𝗶𝗻𝗴
+→ The pod has two containers. One is running, the other isn’t.
+The pod exists, but it’s not fully functional — often because one container failed or isn’t ready yet.
+
+𝗜𝗺𝗮𝗴𝗲𝗣𝘂𝗹𝗹𝗕𝗮𝗰𝗸𝗢𝗳𝗳
+→ Kubernetes tried to pull the image and failed repeatedly.
+Wrong image name, wrong tag, or missing registry auth.
+
+𝗖𝗿𝗮𝘀𝗵𝗟𝗼𝗼𝗽𝗕𝗮𝗰𝗸𝗢𝗳𝗳
+→ Container starts, fails, restarts… repeatedly. App-level failure.
+
+𝗢𝗢𝗠𝗞𝗶𝗹𝗹𝗲𝗱
+→ Container exceeded memory limits and was killed by the kernel.
+Very common, very misunderstood.
+
+𝗘𝗿𝗿𝗼𝗿
+→ Container failed and didn’t recover.
+
+𝗘𝘃𝗶𝗰𝘁𝗲𝗱
+→ Pod was removed due to node resource pressure
+(memory, disk, inode exhaustion).
+
+𝗧𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗶𝗻𝗴
+→ Pod is being shut down but hasn’t exited yet.
+Usually means slow shutdown, stuck finalizers, or blocked volumes.
+
+𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱
+→ Job finished successfully. Nothing to fix here.
+
+Most “Kubernetes issues” are actually telling you where to look - not what to panic about.
+
