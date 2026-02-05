@@ -1,0 +1,66 @@
+EKS Troubleshooting – A Practical Guide (Part 2/4)
+
+🌐 4. Pods are running but traffic is not reaching
+Validate the chain:
+
+kubectl get svc
+kubectl get endpoints
+kubectl get ingress
+
+Check:
+
+Does service have endpoints?
+Do endpoints match pod IPs?
+Does ingress point to correct service and port?
+
+EKS specific:
+
+Node security group allows traffic from load balancer
+NodePort range allowed
+Load balancer health check path is correct
+Target group shows healthy targets
+
+👉 Very common mistake
+ Service port ≠ containerPort
+
+🧱 5. Service works inside cluster but not outside
+Test inside cluster:
+
+kubectl run test --image=busybox -it --rm -- sh
+wget http://<service-name>:<port>
+If it works internally:
+Check ingress annotations
+Check LB listeners
+Check security groups
+Check target group health
+
+🧭 6. DNS problems inside EKS
+
+Symptoms:
+
+Services cannot resolve each other
+External DNS fails
+
+Checks:
+
+kubectl get pods -n kube-system
+kubectl logs -n kube-system deployment/coredns
+
+Common causes:
+
+CoreDNS pods not running
+Node-to-node traffic blocked
+NetworkPolicy blocking DNS
+
+🕸️ 7. Pod-to-Pod networking failures
+
+Important EKS fact:
+ Pods receive IPs from VPC CIDR.
+
+Check:
+Subnet IP exhaustion
+VPC CNI health
+Security groups
+Network policies
+
+kubectl get pods -n kube-system | grep aws-node
