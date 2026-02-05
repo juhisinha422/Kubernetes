@@ -1,0 +1,57 @@
+EKS Troubleshooting – A Practical Guide (Part 3/4)
+
+🧍 8. Node is NotReady
+
+kubectl describe node <node>
+
+Look for:
+
+Kubelet not posting status
+Disk pressure
+Memory pressure
+Real EKS causes:
+Instance lost network
+Disk full
+Bootstrap failure
+AMI mismatch with cluster version
+
+🔐 9. IAM & permission failures (very common)
+
+Typical failures:
+Pod cannot access S3, SQS, Secrets Manager
+AccessDenied errors
+
+Validate:
+Is IRSA used?
+Is service account annotated?
+Is trust policy correct?
+
+kubectl get sa <sa> -o yaml
+👉 One missing annotation can cause a full outage.
+📦 10. ConfigMap / Secret issues
+
+Symptoms:
+App starts but behaves wrongly
+App cannot read config
+Checks:
+
+kubectl describe pod <pod>
+kubectl get cm
+kubectl get secret
+
+Look for:
+Wrong key
+Wrong mount path
+Wrong namespace
+
+📈 11. High latency but CPU and memory are normal
+
+Experienced engineers check:
+
+Downstream dependency latency
+DB connection pool exhaustion
+Thread pool limits
+Ingress network hops
+TLS handshake overhead
+👉 Metrics alone never explain latency.
+ You must inspect the request path.
