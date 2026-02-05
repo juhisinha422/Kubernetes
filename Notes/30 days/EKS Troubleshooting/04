@@ -1,0 +1,44 @@
+EKS Troubleshooting – A Practical Guide (Part 4/4)
+
+⚖️ 12. Autoscaling not working
+
+HPA side:
+
+kubectl describe hpa
+Common issues:
+metrics-server missing
+resource requests not defined
+wrong target metrics
+Cluster Autoscaler side:
+Node group min/max wrong
+Missing IAM permissions
+nodeSelector / affinity blocking scale-out
+
+🛑 13. Rolling deployment breaks live traffic
+
+Verify:
+
+readinessProbe is correct
+maxUnavailable is too aggressive
+ALB/NLB deregistration delay
+App is not really ready when pod becomes Ready
+👉 Most deployment outages are caused by bad readiness probes.
+
+🧪 14. One-minute on-call checklist
+
+kubectl get pods -A
+kubectl get nodes
+kubectl get svc,ingress
+kubectl describe pod <bad-pod>
+kubectl logs <bad-pod> --previous
+
+🏁 Final mindset (what interviewers really look for)
+EKS troubleshooting is not about commands.
+
+It is about:
+✅ understanding the traffic path
+ ✅ understanding AWS networking boundaries
+ ✅ understanding Kubernetes control flow
+ ✅ separating platform problems from application failures
+Memorize this rule:
+Always troubleshoot EKS in layers — not in tools.
