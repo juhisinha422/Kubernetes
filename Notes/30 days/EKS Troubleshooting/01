@@ -1,0 +1,61 @@
+EKS Troubleshooting – A Practical Guide (Part 1/4)
+🔍 EKS Troubleshooting — A Practical, Real-World Guide for DevOps Engineers
+Most production outages are not caused by unknown bugs.
+ They are caused by small and invisible misconfigurations.
+This is a field-tested EKS troubleshooting playbook — focused on how to think, not just commands.
+🧠 First rule of EKS troubleshooting
+Never jump directly into pod logs.
+Always classify the problem first:
+Pods not starting → scheduling / image / node / IAM
+ Pods running but no traffic → service / ingress / security groups
+ Intermittent failures → networking / DNS / autoscaling
+ High latency → CPU throttling / network / storage
+ CrashLoopBackOff → app config / secrets / probes
+
+🧭 Standard troubleshooting flow
+
+Always follow this chain:
+User → DNS → LoadBalancer / Ingress → Service → Pod → Node → Network / IAM
+Breaking this order wastes time.
+
+🧩 1. Pods stuck in Pending
+Check first:
+
+kubectl describe pod <pod>
+Look for:
+0/X nodes are available
+Insufficient CPU or memory
+Node taints
+Common EKS causes:
+Node group scaled to zero
+Wrong instance type
+Pod requests exceed node capacity
+Missing tolerations
+Cluster Autoscaler not working
+Deep checks:
+
+kubectl get nodes
+kubectl describe node <node>
+
+💥 2. ImagePullBackOff / ErrImagePull
+Typical EKS causes:
+Node IAM role missing ECR permissions
+Wrong image tag
+Image in another region
+Missing imagePullSecrets
+Quick check:
+
+kubectl describe pod <pod>
+
+🔁 3. CrashLoopBackOff
+
+kubectl logs <pod> -c <container>
+kubectl logs <pod> --previous
+
+Common real causes:
+Missing environment variables
+Wrong ConfigMap path
+Secret key mismatch
+DB connectivity issues
+Liveness probe killing slow app
+👉 Most CrashLoopBackOff issues are application boot failures, not Kubernetes issues.
