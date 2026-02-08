@@ -1,0 +1,47 @@
+𝗛𝗼𝘄 𝗣𝗼𝗱𝘀 𝗖𝗮𝗻 𝗥𝘂𝗻 𝗘𝘃𝗲𝗻 𝗪𝗶𝘁𝗵𝗼𝘂𝘁 𝗮 𝗖𝗹𝘂𝘀𝘁𝗲𝗿(𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀)
+
+What if there is 𝗻𝗼 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗰𝗹𝘂𝘀𝘁𝗲𝗿?
+No kube-apiserver. No kubectl.
+Can pods still run?
+
+Yes. And this is why 𝘀𝘁𝗮𝘁𝗶𝗰 𝗽𝗼𝗱𝘀 exist.
+
+Here’s the mental model:
+
+ • kubelet’s core job is to create and manage pods
+
+ • kubelet talks directly to the container runtime (containerd)
+
+ • even without pod details from kube-apiserver, kubelet can still read pod definitions from local files
+
+𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀
+
+ • Pod YAMLs are placed on the node itself
+
+ • Common path: /etc/kubernetes/manifests/
+
+ • kubelet watches this directory
+
+ • File added → pod created, File updated → pod updated, File deleted → pod deleted
+
+𝗡𝗼 𝘀𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿.
+𝗡𝗼 𝗰𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿𝘀.
+𝗡𝗼 𝗔𝗣𝗜 𝗰𝗮𝗹𝗹𝘀 𝗿𝗲𝗾𝘂𝗶𝗿𝗲𝗱.
+
+𝗜𝗺𝗽𝗼𝗿𝘁𝗮𝗻𝘁 𝗹𝗶𝗺𝗶𝘁𝗮𝘁𝗶𝗼𝗻𝘀:
+
+ • Only Pods can be created this way
+
+ • No Deployments, ReplicaSets, Jobs, etc.
+
+ • Because kubelet only understands pods
+
+𝗠𝗶𝗿𝗿𝗼𝗿 𝗣𝗼𝗱𝘀 (𝗶𝗺𝗽𝗼𝗿𝘁𝗮𝗻𝘁 𝗱𝗲𝘁𝗮𝗶𝗹)
+
+ • If kube-apiserver exists, kubelet creates a read-only mirror pod
+
+ • That’s why you can see static pods using kubectl
+
+ • But you cannot edit or delete them via kubectl
+
+Static pods exist because kubelet must keep critical pods running - even when the cluster itself isn’t fully alive.
