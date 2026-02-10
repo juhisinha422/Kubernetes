@@ -1,0 +1,40 @@
+𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀 𝘃𝘀 𝗡𝗼𝗿𝗺𝗮𝗹 𝗣𝗼𝗱𝘀
+
+Both are Pods.
+But who controls them makes all the difference.
+
+𝗡𝗼𝗿𝗺𝗮𝗹 𝗣𝗼𝗱𝘀
+
+ • Created via kube-apiserver
+
+ • Managed by controllers (Deployment, ReplicaSet, etc.)
+
+ • Scheduled by the scheduler
+
+ • Fully editable via kubectl
+
+ • Lifecycle driven by cluster state
+
+𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀
+
+ • Created directly by kubelet
+
+ • Defined in local manifest files
+
+ • No scheduler involved
+
+ • Not managed by controllers
+
+ • kubectl is read-only (via mirror pods)
+
+ • Lifecycle driven by node state
+
+𝗘𝗮𝘀𝘆 𝘄𝗮𝘆 𝘁𝗼 𝗶𝗱𝗲𝗻𝘁𝗶𝗳𝘆
+
+Static pods usually have node name appended to the pod name
+
+𝗦𝘂𝗺𝗺𝗮𝗿𝘆
+
+Normal pods → cluster-managed
+
+Static pods → node-managed
