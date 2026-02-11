@@ -1,0 +1,13 @@
+Can someone explain in detail the configuration of an unmanaged Kubernetes cluster for  large-scale project, including control plane setup, worker nodes, networking, HA, security, and operational.
+
+
+1. Separate namespace for each environment 
+2. Node auto scaling 
+3. Pod auto scaling 
+4. Replicas 
+5. Rbac for environment
+6.  Security  for the environment variables - vault or secret manager 
+7. Networking for calcium - tls certificate or deployment strategy 
+8. Pv and pvc for the database or constant required data
+9. Pod distribution budget for the node upgrades
+10. Ha for multiple az setup for the network and db , data backup like this
