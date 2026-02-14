@@ -1,0 +1,29 @@
+Helm Charts – Package Manager for Kubernetes:
+Managing Kubernetes YAML files manually can quickly become painful especially when you have Deployments, Services, Ingress, HPA, ConfigMaps etc that’s where Helm comes into picture.
+🟦 What is Helm?
+Helm is the package manager for Kubernetes. It helps you to package Kubernetes resources, reuse configurations, deploy applications easily and manage versions & upgrades.
+
+🟩 What is a Helm Chart?
+A Helm Chart is a collection of Kubernetes YAML templates. It contains:
+1) deployment.yaml 
+2) service.yml
+3) ingress.yml
+4) values.yml
+That all bundled together.
+
+ Why Helm is used in production:
+❌ Copy-pasting YAML across environments
+❌ Maintaining separate YAML files for dev / stage / prod
+✅ One chart → multiple environments
+✅ Values file controls behavior
+✅ Easy upgrades & rollbacks
+
+🧾 Simple Helm Flow:
+                       Helm Chart + values.yaml
+                                           ↓
+                          helm install / upgrade
+                                           ↓
+                    Kubernetes Resources created
+🧠 Simple rule to remember:
+👉 YAML = raw Kubernetes config
+👉 Helm = reusable, configurable, versioned deployments
