@@ -1,0 +1,18 @@
+What is a Kubernetes Operator? 🔁 
+A Kubernetes Operator is a custom controller that follows the Kubernetes control loop:
+👀 Observe the current cluster state
+🧠 Compare it with the desired state
+⚙️ Reconcile the difference
+
+It does this continuously.
+
+Operators extend Kubernetes using Custom Resource Definitions (CRDs) and embed application-specific operational knowledge into code.
+
+That means they can automate:
+➜ Application-specific scaling logic
+➜ Backup & restore workflows
+➜ Rolling upgrades
+➜ Configuration changes
+➜ Failure recovery
+
+Unlike basic Kubernetes controllers (which handle Pods, Deployments, etc.), Operators manage complex, stateful systems like databases or distributed applications.
