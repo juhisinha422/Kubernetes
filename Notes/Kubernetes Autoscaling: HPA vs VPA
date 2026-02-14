@@ -1,0 +1,25 @@
+🚀 Kubernetes Autoscaling: HPA vs VPA – Explained Simply.
+One of the biggest strengths of Kubernetes is autoscaling,  But not all auto-scalers do the same job.
+
+1) HPA (Horizontal Pod Auto-scaler)
+            HPA scales the number of Pods based on metrics like CPU or memory usage.
+What HPA does:
+ ✅ Increases/Decreases  Pods when traffic spikes or drops.
+ ✅ Keeps applications highly available.
+ ✅ Works without restarting Pods.
+
+2) VPA (Vertical Pod Autos-caler)
+            VPA scales the resources of a Pod (CPU / memory).
+What VPA does:
+ ✅ Adjusts CPU & memory requests
+ ❌ Often requires Pod restarts
+ ❌ Not ideal for live traffic spikes
+
+Best for -> Batch jobs, Background workers & Low-traffic applications.
+
+Why HPA is used in production?
+      👉 No Pod restarts during scaling.
+      👉 Handles real-time traffic spikes.
+      👉 Cost-efficient scaling.
+      👉 Works perfectly with Deployments & Services.
+That’s why most production systems prefer HPA over VPA.
