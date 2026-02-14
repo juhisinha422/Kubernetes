@@ -1,0 +1,41 @@
+𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀 𝘃𝘀 𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀
+
+𝗕𝗼𝘁𝗵 𝗿𝘂𝗻 𝗽𝗼𝗱𝘀 𝗼𝗻 𝗻𝗼𝗱𝗲𝘀.
+𝗕𝗼𝘁𝗵 𝗯𝘆𝗽𝗮𝘀𝘀 𝘁𝗵𝗲 𝗸𝘂𝗯𝗲-𝘀𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿.
+𝗕𝗼𝘁𝗵 𝗰𝗮𝘀𝗲 𝗽𝗼𝗱𝘀 𝗮𝗿𝗲 𝗯𝗼𝘂𝗻𝗱 𝗱𝗶𝗿𝗲𝗰𝘁𝗹𝘆 𝘁𝗼 𝗻𝗼𝗱𝗲𝘀.
+𝗕𝘂𝘁 𝘁𝗵𝗲𝘆 𝘀𝗼𝗹𝘃𝗲 𝘃𝗲𝗿𝘆 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗽𝗿𝗼𝗯𝗹𝗲𝗺𝘀.
+
+𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀
+
+ • Created and managed directly by kubelet
+
+ • Defined via local manifest files, common path: /etc/kubernetes/manifests/
+
+ • No controller involved
+
+ • Used for critical system components
+
+ • Common use case: control plane components
+
+ • No guarantee of “one pod per node”
+
+ • Changes require node-level access
+
+𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀
+
+ • Created via kube-apiserver
+
+ • Managed by the DaemonSet controller
+
+ • Runs one pod per matching node
+
+ • Fully visible and manageable via kubectl
+
+ • Common use case: logging agents, monitoring agents, CNI plugins
+
+
+𝗦𝘂𝗺𝗺𝗮𝗿𝘆:
+
+𝗦𝘁𝗮𝘁𝗶𝗰 𝗣𝗼𝗱𝘀 = “𝗧𝗵𝗶𝘀 𝗺𝘂𝘀𝘁 𝗿𝘂𝗻, 𝗻𝗼 𝗺𝗮𝘁𝘁𝗲𝗿 𝘄𝗵𝗮𝘁.”
+
+𝗗𝗮𝗲𝗺𝗼𝗻𝗦𝗲𝘁𝘀 = “𝗥𝘂𝗻 𝘁𝗵𝗶𝘀 𝗲𝘃𝗲𝗿𝘆𝘄𝗵𝗲𝗿𝗲, 𝗰𝗼𝗻𝘀𝗶𝘀𝘁𝗲𝗻𝘁𝗹𝘆.”
