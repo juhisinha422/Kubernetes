@@ -1,0 +1,25 @@
+Kubernetes QoS Classes - Why They Matter?
+Not all Pods are treated equally.
+
+Kubernetes assigns a Quality of Service (QoS) class to every Pod based on its CPU and memory requests/limits.
+
+There are 3 classes:
+🟢 Guaranteed
+➜ Requests = Limits for CPU & Memory (for every container)
+➜ Most protected during node resource pressure
+➜ Least likely to be evicted
+
+🟡 Burstable
+➜ Requests < Limits (or mixed requests/limits)
+➜ Can use more when available, but has less eviction protection than Guaranteed
+
+🔴 BestEffort
+➜ No CPU/memory requests or limits
+➜ Lowest eviction protection
+➜ Often first to be evicted under node pressure
+
+💡 Why this matters: During node pressure (commonly memory pressure), QoS helps you estimate which Pods are most likely to be evicted - BestEffort first, then Burstable, then Guaranteed.
+
+No requests/limits = no resource guarantees.
+
+If your workload is critical, set realistic requests and (where appropriate) limits. That’s how you improve stability in production.
