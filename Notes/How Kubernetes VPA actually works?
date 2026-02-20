@@ -1,0 +1,28 @@
+How Kubernetes VPA actually works?
+
+Vertical Pod Autoscaler (VPA) uses real CPU and memory usage data to recommend better resource requests.
+
+What happens behind the scenes:
+➜ Live traffic hits Pods
+➜ Metrics Server collects CPU and memory usage
+➜ VPA Recommender analyzes usage over time
+➜ It calculates recommended resource requests
+
+Then it depends on the mode 👇
+Auto mode:
+➜ VPA updates CPU/memory requests
+➜ Pods are evicted and restarted
+➜ New Pods start with optimized requests
+
+Recommendation-only mode:
+➜VPA does not change anything
+➜ Recommendations are shown in VPA status
+
+VPA provides:
+➜ target
+➜ lower bound
+➜ upper bound
+This helps avoid over- and under-provisioning.
+
+Simple mechanism.
+Very powerful when used correctly.
