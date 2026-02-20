@@ -1,0 +1,29 @@
+Most people use kubectl top without thinking about what’s happening behind the scenes.
+
+But how does Kubernetes actually show live CPU and memory usage?
+
+Let’s break it down 👇
+
+When you install Metrics Server, it does not directly “calculate” resource usage itself.
+
+Here’s what actually happens:
+
+1️⃣ Every node runs a Kubelet.
+2️⃣ Inside Kubelet, there’s a component called 𝗰𝗔𝗱𝘃𝗶𝘀𝗼𝗿 (𝗖𝗼𝗻𝘁𝗮𝗶𝗻𝗲𝗿 𝗔𝗱𝘃𝗶𝘀𝗼𝗿).
+cAdvisor collects real-time container-level CPU and memory metrics directly from the container runtime.
+3️⃣ Metrics Server queries each Kubelet’s /𝗺𝗲𝘁𝗿𝗶𝗰𝘀/𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲 endpoint over HTTPS.
+4️⃣ Kubelet exposes the usage data it gets from cAdvisor.
+5️⃣ Metrics Server aggregates this data and exposes it through the Kubernetes Metrics API (metrics.k8s.io).
+
+Now when you run:
+
+ • kubectl top pods
+ • kubectl top nodes
+
+
+kubectl queries the Kubernetes API server → which fetches data from Metrics Server → which collected it from Kubelets → which got it from cAdvisor.
+
+That’s the full flow.
+
+Important:
+Metrics Server is designed for autoscaling (HPA/VPA), not long-term monitoring. It keeps only short-term metrics and does not store historical data.
