@@ -1,0 +1,21 @@
+“End-to-End Observability in AWS: Prometheus + Grafana”
+ ---------------------------------------------------------------------------
+ 🛠️ Prometheus: The Data Collector
+• Prometheus is like a thermometer for your systems.
+• It collects real-time data (called metrics) from your applications and infrastructure.
+• Examples: CPU usage, memory consumption, number of requests, error rates.
+• It stores this data in a time-series format, so you can track changes over time.
+📊 Grafana: The Dashboard Builder
+Grafana is like a scoreboard that shows how your system is performing.
+It takes the data from Prometheus and turns it into charts, graphs, and dashboards.
+This helps you see trends, spot problems, and make decisions faster.
+
+Explain this concept with cricket analogy for easy way to understand.
+ In AWS DevOps, observability is the key to winning the reliability game.
+Prometheus is the bowler — collecting metrics from EC2, EKS, ECS, and Lambda.
+Alert manager is the umpire — raising flags when thresholds are breached.
+Grafana is the batsman — turning raw data into dashboards and insights.
+Your DevOps Team is the captain — making strategic decisions to keep systems resilient.
+Together, they form a winning partnership for end-to-end monitoring in AWS.
+CTA (Call-to-Action):
+ 👉 How do you visualize your DevOps metrics today? Share your approach below — let’s learn from each other!
