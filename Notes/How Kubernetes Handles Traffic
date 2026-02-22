@@ -1,0 +1,33 @@
+How Kubernetes Handles Traffic (From URL to Pod)
+
+Ever wondered what really happens when you hit a Kubernetes-powered URL?
+This is the full journey — from your browser to the exact Pod running your app.
+Simple. Precise. Powerful. ⚙️🚀
+
+1. DNS Resolution
+Your browser first asks DNS: “What’s the IP for api.myapp.com?”
+DNS responds with the Load Balancer’s public IP, so your browser knows where to send the request.
+
+2. Load Balancer: The Entry Point
+The request hits a cloud Load Balancer (like AWS ALB or NLB).
+It’s usually created by Kubernetes through an Ingress or a Service of type LoadBalancer.
+SSL/TLS ends here, and routing decisions are made based on hostname or path.
+
+3. Ingress Controller
+The Load Balancer passes traffic to the Ingress Controller (NGINX, Traefik, or ALB Controller).
+It reads Ingress rules, checks the request path (e.g., /api, /users, /orders),
+and decides which Kubernetes Service should handle the traffic.
+
+4. Kubernetes Service
+The Service acts as a stable internal Load Balancer inside the cluster.
+It keeps track of healthy Pods using labels and forwards the request to one of them.
+
+5. Kube-Proxy (Routing Layer)
+Running on every node, kube-proxy manages low-level routing using iptables or IPVS rules.
+It redirects traffic from the Service’s virtual IP to the actual Pod IP, balancing load across Pods.
+
+6. Pod: Your Application
+Finally, the request lands in the right Pod.
+Your containerized app processes it and sends the response back through the same chain.
+
+Kubernetes makes this complex dance look effortless handling routing, scaling, and resilience in the background while your users just see fast, reliable responses.
