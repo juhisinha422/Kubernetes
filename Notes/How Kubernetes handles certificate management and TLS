@@ -1,0 +1,44 @@
+How Kubernetes handles certificate management and TLS
+
+Security in Kubernetes heavily depends on certificates.
+Almost every component communicates using TLS.
+
+Here’s how Kubernetes manages certificates internally:
+
+1. Control plane certificates
+  a. API server uses TLS for all incoming requests.
+  b. Scheduler, controller-manager, and kubelets authenticate using certs.
+  c. Certificates are issued during cluster bootstrap.
+
+2. Node (kubelet) certificates
+  a. Each node has its own client certificate.
+  b. Used to authenticate with the API server.
+  c. Certificates are rotated automatically in most managed clusters.
+
+3. ServiceAccount certificates
+  a. Pods use ServiceAccount tokens to authenticate.
+  b. Tokens are projected and rotated automatically.
+  c. Used by applications and controllers.
+
+4. TLS for applications
+  a. Ingress controllers terminate TLS.
+  b. Service Mesh can provide mTLS between Pods.
+  c. cert-manager automates certificate issuance and renewal.
+
+How rotation works:
+
+1. Kubernetes monitors certificate expiry.
+2. New certificates are generated before expiration.
+3. Components reload certificates without downtime.
+4. Expired certificates are rejected automatically.
+
+Common mistakes:
+
+1. Disabling certificate rotation.
+2. Using long-lived static certificates.
+3. Sharing certificates across environments.
+4. Ignoring certificate expiry alerts.
+
+In simple words:
+Certificates are the trust foundation of Kubernetes.
+If certificates fail, the cluster stops trusting itself.
