@@ -1,0 +1,43 @@
+How Kubernetes handles graceful shutdown of applications
+
+Stopping a Pod is not the same as killing it.
+Kubernetes follows a controlled shutdown process.
+
+Understanding this prevents request drops and data loss.
+
+What happens during Pod termination:
+
+1. Pod is marked as Terminating.
+2. Kubernetes removes the Pod from Service endpoints.
+3. New traffic is stopped immediately.
+4. kubelet sends SIGTERM to containers.
+5. Application gets time to shut down gracefully.
+6. After the grace period, SIGKILL is sent (if still running).
+
+Key configuration involved:
+
+1. terminationGracePeriodSeconds
+  a. Default is 30 seconds.
+  b. Controls how long Kubernetes waits before force kill.
+
+2. preStop hook
+  a. Executes before SIGTERM.
+  b. Used for cleanup or draining connections.
+
+Why this works with zero downtime:
+
+1. Readiness probe removes Pod from traffic first.
+2. In-flight requests can finish.
+3. New requests are routed to other Pods.
+4. Replica count is maintained.
+
+Common mistakes:
+
+1. App not handling SIGTERM.
+2. Grace period too short.
+3. Missing readiness probes.
+4. Long-running requests without shutdown logic.
+
+In simple words:
+Kubernetes gives your app time to exit cleanly —
+but only if your app knows how to shut down.
