@@ -1,0 +1,40 @@
+𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗔𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗮𝘁𝗶𝗼𝗻: 𝗛𝗼𝘄 𝗗𝗼𝗲𝘀 𝗜𝘁 𝗗𝗲𝗰𝗶𝗱𝗲 “𝗔𝗹𝗹𝗼𝘄𝗲𝗱 𝗼𝗿 𝗗𝗲𝗻𝗶𝗲𝗱”?
+
+After authentication succeeds, Kubernetes asks:
+
+Is this user allowed to perform this action?
+
+This step is called 𝗔𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗮𝘁𝗶𝗼𝗻.
+
+When you run:
+
+𝗸𝘂𝗯𝗲𝗰𝘁𝗹 𝗱𝗲𝗹𝗲𝘁𝗲 𝗽𝗼𝗱 𝗻𝗴𝗶𝗻𝘅
+
+The API server checks:
+
+• Who is making the request?
+• What resource is being accessed? (pods)
+• What action is being performed? (delete)
+• Which namespace?
+
+Then the authorization module evaluates policies.
+
+Most clusters use RBAC as the authorization mechanism.
+
+Important:
+
+Authorization does NOT modify your request.
+It only returns:
+
+Allow 
+or
+Deny 
+
+If denied → request stops immediately.
+If allowed → it moves to Admission Controllers.
+
+So the control plane flow is:
+
+Authentication → Authorization → Admission → etcd
+
+Next post: How RBAC actually works.
