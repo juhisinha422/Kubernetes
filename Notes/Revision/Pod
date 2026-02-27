@@ -1,0 +1,101 @@
+A **Pod** is the **smallest deployable unit in Kubernetes (K8s)**.
+
+In simple words:
+
+> A **Pod** is a wrapper around one or more containers that run together on the same machine (node).
+
+---
+
+## 🔹 What is inside a Pod?
+
+A Pod contains:
+
+1. **One or more containers** (usually one)
+2. **Shared Network**
+
+   * Same IP address
+   * Same port space
+3. **Shared Storage (Volumes)**
+
+---
+
+## 🔹 Key Features of a Pod
+
+### 1️⃣ Single IP Address
+
+All containers inside a Pod share the same IP.
+
+### 2️⃣ Shared Storage
+
+Containers inside a Pod can share data using volumes.
+
+### 3️⃣ Same Lifecycle
+
+If a Pod dies, Kubernetes creates a new Pod (not restarts the same Pod).
+
+---
+
+## 🔹 Why Do We Need Pods?
+
+Kubernetes does not deploy containers directly.
+It deploys **Pods**, which then run containers.
+
+Example:
+
+* If you deploy a **Node.js app**
+* Kubernetes creates a **Pod**
+* That Pod runs your Node.js container
+
+---
+
+## 🔹 Single-Container Pod (Most Common)
+
+Most Pods run **only one container**.
+
+Example:
+
+```
+Pod
+ └── Nginx Container
+```
+
+---
+
+## 🔹 Multi-Container Pod (Sidecar Pattern)
+
+Sometimes a Pod has multiple containers:
+
+Example:
+
+```
+Pod
+ ├── App Container
+ └── Logging Container
+```
+
+Both:
+
+* Run together
+* Share storage
+* Share network
+
+---
+
+## 🔹 Important Note (Interview Point)
+
+Pods are **ephemeral (temporary)**.
+If a Pod crashes, Kubernetes creates a new Pod with a new IP.
+
+That’s why we use:
+
+* **ReplicaSet**
+* **Deployment**
+* **StatefulSet**
+
+to manage Pods.
+
+---
+
+## 🔹 Simple Definition for Interviews
+
+> A Pod is the smallest deployable unit in Kubernetes that contains one or more containers sharing network and storage.
