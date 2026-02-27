@@ -1,0 +1,39 @@
+𝗥𝗕𝗔𝗖 𝗶𝗻 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀: 𝗥𝗼𝗹𝗲, 𝗥𝗼𝗹𝗲𝗕𝗶𝗻𝗱𝗶𝗻𝗴, 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝗥𝗼𝗹𝗲, 𝗖𝗹𝘂𝘀𝘁𝗲𝗿𝗥𝗼𝗹𝗲𝗕𝗶𝗻𝗱𝗶𝗻𝗴
+
+RBAC = Role-Based Access Control.
+
+It works using 4 core objects:
+
+1️⃣ Role
+Defines permissions inside a specific namespace.
+
+Example:
+Allow create + list pods in “dev”.
+
+2️⃣ ClusterRole
+Defines permissions cluster-wide.
+
+Example:
+Allow listing nodes.
+
+3️⃣ RoleBinding
+Attaches a Role to:
+• User
+• Group
+• ServiceAccount
+
+Inside a namespace.
+
+4️⃣ ClusterRoleBinding
+Attaches a ClusterRole cluster-wide.
+
+Important logic:
+
+No binding → No permission.
+
+Roles define what can be done.
+Bindings define who can do it.
+
+That’s it.
+
+RBAC is just structured permission mapping.
