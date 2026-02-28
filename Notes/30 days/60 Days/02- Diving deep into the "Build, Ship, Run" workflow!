@@ -1,0 +1,17 @@
+Day 2/60: Diving deep into the "Build, Ship, Run" workflow! 🐳
+
+Today marks the second day of my 60-Day Kubernetes Challenge, and I spent it mastering the fundamentals of Dockerization. Before we can orchestrate with Kubernetes, we must first understand how to package our applications effectively.
+
+Here is a breakdown of what I learned and implemented today:
+
+✅ The Anatomy of a Dockerfile: I learned how to write a Dockerfile from scratch—defining the base image (node:alpine), setting up working directories, and managing dependencies.
+
+✅ Image Layering: A key "aha!" moment was understanding that every instruction in a Dockerfile creates a new layer. This caching mechanism is what makes Docker so fast and efficient.
+
+✅ Port Mapping & Exposure: I practiced mapping internal container ports to host ports (-p 3000:3000), allowing my local browser to communicate with the isolated application running inside the container.
+
+✅ Registry Management: I successfully tagged my local images and pushed them to Docker Hub, making them available to be pulled and run on any environment, anywhere.
+
+✅ Debugging with Exec: I learned how to use docker exec -it to "shell" into a running container. This is a lifesaver for troubleshooting and inspecting the internal file system of a container.
+
+It’s one thing to hear about "Build, Ship, Run," but it’s another to see your application live on localhost through a containerized environment!
