@@ -1,0 +1,16 @@
+Day 8/60: Scaling and Resilience in Kubernetes 
+
+I’m officially over a week into my hashtag#60DaysOfK8s challenge, and today was all about the "magic" that makes Kubernetes so reliable: Scaling and Self-Healing.
+
+While Day 1 was about understanding single Pods, Day 8 focused on how we manage those Pods at scale using Replication Controllers, ReplicaSets, and Deployments.
+
+What I Learned Today:
+ReplicaSets vs. Replication Controllers: I took a look at the history. While Replication Controllers started it all, ReplicaSets are the modern standard because of their advanced "Label Selectors." They act as the thermostat for your cluster—if you want 3 pods and one crashes, the ReplicaSet notices and spins a new one up instantly.
+
+The Power of Deployments: This is where the real power lies. Deployments sit on top of ReplicaSets and allow us to manage the lifecycle of our applications.
+
+Zero-Downtime Updates: I practiced performing Rolling Updates. It’s incredible to see Kubernetes slowly replace old versions of an app with new ones without the end-user ever seeing an error page.
+
+The "Undo" Button: I learned how to perform Rollbacks. If a new deployment has a bug, you can revert to a previous stable state with a single command.
+
+The biggest takeaway for me today was realizing that in a production environment, we almost never deploy a naked Pod. We wrap everything in a Deployment to ensure that our application is scalable, updatable, and resilient.
