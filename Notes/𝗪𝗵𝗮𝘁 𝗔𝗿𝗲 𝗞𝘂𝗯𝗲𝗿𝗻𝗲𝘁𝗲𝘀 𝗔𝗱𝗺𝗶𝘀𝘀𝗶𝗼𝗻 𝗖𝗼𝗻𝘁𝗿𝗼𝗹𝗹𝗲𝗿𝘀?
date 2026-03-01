@@ -1,0 +1,41 @@
+𝗪𝗵𝗮𝘁 𝗔𝗿𝗲 𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗔𝗱𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿𝘀?
+
+After authentication and RBAC…
+
+Every request hits Admission Controllers.
+
+Think of them as Kubernetes’ internal gatekeepers.
+
+They can:
+
+• Reject a request
+• Modify a request
+• Enforce policies
+• Inject defaults
+• Apply security constraints
+
+Examples of built-in admission plugins:
+
+ • NamespaceLifecycle
+
+ • LimitRanger
+
+ • ServiceAccount
+
+ • ResourceQuota
+
+ • PodSecurity
+
+They run inside the 𝗸𝘂𝗯𝗲-𝗮𝗽𝗶𝘀𝗲𝗿𝘃𝗲𝗿.
+
+Want to check enabled plugins?
+
+If kube-apiserver runs as a pod:
+
+ • kubectl -n kube-system get pod
+ • kubectl describe pod kube-apiserver-<node>
+
+
+Look for --𝗲𝗻𝗮𝗯𝗹𝗲-𝗮𝗱𝗺𝗶𝘀𝘀𝗶𝗼𝗻-𝗽𝗹𝘂𝗴𝗶𝗻𝘀.
+
+These controllers silently shape your cluster behavior.
