@@ -1,0 +1,21 @@
+Day 12/60 of the Kubernetes Challenge: Managing the "Background Fabric"
+
+Today’s focus wasn't just on running apps, but on how to automate the administrative and maintenance tasks that keep a cluster healthy. I dove into DaemonSets, Jobs, and CronJobs.
+
+Here’s the breakdown of what I learned today:
+
+🔹 DaemonSets: The "Everywhere" Pod Unlike a Deployment where you specify a number of replicas, a DaemonSet ensures that a copy of a specific Pod runs on every single node.
+
+Best for: Logging agents (Fluentd), monitoring (Prometheus exporters), and networking (kube-proxy).
+
+Pro-Tip: If a node is "Tainted" (like the Control Plane), your DaemonSet won't run there unless you add a Toleration to your YAML.
+
+🔹 Jobs: Tasks with a Deadline Sometimes you don't need a Pod to run forever. You just need it to do its work and quit.
+Logic: A Job creates Pods that perform a task and terminate upon success. If it fails, K8s retries it.
+Best for: Database migrations or one-time batch processing.
+
+🔹 CronJobs: The Automated Schedule Think of this as the "Linux Crontab" for your entire cluster.
+Schedule: Uses the * * * * * syntax to trigger Jobs at specific intervals.
+Best for: Daily backups at 2 AM or weekly system reports.
+
+Why this matters: As a Cloud Engineer, understanding these objects is the difference between manual "firefighting" and a truly automated, self-healing infrastructure.
