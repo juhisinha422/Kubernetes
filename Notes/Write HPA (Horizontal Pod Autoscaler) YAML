@@ -1,0 +1,37 @@
+Write HPA (Horizontal Pod Autoscaler) YAML
+ 
+A Horizontal Pod Autoscaler (HPA) automatically scales the number of pods in a deployment, replica set, or stateful set based on resource metrics like CPU and memory usage.
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+ name: my-app-hpa
+ namespace: default
+spec:
+ scaleTargetRef:
+ apiVersion: apps/v1
+ kind: Deployment
+ name: my-app # The name of the deployment to scale
+ minReplicas: 2
+ maxReplicas: 10
+ metrics:
+ - type: Resource
+ resource:
+ name: cpu
+ target:
+ type: Utilization
+ averageUtilization: 50 # Scale up if average CPU usage > 50%
+ - type: Resource
+ resource:
+ name: memory
+ target:
+ type: AverageValue
+ averageValue: 500Mi # Scale up if average memory usage > 500Mi
+
+1.minReplicas / maxReplicas: Defines the lower and upper boundaries for the number of pods. 
+
+2.CPU Utilization: Targets a percentage of the pod's requested CPU. 
+
+3.Memory Usage: Targets a specific amount of memory (e.g., 500Mi) or utilization percentage. 
+
+Note:our cluster must have the Kubernetes Metrics Server installed to collect resource data from pods.
