@@ -1,0 +1,43 @@
+Monitoring Made Simple with Prometheus and Grafana
+
+In modern systems, it’s not enough to run applications — you need to observe and understand them in real time.
+
+That’s where Prometheus and Grafana come in.
+
+⚙️ What is Prometheus?
+
+Prometheus is an open-source monitoring tool that:
+
+• Collects metrics from systems and applications
+• Stores time-series data
+• Uses powerful queries (PromQL) to analyze performance
+
+It works by scraping metrics from targets at regular intervals.
+
+📈 What is Grafana?
+
+Grafana is a visualization tool that:
+
+• Connects to data sources like Prometheus
+• Displays metrics using dashboards and graphs
+• Helps you monitor system health visually
+
+🔗 How They Work Together
+
+Prometheus → Collects and stores metrics
+Grafana → Visualizes those metrics
+
+This combination gives engineers complete visibility into systems.
+
+🧠 Common Use Cases
+
+• Monitoring CPU, memory, and network usage
+• Tracking application performance
+• Setting alerts for failures or anomalies
+• Observing Kubernetes and cloud infrastructure
+
+💡 Key Insight
+
+You can’t improve what you don’t measure.
+
+Prometheus + Grafana help engineers move from guessing → observing → optimizing.
