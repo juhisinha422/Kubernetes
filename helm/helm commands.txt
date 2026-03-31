@@ -1,0 +1,54 @@
+Installation: -
+
+sudo apt-get install curl gpg apt-transport-https --yes
+curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+
+Add a repo:-
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+List repo: -
+helm repo list
+
+Update repo: -
+helm repo update
+
+search packages: -
+helm search repo bitnami
+
+search nginx: -
+helm search repo bitnami | grep nginx
+helm search repo bitnami | grep prometheus
+
+helm install nginxv1 bitnami/nginx
+helm install prometheus bitnami/prometheus
+kubectl get pods
+
+
+# Install eks with helm
+https://docs.aws.amazon.com/eks/latest/userguide/lbc-helm.html
+helm repo add eks https://aws.github.io/eks-charts
+helm repo update eks
+helm search repo eks
+helm search repo eks | grep load
+helm install alb eks/aws-load-balancer-controller 
+
+
+# Pre-requisites for aws-load-balancer
+# helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  -n kube-system \
+  --set clusterName=my-cluster \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller \
+  --version 1.14.0
+
+# Deleting a release: -
+helm list
+helm uninstall nginx
+
+ 
+
+
+
