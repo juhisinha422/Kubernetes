@@ -1,5 +1,6 @@
 ### Summary: Kubernetes Cluster Upgrades (Enterprise-Grade, Zero Downtime)
 
+https://youtu.be/Cfznp8jRh7I?si=CCQSkm8LF0A0dZUb
 This video by Abishek provides a comprehensive guide on how to perform **production-level Kubernetes cluster upgrades** with zero downtime, focusing primarily on AWS EKS but applicable to other managed Kubernetes services like AKS and GKE. The content emphasizes the importance of prerequisites, the upgrade process, and best practices to ensure smooth and safe upgrades in enterprise environments.
 
 ---
