@@ -1,0 +1,27 @@
+Struggling with Kubernetes Networking? Let’s simplify !
+Ingress vs ingress controller vs load balancer
+These 3 components work together to handle traffic in Kubernetes 👇
+🔹 Load Balancer = Entry Gate 🚪
+👉 Brings external traffic into the cluster
+👉 Distributes requests across services
+👉 Ensures high availability
+🔹 Ingress = Smart Router 🧭
+👉 Defines where the request should go
+👉 Supports path & domain-based routing
+👉 Example:
+/api → backend
+/web → frontend
+🔹 Ingress Controller = Traffic Manager 🚦
+👉 Executes Ingress rules
+👉 Routes traffic to the correct service
+👉 Runs inside the cluster
+🔥 How everything works together:
+User → Load Balancer → Ingress Controller → Service → Pods
+💡 Remember this simple logic:
+Load Balancer = Entry
+Ingress = Rules
+Ingress Controller = Execution
+🎯 Why this matters?
+✔️ One entry point for multiple apps
+✔️ Cost-efficient (no need for multiple load balancers)
+✔️ Scalable & production-ready architecture
