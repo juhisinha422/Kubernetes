@@ -1,0 +1,24 @@
+ Kubernetes ResourceQuota — Control Your Cluster Resources
+In Kubernetes, multiple teams share the same cluster. Without limits, one team can consume all resources.
+👉 ResourceQuota helps solve this problem.
+📌 What is ResourceQuota?
+It is used to limit the total amount of resources that can be used within a namespace.
+📌 What can we limit?
+CPU usage
+Memory usage
+Number of Pods
+Services and ConfigMaps
+📌 Why is it important?
+Prevents resource overuse
+Ensures fair usage across teams
+Avoids cluster performance issues
+📌 Example:
+Limit a namespace to:
+4 CPUs
+8GB Memory
+10 Pods
+If the limit is exceeded, Kubernetes will reject new resource creation.
+💡 Best Practice:
+Always define ResourceQuota for production namespaces to maintain stability.
+📊 Simple Rule:
+Namespace → Limited Resources → Controlled Usage
