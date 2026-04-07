@@ -1,0 +1,13 @@
+For EKS...
+Which one of below is used in real time projects..
+
+Managed Node group 
+Self managed node group
+
+
+I think it depends on project requirements. In our project we use GKE but those are self managed by us. Whenever there is an critical issue we raise ticket for Google team support.
+
+Managed,
+The main purpose of eks was managed group, aslo it has option but its like Jenkins is for CI only but you can do CD too thats how EKS assures that you dont have to manage node group
+
+Cluster will be created via Terraform or cloud formation
