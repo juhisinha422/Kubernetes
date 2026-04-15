@@ -1,0 +1,12 @@
+Resource declarations / limits          
+------------------------------
+When a pod is running on the kubernetes cluster, it is going to consume the computing resources like cpu and memory during its execution. The amount of cpu and memory being consumed by a pod application will depends on several factors like
+  1. Nature of the application
+  2. Workload or Traffic towards the application
+  etc
+  
+Whenever we schedule a pod for execution, the kubernetes scheduler takes care of identifying an appropriate workernode on the cluster that has sufficient system resources in running the pod and handover the pod for execution to the kubelet process on the workernode.
+  
+If we have not specified the resource limits / delcarations defining the amount of cpu / memory to be allocated for the pod, the kubernetes allocates the resources based on the amount of cpu/memory requested by the pod itself during execution, this could lead to pod starvation, because more and more the traffic comes to the pod, it demands more computing resources, that leads to reschedule of the pod running on the workernode.
+  
+Instead it is always recommended to define the min/max resource limits (cpu & memory) needed for running the pod application aspart of the kubernetes pod specfile, so that kubernetes cluster can allocate appropriate resources based on the limits defined. Incase if the traffic increases beyond the resource limits, we need to scale-out the pod application by running one more instance of the pod and distribute the traffic among these instances
