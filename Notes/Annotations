@@ -1,0 +1,36 @@
+2. Annotations
+----------------------------------------------------
+Annotations are used for binding arbitory information which is non-identifier data to any kubernetes objects. These acts as documentation to help us understand the information about the objects like
+  1. author
+  2. description
+  3. licensing
+  4. terms and conditions
+  5. warranty
+  etc
+  
+We can access this information attached to the objects by using metadata api. We can define the annotations within the spec/manifest file, so that kubernetes creates the objects by attaching the annotation documentation to them
+
+hangout-pod.yml
+----------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hangoutpod
+  labels:
+    appName: hangout
+    appVersion: 1.0
+    env: production
+  annotations:
+    license: Apache GNU License2
+    description: hangout application providing travel guide
+spec:
+  containers:
+    - name: hangout
+      image: hangout:1.0
+      ports:
+        - name: hangoutport
+          containerPort: 8080
+          protocol: TCP
+
+We can see the annotations of an object using
+kubectl describe pod podName
