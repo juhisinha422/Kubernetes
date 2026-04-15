@@ -1,0 +1,17 @@
+1. Pod object
+---------------
+Pod is an smallest unit or entity within the kubernetes world that represents one or more containers running together with shared resources. We can run one or more containers inside a pod because they need to work closely together, sharing the same network and storage and being managed as a single logic application unit.
+  
+Why do we need to run multiple containers in a Pod?
+-----------------------------------------------------------
+There are several reasons behind having multiple containers running inside one Pod:
+1. Shared Network : The containerized applications can communicate via localhost without needed a kubernetes service, if those sharing the same network space.
+2. Shared Storage: The containerized applications running in the pod can share same mounted volumes for logs or can exchange the data directly.
+3. Sidecar Pattern: A common design where one container handles the main application and another one handles logging, monitoring or any other aspects
+
+In any of the above cases we can run the 2 or more containerized applications aspart of one-single pod. 
+
+How to create a pod object and run on the kubernetes cluster?
+To run a pod on the kubernetes cluster, we need to have application binary that is packaged into docker image and published aspart of docker container registry (for eg.. dockerhub). Then we need to write pod manifest or spec file in describing the details of the docker application we want to create and run as container inside the pod and pass it as an input to the control-plane through kubectl in running the application
+
+Let us start with considering an pre-packaged and pre-distributed dockerized application image like: apache2 and understand how to write pod spec file in creating and running on kubernetes cluster.
