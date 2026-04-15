@@ -1,0 +1,14 @@
+1. AWS EKS Cluster
+-------------------
+The AWS Cloud platform provided an service called "EKS" stands for Elastic Kubernetes Service. It is a managed service provided by aws cloudplatform to host kubernetes on AWS. The AWS Cloudplatform EKS Service itself takes care of provisioning master/control plane, worker nodes and setup the cluster with CNI network and install necessary components on each worker node like
+1. container runtime (docker)
+2. kubelet
+3. kube-proxy
+
+There are lot of advantages of using EKS cluster over an on-premise Kubernetes cluster:
+1. We dont have to setup the kubernetes cluster manually, rather with few clicks of buttons the AWS itself takes care of setting up the EKS Cluster for us and is production ready too
+2. High-Availability of the cluster is guaranteed, since AWS takes care of provisioning and distributing the worker nodes across the AZ's of the region
+3. High Availability of the Control Plane or Master node is taken care by AWS itself.
+4. Monitoring the kubernetes cluster, tracking the health of worker nodes, incase if any of the worker nodes are crashed, those are replaced with healthy nodes will be taken care by AWS EKS itself
+4. EKS itself takes care of scale-out and scale-in of the cluster size. whenever we run out of cluster capacity, automatically EKS takes care of adding a worker node and when the load has been reduced, it takes care of removing the worker node
+
