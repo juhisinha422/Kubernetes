@@ -1,0 +1,14 @@
+Kubernetes Objects
+------------------
+Kubernetes object is an record of intent, through which we ask/tell kubernetes control-plane what we wanted to perform/create on cluster. Upon creating the object kubernetes cluster will tries to bring system/cluster to the desired state based on the object definition. All the kubernetes objects are persisted permanently aspart of the etcd.
+  
+There are different types of kubernetes objects are there
+1. pod
+2. replicaset
+3. deploymentset
+4. daemonset
+5. job
+6. service
+7. ingress
+8. loadbalancer
+etc..
