@@ -1,0 +1,21 @@
+rollingUpdate in K8
+===============
+what is rolling update ?
+it is one of the application deployment strategies.! in Kubernetes
+Old pods are gradually terminated while new pods are created, ensuring continuous availability of the application.
+
+when do we do rolling update?
+---------------------------------
+purpose of doing rollingUpdate is to deploy #new applications #witout_downtime we use rollingUpdate
+We use a Deployment resource in Kubernetes to achieve Rolling Updates.
+
+#scenario:
+------------
+v1.12 ---> v1.13?
+We have an application currently running on version v1.12, and we want to release a new version with additional features. To ensure zero downtime and continuous availability for users, we use the Rolling Update strategy, which gradually replaces old pods with new ones.
+
+#dis_adwantage of rollingUpdate?
+-------------------------------------
+if any issue came duing rollingUpdate Rollback is slower
+Requires good readiness/liveness probes
+good for bug fixes and normal application.
