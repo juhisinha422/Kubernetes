@@ -1,0 +1,30 @@
+Kubernetes + Docker → Container Orchestration
+Kubernetes + Helm → Package Management
+Kubernetes + Terraform → Infrastructure Provisioning
+Kubernetes + ArgoCD → GitOps
+Kubernetes + Prometheus → Monitoring 
+Kubernetes + Grafana → Visualization
+Kubernetes + Fluentd → Log Aggregation
+Kubernetes + Istio → Service Mesh
+Kubernetes + NGINX Ingress → Traffic Routing
+Kubernetes + KEDA → Auto & Event-Driven Scaling
+Kubernetes + Vault → Secrets Management
+Kubernetes + OPA → Policy as Code
+Kubernetes + Kubecost → Cost Monitoring
+Kubernetes + Crossplane → Platform Engineering
+Kubernetes + Cilium → Network Security
+Kubernetes + Kubeflow → ML Pipelines
+Kubernetes + MLflow → Experiment Tracking
+Kubernetes + KServe → Model Serving
+Kubernetes + Ollama → LLM Inference
+Kubernetes + Envoy → Traffic management (L7)
+Kubernetes + Inference Gateway → LLM Traffic Routing
+
+Same platform. Evolved purpose.
+Different combinations → different capabilities.
+
+Kubernetes didn’t change.
+The workloads did.
+
+ *That’s the value ~ it’s not just a tool,*
+*it’s a foundation you build on.*
