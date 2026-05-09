@@ -1,0 +1,28 @@
+DaemonSets in Kubernetes — One Pod Per Node
+
+ Key Properties:
+
+• Ensures exactly one Pod runs on every node (or selected nodes using nodeSelector/affinity)
+
+• Automatically creates a new Pod when a node joins the cluster
+
+• Automatically removes Pods when nodes leave the cluster
+
+• Perfect for cluster-wide agents and daemons that must run everywhere
+
+ DaemonSet vs Deployment
+
+✅ Deployment
+• You control replica count
+• Pods can run on any node
+
+✅ DaemonSet
+• Kubernetes ensures one Pod per node
+• No replica count needed
+
+📌 Common Use Cases:
+
+• Log collectors (Fluentd)
+• Monitoring agents (Node Exporter)
+• Security agents
+• CNI networking plugins
