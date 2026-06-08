@@ -1,0 +1,66 @@
+Limit Range concept in kubernetes?.
+
+✅*LimitRange* is a resource that sets default and maximum/minimum compute resources for Pods and containers inside a single namespace.
+
+Think of it as guardrails for resource requests/limits so developers don't forget them or ask for too much.
+
+What it actually controls
+
+*1. Default values*  
+If you create a Pod/container without `resources.requests` or `resources.limits`, LimitRange injects them.
+
+*2. Min/Max constraints*  
+Rejects any Pod/container that asks for less than min or more than max.
+
+*3. Request/Limit ratio*  
+Can enforce `maxLimitRequestRatio` to prevent huge gaps like request 10m CPU but limit 10 CPU.
+
+*4. Default Request/Limit for PVCs*  
+Can also set min/max/default storage for PersistentVolumeClaims.
+
+Resource types it applies to
+Type	What it limits	Common use
+`Container`	CPU, memory, ephemeral-storage per container	Most common
+`Pod`	Sum of all containers in Pod	Cap total Pod usage
+`PersistentVolumeClaim`	Storage request	Prevent huge PVCs
+
+Basic YAML example
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-mem-limit-range
+  namespace: dev
+spec:
+  limits:
+    - type: Container
+    max:
+      cpu: "2"
+      memory: 4Gi
+    min:
+      cpu: 100m
+      memory: 128Mi
+    default:        # applied as limit if not set
+      cpu: 500m
+      memory: 512Mi
+    defaultRequest: # applied as request if not set
+      cpu: 200m
+      memory: 256Mi
+    maxLimitRequestRatio:
+      cpu: 5
+With this applied: 
+1. No container in `dev` namespace can request >2 CPU or >4Gi memory
+2. If you deploy without resources, you automatically get 200m/256Mi request and 500m/512Mi limit
+
+LimitRange vs ResourceQuota
+LimitRange	ResourceQuota
+Applies per Pod/Container/PVC	Applies to total usage in namespace
+Sets defaults + min/max per object	Sets hard cap for whole namespace
+Validation at admission time	Accounting over time
+Use both together: LimitRange sets sensible defaults per workload, ResourceQuota caps the namespace total.
+
+Gotchas
+
+1. *Only applies at creation*: Updating a LimitRange won't affect existing Pods.
+2. *Namespace scoped*: You need one per namespace.
+3. *Doesn't evict*: If a running Pod exceeds limits due to LimitRange update, nothing happens until restart.
+4. *Required for Limit in some clusters*: If `defaultRequest` isn't set and you only specify `limits` in your Pod, scheduling can fail because request defaults to limitRange.
