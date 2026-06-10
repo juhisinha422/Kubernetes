@@ -1,0 +1,76 @@
+Understanding Static Pods – The Foundation of the Control Plane
+
+Most Kubernetes workloads are deployed using Deployments, ReplicaSets, StatefulSets, or DaemonSets.
+
+But behind the scenes, Kubernetes relies on a lesser-known yet critical concept: Static Pods.
+
+- What Are Static Pods?
+
+A Static Pod is created and managed directly by the kubelet on a node rather than through the Kubernetes API Server.
+
+Kubelet continuously watches a local directory (commonly "/etc/kubernetes/manifests") for pod manifest files.
+
+When a manifest file is added:
+
+- kubelet automatically creates the pod
+
+If the container crashes:
+
+- kubelet restarts it
+
+If the pod is deleted:
+
+- kubelet recreates it
+
+If the manifest file is removed:
+
+-kubelet stops the pod
+
+The manifest file itself becomes the source of truth.
+
+- Why Are Static Pods Important?
+
+They solve a fundamental bootstrap problem:
+
+How do you start the Kubernetes API Server when the API Server itself is needed to manage pods?
+
+Since kubelet can launch Static Pods independently, critical control plane components can start even before the API Server is available.
+
+- Real-World Usage
+
+In most kubeadm-based clusters, key control plane components run as Static Pods:
+
+• kube-apiserver
+• etcd
+• kube-scheduler
+• kube-controller-manager
+
+You can verify this by checking:
+
+"/etc/kubernetes/manifests"
+
+on a control plane node.
+
+- Why Do They Appear in kubectl?
+
+Although Static Pods are managed by kubelet, they appear in "kubectl get pods" because kubelet creates corresponding Mirror Pods in the API Server for visibility.
+
+🔹 Key Limitations
+
+- Cannot be managed by Deployments or StatefulSets
+
+- No rolling updates or horizontal scaling
+
+- No scheduler involvement
+
+- Tied to a specific node
+
+Because of these limitations, they are primarily used for infrastructure components rather than application workloads.
+
+- SRE & Platform Engineering Perspective
+
+Understanding Static Pods is crucial during control plane outages. When the API Server is unavailable, troubleshooting often shifts from Kubernetes resources to the node where kubelet manages these critical components directly.
+
+- Key Takeaway:
+
+Static Pods are one of the core mechanisms that make Kubernetes self-hosting possible. They enable critical control plane services to start and recover independently of the API Server, ensuring cluster reliability.
