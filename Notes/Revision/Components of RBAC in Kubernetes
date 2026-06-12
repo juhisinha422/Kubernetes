@@ -1,0 +1,81 @@
+Components of RBAC in Kubernetes:
+1.roles
+2.Cluster roles
+3.role bindings
+4.ClusterRolesBinding
+
+1.Role: is a set of permissions that define what actions (verbs) are allowed on specific resources (API groups and resources) within a particular Namespace.
+
+2.Role bindings: connect users/groups to roles. For example, you might bind the “admin” role to the “admin” user. This would give the “admin” user all the permissions defined in the “admin” role.
+It grants the permissions to particular namespaces only.
+
+3.ClusterRoles: are special roles that apply to all users in the cluster. For example, you might create a ClusterRole called “cluster-admin” that gives the user or group full access to all resources in the cluster. These are not Namespace-specific. They define permissions for cluster-wide resources.
+
+4.ClusterRoleBindings similar to RoleBindings, ClusterRoleBindings associate ClusterRoles with users/groups across the entire cluster.
+These are not Namespace-specific. They grants the permissions for cluster-wide resources.
+
+Lets create a namespace called dev :kubectl create ns dev
+
+Now lets create a role that gives permissions to K8s resources:
+apiVersion: https://lnkd.in/gDmBgtrj
+kind: Role
+metadata:
+ namespace: dev
+ name: dev-role
+rules:
+- apiGroups: [""]
+ resources: ["pods"]
+ verbs: ["get", "watch", "list"]
+
+apply it:kubectl create -f role.yml
+Imperative way : kubectl create role admin --verb=get,list,watch,create,update,delete --resource=pods,deployments -n dev
+To check it : kubectl get role -n dev
+
+Now attach this dev-role to user (Role binding):
+
+apiVersion: https://lnkd.in/gDmBgtrj
+kind: RoleBinding
+metadata:
+ name: dev-role-binding
+ namespace: dev
+subjects:
+- kind: User
+ name: random
+ apiGroup: rbac.authorization.k8s.io
+roleRef:
+ kind: Role
+ name: dev-role
+ apiGroup: rbac.authorization.k8s.io
+
+Working on Cluster Role:
+First lets change the context to minikube and go to default namespace
+change the contex: kubectl config use-context minikube
+
+Lets create cluster role:
+apiVersion: https://lnkd.in/gDmBgtrj
+kind: ClusterRole
+metadata:
+ name: random-cluster-role
+rules:
+- apiGroups: [""]
+ resources: ["pods", "deployments"]
+ verbs: ["get", "watch", "list", "create"]
+- apiGroups: [""]
+ resources: ["services"]
+ verbs: ["get", "watch", "list", "create", "delete"
+
+Lets create cluster role binding:
+apiVersion: https://lnkd.in/gDmBgtrj
+kind: ClusterRoleBinding
+metadata:
+ name: cluster-role-binding
+subjects:
+- kind: User
+ name: random
+ apiGroup: rbac.authorization.k8s.io
+roleRef:
+ kind: ClusterRole
+ name: random-cluster-role
+ apiGroup: rbac.authorization.k8s.io
+
+After creating the clusterrole and attached that role to cluster role binding, its time to check weather random user can have access to work with resources in all namespaces or not.
