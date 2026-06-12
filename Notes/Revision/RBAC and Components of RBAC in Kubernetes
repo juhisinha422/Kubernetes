@@ -1,3 +1,49 @@
+Understanding RBAC: A Pillar of Kubernetes Security
+
+What is RBAC?
+Role-Based Access Control (RBAC) is a method of regulating access to resources based on the roles of individual users within an organization. In Kubernetes, RBAC is used to define what actions users or service accounts can perform on specific resources in the cluster. It provides a fine-grained control mechanism, ensuring that only authorized entities can access or modify resources.
+
+In Kubernetes, there are two types of accounts:
+1.User Account
+2.Service Account
+
+1.User account: User accounts are used to log into a Kubernetes cluster and manipulate resources therein. Each user account is associated with a unique set of credentials, which are used to authenticate the service’s requests.
+
+2.Service Account: Kubernetes Service Accounts are specialised accounts used by applications and services running on Kubernetes to interact with the Kubernetes API.
+
+Which account type should you use?
+
+Use a User Account: When a human needs to interact with the Kubernetes cluster, such as developers, admins, or operators using tools like kubectl.
+
+Use a Service Account: When an application or workload running inside the cluster needs to access Kubernetes resources programmatically.
+
+Lets do some hands on:
+Lets create a user, But Kubernetes API will not allow us to create user directly. so there are multiple ways to create user
+
+will choose client certificate to create a user which is very easy to create.
+This certificates are used to create users. When a user perform any command like kubectl get po then K8's API will authenticate and authorize the request.
+authentication: permission to login.
+authorization: permission to work on resources.
+Steps to create certificate:
+
+lets create a folder:  mkdir random-user && cd random-user
+Generate a key using openssl :  openssl genrsa -out random.key 2048
+Generate a Client Sign Request (CSR) : openssl req -new -key random.key -out random.csr -subj "/CN=random/O=group1"
+Generate the certificate (CRT): openssl x509 -req -in random.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -out random.crt -days 500
+
+Steps to create user.
+lets create a user: kubectl config set-credentials random --client-certificate=random.crt --client-key=random.key
+
+Set a context entry in kubeconfig: kubectl config set-context my-context --cluster=minikube --user=random
+
+Context is used to switch the users in K8s cluster. Because in K8s we cant switch using users, we will add users to context and we will use context to switch b/w users.
+
+There are four components to RBAC in Kubernetes:
+1.roles
+2.Cluster roles
+3.role bindings
+4.ClusterRolesBinding
+
 Components of RBAC in Kubernetes:
 1.roles
 2.Cluster roles
