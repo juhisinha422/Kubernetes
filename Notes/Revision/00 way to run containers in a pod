@@ -1,0 +1,27 @@
+Kubernetes has more than one way to run containers in a pod. 
+
+Two Kubernetes patterns are there:-
+
+1. Sidecar Pattern
+
+A secondary (helper) container that runs alongside your main application in the same Pod.
+
+Common use cases:
+- Log collection 
+- Service mesh proxies (Envoy)
+- Monitoring 
+
+2. Init Container Pattern
+
+Runs before the main application starts and must complete successfully first.
+
+Common use cases:
+- Database migrations
+- Setting up configuration files.
+- Config or secret setup
+
+⚠️ The main application won't start until the init container completes successfully.
+
+In short:
+Sidecars run WITH your app.
+Init Containers run BEFORE your app.
