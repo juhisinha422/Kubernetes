@@ -1,46 +1,61 @@
 Top 15 Kubernetes Production Interview Questions & Answers.
+
 1. InitContainer Failures
 Q: What happens if an initContainer fails with restartPolicy: Never?
 A: The Pod stays in Init:Error or Init:CrashLoopBackOff; main containers never start. Must delete/recreate Pod.
+
 2. StatefulSet Pod Deletion
 Q: If you delete myapp-1 in a StatefulSet, do others rename?
 A: No. Pods keep ordinal names; deleted Pod is recreated with same name.
+
 3. CrashLoopBackOff
 Q: How do you troubleshoot a Pod stuck in CrashLoopBackOff?
 A: Check logs (kubectl logs), events (kubectl describe pod), resource limits, and readiness probes.
+
 4. OOMKilled
 Q: Pod terminated with OOMKilled — what’s the fix?
 A: Increase memory limits, optimize app memory usage, or use Vertical Pod Autoscaler.
+
 5. ImagePullBackOff
 Q: Pod stuck in ImagePullBackOff?
 A: Verify image name, registry credentials, and network access.
+
 6. Horizontal Pod Autoscaler (HPA)
 Q: How do you scale apps under heavy load?
 A: Use HPA with CPU/memory metrics; configure thresholds in YAML.
+
 7. Vertical Scaling
 Q: When to use vertical scaling?
 A: For resource‑specific bottlenecks (e.g., memory‑intensive workloads).
+
 8. Cluster Networking
 Q: Role of kube‑proxy?
 A: Handles TCP/UDP packet forwarding, ensuring Pods communicate with Services reliably.
+
 9. RBAC
 Q: How do you secure cluster access?
 A: Define Roles/ClusterRoles with least privilege; bind via RoleBinding/ClusterRoleBinding.
+
 10. Ingress Controller
 Q: Why use Ingress over LoadBalancer?
 A: Ingress provides path‑based routing, SSL termination, and consolidated external access.
+
 11. Rolling Updates
 Q: How does Kubernetes handle rolling updates?
 A: Gradually replaces Pods; can pause/rollback if health checks fail.
+
 12. Cluster Security
 Q: How do you secure secrets in production?
 A: Use Kubernetes Secrets with encryption at rest; integrate with Vault/KMS.
+
 13. etcd Management
 Q: Why is etcd critical?
 A: Stores cluster state; must be backed up and secured with TLS.
+
 14. Node Failures
 Q: What happens if a node crashes?
 A: Pods rescheduled to healthy nodes; use PodDisruptionBudgets for HA.
+
 15. Monitoring & Logging
 Q: How do you monitor production clusters?
 A: Use Prometheus, Grafana, ELK/EFK stack; integrate alerts for resource exhaustion.
