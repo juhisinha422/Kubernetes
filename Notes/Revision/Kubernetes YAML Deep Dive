@@ -1,0 +1,80 @@
+Kubernetes YAML Deep Dive 
+
+I used to copy Kubernetes YAML from Stack Overflow without understanding half of it.
+Then one indentation error broke my entire deployment.
+
+Here's what I wish I understood about Kubernetes YAML from Day 1 👇
+
+YAML is whitespace sensitive — this breaks more deployments than any bug:
+❌ Wrong (mixing tabs and spaces, inconsistent indentation):
+
+ spec:
+ containers:
+ - name: app
+ image: myapp:1.0
+✅ Right (consistent 2-space indentation):
+ spec:
+ containers:
+name: app
+ image: myapp:1.0
+
+One wrong space and kubectl apply fails with a confusing error.
+
+Every Kubernetes YAML has 4 required fields:
+
+apiVersion: apps/v1 ← which API version to use
+kind: Deployment ← what type of resource
+metadata: ← name, labels, namespace
+name: myapp
+spec: ← the actual configuration
+replicas: 3
+
+Miss any of these four and Kubernetes rejects your file immediately.
+
+Labels vs Selectors — the part that confuses everyone:
+
+labels:
+ app: myapp
+This is just a tag on your resource.
+selector:
+ matchLabels:
+ app: myapp
+
+This is how one resource finds another resource.
+
+Your Service uses a selector to find Pods with matching labels.
+Your Deployment uses a selector to manage Pods with matching labels.
+
+If labels and selectors don't match exactly — nothing connects. No error message. Just silent failure.
+
+This is the single most common Kubernetes debugging issue for beginners.
+
+Multi-document YAML — combining resources in one file:
+
+apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+ name: myapp
+ spec:
+ replicas: 3
+
+apiVersion: v1
+ kind: Service
+ metadata:
+ name: myapp-service
+ spec:
+ selector:
+ app: myapp
+
+The three dashes --- separate multiple resources in a single file. Apply both with one command.
+
+Essential debugging commands when YAML fails:
+
+kubectl apply -f deployment.yaml --dry-run=client → test without applying
+kubectl explain deployment.spec → see all valid fields
+yamllint deployment.yaml → check syntax before applying
+
+My personal rule now:
+Always run --dry-run=client before applying anything to a real cluster.
+It catches syntax errors before they become production incidents.
+YAML looks simple. It's also where most Kubernetes mistakes happen.
