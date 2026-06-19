@@ -1,0 +1,30 @@
+*CNI* and *CRI* are both plugin interfaces in Kubernetes, but they solve different problems.
+
+Think of it like this: CRI is about _running_ containers, CNI is about _networking_ them.
+
+*CRI - Container Runtime Interface*
+✅What it does*: Lets kubelet talk to container runtimes.  
+*Job*: Start, stop, and manage the lifecycle of containers/pods on a node.
+
+✅*Without CRI*: Kubelet would be hardcoded to only work with Docker.  
+✅*With CRI*: Kubelet can use Docker, containerd, CRI-O, or any CRI-compatible runtime.
+✅Key point	Detail
+**Layer**	Node level - between kubelet and container runtime
+**Examples**	containerd, CRI-O, Docker Engine via dockershim deprecated
+**Analogy**	The engine starter. Tells the runtime "create this container with these specs"
+
+✅*CNI - Container Network Interface*
+✅*What it does*: Lets Kubernetes configure networking for pods.  
+✅*Job*: Assign IPs, set up routes, attach pods to networks, enforce network policies.
+
+✅*Without CNI*: Pods wouldn't get IPs or be able to talk to each other across nodes.  
+✅*With CNI*: You plug in Calico, Flannel, Cilium, etc to handle pod networking.
+
+✅Key point	Detail
+**Layer**	Network level - between kubelet and network plugins
+**Examples**	Calico, Flannel, Cilium, Weave Net, AWS VPC CNI
+**Analogy**	The network cable guy. Sets up IP addresses and routing when a pod starts
+* CRI-O	Calico, Flannel, Cilium
+*One-liner*: 
+CRI = "Run the container". 
+CNI = "Wire the container to the network".
