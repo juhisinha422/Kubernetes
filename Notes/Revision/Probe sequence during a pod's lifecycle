@@ -1,0 +1,63 @@
+Probe sequence during a pod's lifecycle.
+
+✅*The 3 probes + execution order*
+
+1. *Startup Probe* 
+      - Runs first, immediately when the container starts
+      - Purpose: Tells K8s "is the app started yet?" 
+      - While this is running, liveness and readiness checks are disabled
+      - If it fails, kubelet kills the container and restarts based on `restartPolicy`
+      - If it succeeds, K8s moves on to the other probes
+      - Use case: Slow-starting apps that need 30s+ to boot
+
+2. *Readiness Probe*
+      - Runs second, but only after startup probe succeeds
+      - Purpose: Tells K8s "can this pod receive traffic?"
+      - If it fails: Pod is removed from Service endpoints. No traffic sent. Container keeps running
+      - If it succeeds: Pod gets added to Service endpoints and gets traffic
+      - Runs periodically for the entire container lifetime
+
+3. *Liveness Probe* 
+      - Runs third, also only after startup probe succeeds  
+      - Purpose: Tells K8s "is the app still alive/healthy?"
+      - If it fails: kubelet kills the container and restarts it
+      - If it succeeds: Nothing happens, container keeps running
+      - Runs periodically for the entire container lifetime
+
+*Timeline visualization*
+Pod Created
+    |
+    v
+Container Starts → Startup Probe runs
+    |                    |
+    |                    +-- Fails → Kill + Restart container
+    |                    |
+    |                    v
+    |               Succeeds
+    v
+Startup Probe disabled
+    |
+    v
+Liveness + Readiness Probes start running in parallel
+    |                    |
+    +-- Liveness fails → Kill + Restart container
+    |
+    +-- Readiness fails → Remove from Service, no traffic
+    +-- Readiness passes → Add to Service, receive traffic
+
+
+*Key rules to remember*
+
+1. *Startup > Readiness/Liveness*: Startup blocks the other two. They won't even start until startup passes or times out.
+2. *Liveness + Readiness run concurrently*: After startup, both run on their own `periodSeconds` intervals.
+3. *Different failure behavior*: 
+      - Startup fail = restart container
+      - Liveness fail = restart container  
+      - Readiness fail = stop traffic, but don't restart
+      
+
+*Why the order matters*
+
+Without startup probe: If your app takes 60s to start, liveness would fail after 3 attempts and put you in a crash loop. Startup probe prevents that.
+
+Readiness separate from liveness lets you handle "I'm alive but overloaded". Your app can stay running to finish requests, but stop taking new ones.
