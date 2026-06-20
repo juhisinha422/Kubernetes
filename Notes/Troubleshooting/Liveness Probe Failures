@@ -1,0 +1,83 @@
+ Liveness Probe Failures
+
+Your application starts successfully.
+
+The pod enters the Running state.
+
+But after a few minutes, Kubernetes starts restarting the container repeatedly.
+
+❌ Restart Loop
+
+❌ Frequent Container Restarts
+
+❌ Application Instability
+
+In many cases, the root cause is a Liveness Probe Failure.
+
+Recently, I encountered an application that was running correctly, but Kubernetes continuously restarted the container because the liveness probe kept failing.
+
+🔍 My troubleshooting approach:
+
+✅ Checked pod restart count
+
+✅ Reviewed pod events
+
+✅ Examined liveness probe configuration
+
+✅ Verified application health endpoint
+
+✅ Tested endpoint response time
+
+✅ Checked resource utilization
+
+✅ Analyzed application logs
+
+✅ Reviewed startup and processing times
+
+🎯 Root Cause:
+
+The liveness probe timeout was configured too aggressively.
+
+During heavy processing, the application took longer than expected to respond to health checks.
+
+Kubernetes interpreted the delayed response as a failure and restarted the container repeatedly.
+
+After tuning the probe parameters and increasing timeout values, the application remained stable and restart loops stopped.
+
+💡 Key Takeaway:
+
+When troubleshooting Liveness Probe Failures, remember that liveness probes determine whether a container should be restarted.
+
+Always verify:
+
+• Health check endpoint
+
+• timeoutSeconds
+
+• periodSeconds
+
+• failureThreshold
+
+• Application response time
+
+• CPU and memory utilization
+
+• Application logs
+
+Useful commands:
+
+kubectl describe pod <pod-name>
+
+kubectl logs <pod-name>
+
+kubectl get pod <pod-name> -o wide
+
+Remember:
+
+📌 Readiness Probe = Can traffic be sent?
+
+📌 Liveness Probe = Should the container stay alive?
+
+📌 Poorly configured liveness probes can create unnecessary restart loops.
+
+Every troubleshooting session helps us better understand application behavior and Kubernetes self-healing mechanisms.
