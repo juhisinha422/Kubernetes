@@ -1,0 +1,83 @@
+Readiness Probe Failures
+
+Your container is running.
+
+The application process is up.
+
+But Kubernetes still refuses to send traffic to the pod.
+
+❌ Pod Not Ready
+
+❌ Service Not Routing Traffic
+
+❌ Deployment Rollout Stuck
+
+This is often caused by Readiness Probe Failures.
+
+Recently, I encountered a deployment where all pods were running, but none of them were receiving production traffic.
+
+🔍 My troubleshooting approach:
+
+✅ Checked pod events
+
+✅ Reviewed readiness probe configuration
+
+✅ Verified application health endpoint
+
+✅ Tested health check URLs manually
+
+✅ Checked startup time requirements
+
+✅ Reviewed probe timing parameters
+
+✅ Verified service connectivity
+
+✅ Examined application logs
+
+🎯 Root Cause:
+
+The readiness probe was configured to start checking the application too early.
+
+The application required additional startup time before the health endpoint became available.
+
+As a result, Kubernetes continuously marked the pod as Not Ready.
+
+After increasing the initialDelaySeconds value and adjusting probe timing, the readiness checks succeeded and traffic started flowing normally.
+
+💡 Key Takeaway:
+
+When troubleshooting Readiness Probe Failures, focus on whether the application is actually ready to serve requests.
+
+Always verify:
+
+• Health check endpoint
+
+• initialDelaySeconds
+
+• periodSeconds
+
+• timeoutSeconds
+
+• failureThreshold
+
+• Application startup time
+
+• Network connectivity
+
+Useful commands:
+
+kubectl describe pod <pod-name>
+
+kubectl logs <pod-name>
+
+kubectl exec -it <pod-name> -- curl localhost:<port>/health
+
+Remember:
+
+📌 Running ≠ Ready
+
+📌 Kubernetes sends traffic only to Ready pods.
+
+📌 Incorrect readiness probe settings can block deployments even when applications are healthy.
+
+Every troubleshooting session improves our understanding of Kubernetes application lifecycle management and traffic routing.
