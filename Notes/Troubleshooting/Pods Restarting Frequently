@@ -1,0 +1,83 @@
+Pods Restarting Frequently
+
+Your application is deployed.
+
+Pods are running.
+
+But after a few minutes, you notice:
+
+❌ Restart Count Increasing
+
+❌ Application Instability
+
+❌ Unexpected Service Disruptions
+
+Frequent pod restarts are often symptoms of deeper issues within the application or infrastructure.
+
+Recently, I encountered a production workload where pods were restarting repeatedly, causing intermittent application outages.
+
+🔍 My troubleshooting approach:
+
+✅ Checked pod restart count
+
+✅ Reviewed pod events
+
+✅ Analyzed container logs
+
+✅ Examined previous container logs
+
+✅ Verified resource utilization
+
+✅ Reviewed liveness and readiness probes
+
+✅ Checked application dependencies
+
+✅ Investigated node health
+
+🎯 Root Cause:
+
+The application was consuming more memory than expected and periodically exceeded its configured limits.
+
+Kubernetes terminated the container, causing the pod to restart repeatedly.
+
+Additionally, aggressive liveness probe settings increased restart frequency.
+
+After tuning memory limits and adjusting probe configurations, the pod stabilized.
+
+💡 Key Takeaway:
+
+When troubleshooting Frequent Pod Restarts, focus on identifying the actual trigger behind the restart.
+
+Always verify:
+
+• Application logs
+
+• OOMKilled events
+
+• CPU and Memory utilization
+
+• Liveness probes
+
+• Readiness probes
+
+• Dependency connectivity
+
+• Node health
+
+Useful commands:
+
+kubectl get pods
+
+kubectl describe pod <pod-name>
+
+kubectl logs <pod-name> --previous
+
+kubectl top pod
+
+Remember:
+
+📌 Restarts are symptoms, not root causes.
+
+📌 Most frequent restart issues are related to resource limits, application crashes, or probe failures.
+
+📌 The Events section and previous container logs often reveal the real problem.
