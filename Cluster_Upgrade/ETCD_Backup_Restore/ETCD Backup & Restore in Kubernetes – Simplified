@@ -1,0 +1,44 @@
+***** ETCD Backup & Restore in Kubernetes – Simplified *****
+ETCD is the brain of Kubernetes, storing all cluster data such as Pods, Deployments, Services, Secrets, ConfigMaps, and cluster configurations. A proper backup can save your cluster during disaster recovery.
+📌 Step 1: Get ETCD Certificates
+
+cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep etcd
+
+📌 Step 2: Take ETCD Backup
+
+ETCDCTL_API=3 etcdctl snapshot save /tmp/etcd-backup.db \
+--cacert=/etc/kubernetes/pki/etcd/ca.crt \
+--cert=/etc/kubernetes/pki/etcd/server.crt \
+--key=/etc/kubernetes/pki/etcd/server.key
+
+📌 Step 3: Restore Snapshot
+
+ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-backup.db \
+--data-dir=/var/lib/etcd-backup \
+--cacert=/etc/kubernetes/pki/etcd/ca.crt \
+--cert=/etc/kubernetes/pki/etcd/server.crt \
+--key=/etc/kubernetes/pki/etcd/server.key
+
+📌 Step 4: Update ETCD Manifest
+Edit:
+
+vi /etc/kubernetes/manifests/etcd.yaml
+
+Change:
+
+path: /var/lib/etcd
+
+To:
+
+path: /var/lib/etcd-backup
+
+📌 Step 5: Verify
+
+kubectl get pods -n kube-system
+
+💡 Easy Way to Remember:
+Find Certs → Backup → Restore → Update etcd.yaml → Verify
+🔑 TLS Flags:
+--cacert = Trust ETCD Server
+--cert = Client Identity
+--key = Authentication Key
