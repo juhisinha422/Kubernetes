@@ -1,0 +1,85 @@
+NetworkPolicy Blocking Traffic
+
+Your pods are running.
+
+Services are healthy.
+
+DNS resolution is working.
+
+Yet applications cannot communicate with each other.
+
+❌ Connection Timeout
+
+❌ Service Unreachable
+
+❌ Intermittent Connectivity Issues
+
+One common cause is a NetworkPolicy blocking traffic.
+
+Recently, I encountered a situation where an application pod could not connect to a backend database service even though both pods were healthy and running.
+
+🔍 My troubleshooting approach:
+
+✅ Verified pod and service status
+
+✅ Reviewed NetworkPolicy configurations
+
+✅ Checked namespace-level policies
+
+✅ Tested connectivity using curl and nc
+
+✅ Verified ingress and egress rules
+
+✅ Compared pod labels with policy selectors
+
+✅ Analyzed traffic flow between workloads
+
+✅ Reviewed CNI plugin logs
+
+🎯 Root Cause:
+
+A newly created NetworkPolicy allowed only specific application pods to communicate with the database service.
+
+The affected pod was missing the required label, causing traffic to be blocked.
+
+After updating the pod labels and validating the policy selectors, connectivity was restored.
+
+💡 Key Takeaway:
+
+When troubleshooting connectivity issues in Kubernetes, don't focus only on Services and DNS.
+
+Always verify:
+
+• NetworkPolicies
+
+• Pod labels
+
+• Namespace selectors
+
+• Ingress rules
+
+• Egress rules
+
+• Service connectivity
+
+• Traffic flow paths
+
+Useful commands:
+
+kubectl get networkpolicy
+
+kubectl describe networkpolicy <policy-name>
+
+kubectl exec -it <pod-name> -- curl <service>
+
+kubectl exec -it <pod-name> -- nc -zv <service> <port>
+
+Remember:
+
+📌 Service Exists ≠ Traffic Allowed
+
+📌 NetworkPolicies act like firewalls for pods.
+
+📌 A single restrictive policy can block critical application communication.
+
+Every troubleshooting session improves our understanding of Kubernetes security and networking.
