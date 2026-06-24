@@ -1,0 +1,87 @@
+⚡ CPU Throttling Issues
+
+Your application is running.
+
+Pods are healthy.
+
+No errors are reported.
+
+Yet users are experiencing slow response times and performance degradation.
+
+❌ High Latency
+
+❌ Slow API Responses
+
+❌ Performance Bottlenecks
+
+One often-overlooked culprit is CPU Throttling.
+
+Recently, I worked on an application that showed inconsistent performance despite having sufficient cluster resources. After investigating, I discovered that the containers were being CPU throttled.
+
+🔍 My troubleshooting approach:
+
+✅ Checked CPU utilization metrics
+
+✅ Reviewed CPU requests and limits
+
+✅ Analyzed container resource consumption
+
+✅ Examined Prometheus/Grafana dashboards
+
+✅ Verified throttling metrics
+
+✅ Compared application load against allocated CPU
+
+✅ Reviewed pod resource configurations
+
+✅ Analyzed application performance trends
+
+🎯 Root Cause:
+
+The CPU limit configured for the container was too low for the workload.
+
+Whenever the application experienced traffic spikes, Kubernetes restricted CPU usage to the defined limit, resulting in CPU throttling.
+
+As a result, the application responded slowly even though it remained healthy.
+
+After adjusting CPU limits and optimizing resource allocation, performance improved significantly.
+
+💡 Key Takeaway:
+
+When troubleshooting performance issues, don't focus only on CPU utilization.
+
+Always verify:
+
+• CPU requests and limits
+
+• CPU throttling metrics
+
+• Application response times
+
+• Resource utilization trends
+
+• Traffic patterns
+
+• Pod resource allocation
+
+• Monitoring dashboards
+
+Useful commands:
+
+kubectl top pod
+
+kubectl describe pod <pod-name>
+
+kubectl get pod <pod-name> -o yaml
+
+Remember:
+
+📌 High CPU usage is not always the problem.
+
+📌 CPU throttling can occur even when the application appears healthy.
+
+📌 Proper resource sizing is critical for application performance.
+
+Performance issues are often hidden infrastructure problems waiting to be discovered.
+
+Every troubleshooting session helps us build more efficient and resilient Kubernetes workloads.
