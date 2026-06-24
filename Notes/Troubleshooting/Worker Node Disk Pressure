@@ -1,0 +1,85 @@
+💽 Worker Node Disk Pressure
+
+Your applications are healthy.
+
+Pods are running.
+
+But suddenly the node status changes to:
+
+❌ DiskPressure=True
+
+❌ Pods Failing to Schedule
+
+❌ Node Performance Degradation
+
+Disk pressure is one of the most common infrastructure issues in Kubernetes clusters and can impact the entire node.
+
+Recently, I encountered a worker node where application logs and unused container images gradually consumed all available disk space.
+
+🔍 My troubleshooting approach:
+
+✅ Checked node conditions
+
+✅ Reviewed disk utilization
+
+✅ Investigated kubelet events
+
+✅ Analyzed container log growth
+
+✅ Checked unused Docker/containerd images
+
+✅ Verified ephemeral storage usage
+
+✅ Reviewed monitoring dashboards
+
+✅ Cleaned unnecessary files
+
+🎯 Root Cause:
+
+Large application logs and unused container images consumed most of the node storage.
+
+Once the disk usage crossed the configured threshold, Kubernetes marked the node with DiskPressure and restricted scheduling.
+
+After cleaning old logs and removing unused images, the node returned to a healthy state.
+
+💡 Key Takeaway:
+
+When troubleshooting Disk Pressure, focus on storage consumption trends before the node becomes unhealthy.
+
+Always verify:
+
+• Node disk utilization
+
+• Container image usage
+
+• Log file growth
+
+• Ephemeral storage consumption
+
+• Kubelet events
+
+• Monitoring alerts
+
+• Node conditions
+
+Useful commands:
+
+kubectl describe node <node-name>
+
+df -h
+
+du -sh /var/log/*
+
+crictl images
+
+crictl rmi --prune
+
+Remember:
+
+📌 DiskPressure affects scheduling decisions.
+
+📌 Log growth and image buildup are common causes.
+
+📌 Proactive monitoring prevents production incidents.
+
+Every troubleshooting session improves our understanding of Kubernetes node health and capacity management.
