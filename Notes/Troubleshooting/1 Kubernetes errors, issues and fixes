@@ -1,0 +1,22 @@
+Kubernetes errors, issues and fixes: 
+1) CrashLoopBackOff- Happens when the app inside container failed to start right after starting of the pod. 
+Fix- Check startup command or environment variables are in place. Make sure the required files, services and dependencies are available.
+2) ImagePullBackOff / ErrImagePull- Happens when Kubernetes unable to download the container image due to incorrect image name, registry or image doesn't exist.
+Fix- Check the image name, tag in deployment.yaml. Make sure the image is present inside the registry
+If it's a private registry, make sure to add valid secrets to pull the image
+3) OOMKilled- Refers to Out Of Memory, happens when the deployment app tries to use more memory which is already defined in manifest file.
+Fix- Increase the memory limit in deployment.yaml manifest file
+4) CreateContainerConfigError- Can be due to incorrect Pod setup such as wrong secrets, configmap or volume.
+Fix- Check logs by using Kubectl describe <pod-name> make sure the secrets, config map or volume are rightly mentioned in the manifest file.
+5) NodeNotReady- Indicates that Node in your cluster is down due to network connectivity or any other issues.
+Fix- Run kubectl get nodes to check node status. Run kubectl describe node <node-name> to get more logs, based on this either restart the node or apply fix.
+6) Pending- This indicates the Pod was not started, stuck in Pending status.
+Fix- Check kubectl describe pod <pod-name> to read more logs. Make sure the cluster has enough compute resources (RAM and storage), also check volume or node selectors are correctly defined in deployment manifest file.
+7) FailedScheduling- It means Kubernetes is unable to find the node which suites the Pod's requirement. Most of the time, it's due to resource limits or pod scheduling rules.
+Fix- Run kubectl describe pod <pod-name> to read more info. Reduce the CPU and memory in the pod spec. Also, check if the deployment has any dependency of node selectors or taints.
+8) ContainerCannotRun- Indicates the container did not make the startup at all, can be caused due to Entrypoint command failure or permission issues.
+Fix- Run kubectl logs <pod-name> or kubectl describe pod <pod-name> to read more errors. Make sure the deployment.yaml file has no syntax error. Also, check if there is any missing files, required permissions or other dependencies.
+9) Exit Code 1 / 125- It means the app failed right after the container starts, error 1 refers to generic error and error 125 refers to container command failed before the app ran.
+Fix- Run kubectl logs <pod-name> to see more logs on error, also double check the Entry commands and try to run the container image locally.
+10) Init or Waiting state- This happens if the init container or main container doesn't startup properly.
+Fix- Run kubectl describe to read more logs on what's holding back. Check image names, volume mounts and startup scripts for any error. 
