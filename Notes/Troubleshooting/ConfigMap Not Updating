@@ -1,0 +1,85 @@
+ConfigMap Not Updating
+
+You update a ConfigMap.
+
+The changes are successfully applied.
+
+But the application continues using the old configuration.
+
+❌ Configuration Changes Not Reflected
+
+❌ Application Behavior Unchanged
+
+❌ Unexpected Runtime Issues
+
+One common reason is that Kubernetes workloads do not always pick up ConfigMap changes immediately.
+
+Recently, I encountered an application where a configuration update was applied successfully, but the application continued serving traffic using outdated values.
+
+🔍 My troubleshooting approach:
+
+✅ Verified ConfigMap updates
+
+✅ Checked ConfigMap mounting method
+
+✅ Reviewed pod configuration
+
+✅ Verified volume mounts
+
+✅ Checked environment variable references
+
+✅ Inspected pod restart history
+
+✅ Performed rollout restart
+
+✅ Validated application cache behavior
+
+🎯 Root Cause:
+
+The application was consuming configuration values through environment variables.
+
+Although the ConfigMap was updated, Kubernetes does not automatically update environment variables inside already running containers.
+
+As a result, the application continued using the old values.
+
+After performing a rollout restart of the deployment, the new configuration was loaded successfully.
+
+💡 Key Takeaway:
+
+When troubleshooting ConfigMap Not Updating, always verify how the ConfigMap is consumed.
+
+Always check:
+
+• ConfigMap content
+
+• Volume mounts
+
+• Environment variable references
+
+• Deployment rollout status
+
+• Application cache behavior
+
+• Pod restart history
+
+• Mounted file updates
+
+Useful commands:
+
+kubectl get configmap
+
+kubectl describe configmap <configmap-name>
+
+kubectl rollout restart deployment <deployment-name>
+
+kubectl exec -it <pod-name> -- cat <mounted-file>
+
+Remember:
+
+📌 Updating a ConfigMap does not always update running applications.
+
+📌 Environment variables require pod restarts.
+
+📌 Volume-mounted ConfigMaps may update automatically, but applications may still cache old values.
+
+Every troubleshooting session helps us better understand Kubernetes configuration management and application behavior.
