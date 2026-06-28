@@ -1,0 +1,85 @@
+Evicted Pods
+
+Your application was running perfectly.
+
+Suddenly, a pod disappears and its status changes to:
+
+❌ Evicted
+
+❌ Application Disruption
+
+❌ Unexpected Pod Termination
+
+This is a common issue in Kubernetes clusters experiencing resource pressure.
+
+Recently, I encountered a situation where several application pods were unexpectedly evicted from a worker node, causing service degradation.
+
+🔍 My troubleshooting approach:
+
+✅ Checked pod events
+
+✅ Reviewed node conditions
+
+✅ Verified memory utilization
+
+✅ Checked disk usage
+
+✅ Analyzed kubelet logs
+
+✅ Reviewed ephemeral storage consumption
+
+✅ Investigated node resource pressure
+
+✅ Examined resource requests and limits
+
+🎯 Root Cause:
+
+The worker node was experiencing high disk usage due to excessive container logs and unused images.
+
+Once the node crossed the eviction threshold, Kubernetes started evicting pods to protect node stability.
+
+As a result, application workloads were terminated and rescheduled elsewhere.
+
+After cleaning disk space and optimizing resource usage, pod evictions stopped.
+
+💡 Key Takeaway:
+
+When troubleshooting Evicted Pods, focus on node health rather than the application itself.
+
+Always verify:
+
+• Memory pressure
+
+• Disk pressure
+
+• Ephemeral storage usage
+
+• Node conditions
+
+• Resource requests and limits
+
+• Kubelet events
+
+• Container log growth
+
+Useful commands:
+
+kubectl describe pod <pod-name>
+
+kubectl describe node <node-name>
+
+kubectl top node
+
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+df -h
+
+Remember:
+
+📌 Evicted Pods are usually a symptom of node resource pressure.
+
+📌 Kubernetes evicts pods to keep nodes healthy and operational.
+
+📌 Monitoring storage and memory consumption proactively can prevent production outages.
+
+Every troubleshooting session helps us better understand Kubernetes resource management and cluster stability.
