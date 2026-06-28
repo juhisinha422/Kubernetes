@@ -1,0 +1,89 @@
+Failed Scheduling Error
+
+Your deployment is created.
+
+The pod exists.
+
+But it never starts running.
+
+Instead, Kubernetes shows:
+
+❌ FailedScheduling
+
+❌ Pod Pending
+
+❌ No Suitable Node Available
+
+This is one of the most common scheduling issues in Kubernetes environments.
+
+Recently, I encountered a workload that remained in the Pending state even though multiple worker nodes were available in the cluster.
+
+🔍 My troubleshooting approach:
+
+✅ Checked pod events
+
+✅ Reviewed scheduler messages
+
+✅ Verified CPU and memory availability
+
+✅ Checked node capacity
+
+✅ Reviewed node affinity rules
+
+✅ Verified node selectors
+
+✅ Checked taints and tolerations
+
+✅ Examined node conditions
+
+🎯 Root Cause:
+
+The deployment contained a node affinity rule that required a specific node label.
+
+However, no worker node in the cluster matched the required label.
+
+As a result, the Kubernetes scheduler could not find a suitable node and kept the pod in Pending state.
+
+After correcting the node affinity configuration, the scheduler successfully placed the pod.
+
+💡 Key Takeaway:
+
+When troubleshooting Failed Scheduling issues, focus on scheduler constraints before investigating the application.
+
+Always verify:
+
+• Available CPU and memory
+
+• Node selectors
+
+• Node affinity rules
+
+• Pod affinity / anti-affinity
+
+• Taints and tolerations
+
+• Node health
+
+• Scheduler events
+
+Useful commands:
+
+kubectl describe pod <pod-name>
+
+kubectl get nodes
+
+kubectl describe node <node-name>
+
+kubectl top nodes
+
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+Remember:
+
+📌 Pending pods usually indicate scheduling problems.
+
+📌 Scheduler events often reveal the exact root cause.
+
+📌 Resource constraints and affinity rules are the most common reasons for FailedScheduling errors.
+
+Every troubleshooting session improves our understanding of Kubernetes workload placement and cluster resource management.
