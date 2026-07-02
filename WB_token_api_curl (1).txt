@@ -1,7 +1,0 @@
-curl --location --request POST 'https://www.ppe.nsws.gov.in/auth/realms/madhyam/protocol/openid-connect/token' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'grant_type=password' \
---data-urlencode 'client_id=sws_state' \
---data-urlencode 'username=wbppe' \
---data-urlencode 'password=Pass@123' \
---data-urlencode 'client_secret=643790eb-2b2a-4187-8c43-54a663b840eb'
