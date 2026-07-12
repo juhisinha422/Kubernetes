@@ -1,0 +1,92 @@
+Understanding Multi-Tenancy in Kubernetes.
+
+Welcome Back to another Back to Basics Drops.
+
+Today’s Let’s dive into one of the Cool Topics in Kubernetes.
+
+Multi-Tenancy in Kubernetes.
+
+Imagine a large apartment building.
+
+Hundreds of families live inside.
+Everyone shares the same building...
+Same entrance.
+Same electricity.
+Same water supply.
+Same elevators.
+But each family has its own apartment.
+You can't walk into your neighbor's house.
+You can't use their kitchen.
+You can't occupy all the parking spaces.
+Everyone shares the infrastructure while keeping their own private space.
+
+That's exactly what Multi-Tenancy in Kubernetes is.
+
+The Apartment Building = Kubernetes Cluster.
+
+Instead of giving every team its own Kubernetes cluster (which is expensive), organizations create one large Kubernetes cluster that multiple teams share.
+Think of it as one apartment building.
+Each Apartment = Namespace.
+Every team gets its own Namespace.
+For example:
+Team A → Namespace: team-a
+Team B → Namespace: team-b
+Team C → Namespace: team-c
+Inside each namespace, teams deploy their own:
+Pod, Services, ConfigMaps & Secrets & Persistent Storage.
+Their applications stay isolated from everyone else's.
+
+What is Shared?
+
+Although teams are isolated, they still share the underlying infrastructure.
+Worker Nodes.
+Cluster Networking.
+Storage.
+Kubernetes Control Plane.
+This is why Kubernetes is so resource efficient.
+
+One common interview question which get asked often.
+
+But How Do We Prevent Chaos?
+
+Imagine one tenant:
+Uses all the electricity.
+Occupies every parking slot.
+Walks into other apartments.
+The building would become unlivable.
+Kubernetes prevents this using multiple layers of isolation.
+
+1. RBAC (Access Control).
+
+Who is allowed to enter which apartment.
+Users only get access to their own namespace.
+
+2. Resource Quotas.
+
+Each apartment gets a limited electricity budget.
+Every namespace receives limits on:
+• CPU
+• Memory
+• Storage
+No single team can consume the whole cluster.
+
+3. Limit Ranges.
+
+Every appliance must stay within safe limits.
+Developers don't accidentally create oversized Pods.
+Default CPU and Memory limits are enforced automatically.
+
+4. Network Policies
+
+Neighbors cannot walk through each other's walls.
+Pods communicate only when explicitly allowed.
+Everything else stays isolated.
+
+5. Pod Security Standards
+
+Every apartment follows the building's safety rules.
+These policies prevent containers from running with unnecessary privileges or unsafe configurations.
+
+One-line takeaway.
+One Kubernetes cluster. Many teams. Shared infrastructure. Isolated workloads.
+That's Multi-Tenancy.
