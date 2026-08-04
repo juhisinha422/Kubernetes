@@ -1,0 +1,30 @@
+What are Endpoints in Kubernetes?
+
+A Kubernetes Service doesn't send traffic directly to Pods. Instead, it forwards requests to an Endpoints object, which contains the IP addresses and ports of healthy, Ready Pods matching the Service selector.
+
+Here's how it works:
+
+✅ A Service selects Pods using labels.
+✅ Kubernetes automatically creates an Endpoints object.
+✅ Only Ready Pods are added to Endpoints.
+✅ kube-proxy uses these Endpoints to route traffic.
+✅ If a Pod becomes NotReady, it's removed from Endpoints automatically.
+
+Why does this matter?
+
+If your Service has no Endpoints, traffic won't reach your application—even if the Service itself exists. That's why checking Endpoints is one of the first steps when troubleshooting Kubernetes networking issues.
+
+Useful commands:
+
+kubectl get endpoints
+kubectl describe endpoints <service-name>
+kubectl get endpoints <service-name> -o yaml
+
+💡 Pro Tip: If a Service isn't routing traffic, verify:
+
+- Service selector
+- Pod labels
+- Readiness Probe
+- Endpoints object
+
+Understanding Endpoints is essential for mastering Kubernetes networking and troubleshooting.
