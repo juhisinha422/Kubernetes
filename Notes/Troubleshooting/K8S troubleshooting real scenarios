@@ -1,0 +1,65 @@
+Kubernetes Troubleshooting Interview Questions — Real-World Scenarios
+
+
+1. A Kubernetes Pod is down. How would you troubleshoot it?
+My first step would be to understand why the pod is down, rather than immediately restarting it.
+
+kubectl get pods -n <namespace>
+
+kubectl describe pod <pod-name> -n <namespace>
+
+kubectl logs <pod-name> -n <namespace>
+
+I would check the pod status, events and application logs.
+If the container restarted:
+
+kubectl logs <pod-name> -n <namespace> --previous
+
+Then based on the error — CrashLoopBackOff, OOMKilled, ImagePullBackOff, Pending, probe failure, etc. — I would troubleshoot that specific layer.
+
+2. A Pod is in CrashLoopBackOff. What would you check?
+This means the container is starting and then repeatedly crashing.
+I would start with:
+kubectl describe pod <pod-name>
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+I would check application startup errors, environment variables, ConfigMaps/Secrets, database connectivity, command/entrypoint configuration and health probes.
+
+3. A Pod is stuck in Pending. What could be wrong?
+First:
+kubectl describe pod <pod-name>
+The Events section usually gives an important clue.
+Possible causes include:
+Insufficient CPU or memory on worker nodes
+Node selector/affinity mismatch
+Taints and tolerations
+PVC/storage issues
+No suitable worker node available
+Then I would check:
+kubectl get nodes
+kubectl describe node <node-name>
+kubectl get pvc
+
+4. What would you do for ImagePullBackOff?
+I would check:
+kubectl describe pod <pod-name>
+Then verify the image name and tag.
+For EKS + ECR, I would also check whether the worker node or workload has the required permissions and whether the private nodes have network connectivity to ECR.
+
+5. A container shows OOMKilled. What does that mean?
+It normally means the container exceeded its configured memory limit.
+I would check:
+kubectl describe pod <pod-name>
+kubectl top pod <pod-name>
+Then I would check the application's actual memory consumption and its Kubernetes requests/limits.
+I wouldn't simply increase the memory immediately — I would also check whether there is a memory leak or abnormal application behavior.
+
+6. The Pod is Running, but the application isn't working. What would you check?
+Running doesn't necessarily mean the application is healthy.
+I would check:
+kubectl get pods
+kubectl describe pod <pod-name>
+kubectl logs <pod-name>
+kubectl get svc
+kubectl get endpoints
+I would particularly check readiness probes, application logs, Service selectors and endpoints.
