@@ -1,0 +1,14 @@
+Kubernetes in plain English.
+ * Pods -> for running apps.
+ * Deployments -> for replacing pods.
+ * Services -> for finding pods.
+ * Ingress -> for letting traffic in.
+ * ConfigMaps -> for settings.
+ * Secrets -> for base64 confidence.
+ * Helm -> for generating YAML.
+ * Kustomize -> for patching YAML.
+ * HPA -> for scaling pods.
+ * KEDA -> for scaling on events.
+ * operators -> for automating experts.
+ * kubectl -> for 3 AM.
+ * Kubernetes -> for distributed problems.
