@@ -1,0 +1,19 @@
+EKS IAM Roles 📝
+
+There are 2 IAM roles you’ll commonly deal with in EKS:
+
+🔹 Cluster IAM Role
+
+Gives the EKS control plane permission to interact with AWS services, such as managing AWS resources needed by the cluster.
+
+🔹 Node IAM Role
+
+Gives worker nodes permission to:
+- Register and communicate with the cluster
+- Pull images from ECR
+- Let the VPC CNI manage Pod networking
+
+Easy way to remember:
+
+Cluster Role → Control plane permissions
+Node Role → Worker node permissions + networking
