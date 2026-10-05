@@ -1,0 +1,59 @@
+What is Kubernetes?
+
+Kubernetes is an open-source container orchestration platform.
+Docker can run containers, but imagine we have 100 containers running across multiple servers; we need something to:
+* Deploy containers
+* Restart Failed Containers
+* Maintain the required number of replicas
+* Distribute Workloads
+* Perform Scaling
+* Perform rolling updates
+* Manage configuration
+* Recover applications when something fails
+
+That's where Kubernetes comes in.
+
+suppose your application requires:
+frontend -> 3 pods
+Backend  -> 5 pods
+Payment -> 2 pods
+
+If one backend Pod crashes, Kubernetes can detect that the desired state is 5 replicas and create another Pod.
+
+So instead of manually saying:
+
+"Backend container crashed. Start another one."
+Kubernetes continuously works toward the desired state.
+
+Advantages of Kubernetes:
+1. Self-healing -> if a container/pod fails, Kubernetes can restart or replace it.
+2. Scaling -> you can increase or decrease application replicas.
+3. Rolling Deployments -> You can deploy a new application version gradually instead of stopping everything at once.
+4. Service discovery -> Kubernetes provides mechanisms for applications to communicate with each other.
+5. Load Balancing -> Services can distribute traffic across multiple pods.
+6. High Availability -> The application can run across multiple pods and nodes, reducing dependence on a single instance
+7. Declarative Management -> define what you want like replicas : 3
+Kubernetes continuously tries to maintain that desired state.
+
+Disadvantages of Kubernetes :
+
+1. Complexity
+There are many concepts: Pod, Deployment, Service, Ingress, ConfigMap, Secret, PV, PVC, StatefulSet, HPA, RBAC, Namespace, etc.
+2. Steep Learning Curve -> Understanding Kubernetes properly requires knowledge of  Linux, networking, containers, YAML, cloud, security.
+3. Operational OverHead - > running your own Kubernetes cluster means managing: nodes, networking, upgrades, security, monitoring, storage.
+4. Resource consumption
+5. Troubleshooting can be difficult
+A simple application failure can involve multiple layers:
+Application
+   ↓
+Pod
+   ↓
+Deployment
+   ↓
+Service
+   ↓
+Ingress
+   ↓
+Load Balancer
+   ↓
+Cloud infrastructure
