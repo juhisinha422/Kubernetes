@@ -1,0 +1,11 @@
+What is the difference between port and targetPort in a Service? 
+
+port: the port the Service exposes. This is what clients use to reach it.
+
+targetPort: the port your application is listening on inside the Pod.
+
+Say your Flask app runs on 5000 inside the container, but you want to expose the Service on 80:
+
+Client → Service (port 80) → Pod (targetPort 5000)
+
+The Service receives traffic on 80 and forwards it to your application on 5000.
